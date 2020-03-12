@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Categories;
 use Closure;
 
 class CheckCategories
@@ -16,14 +17,16 @@ class CheckCategories
     public function handle($request, Closure $next)
     {
 
-        $category = $request->route()->parameters();
+        $categoryId = $request->route()->parameters();
 
-        var_dump($category); exit;
+        $categories = Categories::all();
 
-        if (! $request->user()->id === $category->user_id) {
-            abort(404);
+        $category =  $categories->find($categoryId['category']);
+
+        if ($request->user()->id === $category->user_id) {
+            return $next($request);
         }
 
-        return $next($request);
+        
     }
 }
