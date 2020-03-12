@@ -10905,6 +10905,7 @@ a.text-dark:focus {
 
 .categories-scroll-container {
   min-width: 100%;
+  min-height: 15rem;
   max-height: 75vh;
   overflow: auto;
   border-top: 1px solid #FFFFFF;
@@ -10922,6 +10923,8 @@ a.text-dark:focus {
 .category-link-container {
   padding: 0.2rem 0 0.2rem 0;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .category-link-container:hover {
@@ -10938,6 +10941,10 @@ a.text-dark:focus {
 .category-link:hover {
   color: #FFFFFF;
   text-decoration: none;
+}
+
+.dropdown-toggle {
+  margin-right: 0.3rem;
 }
 
 .categories-form-container {

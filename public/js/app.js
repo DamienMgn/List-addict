@@ -1969,6 +1969,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -38178,15 +38185,38 @@ var render = function() {
               ]
             ),
             _vm._v(" "),
-            _c(
-              "i",
-              {
-                staticClass: "icon-trash",
-                attrs: { "data-id": categorie.id },
-                on: { click: _vm.deleteCategory }
-              },
-              [_vm._v("X")]
-            )
+            _c("div", { staticClass: "dropdown" }, [
+              _c("button", {
+                staticClass: "btn btn-secondary btn-sm dropdown-toggle",
+                attrs: {
+                  type: "button",
+                  id: "dropdownMenuButton",
+                  "data-toggle": "dropdown",
+                  "aria-haspopup": "true",
+                  "aria-expanded": "false"
+                }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "dropdown-menu" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "dropdown-item btn-delete",
+                    attrs: { href: "#", "data-id": categorie.id },
+                    on: { click: _vm.deleteCategory }
+                  },
+                  [_vm._v("Delete")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "dropdown-divider" }),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  { staticClass: "dropdown-item", attrs: { href: "#" } },
+                  [_vm._v("Couleur")]
+                )
+              ])
+            ])
           ],
           1
         )
