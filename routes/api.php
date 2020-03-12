@@ -18,6 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('auth:api')->get('/categories', 'TodoController@showCategories')->name('show_categories');
-Route::middleware('auth:api')->post('/add-category', 'TodoController@addCategory')->name('add_category');
+Route::middleware('auth:api')->get('/categories', 'CategoriesController@showCategories')->name('show_categories');
+Route::middleware('auth:api')->post('/add-category', 'CategoriesController@addCategory')->name('add_category');
+Route::middleware('auth:api')->post('/delete/category/{category}', 'CategoriesController@deleteCategory')->name('delete_category')->middleware('categories');
 

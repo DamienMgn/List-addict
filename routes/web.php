@@ -21,6 +21,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/categories', 'TodoController@showCategories')->name('show_categories');
+Route::get('/categories', 'CategoriesController@showCategories')->name('show_categories');
 
-Route::get('/cards/{category}', 'TodoController@showCards')->name('show_cards')->middleware('categories');
+Route::get('/delete/{category}', 'CategoriesController@deleteCategory')->name('show_cards')->middleware('categories');

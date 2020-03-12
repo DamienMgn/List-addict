@@ -1984,6 +1984,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     checkForm: function checkForm(e) {
       e.preventDefault();
       this.$store.dispatch('insertCategory', e.target.name.value);
+    },
+    deleteCategory: function deleteCategory(e) {
+      this.$store.dispatch('deleteCategory', e.toElement.dataset.id);
     }
   }
 });
@@ -38175,7 +38178,15 @@ var render = function() {
               ]
             ),
             _vm._v(" "),
-            _c("i", { staticClass: "icon-trash" })
+            _c(
+              "i",
+              {
+                staticClass: "icon-trash",
+                attrs: { "data-id": categorie.id },
+                on: { click: _vm.deleteCategory }
+              },
+              [_vm._v("X")]
+            )
           ],
           1
         )
@@ -54663,6 +54674,12 @@ var get = /*#__PURE__*/function () {
     addCategory: function addCategory(state, _ref3) {
       var category = _ref3.category;
       state.categories.push(category);
+    },
+    removeCategory: function removeCategory(state, id) {
+      var index = state.categories.findIndex(function (el) {
+        return el.id == id;
+      });
+      state.categories.splice(index, 1);
     }
   },
   actions: {
@@ -54728,21 +54745,22 @@ var get = /*#__PURE__*/function () {
 
       return insertCategory;
     }(),
-    loadCards: function () {
-      var _loadCards = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(context, id) {
+    deleteCategory: function () {
+      var _deleteCategory = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(context, id) {
         var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
                 _context4.next = 2;
-                return get('/api/cards/' + id);
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/delete/category/' + id);
 
               case 2:
                 response = _context4.sent;
-                console.log(response);
+                console.log(response.data.categoryId);
+                context.commit('removeCategory', response.data.categoryId);
 
-              case 4:
+              case 5:
               case "end":
                 return _context4.stop();
             }
@@ -54750,7 +54768,35 @@ var get = /*#__PURE__*/function () {
         }, _callee4);
       }));
 
-      function loadCards(_x5, _x6) {
+      function deleteCategory(_x5, _x6) {
+        return _deleteCategory.apply(this, arguments);
+      }
+
+      return deleteCategory;
+    }(),
+    loadCards: function () {
+      var _loadCards = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(context, id) {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.next = 2;
+                return get('/api/cards/' + id);
+
+              case 2:
+                response = _context5.sent;
+                console.log(response);
+
+              case 4:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }));
+
+      function loadCards(_x7, _x8) {
         return _loadCards.apply(this, arguments);
       }
 

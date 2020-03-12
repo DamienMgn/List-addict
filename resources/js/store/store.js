@@ -26,6 +26,10 @@ export default new Vuex.Store({
         },
         addCategory: function (state, {category}) {
             state.categories.push(category)
+        },
+        removeCategory: function (state, id) {
+            let index = state.categories.findIndex(el => el.id == id)
+            state.categories.splice(index, 1)
         }
     },
     actions: {
@@ -38,6 +42,11 @@ export default new Vuex.Store({
                 name: name
             })
             context.commit('addCategory', {category: response.data.category})
+        },
+        deleteCategory: async function (context, id) {
+            let response = await axios.post('/api/delete/category/' + id)
+            console.log(response.data.categoryId)
+            context.commit('removeCategory', response.data.categoryId)
         },
         loadCards: async function (context, id) {
             let response = await get('/api/cards/' + id)

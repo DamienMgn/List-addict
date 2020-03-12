@@ -34,13 +34,21 @@
 .categories-scroll-container {
     min-width: 100%;
     max-height: 75vh;
-    overflow: scroll;
+    overflow: auto;
     border-top: 1px solid $white;
+    scrollbar-color: #ff8c00 !important;
+}
 
+.categories-scroll-container::-webkit-scrollbar {
+    background-color: $dark;
+}
+
+.categories-scroll-container::-webkit-scrollbar-thumb {
+    background-color: $green;
 }
 
 .category-link-container {
-    padding: 0.5rem 0 0.5rem 0;
+    padding: 0.2rem 0 0.2rem 0;
     display: flex;
 }
 

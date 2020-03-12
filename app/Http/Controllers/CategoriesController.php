@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 
-class TodoController extends Controller
+class CategoriesController extends Controller
 {
     /**
      * Return categories
@@ -23,7 +23,7 @@ class TodoController extends Controller
     }
 
     /**
-     * Return categories
+     * Return category
      */
     public function addCategory(Request $request) {
 
@@ -38,18 +38,21 @@ class TodoController extends Controller
         return response()->json([
             'category' => $category,
         ]);
-    } 
-
-    /**
-     * Return categories
-     */
-    public function showCards(Request $request, Categories $category) {
-
-            return response()->json([
-                'user' => $request->user()->id,
-                'categoryUser' => $category
-            ]);
     }
 
+    /**
+     * Return category
+     */
+    public function deleteCategory(Request $request, Categories $category) {
+        $categoryId = $category->id;
+
+        $categoryToDelete =  Categories::find($category->id);
+
+        $categoryToDelete->delete();
+
+        return response()->json([
+            'categoryId' => $categoryId,
+        ]);
+    } 
 }
 

@@ -11,7 +11,7 @@
                 <router-link class="link category-link" :to="{name: 'categorie', params: {id: categorie.id}}">
                             {{categorie.name}}
                 </router-link>
-                <i class="icon-trash"></i>
+                <i class="icon-trash" @click="deleteCategory" :data-id="categorie.id">X</i>
             </div>
         </div>
     </div>
@@ -36,6 +36,9 @@
             checkForm: function (e) {
                 e.preventDefault()
                 this.$store.dispatch('insertCategory', e.target.name.value)
+            },
+            deleteCategory: function (e) {
+                this.$store.dispatch('deleteCategory', e.toElement.dataset.id)
             }
         }
     }
