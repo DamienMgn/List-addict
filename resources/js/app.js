@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import CategoriesComponent from './components/CategoriesComponent.vue'
 import CardsComponent from './components/CardsComponent.vue'
+import HomeComponent from './components/HomeComponent.vue'
 import store from './store/store'
 import Axios from 'axios'
 
@@ -14,7 +15,7 @@ let categories = document.querySelector('#categories')
 
 if (categories) {
     const routes = [
-        {path: '/'},
+        {path: '/', component: HomeComponent, name: 'home'},
         {path: '/:id', component: CardsComponent, name: 'categorie'},
     ]
     
@@ -29,7 +30,8 @@ if (categories) {
         el: '#app',
         components: {
             CategoriesComponent,
-            CardsComponent
+            CardsComponent,
+            HomeComponent
         },
         store,
         router

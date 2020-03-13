@@ -22,14 +22,26 @@ export default new Vuex.Store({
     },
     mutations: {
         addCategories: function (state, {categories}) {
-            state.categories = categories
+            let obj = {}
+            categories.forEach(element => {
+                obj[element.id] = element
+            });
+            state.categories = obj
         },
         addCategory: function (state, {category}) {
-            state.categories.push(category)
+            let obj = {}
+            obj[category.id] = category
+            state.categories = {...state.categories, ...obj}
         },
         removeCategory: function (state, id) {
-            let index = state.categories.findIndex(el => el.id == id)
-            state.categories.splice(index, 1)
+            let newState = state.categories
+            delete newState[id]
+            state.categories = {...newState}
+        },
+        addCards: function (state, {id, cards}) {
+            let category = state.categories[id] || {}
+            category.cards = cards
+            state.categories = {...state.categories, ...{[id]: category}}
         }
     },
     actions: {
@@ -45,12 +57,11 @@ export default new Vuex.Store({
         },
         deleteCategory: async function (context, id) {
             let response = await axios.post('/api/delete/category/' + id)
-            console.log(response.data.categoryId)
             context.commit('removeCategory', response.data.categoryId)
         },
         loadCards: async function (context, id) {
             let response = await get('/api/cards/' + id)
-            console.log(response)
+            context.commit('addCards', {id: id, cards: response.data.cards})
         }
     }
 })
