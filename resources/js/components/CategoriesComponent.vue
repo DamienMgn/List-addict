@@ -46,6 +46,7 @@
             },
             deleteCategory: function (e) {
                 this.$store.dispatch('deleteCategory', e.toElement.dataset.id)
+                this.$router.push({name: 'home'})
             }
         }
     }

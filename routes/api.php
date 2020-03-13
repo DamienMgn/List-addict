@@ -21,4 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::middleware('auth:api')->get('/categories', 'CategoriesController@showCategories')->name('show_categories');
 Route::middleware('auth:api')->post('/add-category', 'CategoriesController@addCategory')->name('add_category');
 Route::middleware('auth:api')->post('/delete/category/{category}', 'CategoriesController@deleteCategory')->name('delete_category')->middleware('categories');
+Route::middleware('auth:api')->get('/cards/{category}', 'CardsController@showCards')->name('show_cards')->middleware('categories');
 
