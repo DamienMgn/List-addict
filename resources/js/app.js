@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import CategoriesComponent from './components/CategoriesComponent.vue'
+import SidebarComponent from './components/SidebarComponent.vue'
 import CardsComponent from './components/CardsComponent.vue'
 import CardComponent from './components/CardComponent.vue'
 import HomeComponent from './components/HomeComponent.vue'
+import AppComponent from './components/AppComponent.vue'
 import store from './store/store'
 
 require('./bootstrap');
@@ -28,10 +29,11 @@ if (categories) {
     new Vue({
         el: '#app',
         components: {
-            CategoriesComponent,
+            SidebarComponent,
             CardsComponent,
             CardComponent,
-            HomeComponent
+            HomeComponent,
+            AppComponent,
         },
         store,
         router
