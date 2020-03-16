@@ -55020,8 +55020,8 @@ var get = /*#__PURE__*/function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/damien/Desktop/laravelvue/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/damien/Desktop/laravelvue/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/damien/Desktop/TitrePro/Laravel-vue/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/damien/Desktop/TitrePro/Laravel-vue/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
