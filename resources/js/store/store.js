@@ -25,6 +25,7 @@ export default new Vuex.Store({
             let obj = {}
             categories.forEach(element => {
                 obj[element.id] = element
+                obj[element.id].cards = {}
             });
             state.categories = obj
         },
@@ -32,6 +33,7 @@ export default new Vuex.Store({
             let obj = {}
             obj[category.id] = category
             state.categories = {...state.categories, ...obj}
+            console.log(state.categories)
         },
         removeCategory: function (state, id) {
             let newState = state.categories
@@ -40,8 +42,22 @@ export default new Vuex.Store({
         },
         addCards: function (state, {id, cards}) {
             let category = state.categories[id] || {}
-            category.cards = cards
+            if (cards.length > 0) {
+                cards.forEach(el => {
+                    category.cards[el.id] = el
+                })
+            } else {
+                category.cards = {}
+            }
+
             state.categories = {...state.categories, ...{[id]: category}}
+            console.log(state.categories)
+        },
+        addCard: function (state, {card}) {
+            let category = state.categories[card.category_id] || {}
+            category.cards[card.id] = card
+            state.categories = {...state.categories, ...{[card.category_id]: category}}
+            console.log(state.categories)
         }
     },
     actions: {
@@ -62,6 +78,12 @@ export default new Vuex.Store({
         loadCards: async function (context, id) {
             let response = await get('/api/cards/' + id)
             context.commit('addCards', {id: id, cards: response.data.cards})
-        }
+        },
+        insertCard: async function (context, cardData) {
+            let response = await axios.post('/api/add-card/' + cardData.categoryId, {
+               cardName: cardData.cardName
+            })
+            context.commit('addCard', {card: response.data.card})
+        },
     }
 })

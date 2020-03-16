@@ -11,12 +11,13 @@
 .py-4 {
     margin: 0 !important;
     padding: 0 !important;
-    
+
 }
 
 /* CategoriesComponent */
 
-// Catgeories List
+// Categories List
+
 .app-section {
     position: relative !important;
 }
@@ -109,4 +110,36 @@
     left: 15rem;
     min-height: calc(100vh - 55px);
     padding: 5rem;
+    display: flex;
+    flex-direction: row;
+    overflow: auto;
+}
+
+/* CardComponent */
+
+.card-container {
+    width: 15rem;
+    min-height: 20rem;
+    background-color: $white;
+    margin: 0.5rem;
+}
+
+.card-title {
+    background-color: $green;
+    color: $white;
+    text-align: center
+}
+
+.btn-add-card {
+    position: absolute;
+    right: 0;
+    left: 15rem;
+    margin-top: 0.5rem;
+    margin-left: 5rem;
+    background-color: $red;
+    color: $white;
+}
+
+.btn-add-card:hover {
+    color: $white;
 }

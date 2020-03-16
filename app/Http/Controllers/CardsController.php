@@ -18,6 +18,23 @@ class CardsController extends Controller
         return response()->json([
             'cards' => $cards,
         ]);
+    }
 
+    /**
+     * Return card
+     */
+    public function addCard(Request $request, Categories $category) {
+
+        $card = new Cards;
+
+        $card->name = $request->cardName;
+
+        $card->category_id = $category->id;
+
+        $card->save();
+
+        return response()->json([
+            'card' => $card,
+        ]);
     }
 }

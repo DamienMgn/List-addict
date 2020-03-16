@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import CategoriesComponent from './components/CategoriesComponent.vue'
 import CardsComponent from './components/CardsComponent.vue'
+import CardComponent from './components/CardComponent.vue'
 import HomeComponent from './components/HomeComponent.vue'
 import store from './store/store'
 
@@ -29,6 +30,7 @@ if (categories) {
         components: {
             CategoriesComponent,
             CardsComponent,
+            CardComponent,
             HomeComponent
         },
         store,

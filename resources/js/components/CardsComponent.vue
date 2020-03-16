@@ -1,17 +1,48 @@
 <template>
-    <div class="cards-container">
-        {{ this.$route.params.id }}
-        <ul v-for="card in categories[this.$route.params.id].cards">
-            <li>{{card.name}}</li>
-        </ul>
+    <div>
+        <div class="cards-container">
+            <div v-for="card in categories[this.$route.params.id].cards">
+                <CardComponent v-bind:card="card"></CardComponent>
+            </div>
+        </div>
+        <button class="btn btn-add-card" type="button" data-toggle="modal" data-target="#add-card-modal">New</button>
+        <div class="modal fade" id="add-card-modal" tabindex="-1" role="dialog" aria-labelledby="addCardModal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Ajouter une carte</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form @submit="addCard" method="post">
+                        <div class="modal-body">
+                            <input class="form-control" type="text" placeholder="carte" id="card-name" name="card-name" v-bind:value="cardName">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-primary">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
     import {mapGetters} from 'vuex'
+    import CardComponent from './CardComponent.vue'
 
     export default {
-        
+        components: {
+            CardComponent,
+        },
+        data() {
+            return {
+                cardName: ''
+            }
+        },
         mounted () {
             this.$store.dispatch('loadCards', this.$route.params.id)
         },
@@ -21,6 +52,13 @@
         watch: {
             $route(to, from) {
             this.$store.dispatch('loadCards', this.$route.params.id)
+            }
+        },
+        methods: {
+            addCard: function(e) {
+                e.preventDefault()
+                this.$store.dispatch('insertCard', {cardName: e.target[0].value, categoryId: this.$route.params.id})
+                $('#add-card-modal').modal('toggle');
             }
         }
     }
