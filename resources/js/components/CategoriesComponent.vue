@@ -1,7 +1,7 @@
 <template>
     <div class="categories-container">
         <div class="categories-form-container">
-            <form @submit="checkForm" method="post" class="categories-form">
+            <form @submit="addCategory" method="post" class="categories-form">
                 <input type="text" class="categories-form-input" id="name" name="name" v-bind:value="name">
                 <input type="submit" class="btn categories-form-btn" value="Ajouter">
             </form>
@@ -40,7 +40,7 @@
             this.$store.dispatch('loadCategories')
         },
         methods:{
-            checkForm: function (e) {
+            addCategory: function (e) {
                 e.preventDefault()
                 this.$store.dispatch('insertCategory', e.target.name.value)
             },

@@ -10979,5 +10979,37 @@ a.text-dark:focus {
   left: 15rem;
   min-height: calc(100vh - 55px);
   padding: 5rem;
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
+}
+
+/* CardComponent */
+
+.card-container {
+  width: 15rem;
+  min-height: 20rem;
+  background-color: #FFFFFF;
+  margin: 0.5rem;
+}
+
+.card-title {
+  background-color: #38c172;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.btn-add-card {
+  position: absolute;
+  right: 0;
+  left: 15rem;
+  margin-top: 0.5rem;
+  margin-left: 5rem;
+  background-color: #e3342f;
+  color: #FFFFFF;
+}
+
+.btn-add-card:hover {
+  color: #FFFFFF;
 }
 
