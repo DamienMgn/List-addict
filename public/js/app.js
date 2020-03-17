@@ -38288,12 +38288,12 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card-container" }, [
-    _c("header", { staticClass: "card-title" }, [
-      _c("h5", [_vm._v(_vm._s(_vm.card.name))]),
+    _c("header", { staticClass: "card-header" }, [
+      _c("h5", { staticClass: "card-title" }, [_vm._v(_vm._s(_vm.card.name))]),
       _vm._v(" "),
-      _c("div", { staticClass: "dropdown" }, [
+      _c("div", { staticClass: "dropdown manage-card-container" }, [
         _c("button", {
-          staticClass: "btn btn-secondary btn-sm dropdown-toggle",
+          staticClass: "btn btn-secondary btn-sm dropdown-toggle btn-dropdown",
           attrs: {
             type: "button",
             id: "dropdownMenuButton",
@@ -38557,7 +38557,8 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "dropdown" }, [
               _c("button", {
-                staticClass: "btn btn-secondary btn-sm dropdown-toggle",
+                staticClass:
+                  "btn btn-secondary btn-sm dropdown-toggle btn-dropdown",
                 attrs: {
                   type: "button",
                   id: "dropdownMenuButton",
