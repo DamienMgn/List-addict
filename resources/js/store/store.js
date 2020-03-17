@@ -80,6 +80,7 @@ export default new Vuex.Store({
         loadCards: async function (context, id) {
             let response = await get('/api/cards/' + id)
             context.commit('addCards', {id: id, cards: response.data.cards})
+            console.log(response.data)
         },
         insertCard: async function (context, cardData) {
             let response = await axios.post('/api/add-card/' + cardData.categoryId, {

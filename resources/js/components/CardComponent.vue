@@ -12,8 +12,16 @@
             </div>
         </header>
         <div class="card-body">
-
+            <ul v-for="task in card.tasks">
+                <li>{{ task.name }}</li>
+            </ul>
         </div>
+        <button class="btn btn-add-task" @click="toggleFormTask" type="button" data-target="#add-card-modal" v-if="!isVisible">New</button>
+        <form v-if="isVisible" @submit="toggleFormTask">
+            <input type="text">
+            <input type="submit">
+            <button class="" type="button" data-target="#add-card-modal" @click="toggleFormTask">Annuler</button>
+        </form>
     </div>
 </template>
 
@@ -21,9 +29,21 @@
     export default {
         name: "CardComponent",
         props: ['card'],
+        data() {
+            return {
+                isVisible: false,
+            }
+        },
         methods:{
             deleteCard: function (e) {
                 this.$store.dispatch('deleteCard', {cardId: e.target.dataset.card, categoryId: e.target.dataset.category})
+            },
+            toggleFormTask: function () {
+                if (this.isVisible) {
+                    this.isVisible = false
+                } else {
+                    this.isVisible = true
+                }
             }
         }
     }

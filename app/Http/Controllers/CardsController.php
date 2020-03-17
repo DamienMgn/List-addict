@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cards;
 use App\Categories;
+use App\Tasks;
 use Illuminate\Http\Request;
 
 class CardsController extends Controller
@@ -11,9 +12,13 @@ class CardsController extends Controller
     /**
      * Return cards
      */
-    public function showCards(Request $request, Categories $category) {
+    public function showCards(Categories $category) {
 
         $cards =  Cards::where('category_id', $category->id)->get();
+
+        foreach ($cards as $card) {
+            $card['tasks'] = Tasks::where('card_id', $card->id)->get();
+        }
 
         return response()->json([
             'cards' => $cards,

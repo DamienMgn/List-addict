@@ -1966,15 +1966,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CardComponent",
   props: ['card'],
+  data: function data() {
+    return {
+      isVisible: false
+    };
+  },
   methods: {
     deleteCard: function deleteCard(e) {
       this.$store.dispatch('deleteCard', {
         cardId: e.target.dataset.card,
         categoryId: e.target.dataset.category
       });
+    },
+    toggleFormTask: function toggleFormTask() {
+      if (this.isVisible) {
+        this.isVisible = false;
+      } else {
+        this.isVisible = true;
+      }
     }
   }
 });
@@ -38326,7 +38346,43 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "card-body" })
+    _c(
+      "div",
+      { staticClass: "card-body" },
+      _vm._l(_vm.card.tasks, function(task) {
+        return _c("ul", [_c("li", [_vm._v(_vm._s(task.name))])])
+      }),
+      0
+    ),
+    _vm._v(" "),
+    !_vm.isVisible
+      ? _c(
+          "button",
+          {
+            staticClass: "btn btn-add-task",
+            attrs: { type: "button", "data-target": "#add-card-modal" },
+            on: { click: _vm.toggleFormTask }
+          },
+          [_vm._v("New")]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.isVisible
+      ? _c("form", { on: { submit: _vm.toggleFormTask } }, [
+          _c("input", { attrs: { type: "text" } }),
+          _vm._v(" "),
+          _c("input", { attrs: { type: "submit" } }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              attrs: { type: "button", "data-target": "#add-card-modal" },
+              on: { click: _vm.toggleFormTask }
+            },
+            [_vm._v("Annuler")]
+          )
+        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = []
@@ -55442,8 +55498,9 @@ var get = /*#__PURE__*/function () {
                   id: id,
                   cards: response.data.cards
                 });
+                console.log(response.data);
 
-              case 4:
+              case 5:
               case "end":
                 return _context5.stop();
             }
