@@ -17,10 +17,14 @@
             </ul>
         </div>
         <button class="btn btn-add-task" @click="toggleFormTask" type="button" data-target="#add-card-modal" v-if="!isVisible">New</button>
-        <form v-if="isVisible" @submit="toggleFormTask">
-            <input type="text">
-            <input type="submit">
-            <button class="" type="button" data-target="#add-card-modal" @click="toggleFormTask">Annuler</button>
+        <form class="form-add-task" v-if="isVisible" @submit="addTask" :data-card="card.id" :data-category="card.category_id">
+            <div class="form-add-task-input-container">
+                <input class="form-add-task-input" type="text" name="task" id="task" v-bind:value="name">
+            </div>
+            <div class="form-add-task-buttons">
+                <button class="form-add-task-button" type="button" data-target="#add-card-modal" @click="toggleFormTask">Annuler</button>
+                <input class="form-add-task-button"type="submit">
+            </div>
         </form>
     </div>
 </template>
@@ -32,6 +36,7 @@
         data() {
             return {
                 isVisible: false,
+                name: ''
             }
         },
         methods:{
@@ -44,6 +49,14 @@
                 } else {
                     this.isVisible = true
                 }
+            },
+            addTask: function (e) {
+                e.preventDefault()
+                this.$store.dispatch('insertTask', {
+                    taskName: e.target.task.value,
+                    categoryId: e.target.dataset.category,
+                    cardId: e.target.dataset.card
+                })
             }
         }
     }

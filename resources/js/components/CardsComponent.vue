@@ -17,7 +17,7 @@
                     </div>
                     <form @submit="addCard" method="post">
                         <div class="modal-body">
-                            <input class="form-control" type="text" placeholder="carte" id="card-name" name="card-name" v-bind:value="cardName">
+                            <input class="form-control" type="text" placeholder="carte" id="card" name="card" v-bind:value="cardName">
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -57,7 +57,7 @@
         methods: {
             addCard: function(e) {
                 e.preventDefault()
-                this.$store.dispatch('insertCard', {cardName: e.target[0].value, categoryId: this.$route.params.id})
+                this.$store.dispatch('insertCard', {cardName: e.target.card.value, categoryId: this.$route.params.id})
                 $('#add-card-modal').modal('toggle');
             }
         }

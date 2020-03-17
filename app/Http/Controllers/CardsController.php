@@ -16,6 +16,7 @@ class CardsController extends Controller
 
         $cards =  Cards::where('category_id', $category->id)->get();
 
+
         foreach ($cards as $card) {
             $card['tasks'] = Tasks::where('card_id', $card->id)->get();
         }

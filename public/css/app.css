@@ -11021,9 +11021,9 @@ a:active {
 
 .card-container {
   width: 17rem;
-  min-height: 20rem;
   background-color: #FFFFFF;
   margin: 0.5rem;
+  position: relative;
 }
 
 .card-header {
@@ -11048,5 +11048,46 @@ a:active {
   padding: 0;
   margin: 0;
   font-size: 1rem;
+}
+
+.card-body {
+  padding-bottom: 5rem !important;
+  max-height: 65vh;
+  overflow: auto;
+}
+
+.btn-add-task {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+}
+
+.form-add-task {
+  position: absolute;
+  bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.form-add-task-input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-add-task-input {
+  width: 90%;
+  margin: 0;
+  padding: 0;
+}
+
+.form-add-task-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
