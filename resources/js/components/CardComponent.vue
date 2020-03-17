@@ -1,9 +1,9 @@
 <template>
     <div class="card-container">
-        <header class="card-title">
-            <h5>{{card.name}}</h5>
-            <div class="dropdown">
-                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+        <header class="card-header">
+            <h5 class="card-title">{{card.name}}</h5>
+            <div class="dropdown manage-card-container">
+                <button class="btn btn-secondary btn-sm dropdown-toggle btn-dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                 <div class="dropdown-menu">
                     <button class="dropdown-item btn-delete" @click="deleteCard" :data-card="card.id" :data-category="card.category_id">Delete</button>
                     <div class="dropdown-divider"></div>
