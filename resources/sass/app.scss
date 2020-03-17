@@ -143,3 +143,8 @@
 .btn-add-card:hover {
     color: $white;
 }
+
+.card-title {
+    display: flex;
+    justify-content: space-between;
+}

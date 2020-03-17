@@ -37,4 +37,18 @@ class CardsController extends Controller
             'card' => $card,
         ]);
     }
+
+    /**
+     * Return card
+     */
+    public function deleteCard(Cards $card) {
+
+        $cardToDelete =  Cards::find($card->id);
+
+        $cardToDelete->delete();
+
+        return response()->json([
+            'card' => $card,
+        ]);
+    }
 }

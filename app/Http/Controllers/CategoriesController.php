@@ -43,7 +43,7 @@ class CategoriesController extends Controller
     /**
      * Return category
      */
-    public function deleteCategory(Request $request, Categories $category) {
+    public function deleteCategory(Categories $category) {
         $categoryId = $category->id;
 
         $categoryToDelete =  Categories::find($category->id);
@@ -53,6 +53,6 @@ class CategoriesController extends Controller
         return response()->json([
             'categoryId' => $categoryId,
         ]);
-    } 
+    }
 }
 
