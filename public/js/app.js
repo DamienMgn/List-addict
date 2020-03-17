@@ -1966,14 +1966,47 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CardComponent",
   props: ['card'],
+  data: function data() {
+    return {
+      isVisible: false,
+      name: ''
+    };
+  },
   methods: {
     deleteCard: function deleteCard(e) {
       this.$store.dispatch('deleteCard', {
         cardId: e.target.dataset.card,
         categoryId: e.target.dataset.category
+      });
+    },
+    toggleFormTask: function toggleFormTask() {
+      if (this.isVisible) {
+        this.isVisible = false;
+      } else {
+        this.isVisible = true;
+      }
+    },
+    addTask: function addTask(e) {
+      e.preventDefault();
+      this.$store.dispatch('insertTask', {
+        taskName: e.target.task.value,
+        categoryId: e.target.dataset.category,
+        cardId: e.target.dataset.card
       });
     }
   }
@@ -2054,7 +2087,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     addCard: function addCard(e) {
       e.preventDefault();
       this.$store.dispatch('insertCard', {
-        cardName: e.target[0].value,
+        cardName: e.target.card.value,
         categoryId: this.$route.params.id
       });
       $('#add-card-modal').modal('toggle');
@@ -38326,7 +38359,66 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "card-body" })
+    _c(
+      "div",
+      { staticClass: "card-body" },
+      _vm._l(_vm.card.tasks, function(task) {
+        return _c("ul", [_c("li", [_vm._v(_vm._s(task.name))])])
+      }),
+      0
+    ),
+    _vm._v(" "),
+    !_vm.isVisible
+      ? _c(
+          "button",
+          {
+            staticClass: "btn btn-add-task",
+            attrs: { type: "button", "data-target": "#add-card-modal" },
+            on: { click: _vm.toggleFormTask }
+          },
+          [_vm._v("New")]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.isVisible
+      ? _c(
+          "form",
+          {
+            staticClass: "form-add-task",
+            attrs: {
+              "data-card": _vm.card.id,
+              "data-category": _vm.card.category_id
+            },
+            on: { submit: _vm.addTask }
+          },
+          [
+            _c("div", { staticClass: "form-add-task-input-container" }, [
+              _c("input", {
+                staticClass: "form-add-task-input",
+                attrs: { type: "text", name: "task", id: "task" },
+                domProps: { value: _vm.name }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-add-task-buttons" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "form-add-task-button",
+                  attrs: { type: "button", "data-target": "#add-card-modal" },
+                  on: { click: _vm.toggleFormTask }
+                },
+                [_vm._v("Annuler")]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-add-task-button",
+                attrs: { type: "submit" }
+              })
+            ])
+          ]
+        )
+      : _vm._e()
   ])
 }
 var staticRenderFns = []
@@ -38404,8 +38496,8 @@ var render = function() {
                       attrs: {
                         type: "text",
                         placeholder: "carte",
-                        id: "card-name",
-                        name: "card-name"
+                        id: "card",
+                        name: "card"
                       },
                       domProps: { value: _vm.cardName }
                     })
@@ -55518,6 +55610,38 @@ var get = /*#__PURE__*/function () {
       }
 
       return deleteCard;
+    }(),
+    insertTask: function () {
+      var _insertTask = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8(context, taskData) {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
+          while (1) {
+            switch (_context8.prev = _context8.next) {
+              case 0:
+                _context8.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/add-task/' + taskData.cardId + '/' + taskData.categoryId, {
+                  taskName: taskData.taskName
+                });
+
+              case 2:
+                response = _context8.sent;
+                context.commit('addCard', {
+                  card: response.data.card
+                });
+
+              case 4:
+              case "end":
+                return _context8.stop();
+            }
+          }
+        }, _callee8);
+      }));
+
+      function insertTask(_x13, _x14) {
+        return _insertTask.apply(this, arguments);
+      }
+
+      return insertTask;
     }()
   }
 }));

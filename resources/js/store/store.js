@@ -59,7 +59,6 @@ export default new Vuex.Store({
             let newState = state.categories
             delete newState[card.category_id].cards[card.id]
             state.categories = {...newState}
-
         },
     },
     actions: {
@@ -90,6 +89,12 @@ export default new Vuex.Store({
         deleteCard: async function (context, cardData) {
             let response = await axios.post('/api/delete/card/' + cardData.cardId + '/' + cardData.categoryId)
             context.commit('removeCard', {card: response.data.card})
+        },
+        insertTask: async function (context, taskData) {
+            let response = await axios.post('/api/add-task/' + taskData.cardId + '/' + taskData.categoryId, {
+                taskName: taskData.taskName
+            })
+            context.commit('addCard', {card: response.data.card})
         },
     }
 })
