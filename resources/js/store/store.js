@@ -33,7 +33,6 @@ export default new Vuex.Store({
             let obj = {}
             obj[category.id] = category
             state.categories = {...state.categories, ...obj}
-            console.log(state.categories)
         },
         removeCategory: function (state, id) {
             let newState = state.categories
@@ -49,16 +48,19 @@ export default new Vuex.Store({
             } else {
                 category.cards = {}
             }
-
             state.categories = {...state.categories, ...{[id]: category}}
-            console.log(state.categories)
         },
         addCard: function (state, {card}) {
             let category = state.categories[card.category_id] || {}
             category.cards[card.id] = card
             state.categories = {...state.categories, ...{[card.category_id]: category}}
-            console.log(state.categories)
-        }
+        },
+        removeCard: function (state, {card}) {
+            let newState = state.categories
+            delete newState[card.category_id].cards[card.id]
+            state.categories = {...newState}
+
+        },
     },
     actions: {
         loadCategories: async function (context) {
@@ -84,6 +86,10 @@ export default new Vuex.Store({
                cardName: cardData.cardName
             })
             context.commit('addCard', {card: response.data.card})
+        },
+        deleteCard: async function (context, cardData) {
+            let response = await axios.post('/api/delete/card/' + cardData.cardId + '/' + cardData.categoryId)
+            context.commit('removeCard', {card: response.data.card})
         },
     }
 })

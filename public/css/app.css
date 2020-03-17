@@ -11013,3 +11013,8 @@ a.text-dark:focus {
   color: #FFFFFF;
 }
 
+.card-title {
+  display: flex;
+  justify-content: space-between;
+}
+

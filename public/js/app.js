@@ -1958,9 +1958,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CardComponent",
-  props: ['card']
+  props: ['card'],
+  methods: {
+    deleteCard: function deleteCard(e) {
+      this.$store.dispatch('deleteCard', {
+        cardId: e.target.dataset.card,
+        categoryId: e.target.dataset.category
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -38273,7 +38289,41 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card-container" }, [
     _c("header", { staticClass: "card-title" }, [
-      _vm._v("\n        " + _vm._s(_vm.card.name) + "\n    ")
+      _c("h5", [_vm._v(_vm._s(_vm.card.name))]),
+      _vm._v(" "),
+      _c("div", { staticClass: "dropdown" }, [
+        _c("button", {
+          staticClass: "btn btn-secondary btn-sm dropdown-toggle",
+          attrs: {
+            type: "button",
+            id: "dropdownMenuButton",
+            "data-toggle": "dropdown",
+            "aria-haspopup": "true",
+            "aria-expanded": "false"
+          }
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "dropdown-menu" }, [
+          _c(
+            "button",
+            {
+              staticClass: "dropdown-item btn-delete",
+              attrs: {
+                "data-card": _vm.card.id,
+                "data-category": _vm.card.category_id
+              },
+              on: { click: _vm.deleteCard }
+            },
+            [_vm._v("Delete")]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "dropdown-divider" }),
+          _vm._v(" "),
+          _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
+            _vm._v("Couleur")
+          ])
+        ])
+      ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "card-body" })
@@ -55250,7 +55300,6 @@ var get = /*#__PURE__*/function () {
       var obj = {};
       obj[category.id] = category;
       state.categories = _objectSpread({}, state.categories, {}, obj);
-      console.log(state.categories);
     },
     removeCategory: function removeCategory(state, id) {
       var newState = state.categories;
@@ -55271,14 +55320,18 @@ var get = /*#__PURE__*/function () {
       }
 
       state.categories = _objectSpread({}, state.categories, {}, _defineProperty({}, id, category));
-      console.log(state.categories);
     },
     addCard: function addCard(state, _ref5) {
       var card = _ref5.card;
       var category = state.categories[card.category_id] || {};
       category.cards[card.id] = card;
       state.categories = _objectSpread({}, state.categories, {}, _defineProperty({}, card.category_id, category));
-      console.log(state.categories);
+    },
+    removeCard: function removeCard(state, _ref6) {
+      var card = _ref6.card;
+      var newState = state.categories;
+      delete newState[card.category_id].cards[card.id];
+      state.categories = _objectSpread({}, newState);
     }
   },
   actions: {
@@ -55434,6 +55487,36 @@ var get = /*#__PURE__*/function () {
       }
 
       return insertCard;
+    }(),
+    deleteCard: function () {
+      var _deleteCard = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7(context, cardData) {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
+          while (1) {
+            switch (_context7.prev = _context7.next) {
+              case 0:
+                _context7.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/delete/card/' + cardData.cardId + '/' + cardData.categoryId);
+
+              case 2:
+                response = _context7.sent;
+                context.commit('removeCard', {
+                  card: response.data.card
+                });
+
+              case 4:
+              case "end":
+                return _context7.stop();
+            }
+          }
+        }, _callee7);
+      }));
+
+      function deleteCard(_x11, _x12) {
+        return _deleteCard.apply(this, arguments);
+      }
+
+      return deleteCard;
     }()
   }
 }));
