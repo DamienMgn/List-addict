@@ -96,5 +96,9 @@ export default new Vuex.Store({
             })
             context.commit('addCard', {card: response.data.card})
         },
+        deleteTask: async function (context, taskData) {
+            let response = await axios.post('/api/delete/task/' + taskData.taskId + '/' + taskData.cardId + '/' + taskData.categoryId)
+            context.commit('addCard', {card: response.data.card})
+        }
     }
 })

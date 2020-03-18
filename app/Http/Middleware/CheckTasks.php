@@ -2,10 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use App\Categories;
+use App\Tasks;
 use Closure;
 
-class CheckCategories
+class CheckTasks
 {
     /**
      * Handle an incoming request.
@@ -16,16 +16,14 @@ class CheckCategories
      */
     public function handle($request, Closure $next)
     {
-
         $params = $request->route()->parameters();
 
-        $categories = Categories::all();
+        $tasks = Tasks::all();
 
-        $category =  $categories->find($params['category']);
+        $task =  $tasks->find($params['task']);
 
-        if ($request->user()->id === $category->user_id) {
+        if ($task->card->category->user_id === $request->user()->id) {
             return $next($request);
         }
-
     }
 }

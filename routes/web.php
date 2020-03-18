@@ -27,5 +27,6 @@ Route::get('/delete/{category}', 'CategoriesController@deleteCategory')->name('s
 
 Route::get('/cards/{category}', 'CardsController@showCards')->name('show_cards');
 
-Route::get('/delete/card/{card}/{category}', 'CardsController@deleteCard')->name('delete_card')->middleware('categories');
+Route::get('/delete/task/{task}/{card}/{category}', 'TasksController@deleteTask')->name('delete_task')->middleware('categories', 'cards', 'tasks');
 
+Route::get('/delete/card/{card}/{category}', 'CardsController@deleteCard')->name('delete_card')->middleware('categories', 'cards');
