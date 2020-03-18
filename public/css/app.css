@@ -10952,6 +10952,14 @@ a:active {
   background-color: #404040;
 }
 
+.category-link-container:hover .category-manage-btn {
+  display: initial;
+}
+
+.category-manage-btn {
+  display: none;
+}
+
 .category-link {
   padding: 0.5rem 0 0.5rem 2rem;
   display: block;
@@ -11140,12 +11148,12 @@ a:active {
   transform: scale(1.03);
 }
 
-.card-body-li:hover > .task-img-container {
-  display: initial;
+.card-body-li:hover .task-manage-btn {
+  display: initial !important;
 }
 
-.task-img-container {
-  display: none;
+.task-manage-btn {
+  display: none !important;
   cursor: pointer;
   height: -webkit-min-content;
   height: -moz-min-content;

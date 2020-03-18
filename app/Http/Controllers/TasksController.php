@@ -27,4 +27,22 @@ class TasksController extends Controller
             'card' => $card,
         ]);
     }
+
+    /**
+    * Return task
+    */
+    public function deleteTask(Tasks $task) {
+
+        $card = $task->card;
+
+        $taskToDelete =  Tasks::find($task->id);
+
+        $taskToDelete->delete();
+
+        $card['tasks'] = Tasks::where('card_id', $card->id)->get();
+
+        return response()->json([
+            'card' => $card,
+        ]);
+    }
 }

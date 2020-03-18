@@ -13,7 +13,7 @@
                 </router-link>
                 <div class="dropdown">
                     <button class="btn btn-secondary btn-sm btn-dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img alt="multiple-choices" src="../../img/more-options.svg"/>
+                        <span class="category-manage-btn"><img alt="multiple-choices" src="../../img/more-options.svg"/></span>
                     </button>
                     <div class="dropdown-menu">
                         <a class="dropdown-item btn-delete" href="#" @click="deleteCategory" :data-id="categorie.id">Delete</a>

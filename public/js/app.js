@@ -2215,9 +2215,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "TaskComponent",
-  props: ["card"]
+  props: ["card"],
+  methods: {
+    deleteTask: function deleteTask(e) {
+      this.$store.dispatch('deleteTask', {
+        cardId: e.target.dataset.card,
+        categoryId: e.target.dataset.category,
+        taskId: e.target.dataset.task
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -38755,12 +38773,14 @@ var staticRenderFns = [
         }
       },
       [
-        _c("img", {
-          attrs: {
-            alt: "multiple-choices",
-            src: __webpack_require__(/*! ../../img/more-options.svg */ "./resources/img/more-options.svg")
-          }
-        })
+        _c("span", { staticClass: "category-manage-btn" }, [
+          _c("img", {
+            attrs: {
+              alt: "multiple-choices",
+              src: __webpack_require__(/*! ../../img/more-options.svg */ "./resources/img/more-options.svg")
+            }
+          })
+        ])
       ]
     )
   }
@@ -38794,7 +38814,31 @@ var render = function() {
         return _c("li", { staticClass: "card-body-li" }, [
           _c("p", { staticClass: "task-name" }, [_vm._v(_vm._s(task.name))]),
           _vm._v(" "),
-          _vm._m(0, true)
+          _c("div", { staticClass: "dropdown manage-task-container" }, [
+            _vm._m(0, true),
+            _vm._v(" "),
+            _c("div", { staticClass: "dropdown-menu" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "dropdown-item btn-delete",
+                  attrs: {
+                    "data-task": task.id,
+                    "data-card": _vm.card.id,
+                    "data-category": _vm.card.category_id
+                  },
+                  on: { click: _vm.deleteTask }
+                },
+                [_vm._v("Delete")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "dropdown-divider" }),
+              _vm._v(" "),
+              _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
+                _vm._v("Couleur")
+              ])
+            ])
+          ])
         ])
       }),
       0
@@ -38806,14 +38850,29 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "task-img-container" }, [
-      _c("img", {
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-secondary btn-sm btn-dropdown task-manage-btn",
         attrs: {
-          alt: "multiple-choices",
-          src: __webpack_require__(/*! ../../img/more-options-black.svg */ "./resources/img/more-options-black.svg")
+          type: "button",
+          id: "dropdownMenuButton",
+          "data-toggle": "dropdown",
+          "aria-haspopup": "true",
+          "aria-expanded": "false"
         }
-      })
-    ])
+      },
+      [
+        _c("span", {}, [
+          _c("img", {
+            attrs: {
+              alt: "multiple-choices",
+              src: __webpack_require__(/*! ../../img/more-options-black.svg */ "./resources/img/more-options-black.svg")
+            }
+          })
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -55860,6 +55919,36 @@ var get = /*#__PURE__*/function () {
       }
 
       return insertTask;
+    }(),
+    deleteTask: function () {
+      var _deleteTask = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9(context, taskData) {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee9$(_context9) {
+          while (1) {
+            switch (_context9.prev = _context9.next) {
+              case 0:
+                _context9.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/delete/task/' + taskData.taskId + '/' + taskData.cardId + '/' + taskData.categoryId);
+
+              case 2:
+                response = _context9.sent;
+                context.commit('addCard', {
+                  card: response.data.card
+                });
+
+              case 4:
+              case "end":
+                return _context9.stop();
+            }
+          }
+        }, _callee9);
+      }));
+
+      function deleteTask(_x15, _x16) {
+        return _deleteTask.apply(this, arguments);
+      }
+
+      return deleteTask;
     }()
   }
 }));
