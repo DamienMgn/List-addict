@@ -26,3 +26,6 @@ Route::get('/categories', 'CategoriesController@showCategories')->name('show_cat
 Route::get('/delete/{category}', 'CategoriesController@deleteCategory')->name('show_cards')->middleware('categories');
 
 Route::get('/cards/{category}', 'CardsController@showCards')->name('show_cards');
+
+Route::get('/delete/card/{card}/{category}', 'CardsController@deleteCard')->name('delete_card')->middleware('categories');
+

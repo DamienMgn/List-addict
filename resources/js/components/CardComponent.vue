@@ -12,8 +12,8 @@
             </div>
         </header>
         <div class="card-body">
-            <ul v-for="task in card.tasks">
-                <li>{{ task.name }}</li>
+            <ul class="card-body-ul">
+                <li v-for="task in card.tasks" class="card-body-li">{{ task.name }}</li>
             </ul>
         </div>
         <button class="btn btn-add-task" @click="toggleFormTask" type="button" data-target="#add-card-modal" v-if="!isVisible">New</button>

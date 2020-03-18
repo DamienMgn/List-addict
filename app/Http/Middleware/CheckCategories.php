@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Cards;
 use App\Categories;
 use Closure;
 
@@ -23,10 +24,18 @@ class CheckCategories
 
         $category =  $categories->find($categoryId['category']);
 
+
         if ($request->user()->id === $category->user_id) {
+            if(isset($categoryId['card'])) {
+                $cards = Cards::all();
+                $card = $cards->find($categoryId['card']);
+                if($category->id === $card->category_id) {
+                    return $next($request);
+                }
+            }
             return $next($request);
         }
 
-        
+
     }
 }

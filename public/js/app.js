@@ -38359,14 +38359,18 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "card-body" },
-      _vm._l(_vm.card.tasks, function(task) {
-        return _c("ul", [_c("li", [_vm._v(_vm._s(task.name))])])
-      }),
-      0
-    ),
+    _c("div", { staticClass: "card-body" }, [
+      _c(
+        "ul",
+        { staticClass: "card-body-ul" },
+        _vm._l(_vm.card.tasks, function(task) {
+          return _c("li", { staticClass: "card-body-li" }, [
+            _vm._v(_vm._s(task.name))
+          ])
+        }),
+        0
+      )
+    ]),
     _vm._v(" "),
     !_vm.isVisible
       ? _c(
