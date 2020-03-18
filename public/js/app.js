@@ -1978,6 +1978,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CardComponent",
   props: ['card'],
@@ -2132,6 +2134,8 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
 //
 //
 //
@@ -38325,16 +38329,7 @@ var render = function() {
       _c("h5", { staticClass: "card-title" }, [_vm._v(_vm._s(_vm.card.name))]),
       _vm._v(" "),
       _c("div", { staticClass: "dropdown manage-card-container" }, [
-        _c("button", {
-          staticClass: "btn btn-secondary btn-sm dropdown-toggle btn-dropdown",
-          attrs: {
-            type: "button",
-            id: "dropdownMenuButton",
-            "data-toggle": "dropdown",
-            "aria-haspopup": "true",
-            "aria-expanded": "false"
-          }
-        }),
+        _vm._m(0),
         _vm._v(" "),
         _c("div", { staticClass: "dropdown-menu" }, [
           _c(
@@ -38425,7 +38420,27 @@ var render = function() {
       : _vm._e()
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-secondary btn-sm btn-dropdown",
+        attrs: {
+          type: "button",
+          id: "dropdownMenuButton",
+          "data-toggle": "dropdown",
+          "aria-haspopup": "true",
+          "aria-expanded": "false"
+        }
+      },
+      [_c("img", { attrs: { src: __webpack_require__(/*! ../../img/more-options.svg */ "./resources/img/more-options.svg") } })]
+    )
+  }
+]
 render._withStripped = true
 
 
@@ -38652,17 +38667,7 @@ var render = function() {
             ),
             _vm._v(" "),
             _c("div", { staticClass: "dropdown" }, [
-              _c("button", {
-                staticClass:
-                  "btn btn-secondary btn-sm dropdown-toggle btn-dropdown",
-                attrs: {
-                  type: "button",
-                  id: "dropdownMenuButton",
-                  "data-toggle": "dropdown",
-                  "aria-haspopup": "true",
-                  "aria-expanded": "false"
-                }
-              }),
+              _vm._m(0, true),
               _vm._v(" "),
               _c("div", { staticClass: "dropdown-menu" }, [
                 _c(
@@ -38692,7 +38697,27 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-secondary btn-sm btn-dropdown",
+        attrs: {
+          type: "button",
+          id: "dropdownMenuButton",
+          "data-toggle": "dropdown",
+          "aria-haspopup": "true",
+          "aria-expanded": "false"
+        }
+      },
+      [_c("img", { attrs: { src: __webpack_require__(/*! ../../img/more-options.svg */ "./resources/img/more-options.svg") } })]
+    )
+  }
+]
 render._withStripped = true
 
 
@@ -54856,6 +54881,17 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+
+/***/ "./resources/img/more-options.svg":
+/*!****************************************!*\
+  !*** ./resources/img/more-options.svg ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/more-options.svg?c86cfb9404d0e39c8398795f479ebd7c";
 
 /***/ }),
 

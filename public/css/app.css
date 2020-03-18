@@ -10885,6 +10885,7 @@ a.text-dark:focus {
 .py-4 {
   margin: 0 !important;
   padding: 0 !important;
+  font-font: "Nunito", sans-serif;
 }
 
 button:focus,
@@ -11040,7 +11041,6 @@ a:active {
 
 .manage-card-container {
   position: absolute;
-  top: 1px;
   left: calc(100% - 2rem);
 }
 

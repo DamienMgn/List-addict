@@ -11,7 +11,7 @@
 .py-4 {
     margin: 0 !important;
     padding: 0 !important;
-
+    font-font: $font-family-sans-serif;
 }
 
 button:focus, button:active, a:focus, a:active {
@@ -162,7 +162,6 @@ button:focus, button:active, a:focus, a:active {
 
 .manage-card-container {
     position: absolute;
-    top: 1px;
     left: calc(100% - 2rem);
 }
 

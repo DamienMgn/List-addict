@@ -3,7 +3,9 @@
         <header class="card-header">
             <h5 class="card-title">{{card.name}}</h5>
             <div class="dropdown manage-card-container">
-                <button class="btn btn-secondary btn-sm dropdown-toggle btn-dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                <button class="btn btn-secondary btn-sm btn-dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="../../img/more-options.svg"/>
+                </button>
                 <div class="dropdown-menu">
                     <button class="dropdown-item btn-delete" @click="deleteCard" :data-card="card.id" :data-category="card.category_id">Delete</button>
                     <div class="dropdown-divider"></div>
