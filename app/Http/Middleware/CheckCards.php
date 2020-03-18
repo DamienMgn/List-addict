@@ -2,10 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use App\Categories;
+use App\Cards;
 use Closure;
 
-class CheckCategories
+class CheckCards
 {
     /**
      * Handle an incoming request.
@@ -19,13 +19,12 @@ class CheckCategories
 
         $params = $request->route()->parameters();
 
-        $categories = Categories::all();
+        $cards = Cards::all();
 
-        $category =  $categories->find($params['category']);
+        $card = $cards->find($params['card']);
 
-        if ($request->user()->id === $category->user_id) {
+        if ($card->category->user_id === $request->user()->id) {
             return $next($request);
         }
-
     }
 }
