@@ -1,5 +1,6 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Liu+Jian+Mao+Cao&display=swap');
 
 // Variables
 @import 'variables';
@@ -30,7 +31,61 @@ input:focus, button:focus, button:active, a:focus, a:active {
 
 /* CategoriesComponent */
 
-// Categories List
+// Sidebar
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    list-style: none;
+}
+
+.sidebar-brand {
+    width: 100%;
+    height: 12rem;
+    font-size: 3rem;
+    font-family: 'Liu Jian Mao Cao', cursive;
+    display: flex;
+    margin-left: 2rem;
+
+    align-items: center;
+}
+
+.sidebar-title-li {
+    display: flex;
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    height: 3rem;
+    align-items: center;
+}
+
+.sidebar-title-li:hover {
+    background-color: $dark2;
+}
+
+.sidebar-link-title:hover {
+    text-decoration: none;
+}
+
+.sidebar-link-title {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-title {
+    margin: 0;
+    color: $white;
+    font-size: 0.9rem;
+    margin-left: 0.5rem
+}
+
+.sidebar-title-img {
+    height: 22px;
+    width: 22px;
+}
 
 .app-section {
     position: relative !important;
@@ -49,9 +104,8 @@ input:focus, button:focus, button:active, a:focus, a:active {
 .categories-scroll-container {
     min-width: 100%;
     min-height: 15rem;
-    max-height: 75vh;
+    max-height: 35vh;
     overflow: auto;
-    border-top: 1px solid $white;
     scrollbar-color: #ff8c00 !important;
 }
 
@@ -64,10 +118,12 @@ input:focus, button:focus, button:active, a:focus, a:active {
 }
 
 .category-link-container {
-    padding: 0.2rem 0 0.2rem 0;
+    padding: 0.2rem 0 0.2rem 1.5rem;
     display: flex;
+    font-size: 0.8rem;
     justify-content: center;
     align-items: center;
+    height: 2.5rem;
 }
 
 .category-link-container:hover {
@@ -82,10 +138,15 @@ input:focus, button:focus, button:active, a:focus, a:active {
     display: none;
 }
 
+.category-manage-btn > img {
+    height: 1.2rem;
+    margin-right: -1.5rem;
+}
+
 .category-link {
-    padding: 0.5rem 0 0.5rem 2rem;
-    display: block;
     width: 100%;
+    margin: 0;
+    padding: 0 0 0 2rem;
     color: $white;
 }
 
@@ -102,7 +163,6 @@ input:focus, button:focus, button:active, a:focus, a:active {
 
 .categories-form-container {
     width: 100%;
-    margin: 5rem 0 2rem 0;
 }
 
 .categories-form {
@@ -120,6 +180,21 @@ input:focus, button:focus, button:active, a:focus, a:active {
 
 .categories-form-btn {
     padding: 0.1rem 2rem 0.1rem 2rem;
+    margin: 0 !important;
+    width: 100%;
+}
+
+.btn-add-category {
+    display: flex;
+}
+
+.btn-add-category .btn {
+    margin: 0!important;
+}
+
+.btn-add-category .submit, .btn-add-category .submit:hover{
+    background-color: $green;
+    color: $white;
 }
 
 /* CardsComponent */

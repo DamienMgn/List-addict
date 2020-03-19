@@ -2167,12 +2167,42 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SidebarComponent",
   data: function data() {
     return {
-      name: ''
+      name: '',
+      isVisible: false
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['categories'])),
@@ -2189,6 +2219,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$router.push({
         name: 'home'
       });
+    },
+    toggleFormCategory: function toggleFormCategory() {
+      if (this.isVisible) {
+        this.isVisible = false;
+      } else {
+        this.isVisible = true;
+      }
     }
   }
 });
@@ -38676,86 +38713,205 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "categories-container" }, [
-    _c("div", { staticClass: "categories-form-container" }, [
-      _c(
-        "form",
-        {
-          staticClass: "categories-form",
-          attrs: { method: "post" },
-          on: { submit: _vm.addCategory }
-        },
-        [
-          _c("input", {
-            staticClass: "categories-form-input",
-            attrs: { type: "text", id: "name", name: "name" },
-            domProps: { value: _vm.name }
-          }),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "btn categories-form-btn",
-            attrs: { type: "submit", value: "Ajouter" }
-          })
-        ]
-      )
-    ]),
+    _vm._m(0),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "categories-scroll-container" },
-      _vm._l(_vm.categories, function(categorie) {
-        return _c(
-          "div",
-          { staticClass: "category-link-container" },
+    _c("div", [
+      _c("ul", { staticClass: "sidebar-title-ul" }, [
+        _c(
+          "li",
+          { staticClass: "sidebar-title-li" },
           [
+            _c("img", {
+              staticClass: "sidebar-title-img",
+              attrs: {
+                alt: "multiple-choices",
+                src: __webpack_require__(/*! ../../img/home-icon.svg */ "./resources/img/home-icon.svg")
+              }
+            }),
+            _vm._v(" "),
             _c(
               "router-link",
               {
-                staticClass: "link category-link",
-                attrs: {
-                  to: { name: "categorie", params: { id: categorie.id } }
-                }
+                staticClass: "sidebar-link-title",
+                attrs: { to: { name: "home" } }
               },
-              [
-                _vm._v(
-                  "\n                        " +
-                    _vm._s(categorie.name) +
-                    "\n            "
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "dropdown" }, [
-              _vm._m(0, true),
+              [_c("h5", { staticClass: "sidebar-title" }, [_vm._v("Accueil")])]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("li", [
+          _c(
+            "div",
+            { staticClass: "sidebar-title-li" },
+            [
+              _c("img", {
+                staticClass: "sidebar-title-img",
+                attrs: {
+                  alt: "multiple-choices",
+                  src: __webpack_require__(/*! ../../img/light.svg */ "./resources/img/light.svg")
+                }
+              }),
               _vm._v(" "),
-              _c("div", { staticClass: "dropdown-menu" }, [
-                _c(
-                  "a",
+              _c(
+                "router-link",
+                {
+                  staticClass: "sidebar-link-title",
+                  attrs: { to: { name: "home" } }
+                },
+                [
+                  _c("h5", { staticClass: "sidebar-title" }, [
+                    _vm._v("Projets")
+                  ])
+                ]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "categories-form-container" }, [
+            _vm.isVisible
+              ? _c(
+                  "form",
                   {
-                    staticClass: "dropdown-item btn-delete",
-                    attrs: { href: "#", "data-id": categorie.id },
-                    on: { click: _vm.deleteCategory }
+                    staticClass: "categories-form",
+                    attrs: { method: "post" },
+                    on: { submit: _vm.addCategory }
                   },
-                  [_vm._v("Delete")]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "dropdown-divider" }),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  { staticClass: "dropdown-item", attrs: { href: "#" } },
-                  [_vm._v("Couleur")]
+                  [
+                    _c("input", {
+                      staticClass: "categories-form-input",
+                      attrs: { type: "text", id: "name", name: "name" },
+                      domProps: { value: _vm.name }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "btn-add-category" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn cancel",
+                          attrs: { type: "button" },
+                          on: { click: _vm.toggleFormCategory }
+                        },
+                        [_vm._v("Annuler")]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "btn submit",
+                        attrs: { type: "submit" }
+                      })
+                    ])
+                  ]
                 )
-              ])
-            ])
+              : _vm._e(),
+            _vm._v(" "),
+            !_vm.isVisible
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn categories-form-btn",
+                    on: { click: _vm.toggleFormCategory }
+                  },
+                  [_vm._v("+ projet")]
+                )
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c(
+            "ul",
+            { staticClass: "categories-scroll-container" },
+            _vm._l(_vm.categories, function(categorie) {
+              return _c(
+                "li",
+                { staticClass: "category-link-container" },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "link category-link",
+                      attrs: {
+                        to: { name: "categorie", params: { id: categorie.id } }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(categorie.name) +
+                          "\n                        "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "dropdown" }, [
+                    _vm._m(1, true),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "dropdown-menu" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "dropdown-item btn-delete",
+                          attrs: { href: "#", "data-id": categorie.id },
+                          on: { click: _vm.deleteCategory }
+                        },
+                        [_vm._v("Delete")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "dropdown-divider" }),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        { staticClass: "dropdown-item", attrs: { href: "#" } },
+                        [_vm._v("Couleur")]
+                      )
+                    ])
+                  ])
+                ],
+                1
+              )
+            }),
+            0
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "li",
+          { staticClass: "sidebar-title-li" },
+          [
+            _c("img", {
+              staticClass: "sidebar-title-img",
+              attrs: {
+                alt: "multiple-choices",
+                src: __webpack_require__(/*! ../../img/list.svg */ "./resources/img/list.svg")
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "sidebar-link-title",
+                attrs: { to: { name: "home" } }
+              },
+              [_c("h5", { staticClass: "sidebar-title" }, [_vm._v("Tâches")])]
+            )
           ],
           1
         )
-      }),
-      0
-    )
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h2", { staticClass: "sidebar-brand" }, [
+      _vm._v("List"),
+      _c("br"),
+      _vm._v("Addict")
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -55038,6 +55194,39 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+
+/***/ "./resources/img/home-icon.svg":
+/*!*************************************!*\
+  !*** ./resources/img/home-icon.svg ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/home-icon.svg?833c2018d186c9d885865cdeace9485c";
+
+/***/ }),
+
+/***/ "./resources/img/light.svg":
+/*!*********************************!*\
+  !*** ./resources/img/light.svg ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/light.svg?75d155972f17d5614e5820df79afcbfb";
+
+/***/ }),
+
+/***/ "./resources/img/list.svg":
+/*!********************************!*\
+  !*** ./resources/img/list.svg ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/list.svg?5beb0b436e41b5d2616edc0d36e02db6";
 
 /***/ }),
 
