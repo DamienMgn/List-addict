@@ -38516,7 +38516,7 @@ var staticRenderFns = [
     return _c(
       "button",
       {
-        staticClass: "btn btn-secondary btn-sm btn-dropdown",
+        staticClass: "btn btn-secondary btn-sm btn-dropdown btn-dropdown-task",
         attrs: {
           type: "button",
           id: "dropdownMenuButton",
