@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css?family=Liu+Jian+Mao+Cao&display=swap);@charset "UTF-8";
 
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
@@ -10908,7 +10908,64 @@ a:active {
   border: none;
 }
 
+.navbar {
+  min-height: 55px;
+}
+
 /* CategoriesComponent */
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+.sidebar-brand {
+  width: 100%;
+  height: 12rem;
+  font-size: 3rem;
+  font-family: "Liu Jian Mao Cao", cursive;
+  display: flex;
+  margin-left: 2rem;
+  align-items: center;
+}
+
+.sidebar-title-li {
+  display: flex;
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  height: 3rem;
+  align-items: center;
+}
+
+.sidebar-title-li:hover {
+  background-color: #404040;
+}
+
+.sidebar-link-title:hover {
+  text-decoration: none;
+}
+
+.sidebar-link-title {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-title {
+  margin: 0;
+  color: #f8fafc;
+  font-size: 0.9rem;
+  margin-left: 0.5rem;
+}
+
+.sidebar-title-img {
+  height: 22px;
+  width: 22px;
+}
 
 .app-section {
   position: relative !important;
@@ -10926,10 +10983,8 @@ a:active {
 
 .categories-scroll-container {
   min-width: 100%;
-  min-height: 15rem;
-  max-height: 75vh;
+  max-height: 35vh;
   overflow: auto;
-  border-top: 1px solid #f8fafc;
   scrollbar-color: #ff8c00 !important;
 }
 
@@ -10942,10 +10997,12 @@ a:active {
 }
 
 .category-link-container {
-  padding: 0.2rem 0 0.2rem 0;
+  padding: 0.2rem 0 0.2rem 1.5rem;
   display: flex;
+  font-size: 0.8rem;
   justify-content: center;
   align-items: center;
+  height: 2.5rem;
 }
 
 .category-link-container:hover {
@@ -10960,10 +11017,15 @@ a:active {
   display: none;
 }
 
+.category-manage-btn > img {
+  height: 1.2rem;
+  margin-right: -1.5rem;
+}
+
 .category-link {
-  padding: 0.5rem 0 0.5rem 2rem;
-  display: block;
   width: 100%;
+  margin: 0;
+  padding: 0 0 0 2rem;
   color: #f8fafc;
 }
 
@@ -10978,7 +11040,6 @@ a:active {
 
 .categories-form-container {
   width: 100%;
-  margin: 5rem 0 2rem 0;
 }
 
 .categories-form {
@@ -10995,8 +11056,23 @@ a:active {
 }
 
 .categories-form-btn {
-  background-color: #43A047;
   padding: 0.1rem 2rem 0.1rem 2rem;
+  margin: 0 !important;
+  width: 100%;
+}
+
+.btn-add-category {
+  display: flex;
+}
+
+.btn-add-category .btn {
+  margin: 0 !important;
+}
+
+.btn-add-category .submit,
+.btn-add-category .submit:hover {
+  background-color: #43A047;
+  color: #f8fafc;
 }
 
 /* CardsComponent */
@@ -11006,31 +11082,31 @@ a:active {
   top: 0;
   right: 0;
   left: 15rem;
-  min-height: calc(100vh - 55px);
-  padding: 5rem;
+  min-height: calc(100vh - 55px - 5rem);
+  margin: 5rem 2rem 0rem 2rem;
+  padding: 0rem 2rem 0rem 2rem;
   display: flex;
   flex-direction: row;
   overflow: auto;
 }
 
-.btn-add-card {
+.btn-add-card,
+.btn-add-card:hover {
   position: absolute;
   right: 0;
-  left: 15rem;
-  margin-top: 0.5rem;
-  margin-left: 5rem;
-  background-color: #F50057;
-  color: #f8fafc;
-}
-
-.btn-add-card:hover {
-  color: #f8fafc;
+  top: 1.7rem;
+  left: 17rem !important;
+  margin-left: 5rem !important;
+  padding: 0rem !important;
+  font-weight: bold;
+  color: #F50057;
+  padding: 0.2rem 1rem;
 }
 
 /* CardComponent */
 
 .card-container {
-  width: 17rem;
+  width: 19rem;
   background-color: #f8fafc;
   margin: 0.5rem;
   position: relative;
@@ -11073,24 +11149,25 @@ a:active {
   align-items: center;
 }
 
-.btn-add-task,
-.btn-add-task:hover {
-  font-weight: bold;
-  color: #F50057;
+.btn,
+.btn:hover {
   margin: 0.5rem;
   padding: 0.2rem 1rem;
+  color: #F50057;
+  font-weight: bold;
 }
 
 .submit,
 .submit:hover {
   color: #43A047;
   border: 2px solid #43A047;
+  font-weight: initial;
 }
 
 .cancel,
 .cancel:hover {
   color: #9561e2;
-  border: 2px solid #9561e2;
+  font-weight: initial;
 }
 
 .form-add-task {
@@ -11158,5 +11235,6 @@ a:active {
   height: -webkit-min-content;
   height: -moz-min-content;
   height: min-content;
+  margin: -1.3rem -0.7rem 0rem 0rem;
 }
 

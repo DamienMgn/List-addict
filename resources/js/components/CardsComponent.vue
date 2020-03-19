@@ -5,7 +5,7 @@
                 <CardComponent v-bind:card="card"></CardComponent>
             </div>
         </div>
-        <button class="btn btn-add-card" type="button" data-toggle="modal" data-target="#add-card-modal">New</button>
+        <button class="btn btn-add-card" type="button" data-toggle="modal" data-target="#add-card-modal">+ Nouvelle carte</button>
         <div class="modal fade" id="add-card-modal" tabindex="-1" role="dialog" aria-labelledby="addCardModal" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -17,11 +17,11 @@
                     </div>
                     <form @submit="addCard" method="post">
                         <div class="modal-body">
-                            <input class="form-control" type="text" placeholder="carte" id="card" name="card" v-bind:value="cardName">
+                            <input class="form-control" type="text" placeholder="Nom de la carte" id="card" name="card" v-bind:value="cardName">
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <input type="submit" class="btn btn-primary">
+                            <button type="button" class="btn cancel" data-dismiss="modal">Annuler</button>
+                            <input type="submit" class="btn submit">
                         </div>
                     </form>
                 </div>
