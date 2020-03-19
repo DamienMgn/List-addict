@@ -10983,7 +10983,6 @@ li {
 
 .categories-scroll-container {
   min-width: 100%;
-  min-height: 15rem;
   max-height: 35vh;
   overflow: auto;
   scrollbar-color: #ff8c00 !important;
