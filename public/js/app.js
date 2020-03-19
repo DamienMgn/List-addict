@@ -38453,7 +38453,7 @@ var render = function() {
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-add-task cancel",
+                    staticClass: "btn cancel",
                     attrs: { type: "button", "data-target": "#add-card-modal" },
                     on: { click: _vm.toggleFormTask }
                   },
@@ -38461,7 +38461,7 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("input", {
-                  staticClass: "btn btn-add-task submit",
+                  staticClass: "btn submit",
                   attrs: { type: "submit" }
                 })
               ])
@@ -38540,7 +38540,7 @@ var render = function() {
           "data-target": "#add-card-modal"
         }
       },
-      [_vm._v("New")]
+      [_vm._v("+ Nouvelle carte")]
     ),
     _vm._v(" "),
     _c(
@@ -38572,7 +38572,7 @@ var render = function() {
                       staticClass: "form-control",
                       attrs: {
                         type: "text",
-                        placeholder: "carte",
+                        placeholder: "Nom de la carte",
                         id: "card",
                         name: "card"
                       },
@@ -38620,13 +38620,13 @@ var staticRenderFns = [
       _c(
         "button",
         {
-          staticClass: "btn btn-secondary",
+          staticClass: "btn cancel",
           attrs: { type: "button", "data-dismiss": "modal" }
         },
-        [_vm._v("Close")]
+        [_vm._v("Annuler")]
       ),
       _vm._v(" "),
-      _c("input", { staticClass: "btn btn-primary", attrs: { type: "submit" } })
+      _c("input", { staticClass: "btn submit", attrs: { type: "submit" } })
     ])
   }
 ]

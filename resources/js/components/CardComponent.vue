@@ -23,8 +23,8 @@
                     <input autocomplete="off" class="form-add-task-input" type="text" name="task" id="task" v-bind:value="name">
                 </div>
                 <div class="buttons-add-task">
-                    <button class="btn btn-add-task cancel" type="button" data-target="#add-card-modal" @click="toggleFormTask">Annuler</button>
-                    <input class="btn btn-add-task submit"type="submit">
+                    <button class="btn cancel" type="button" data-target="#add-card-modal" @click="toggleFormTask">Annuler</button>
+                    <input class="btn submit"type="submit">
                 </div>
             </form>
         </div>

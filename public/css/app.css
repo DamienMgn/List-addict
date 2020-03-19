@@ -10908,6 +10908,10 @@ a:active {
   border: none;
 }
 
+.navbar {
+  min-height: 55px;
+}
+
 /* CategoriesComponent */
 
 .app-section {
@@ -10995,7 +10999,6 @@ a:active {
 }
 
 .categories-form-btn {
-  background-color: #43A047;
   padding: 0.1rem 2rem 0.1rem 2rem;
 }
 
@@ -11006,31 +11009,31 @@ a:active {
   top: 0;
   right: 0;
   left: 15rem;
-  min-height: calc(100vh - 55px);
-  padding: 5rem;
+  min-height: calc(100vh - 55px - 5rem);
+  margin: 5rem 2rem 0rem 2rem;
+  padding: 0rem 2rem 0rem 2rem;
   display: flex;
   flex-direction: row;
   overflow: auto;
 }
 
-.btn-add-card {
+.btn-add-card,
+.btn-add-card:hover {
   position: absolute;
   right: 0;
-  left: 15rem;
-  margin-top: 0.5rem;
-  margin-left: 5rem;
-  background-color: #F50057;
-  color: #f8fafc;
-}
-
-.btn-add-card:hover {
-  color: #f8fafc;
+  top: 1.7rem;
+  left: 17rem !important;
+  margin-left: 5rem !important;
+  padding: 0rem !important;
+  font-weight: bold;
+  color: #F50057;
+  padding: 0.2rem 1rem;
 }
 
 /* CardComponent */
 
 .card-container {
-  width: 17rem;
+  width: 19rem;
   background-color: #f8fafc;
   margin: 0.5rem;
   position: relative;
@@ -11073,24 +11076,25 @@ a:active {
   align-items: center;
 }
 
-.btn-add-task,
-.btn-add-task:hover {
-  font-weight: bold;
-  color: #F50057;
+.btn,
+.btn:hover {
   margin: 0.5rem;
   padding: 0.2rem 1rem;
+  color: #F50057;
+  font-weight: bold;
 }
 
 .submit,
 .submit:hover {
   color: #43A047;
   border: 2px solid #43A047;
+  font-weight: initial;
 }
 
 .cancel,
 .cancel:hover {
   color: #9561e2;
-  border: 2px solid #9561e2;
+  font-weight: initial;
 }
 
 .form-add-task {
@@ -11158,5 +11162,6 @@ a:active {
   height: -webkit-min-content;
   height: -moz-min-content;
   height: min-content;
+  margin: -1.3rem -0.7rem 0rem 0rem;
 }
 
