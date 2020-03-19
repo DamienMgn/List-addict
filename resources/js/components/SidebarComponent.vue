@@ -9,6 +9,12 @@
                         <h5 class="sidebar-title">Accueil</h5>
                     </router-link>
                 </li>
+                <li class="sidebar-title-li">
+                    <img class="sidebar-title-img" alt="multiple-choices" src="../../img/list.svg"/>
+                    <router-link class="sidebar-link-title" :to="{name: 'home'}">
+                        <h5 class="sidebar-title">Tâches</h5>
+                    </router-link>
+                </li>
                 <li>
                     <div class="sidebar-title-li">
                         <img class="sidebar-title-img" alt="multiple-choices" src="../../img/light.svg"/>
@@ -43,12 +49,6 @@
                             </div>
                         </li>
                     </ul>
-                </li>
-                <li class="sidebar-title-li">
-                    <img class="sidebar-title-img" alt="multiple-choices" src="../../img/list.svg"/>
-                    <router-link class="sidebar-link-title" :to="{name: 'home'}">
-                        <h5 class="sidebar-title">Tâches</h5>
-                    </router-link>
                 </li>
             </ul>
         </div>

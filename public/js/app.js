@@ -38741,6 +38741,30 @@ var render = function() {
           1
         ),
         _vm._v(" "),
+        _c(
+          "li",
+          { staticClass: "sidebar-title-li" },
+          [
+            _c("img", {
+              staticClass: "sidebar-title-img",
+              attrs: {
+                alt: "multiple-choices",
+                src: __webpack_require__(/*! ../../img/list.svg */ "./resources/img/list.svg")
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "sidebar-link-title",
+                attrs: { to: { name: "home" } }
+              },
+              [_c("h5", { staticClass: "sidebar-title" }, [_vm._v("Tâches")])]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
         _c("li", [
           _c(
             "div",
@@ -38872,31 +38896,7 @@ var render = function() {
             }),
             0
           )
-        ]),
-        _vm._v(" "),
-        _c(
-          "li",
-          { staticClass: "sidebar-title-li" },
-          [
-            _c("img", {
-              staticClass: "sidebar-title-img",
-              attrs: {
-                alt: "multiple-choices",
-                src: __webpack_require__(/*! ../../img/list.svg */ "./resources/img/list.svg")
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "sidebar-link-title",
-                attrs: { to: { name: "home" } }
-              },
-              [_c("h5", { staticClass: "sidebar-title" }, [_vm._v("Tâches")])]
-            )
-          ],
-          1
-        )
+        ])
       ])
     ])
   ])
