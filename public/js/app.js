@@ -38516,7 +38516,7 @@ var staticRenderFns = [
     return _c(
       "button",
       {
-        staticClass: "btn btn-secondary btn-sm btn-dropdown btn-dropdown-task",
+        staticClass: "btn-sm btn-dropdown btn-dropdown-task",
         attrs: {
           type: "button",
           id: "dropdownMenuButton",
@@ -38528,7 +38528,7 @@ var staticRenderFns = [
       [
         _c("img", {
           attrs: {
-            src: __webpack_require__(/*! ../../img/more-options.svg */ "./resources/img/more-options.svg"),
+            src: __webpack_require__(/*! ../../img/more-options-black.svg */ "./resources/img/more-options-black.svg"),
             alt: "multiple-choices"
           }
         })
@@ -38713,7 +38713,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "categories-container" }, [
-    _vm._m(0),
+    _c("h2", { staticClass: "sidebar-brand" }, [_vm._v("List Addict")]),
     _vm._v(" "),
     _c("div", [
       _c("ul", { staticClass: "sidebar-title-ul" }, [
@@ -38868,7 +38868,7 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "dropdown" }, [
-                    _vm._m(1, true),
+                    _vm._m(0, true),
                     _vm._v(" "),
                     _c("div", { staticClass: "dropdown-menu" }, [
                       _c(
@@ -38902,16 +38902,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h2", { staticClass: "sidebar-brand" }, [
-      _vm._v("List"),
-      _c("br"),
-      _vm._v("Addict")
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -39009,7 +38999,7 @@ var staticRenderFns = [
     return _c(
       "button",
       {
-        staticClass: "btn btn-secondary btn-sm btn-dropdown task-manage-btn",
+        staticClass: "btn-sm btn-dropdown task-manage-btn",
         attrs: {
           type: "button",
           id: "dropdownMenuButton",

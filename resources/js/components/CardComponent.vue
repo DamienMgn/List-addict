@@ -3,8 +3,8 @@
         <header class="card-header">
             <h5 class="card-title">{{card.name}}</h5>
             <div class="dropdown manage-card-container">
-                <button class="btn btn-secondary btn-sm btn-dropdown btn-dropdown-task" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="../../img/more-options.svg" alt="multiple-choices"/>
+                <button class="btn-sm btn-dropdown btn-dropdown-task" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="../../img/more-options-black.svg" alt="multiple-choices"/>
                 </button>
                 <div class="dropdown-menu">
                     <button class="dropdown-item btn-delete" @click="deleteCard" :data-card="card.id" :data-category="card.category_id">Delete</button>

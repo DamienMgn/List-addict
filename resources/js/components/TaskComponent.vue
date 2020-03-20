@@ -4,7 +4,7 @@
             <li v-for="task in card.tasks" class="card-body-li">
                 <p class="task-name">{{ task.name }}</p>
                 <div class="dropdown manage-task-container">
-                    <button class="btn btn-secondary btn-sm btn-dropdown task-manage-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn-sm btn-dropdown task-manage-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class=""><img alt="multiple-choices" src="../../img/more-options-black.svg"/></span>
                     </button>
                     <div class="dropdown-menu">

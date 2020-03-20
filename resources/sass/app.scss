@@ -1,6 +1,6 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
-@import url('https://fonts.googleapis.com/css?family=Liu+Jian+Mao+Cao&display=swap');
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap');
 
 // Variables
 @import 'variables';
@@ -12,7 +12,7 @@
 .py-4 {
     margin: 0 !important;
     padding: 0 !important;
-    font-font: $font-family-sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
 }
 
 input:focus, button:focus, button:active, a:focus, a:active {
@@ -44,12 +44,10 @@ li {
 
 .sidebar-brand {
     width: 100%;
-    height: 12rem;
-    font-size: 3rem;
-    font-family: 'Liu Jian Mao Cao', cursive;
+    height: 10rem;
+    font-size: 2rem;
     display: flex;
     margin-left: 2rem;
-
     align-items: center;
 }
 
@@ -183,6 +181,11 @@ li {
     padding: 0.1rem 2rem 0.1rem 2rem;
     margin: 0 !important;
     width: 100%;
+    transition: transform 0.3s;
+}
+
+.categories-form-btn:hover {
+    transform: scale(1.1);
 }
 
 .btn-add-category {
@@ -235,32 +238,37 @@ li {
 }
 
 .card-header {
-    background-color: $green;
-    color: $white;
+    background-color: lightgray;
+    color: $dark;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    padding: 0.3rem;
+    padding: 0.2rem;
     margin: 0;
+}
+
+.btn-dropdown img {
+    height: 1.2rem;
 }
 
 .manage-card-container {
     position: absolute;
-    left: calc(100% - 2rem);
+    left: calc(100% - 1.2rem);
 }
 
 .card-title {
     padding: 0;
     margin: 0;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .card-body {
     padding: 0 1rem 2rem 1rem !important;
     max-height: 65vh;
     overflow: auto;
+    border-top: 8px solid $blue;
 }
 
 .form-add-task-container {
