@@ -1,6 +1,6 @@
 <template>
     <div class="categories-container">
-        <h2 class="sidebar-brand">List<br>Addict</h2>
+        <h2 class="sidebar-brand">List Addict</h2>
         <div>
             <ul class="sidebar-title-ul">
                 <li class="sidebar-title-li">
@@ -75,6 +75,7 @@
         methods:{
             addCategory: function (e) {
                 e.preventDefault()
+                this.toggleFormCategory()
                 this.$store.dispatch('insertCategory', e.target.name.value)
             },
             deleteCategory: function (e) {

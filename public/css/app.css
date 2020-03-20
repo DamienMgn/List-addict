@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css?family=Liu+Jian+Mao+Cao&display=swap);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap);@charset "UTF-8";
 
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
@@ -10885,7 +10885,7 @@ a.text-dark:focus {
 .py-4 {
   margin: 0 !important;
   padding: 0 !important;
-  font-font: "Roboto", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
 }
 
 input:focus,
@@ -10925,9 +10925,8 @@ li {
 
 .sidebar-brand {
   width: 100%;
-  height: 12rem;
-  font-size: 3rem;
-  font-family: "Liu Jian Mao Cao", cursive;
+  height: 10rem;
+  font-size: 2rem;
   display: flex;
   margin-left: 2rem;
   align-items: center;
@@ -11061,6 +11060,11 @@ li {
   padding: 0.1rem 2rem 0.1rem 2rem;
   margin: 0 !important;
   width: 100%;
+  transition: transform 0.3s;
+}
+
+.categories-form-btn:hover {
+  transform: scale(1.1);
 }
 
 .btn-add-category {
@@ -11115,20 +11119,24 @@ li {
 }
 
 .card-header {
-  background-color: #43A047;
-  color: #f8fafc;
+  background-color: lightgray;
+  color: #303030;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  padding: 0.3rem;
+  padding: 0.2rem;
   margin: 0;
+}
+
+.btn-dropdown img {
+  height: 1.2rem;
 }
 
 .manage-card-container {
   position: absolute;
-  left: calc(100% - 2rem);
+  left: calc(100% - 1.2rem);
 }
 
 .card-title {
@@ -11141,6 +11149,7 @@ li {
   padding: 0 1rem 2rem 1rem !important;
   max-height: 65vh;
   overflow: auto;
+  border-top: 8px solid #3490dc;
 }
 
 .form-add-task-container {
@@ -11218,7 +11227,7 @@ li {
   min-height: 4rem;
   padding: 1rem 0 0 1rem;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   line-height: normal;
   font-weight: 400;
@@ -11236,12 +11245,40 @@ li {
   display: initial !important;
 }
 
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.task-name {
+  max-width: 80%;
+}
+
 .task-manage-btn {
   display: none !important;
   cursor: pointer;
   height: -webkit-min-content;
   height: -moz-min-content;
   height: min-content;
-  margin: -1.3rem -0.7rem 0rem 0rem;
+  margin: -1.3rem -0.3rem 0rem 0rem;
+}
+
+.task-date {
+  font-size: 0.65rem;
+  margin-bottom: 0.5rem;
+}
+
+.task-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-form-checkbox {
+  padding: 0;
+  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
 }
 

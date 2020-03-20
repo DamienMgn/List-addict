@@ -15,7 +15,10 @@ class CreateTasksTable extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('name', 100);
+            $table->boolean('status');
+            $table->string('color', 15)->nullable();
+            $table->dateTime('deadline')->nullable();
             $table->unsignedBigInteger('card_id');
             $table->foreign('card_id')->references('id')->on('cards')->onDelete('cascade');
             $table->timestamps();

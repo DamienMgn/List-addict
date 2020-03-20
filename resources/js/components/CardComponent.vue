@@ -3,8 +3,8 @@
         <header class="card-header">
             <h5 class="card-title">{{card.name}}</h5>
             <div class="dropdown manage-card-container">
-                <button class="btn btn-secondary btn-sm btn-dropdown btn-dropdown-task" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="../../img/more-options.svg" alt="multiple-choices"/>
+                <button class="btn-sm btn-dropdown btn-dropdown-task" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="../../img/more-options-black.svg" alt="multiple-choices"/>
                 </button>
                 <div class="dropdown-menu">
                     <button class="dropdown-item btn-delete" @click="deleteCard" :data-card="card.id" :data-category="card.category_id">Delete</button>
@@ -14,7 +14,7 @@
             </div>
         </header>
         <div class="card-body">
-            <task-component v-bind:card="card"></task-component>
+            <tasks-component v-bind:card="card"></tasks-component>
         </div>
         <div class="form-add-task-container">
             <button class="btn btn-add-task" @click="toggleFormTask" type="button" data-target="#add-card-modal" v-if="!isVisible">+ Tâche</button>
@@ -32,10 +32,10 @@
 </template>
 
 <script>
-    import TaskComponent from "./TaskComponent";
+    import TasksComponent from "./TasksComponent";
     export default {
         name: "CardComponent",
-        components: {TaskComponent},
+        components: {TasksComponent},
         props: ['card'],
         data() {
             return {
