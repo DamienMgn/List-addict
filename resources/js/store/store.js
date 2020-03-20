@@ -99,6 +99,12 @@ export default new Vuex.Store({
         deleteTask: async function (context, taskData) {
             let response = await axios.post('/api/delete/task/' + taskData.taskId + '/' + taskData.cardId + '/' + taskData.categoryId)
             context.commit('addCard', {card: response.data.card})
+        },
+        updateTask: async function (context, taskData) {
+            let response = await axios.post('/api/update/task/' + taskData.taskId + '/' + taskData.cardId + '/' + taskData.categoryId, {
+                status: taskData.checkbox
+            })
+            context.commit('addCard', {card: response.data.card})
         }
     }
 })

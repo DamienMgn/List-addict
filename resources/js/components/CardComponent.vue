@@ -14,7 +14,7 @@
             </div>
         </header>
         <div class="card-body">
-            <task-component v-bind:card="card"></task-component>
+            <tasks-component v-bind:card="card"></tasks-component>
         </div>
         <div class="form-add-task-container">
             <button class="btn btn-add-task" @click="toggleFormTask" type="button" data-target="#add-card-modal" v-if="!isVisible">+ Tâche</button>
@@ -32,10 +32,10 @@
 </template>
 
 <script>
-    import TaskComponent from "./TaskComponent";
+    import TasksComponent from "./TasksComponent";
     export default {
         name: "CardComponent",
-        components: {TaskComponent},
+        components: {TasksComponent},
         props: ['card'],
         data() {
             return {

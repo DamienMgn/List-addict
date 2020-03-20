@@ -75,6 +75,7 @@
         methods:{
             addCategory: function (e) {
                 e.preventDefault()
+                this.toggleFormCategory()
                 this.$store.dispatch('insertCategory', e.target.name.value)
             },
             deleteCategory: function (e) {

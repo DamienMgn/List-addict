@@ -11142,7 +11142,7 @@ li {
 .card-title {
   padding: 0;
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .card-body {
@@ -11227,7 +11227,7 @@ li {
   min-height: 4rem;
   padding: 1rem 0 0 1rem;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   line-height: normal;
   font-weight: 400;
@@ -11245,12 +11245,40 @@ li {
   display: initial !important;
 }
 
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.task-name {
+  max-width: 80%;
+}
+
 .task-manage-btn {
   display: none !important;
   cursor: pointer;
   height: -webkit-min-content;
   height: -moz-min-content;
   height: min-content;
-  margin: -1.3rem -0.7rem 0rem 0rem;
+  margin: -1.3rem -0.3rem 0rem 0rem;
+}
+
+.task-date {
+  font-size: 0.65rem;
+  margin-bottom: 0.5rem;
+}
+
+.task-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-form-checkbox {
+  padding: 0;
+  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
 }
 

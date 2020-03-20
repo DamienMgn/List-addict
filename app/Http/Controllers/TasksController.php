@@ -19,6 +19,10 @@ class TasksController extends Controller
 
         $task->card_id = $card->id;
 
+        $task->status = false;
+
+        $task->color = 'blue';
+
         $task->save();
 
         $card['tasks'] = Tasks::where('card_id', $card->id)->get();
@@ -38,6 +42,30 @@ class TasksController extends Controller
         $taskToDelete =  Tasks::find($task->id);
 
         $taskToDelete->delete();
+
+        $card['tasks'] = Tasks::where('card_id', $card->id)->get();
+
+        return response()->json([
+            'card' => $card,
+        ]);
+    }
+
+    /**
+     * Return task
+     */
+    public function updateTask(Tasks $task, Request $request) {
+
+        $card = $task->card;
+
+        $taskToUpdate =  Tasks::find($task->id);
+
+        $data = $request->all();
+
+        if (isset($data['status'])) {
+            $taskToUpdate->status = $data['status'];
+        }
+
+        $taskToUpdate->save();
 
         $card['tasks'] = Tasks::where('card_id', $card->id)->get();
 
