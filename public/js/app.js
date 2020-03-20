@@ -38444,7 +38444,7 @@ var render = function() {
               },
               on: { click: _vm.deleteCard }
             },
-            [_vm._v("Delete")]
+            [_vm._v("Supprimer ")]
           ),
           _vm._v(" "),
           _c("div", { staticClass: "dropdown-divider" }),

@@ -7,7 +7,7 @@
                     <img src="../../img/more-options-black.svg" alt="multiple-choices"/>
                 </button>
                 <div class="dropdown-menu">
-                    <button class="dropdown-item btn-delete" @click="deleteCard" :data-card="card.id" :data-category="card.category_id">Delete</button>
+                    <button class="dropdown-item btn-delete" @click="deleteCard" :data-card="card.id" :data-category="card.category_id">Supprimer </button>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Couleur</a>
                 </div>
