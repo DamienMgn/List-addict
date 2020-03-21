@@ -37,16 +37,7 @@
                             <router-link class="link category-link" :to="{name: 'categorie', params: {id: categorie.id}}">
                                 {{categorie.name}}
                             </router-link>
-                            <div class="dropdown">
-                                <button class="btn btn-secondary btn-sm btn-dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="category-manage-btn"><img alt="multiple-choices" src="../../img/more-options.svg"/></span>
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item btn-delete" href="#" @click="deleteCategory" :data-id="categorie.id">Delete</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Couleur</a>
-                                </div>
-                            </div>
+                            <dropdown @delete="deleteCategory" :category="categorie.id" :color="'white'"></dropdown>
                         </li>
                     </ul>
                 </li>
@@ -57,9 +48,11 @@
 
 <script>
     import {mapGetters} from 'vuex'
+    import Dropdown from "./layout/dropdown";
 
     export default {
         name: "SidebarComponent",
+        components: {Dropdown},
         data() {
             return {
                 name: '',
@@ -78,8 +71,8 @@
                 this.toggleFormCategory()
                 this.$store.dispatch('insertCategory', e.target.name.value)
             },
-            deleteCategory: function (e) {
-                this.$store.dispatch('deleteCategory', e.toElement.dataset.id)
+            deleteCategory: function (value) {
+                this.$store.dispatch('deleteCategory', value.categoryId)
                 this.$router.push({name: 'home'})
             },
             toggleFormCategory: function () {

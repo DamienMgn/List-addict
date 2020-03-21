@@ -1,8 +1,14 @@
 <template>
     <div>
-        <div class="cards-container">
-            <div v-for="card in categories[this.$route.params.id].cards">
-                <CardComponent v-bind:card="card"></CardComponent>
+        <div class="cards-main-container">
+            <div class="cards-container-header">
+                <h3 class="cards-header-title">{{ categories[this.$route.params.id].name }}</h3>
+                <button class="btn btn-add-card" type="button" data-toggle="modal" data-target="#add-card-modal">+ Nouvelle carte</button>
+            </div>
+            <div class="cards-container">
+                <div v-for="card in categories[this.$route.params.id].cards">
+                    <CardComponent v-bind:card="card"></CardComponent>
+                </div>
             </div>
         </div>
         <button class="btn btn-add-card" type="button" data-toggle="modal" data-target="#add-card-modal">+ Nouvelle carte</button>
@@ -51,7 +57,7 @@
         },
         watch: {
             $route(to, from) {
-            this.$store.dispatch('loadCards', this.$route.params.id)
+                this.$store.dispatch('loadCards', this.$route.params.id)
             }
         },
         methods: {

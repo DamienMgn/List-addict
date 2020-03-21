@@ -129,11 +129,11 @@ li {
     background-color: $dark2;
 }
 
-.category-link-container:hover .category-manage-btn {
+.category-link-container:hover .dropdown {
     display: initial;
 }
 
-.category-manage-btn {
+.dropdown {
     display: none;
 }
 
@@ -203,25 +203,37 @@ li {
 
 /* CardsComponent */
 
-.cards-container {
+.cards-main-container {
     position: absolute;
     top: 0;
     right: 0;
     left: 15rem;
     min-height: calc(100vh - 55px - 5rem);
-    margin: 5rem 2rem 0rem 2rem;
+    margin: 3rem 2rem 0rem 2rem;
     padding: 0rem 2rem 0rem 2rem;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     overflow: auto;
 }
 
+.cards-container-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.cards-header-title {
+    margin-right: 3rem;
+    margin-left: 0.5rem;
+}
+
+.cards-container {
+    display: flex;
+    flex-direction: row;
+}
+
 .btn-add-card, .btn-add-card:hover {
-    position: absolute;
-    right: 0;
-    top: 1.7rem;
-    left: 17rem !important;
-    margin-left: 5rem !important;
     padding: 0rem !important;
     font-weight: bold;
     color: $red;
@@ -249,13 +261,17 @@ li {
     margin: 0;
 }
 
+.card-header .dropdown {
+    display: initial;
+}
+
 .btn-dropdown img {
     height: 1.2rem;
 }
 
-.manage-card-container {
+.dropdown {
     position: absolute;
-    left: calc(100% - 1.2rem);
+    right: 0.5rem;
 }
 
 .card-title {
@@ -362,9 +378,14 @@ li {
 }
 
 .task-header {
+    position: relative;
     display: flex;
     justify-content: space-between;
     flex-direction: row;
+}
+
+.card-body-li:hover .dropdown {
+    display: initial;
 }
 
 .task-name {
