@@ -2,16 +2,7 @@
     <div class="card-container">
         <header class="card-header">
             <h5 class="card-title">{{card.name}}</h5>
-            <div class="dropdown manage-card-container">
-                <button class="btn-sm btn-dropdown btn-dropdown-task" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="../../img/more-options-black.svg" alt="multiple-choices"/>
-                </button>
-                <div class="dropdown-menu">
-                    <button class="dropdown-item btn-delete" @click="deleteCard" :data-card="card.id" :data-category="card.category_id">Delete</button>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Couleur</a>
-                </div>
-            </div>
+            <dropdown @delete="deleteCard" :card="card.id" :category="card.category_id" :color="'black'"></dropdown>
         </header>
         <div class="card-body">
             <tasks-component v-bind:card="card"></tasks-component>
@@ -33,9 +24,10 @@
 
 <script>
     import TasksComponent from "./TasksComponent";
+    import Dropdown from "./layout/dropdown";
     export default {
         name: "CardComponent",
-        components: {TasksComponent},
+        components: {Dropdown, TasksComponent},
         props: ['card'],
         data() {
             return {
@@ -44,8 +36,8 @@
             }
         },
         methods:{
-            deleteCard: function (e) {
-                this.$store.dispatch('deleteCard', {cardId: e.target.dataset.card, categoryId: e.target.dataset.category})
+            deleteCard: function (value) {
+                this.$store.dispatch('deleteCard', {cardId: value.cardId, categoryId: value.categoryId})
             },
             toggleFormTask: function () {
                 if (this.isVisible) {

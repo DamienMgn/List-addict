@@ -1948,15 +1948,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _TasksComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TasksComponent */ "./resources/js/components/TasksComponent.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var _layout_dropdown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./layout/dropdown */ "./resources/js/components/layout/dropdown.vue");
 //
 //
 //
@@ -1982,9 +1974,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CardComponent",
   components: {
+    Dropdown: _layout_dropdown__WEBPACK_IMPORTED_MODULE_1__["default"],
     TasksComponent: _TasksComponent__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: ['card'],
@@ -1995,10 +1989,10 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    deleteCard: function deleteCard(e) {
+    deleteCard: function deleteCard(value) {
       this.$store.dispatch('deleteCard', {
-        cardId: e.target.dataset.card,
-        categoryId: e.target.dataset.category
+        cardId: value.cardId,
+        categoryId: value.categoryId
       });
     },
     toggleFormTask: function toggleFormTask() {
@@ -2038,6 +2032,12 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2133,6 +2133,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _layout_dropdown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./layout/dropdown */ "./resources/js/components/layout/dropdown.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2187,18 +2188,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SidebarComponent",
+  components: {
+    Dropdown: _layout_dropdown__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
   data: function data() {
     return {
       name: '',
@@ -2215,8 +2211,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.toggleFormCategory();
       this.$store.dispatch('insertCategory', e.target.name.value);
     },
-    deleteCategory: function deleteCategory(e) {
-      this.$store.dispatch('deleteCategory', e.toElement.dataset.id);
+    deleteCategory: function deleteCategory(value) {
+      this.$store.dispatch('deleteCategory', value.categoryId);
       this.$router.push({
         name: 'home'
       });
@@ -2242,6 +2238,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _layout_dropdown__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./layout/dropdown */ "./resources/js/components/layout/dropdown.vue");
 //
 //
 //
@@ -2255,6 +2252,56 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "TaskComponent",
+  components: {
+    Dropdown: _layout_dropdown__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  props: ["card"],
+  methods: {
+    deleteTask: function deleteTask(value) {
+      this.$store.dispatch('deleteTask', {
+        cardId: value.cardId,
+        categoryId: value.categoryId,
+        taskId: value.taskId
+      });
+    },
+    updateTaskStatus: function updateTaskStatus(e) {
+      this.$store.dispatch('updateTask', {
+        checkbox: e.target.checked,
+        cardId: e.target.dataset.card,
+        categoryId: e.target.dataset.category,
+        taskId: e.target.dataset.task
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layout/dropdown.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/layout/dropdown.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 //
 //
 //
@@ -2269,25 +2316,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "TaskComponent",
-  props: ["card"],
-  methods: {
-    deleteTask: function deleteTask(e) {
-      this.$store.dispatch('deleteTask', {
-        cardId: e.target.dataset.card,
-        categoryId: e.target.dataset.category,
-        taskId: e.target.dataset.task
-      });
-    },
-    updateTaskStatus: function updateTaskStatus(e) {
-      this.$store.dispatch('updateTask', {
-        checkbox: e.target.checked,
-        cardId: e.target.dataset.card,
-        categoryId: e.target.dataset.category,
-        taskId: e.target.dataset.task
-      });
-    }
-  }
+  name: "dropdown",
+  props: ['card', 'category', 'task', 'color']
 });
 
 /***/ }),
@@ -38427,34 +38457,25 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card-container" }, [
-    _c("header", { staticClass: "card-header" }, [
-      _c("h5", { staticClass: "card-title" }, [_vm._v(_vm._s(_vm.card.name))]),
-      _vm._v(" "),
-      _c("div", { staticClass: "dropdown manage-card-container" }, [
-        _vm._m(0),
+    _c(
+      "header",
+      { staticClass: "card-header" },
+      [
+        _c("h5", { staticClass: "card-title" }, [
+          _vm._v(_vm._s(_vm.card.name))
+        ]),
         _vm._v(" "),
-        _c("div", { staticClass: "dropdown-menu" }, [
-          _c(
-            "button",
-            {
-              staticClass: "dropdown-item btn-delete",
-              attrs: {
-                "data-card": _vm.card.id,
-                "data-category": _vm.card.category_id
-              },
-              on: { click: _vm.deleteCard }
-            },
-            [_vm._v("Delete")]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "dropdown-divider" }),
-          _vm._v(" "),
-          _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-            _vm._v("Couleur")
-          ])
-        ])
-      ])
-    ]),
+        _c("dropdown", {
+          attrs: {
+            card: _vm.card.id,
+            category: _vm.card.category_id,
+            color: "black"
+          },
+          on: { delete: _vm.deleteCard }
+        })
+      ],
+      1
+    ),
     _vm._v(" "),
     _c(
       "div",
@@ -38523,34 +38544,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "btn-sm btn-dropdown btn-dropdown-task",
-        attrs: {
-          type: "button",
-          id: "dropdownMenuButton",
-          "data-toggle": "dropdown",
-          "aria-haspopup": "true",
-          "aria-expanded": "false"
-        }
-      },
-      [
-        _c("img", {
-          attrs: {
-            src: __webpack_require__(/*! ../../img/more-options-black.svg */ "./resources/img/more-options-black.svg"),
-            alt: "multiple-choices"
-          }
-        })
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -38573,14 +38567,35 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "div",
-      { staticClass: "cards-container" },
-      _vm._l(_vm.categories[this.$route.params.id].cards, function(card) {
-        return _c("div", [_c("CardComponent", { attrs: { card: card } })], 1)
-      }),
-      0
-    ),
+    _c("div", { staticClass: "cards-main-container" }, [
+      _c("div", { staticClass: "cards-container-header" }, [
+        _c("h3", { staticClass: "cards-header-title" }, [
+          _vm._v(_vm._s(_vm.categories[this.$route.params.id].name))
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-add-card",
+            attrs: {
+              type: "button",
+              "data-toggle": "modal",
+              "data-target": "#add-card-modal"
+            }
+          },
+          [_vm._v("+ Nouvelle carte")]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "cards-container" },
+        _vm._l(_vm.categories[this.$route.params.id].cards, function(card) {
+          return _c("div", [_c("CardComponent", { attrs: { card: card } })], 1)
+        }),
+        0
+      )
+    ]),
     _vm._v(" "),
     _c(
       "button",
@@ -38882,29 +38897,10 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "dropdown" }, [
-                    _vm._m(0, true),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "dropdown-menu" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "dropdown-item btn-delete",
-                          attrs: { href: "#", "data-id": categorie.id },
-                          on: { click: _vm.deleteCategory }
-                        },
-                        [_vm._v("Delete")]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "dropdown-divider" }),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        { staticClass: "dropdown-item", attrs: { href: "#" } },
-                        [_vm._v("Couleur")]
-                      )
-                    ])
-                  ])
+                  _c("dropdown", {
+                    attrs: { category: categorie.id, color: "white" },
+                    on: { delete: _vm.deleteCategory }
+                  })
                 ],
                 1
               )
@@ -38916,36 +38912,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "btn btn-secondary btn-sm btn-dropdown",
-        attrs: {
-          type: "button",
-          id: "dropdownMenuButton",
-          "data-toggle": "dropdown",
-          "aria-haspopup": "true",
-          "aria-expanded": "false"
-        }
-      },
-      [
-        _c("span", { staticClass: "category-manage-btn" }, [
-          _c("img", {
-            attrs: {
-              alt: "multiple-choices",
-              src: __webpack_require__(/*! ../../img/more-options.svg */ "./resources/img/more-options.svg")
-            }
-          })
-        ])
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -38973,47 +38940,37 @@ var render = function() {
       { staticClass: "card-body-ul" },
       _vm._l(_vm.card.tasks, function(task) {
         return _c("li", { staticClass: "card-body-li" }, [
-          _c("div", { staticClass: "task-header" }, [
-            _c("p", { staticClass: "task-name" }, [_vm._v(_vm._s(task.name))]),
-            _vm._v(" "),
-            _c("div", { staticClass: "dropdown manage-task-container" }, [
-              _vm._m(0, true),
+          _c(
+            "div",
+            { staticClass: "task-header" },
+            [
+              _c("p", { staticClass: "task-name" }, [
+                _vm._v(_vm._s(task.name))
+              ]),
               _vm._v(" "),
-              _c("div", { staticClass: "dropdown-menu" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "dropdown-item btn-delete",
-                    attrs: {
-                      "data-task": task.id,
-                      "data-card": _vm.card.id,
-                      "data-category": _vm.card.category_id
-                    },
-                    on: { click: _vm.deleteTask }
-                  },
-                  [_vm._v("Delete")]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "dropdown-divider" }),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  { staticClass: "dropdown-item", attrs: { href: "#" } },
-                  [_vm._v("Couleur")]
-                )
-              ])
-            ])
-          ]),
+              _c("dropdown", {
+                attrs: {
+                  card: _vm.card.id,
+                  category: _vm.card.category_id,
+                  task: task.id,
+                  color: "black"
+                },
+                on: { delete: _vm.deleteTask }
+              })
+            ],
+            1
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "task-footer" }, [
             _c("p", { staticClass: "task-date" }, [
               _vm._v(
-                "création : " +
+                "\n                    " +
                   _vm._s(new Date(task.created_at).getDate()) +
                   "/" +
                   _vm._s(new Date(task.created_at).getMonth() + 1) +
                   "/" +
-                  _vm._s(new Date(task.created_at).getFullYear())
+                  _vm._s(new Date(task.created_at).getFullYear()) +
+                  "\n                "
               )
             ]),
             _vm._v(" "),
@@ -39072,15 +39029,33 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layout/dropdown.vue?vue&type=template&id=345b42db&scoped=true&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/layout/dropdown.vue?vue&type=template&id=345b42db&scoped=true& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "dropdown manage-card-container" }, [
+    _c(
       "button",
       {
-        staticClass: "btn-sm btn-dropdown task-manage-btn",
+        staticClass: "btn-sm btn-dropdown btn-dropdown-task",
         attrs: {
           type: "button",
           id: "dropdownMenuButton",
@@ -39090,18 +39065,42 @@ var staticRenderFns = [
         }
       },
       [
-        _c("span", {}, [
-          _c("img", {
-            attrs: {
-              alt: "multiple-choices",
-              src: __webpack_require__(/*! ../../img/more-options-black.svg */ "./resources/img/more-options-black.svg")
-            }
-          })
-        ])
+        _c("img", {
+          attrs: {
+            src: __webpack_require__("./resources/img sync recursive ^\\.\\/more\\-options\\-.*\\.svg$")("./more-options-" + _vm.color + ".svg"),
+            alt: "multiple-choices"
+          }
+        })
       ]
-    )
-  }
-]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "dropdown-menu" }, [
+      _c(
+        "button",
+        {
+          staticClass: "dropdown-item btn-delete",
+          on: {
+            click: function($event) {
+              return _vm.$emit("delete", {
+                cardId: _vm.card,
+                categoryId: _vm.category,
+                taskId: _vm.task
+              })
+            }
+          }
+        },
+        [_vm._v("Delete")]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "dropdown-divider" }),
+      _vm._v(" "),
+      _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
+        _vm._v("Couleur")
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -55268,6 +55267,40 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/img sync recursive ^\\.\\/more\\-options\\-.*\\.svg$":
+/*!*********************************************************!*\
+  !*** ./resources/img sync ^\.\/more\-options\-.*\.svg$ ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./more-options-black.svg": "./resources/img/more-options-black.svg",
+	"./more-options-white.svg": "./resources/img/more-options-white.svg"
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
+}
+function webpackContextResolve(req) {
+	if(!__webpack_require__.o(map, req)) {
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return map[req];
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = "./resources/img sync recursive ^\\.\\/more\\-options\\-.*\\.svg$";
+
+/***/ }),
+
 /***/ "./resources/img/home-icon.svg":
 /*!*************************************!*\
   !*** ./resources/img/home-icon.svg ***!
@@ -55312,14 +55345,14 @@ module.exports = "/images/more-options-black.svg?1ca52b1ef46522936ffb9918ca4a9be
 
 /***/ }),
 
-/***/ "./resources/img/more-options.svg":
-/*!****************************************!*\
-  !*** ./resources/img/more-options.svg ***!
-  \****************************************/
+/***/ "./resources/img/more-options-white.svg":
+/*!**********************************************!*\
+  !*** ./resources/img/more-options-white.svg ***!
+  \**********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/more-options.svg?c86cfb9404d0e39c8398795f479ebd7c";
+module.exports = "/images/more-options-white.svg?c86cfb9404d0e39c8398795f479ebd7c";
 
 /***/ }),
 
@@ -55840,6 +55873,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TasksComponent_vue_vue_type_template_id_8f69a68c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TasksComponent_vue_vue_type_template_id_8f69a68c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/layout/dropdown.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/layout/dropdown.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _dropdown_vue_vue_type_template_id_345b42db_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dropdown.vue?vue&type=template&id=345b42db&scoped=true& */ "./resources/js/components/layout/dropdown.vue?vue&type=template&id=345b42db&scoped=true&");
+/* harmony import */ var _dropdown_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dropdown.vue?vue&type=script&lang=js& */ "./resources/js/components/layout/dropdown.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _dropdown_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _dropdown_vue_vue_type_template_id_345b42db_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _dropdown_vue_vue_type_template_id_345b42db_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "345b42db",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/layout/dropdown.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/layout/dropdown.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/layout/dropdown.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_dropdown_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./dropdown.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layout/dropdown.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_dropdown_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/layout/dropdown.vue?vue&type=template&id=345b42db&scoped=true&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/layout/dropdown.vue?vue&type=template&id=345b42db&scoped=true& ***!
+  \************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_dropdown_vue_vue_type_template_id_345b42db_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./dropdown.vue?vue&type=template&id=345b42db&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layout/dropdown.vue?vue&type=template&id=345b42db&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_dropdown_vue_vue_type_template_id_345b42db_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_dropdown_vue_vue_type_template_id_345b42db_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
