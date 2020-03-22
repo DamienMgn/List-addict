@@ -25,7 +25,7 @@
 </template>
 
 <script>
-    import Dropdown from "./layout/dropdown";
+    import Dropdown from "./partials/Dropdown";
     export default {
         name: "TaskComponent",
         components: {Dropdown},

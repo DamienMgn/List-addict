@@ -1,6 +1,6 @@
 <template>
     <div class="card-container">
-        <header class="card-header">
+        <header class="card-header" v-bind:style="{borderColor: card.color}">
             <h5 class="card-title">{{card.name}}</h5>
             <dropdown @delete="deleteCard" :card="card.id" :category="card.category_id" :color="'black'"></dropdown>
         </header>
@@ -24,7 +24,7 @@
 
 <script>
     import TasksComponent from "./TasksComponent";
-    import Dropdown from "./layout/dropdown";
+    import Dropdown from "./partials/Dropdown";
     export default {
         name: "CardComponent",
         components: {Dropdown, TasksComponent},

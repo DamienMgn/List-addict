@@ -13,14 +13,22 @@ const get = async function (url) {
 export default new Vuex.Store({
     strict: true,
     state: {
-        categories: {}
+        categories: {},
+        errors: {}
     },
     getters: {
         categories: function (state) {
             return state.categories
+        },
+        errors: function (state) {
+            return state.errors
         }
     },
     mutations: {
+        handleErrors: function(state, {errors}) {
+            state.errors = errors
+            console.log(state.errors)          
+        },
         addCategories: function (state, {categories}) {
             let obj = {}
             categories.forEach(element => {
@@ -28,16 +36,19 @@ export default new Vuex.Store({
                 obj[element.id].cards = {}
             });
             state.categories = obj
+            state.errors = {}
         },
         addCategory: function (state, {category}) {
             let obj = {}
             obj[category.id] = category
             state.categories = {...state.categories, ...obj}
+            state.errors = {}
         },
         removeCategory: function (state, id) {
             let newState = state.categories
             delete newState[id]
             state.categories = {...newState}
+            state.errors = {}
         },
         addCards: function (state, {id, cards}) {
             let category = state.categories[id] || {}
@@ -49,16 +60,19 @@ export default new Vuex.Store({
                 category.cards = {}
             }
             state.categories = {...state.categories, ...{[id]: category}}
+            state.errors = {}
         },
         addCard: function (state, {card}) {
             let category = state.categories[card.category_id] || {}
             category.cards[card.id] = card
             state.categories = {...state.categories, ...{[card.category_id]: category}}
+            state.errors = {}
         },
         removeCard: function (state, {card}) {
             let newState = state.categories
             delete newState[card.category_id].cards[card.id]
             state.categories = {...newState}
+            state.errors = {}
         },
     },
     actions: {
@@ -82,7 +96,10 @@ export default new Vuex.Store({
         },
         insertCard: async function (context, cardData) {
             let response = await axios.post('/api/add-card/' + cardData.categoryId, {
-               cardName: cardData.cardName
+               cardName: cardData.cardName,
+               cardColor: cardData.cardColor
+            }).catch(error => {
+                context.commit('handleErrors', {errors: error.response.data.errors})
             })
             context.commit('addCard', {card: response.data.card})
         },
@@ -93,6 +110,8 @@ export default new Vuex.Store({
         insertTask: async function (context, taskData) {
             let response = await axios.post('/api/add-task/' + taskData.cardId + '/' + taskData.categoryId, {
                 taskName: taskData.taskName
+            }).catch(error => {
+                context.commit('handleErrors', {errors: error.response.data.errors})
             })
             context.commit('addCard', {card: response.data.card})
         },

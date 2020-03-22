@@ -1,9 +1,12 @@
 <template>
     <div>
         <div class="cards-main-container">
+            <div v-if="Object.entries(errors).length !== 0" v-for="(error, index) in errors">
+                {{error[0]}}
+            </div>
             <div class="cards-container-header">
                 <h3 class="cards-header-title">{{ categories[this.$route.params.id].name }}</h3>
-                <button class="btn btn-add-card" type="button" data-toggle="modal" data-target="#add-card-modal">+ Nouvelle carte</button>
+                <button class="btn-add-card btn" type="button" data-toggle="modal" data-target="#add-card-modal">+ Nouvelle carte</button>
             </div>
             <div class="cards-container">
                 <div v-for="card in categories[this.$route.params.id].cards">
@@ -24,6 +27,7 @@
                     <form @submit="addCard" method="post">
                         <div class="modal-body">
                             <input class="form-control" type="text" placeholder="Nom de la carte" id="card" name="card" v-bind:value="cardName">
+                            <ColorPicker></ColorPicker>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn cancel" data-dismiss="modal">Annuler</button>
@@ -39,10 +43,12 @@
 <script>
     import {mapGetters} from 'vuex'
     import CardComponent from './CardComponent.vue'
+    import ColorPicker from "./partials/ColorPicker";
 
     export default {
         components: {
             CardComponent,
+            ColorPicker
         },
         data() {
             return {
@@ -53,7 +59,8 @@
             this.$store.dispatch('loadCards', this.$route.params.id)
         },
         computed: {
-            ...mapGetters(['categories'])
+            ...mapGetters(['categories']),
+            ...mapGetters(['errors'])
         },
         watch: {
             $route(to, from) {
@@ -63,7 +70,11 @@
         methods: {
             addCard: function(e) {
                 e.preventDefault()
-                this.$store.dispatch('insertCard', {cardName: e.target.card.value, categoryId: this.$route.params.id})
+                this.$store.dispatch('insertCard', {
+                    cardName: e.target.card.value,
+                    categoryId: this.$route.params.id,
+                    cardColor: e.target.color.value
+                    })
                 $('#add-card-modal').modal('toggle');
             }
         }

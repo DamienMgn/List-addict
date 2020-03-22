@@ -1948,7 +1948,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _TasksComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TasksComponent */ "./resources/js/components/TasksComponent.vue");
-/* harmony import */ var _layout_dropdown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./layout/dropdown */ "./resources/js/components/layout/dropdown.vue");
+/* harmony import */ var _partials_Dropdown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./partials/Dropdown */ "./resources/js/components/partials/Dropdown.vue");
 //
 //
 //
@@ -1978,7 +1978,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CardComponent",
   components: {
-    Dropdown: _layout_dropdown__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Dropdown: _partials_Dropdown__WEBPACK_IMPORTED_MODULE_1__["default"],
     TasksComponent: _TasksComponent__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: ['card'],
@@ -2026,6 +2026,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _CardComponent_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CardComponent.vue */ "./resources/js/components/CardComponent.vue");
+/* harmony import */ var _partials_ColorPicker__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./partials/ColorPicker */ "./resources/js/components/partials/ColorPicker.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2070,11 +2071,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    CardComponent: _CardComponent_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    CardComponent: _CardComponent_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    ColorPicker: _partials_ColorPicker__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
@@ -2084,7 +2091,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     this.$store.dispatch('loadCards', this.$route.params.id);
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['categories'])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['categories']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['errors'])),
   watch: {
     $route: function $route(to, from) {
       this.$store.dispatch('loadCards', this.$route.params.id);
@@ -2095,7 +2102,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       e.preventDefault();
       this.$store.dispatch('insertCard', {
         cardName: e.target.card.value,
-        categoryId: this.$route.params.id
+        categoryId: this.$route.params.id,
+        cardColor: e.target.color.value
       });
       $('#add-card-modal').modal('toggle');
     }
@@ -2133,7 +2141,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _layout_dropdown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./layout/dropdown */ "./resources/js/components/layout/dropdown.vue");
+/* harmony import */ var _partials_Dropdown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./partials/Dropdown */ "./resources/js/components/partials/Dropdown.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2193,7 +2201,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SidebarComponent",
   components: {
-    Dropdown: _layout_dropdown__WEBPACK_IMPORTED_MODULE_1__["default"]
+    Dropdown: _partials_Dropdown__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
@@ -2238,7 +2246,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _layout_dropdown__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./layout/dropdown */ "./resources/js/components/layout/dropdown.vue");
+/* harmony import */ var _partials_Dropdown__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./partials/Dropdown */ "./resources/js/components/partials/Dropdown.vue");
 //
 //
 //
@@ -2269,7 +2277,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "TaskComponent",
   components: {
-    Dropdown: _layout_dropdown__WEBPACK_IMPORTED_MODULE_0__["default"]
+    Dropdown: _partials_Dropdown__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: ["card"],
   methods: {
@@ -2293,10 +2301,66 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layout/dropdown.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/layout/dropdown.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/partials/ColorPicker.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/partials/ColorPicker.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "colorpicker",
+  data: function data() {
+    return {
+      colors: [{
+        name: '#27AE60'
+      }, {
+        name: '#2ECC71'
+      }, {
+        name: '#F1C40F'
+      }, {
+        name: '#F39C12'
+      }, {
+        name: '#E67E22'
+      }, {
+        name: '#D35400'
+      }, {
+        name: '#9B59B6'
+      }, {
+        name: '#8E44AD'
+      }, {
+        name: '#2980B9'
+      }, {
+        name: '#3498DB'
+      }, {
+        name: '#1ABC9C'
+      }, {
+        name: '#16A085'
+      }, {
+        name: '#C0392B'
+      }, {
+        name: '#E74C3C'
+      }]
+    };
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/partials/Dropdown.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/partials/Dropdown.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -38459,7 +38523,7 @@ var render = function() {
   return _c("div", { staticClass: "card-container" }, [
     _c(
       "header",
-      { staticClass: "card-header" },
+      { staticClass: "card-header", style: { borderColor: _vm.card.color } },
       [
         _c("h5", { staticClass: "card-title" }, [
           _vm._v(_vm._s(_vm.card.name))
@@ -38567,35 +38631,52 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "cards-main-container" }, [
-      _c("div", { staticClass: "cards-container-header" }, [
-        _c("h3", { staticClass: "cards-header-title" }, [
-          _vm._v(_vm._s(_vm.categories[this.$route.params.id].name))
+    _c(
+      "div",
+      { staticClass: "cards-main-container" },
+      [
+        _vm._l(_vm.errors, function(error, index) {
+          return Object.entries(_vm.errors).length !== 0
+            ? _c("div", [
+                _vm._v("\n            " + _vm._s(error[0]) + "\n        ")
+              ])
+            : _vm._e()
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "cards-container-header" }, [
+          _c("h3", { staticClass: "cards-header-title" }, [
+            _vm._v(_vm._s(_vm.categories[this.$route.params.id].name))
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn-add-card btn",
+              attrs: {
+                type: "button",
+                "data-toggle": "modal",
+                "data-target": "#add-card-modal"
+              }
+            },
+            [_vm._v("+ Nouvelle carte")]
+          )
         ]),
         _vm._v(" "),
         _c(
-          "button",
-          {
-            staticClass: "btn btn-add-card",
-            attrs: {
-              type: "button",
-              "data-toggle": "modal",
-              "data-target": "#add-card-modal"
-            }
-          },
-          [_vm._v("+ Nouvelle carte")]
+          "div",
+          { staticClass: "cards-container" },
+          _vm._l(_vm.categories[this.$route.params.id].cards, function(card) {
+            return _c(
+              "div",
+              [_c("CardComponent", { attrs: { card: card } })],
+              1
+            )
+          }),
+          0
         )
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "cards-container" },
-        _vm._l(_vm.categories[this.$route.params.id].cards, function(card) {
-          return _c("div", [_c("CardComponent", { attrs: { card: card } })], 1)
-        }),
-        0
-      )
-    ]),
+      ],
+      2
+    ),
     _vm._v(" "),
     _c(
       "button",
@@ -38634,18 +38715,25 @@ var render = function() {
                 "form",
                 { attrs: { method: "post" }, on: { submit: _vm.addCard } },
                 [
-                  _c("div", { staticClass: "modal-body" }, [
-                    _c("input", {
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        placeholder: "Nom de la carte",
-                        id: "card",
-                        name: "card"
-                      },
-                      domProps: { value: _vm.cardName }
-                    })
-                  ]),
+                  _c(
+                    "div",
+                    { staticClass: "modal-body" },
+                    [
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Nom de la carte",
+                          id: "card",
+                          name: "card"
+                        },
+                        domProps: { value: _vm.cardName }
+                      }),
+                      _vm._v(" "),
+                      _c("ColorPicker")
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
                   _vm._m(1)
                 ]
@@ -38718,7 +38806,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "cards-container" }, [_vm._v("\n    Test\n")])
+  return _c("div", { staticClass: "cards-main-container" }, [
+    _vm._v("\n    Test\n")
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -39036,10 +39126,47 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layout/dropdown.vue?vue&type=template&id=345b42db&scoped=true&":
-/*!******************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/layout/dropdown.vue?vue&type=template&id=345b42db&scoped=true& ***!
-  \******************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/partials/ColorPicker.vue?vue&type=template&id=4e9c40ff&scoped=true&":
+/*!***********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/partials/ColorPicker.vue?vue&type=template&id=4e9c40ff&scoped=true& ***!
+  \***********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "color-picker-container" }, [
+    _c(
+      "div",
+      { staticClass: "color-container" },
+      _vm._l(_vm.colors, function(color) {
+        return _c("input", {
+          style: { backgroundColor: color.name },
+          attrs: { type: "radio", name: "color" },
+          domProps: { value: color.name }
+        })
+      }),
+      0
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/partials/Dropdown.vue?vue&type=template&id=d626065a&scoped=true&":
+/*!********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/partials/Dropdown.vue?vue&type=template&id=d626065a&scoped=true& ***!
+  \********************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -55878,17 +56005,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/layout/dropdown.vue":
-/*!*****************************************************!*\
-  !*** ./resources/js/components/layout/dropdown.vue ***!
-  \*****************************************************/
+/***/ "./resources/js/components/partials/ColorPicker.vue":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/partials/ColorPicker.vue ***!
+  \**********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _dropdown_vue_vue_type_template_id_345b42db_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dropdown.vue?vue&type=template&id=345b42db&scoped=true& */ "./resources/js/components/layout/dropdown.vue?vue&type=template&id=345b42db&scoped=true&");
-/* harmony import */ var _dropdown_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dropdown.vue?vue&type=script&lang=js& */ "./resources/js/components/layout/dropdown.vue?vue&type=script&lang=js&");
+/* harmony import */ var _ColorPicker_vue_vue_type_template_id_4e9c40ff_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ColorPicker.vue?vue&type=template&id=4e9c40ff&scoped=true& */ "./resources/js/components/partials/ColorPicker.vue?vue&type=template&id=4e9c40ff&scoped=true&");
+/* harmony import */ var _ColorPicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ColorPicker.vue?vue&type=script&lang=js& */ "./resources/js/components/partials/ColorPicker.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -55898,50 +56025,119 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _dropdown_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _dropdown_vue_vue_type_template_id_345b42db_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _dropdown_vue_vue_type_template_id_345b42db_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _ColorPicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ColorPicker_vue_vue_type_template_id_4e9c40ff_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ColorPicker_vue_vue_type_template_id_4e9c40ff_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  "345b42db",
+  "4e9c40ff",
   null
   
 )
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/layout/dropdown.vue"
+component.options.__file = "resources/js/components/partials/ColorPicker.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/layout/dropdown.vue?vue&type=script&lang=js&":
-/*!******************************************************************************!*\
-  !*** ./resources/js/components/layout/dropdown.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************/
+/***/ "./resources/js/components/partials/ColorPicker.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/partials/ColorPicker.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_dropdown_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./dropdown.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layout/dropdown.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_dropdown_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./ColorPicker.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/partials/ColorPicker.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/layout/dropdown.vue?vue&type=template&id=345b42db&scoped=true&":
-/*!************************************************************************************************!*\
-  !*** ./resources/js/components/layout/dropdown.vue?vue&type=template&id=345b42db&scoped=true& ***!
-  \************************************************************************************************/
+/***/ "./resources/js/components/partials/ColorPicker.vue?vue&type=template&id=4e9c40ff&scoped=true&":
+/*!*****************************************************************************************************!*\
+  !*** ./resources/js/components/partials/ColorPicker.vue?vue&type=template&id=4e9c40ff&scoped=true& ***!
+  \*****************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_dropdown_vue_vue_type_template_id_345b42db_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./dropdown.vue?vue&type=template&id=345b42db&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layout/dropdown.vue?vue&type=template&id=345b42db&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_dropdown_vue_vue_type_template_id_345b42db_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_template_id_4e9c40ff_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./ColorPicker.vue?vue&type=template&id=4e9c40ff&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/partials/ColorPicker.vue?vue&type=template&id=4e9c40ff&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_template_id_4e9c40ff_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_dropdown_vue_vue_type_template_id_345b42db_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_template_id_4e9c40ff_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/partials/Dropdown.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/partials/Dropdown.vue ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Dropdown_vue_vue_type_template_id_d626065a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Dropdown.vue?vue&type=template&id=d626065a&scoped=true& */ "./resources/js/components/partials/Dropdown.vue?vue&type=template&id=d626065a&scoped=true&");
+/* harmony import */ var _Dropdown_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Dropdown.vue?vue&type=script&lang=js& */ "./resources/js/components/partials/Dropdown.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Dropdown_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Dropdown_vue_vue_type_template_id_d626065a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Dropdown_vue_vue_type_template_id_d626065a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "d626065a",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/partials/Dropdown.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/partials/Dropdown.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/partials/Dropdown.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Dropdown_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Dropdown.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/partials/Dropdown.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Dropdown_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/partials/Dropdown.vue?vue&type=template&id=d626065a&scoped=true&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/partials/Dropdown.vue?vue&type=template&id=d626065a&scoped=true& ***!
+  \**************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Dropdown_vue_vue_type_template_id_d626065a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Dropdown.vue?vue&type=template&id=d626065a&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/partials/Dropdown.vue?vue&type=template&id=d626065a&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Dropdown_vue_vue_type_template_id_d626065a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Dropdown_vue_vue_type_template_id_d626065a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -56010,37 +56206,49 @@ var get = /*#__PURE__*/function () {
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
   strict: true,
   state: {
-    categories: {}
+    categories: {},
+    errors: {}
   },
   getters: {
     categories: function categories(state) {
       return state.categories;
+    },
+    errors: function errors(state) {
+      return state.errors;
     }
   },
   mutations: {
-    addCategories: function addCategories(state, _ref2) {
-      var categories = _ref2.categories;
+    handleErrors: function handleErrors(state, _ref2) {
+      var errors = _ref2.errors;
+      state.errors = errors;
+      console.log(state.errors);
+    },
+    addCategories: function addCategories(state, _ref3) {
+      var categories = _ref3.categories;
       var obj = {};
       categories.forEach(function (element) {
         obj[element.id] = element;
         obj[element.id].cards = {};
       });
       state.categories = obj;
+      state.errors = {};
     },
-    addCategory: function addCategory(state, _ref3) {
-      var category = _ref3.category;
+    addCategory: function addCategory(state, _ref4) {
+      var category = _ref4.category;
       var obj = {};
       obj[category.id] = category;
       state.categories = _objectSpread({}, state.categories, {}, obj);
+      state.errors = {};
     },
     removeCategory: function removeCategory(state, id) {
       var newState = state.categories;
       delete newState[id];
       state.categories = _objectSpread({}, newState);
+      state.errors = {};
     },
-    addCards: function addCards(state, _ref4) {
-      var id = _ref4.id,
-          cards = _ref4.cards;
+    addCards: function addCards(state, _ref5) {
+      var id = _ref5.id,
+          cards = _ref5.cards;
       var category = state.categories[id] || {};
 
       if (cards.length > 0) {
@@ -56052,18 +56260,21 @@ var get = /*#__PURE__*/function () {
       }
 
       state.categories = _objectSpread({}, state.categories, {}, _defineProperty({}, id, category));
+      state.errors = {};
     },
-    addCard: function addCard(state, _ref5) {
-      var card = _ref5.card;
+    addCard: function addCard(state, _ref6) {
+      var card = _ref6.card;
       var category = state.categories[card.category_id] || {};
       category.cards[card.id] = card;
       state.categories = _objectSpread({}, state.categories, {}, _defineProperty({}, card.category_id, category));
+      state.errors = {};
     },
-    removeCard: function removeCard(state, _ref6) {
-      var card = _ref6.card;
+    removeCard: function removeCard(state, _ref7) {
+      var card = _ref7.card;
       var newState = state.categories;
       delete newState[card.category_id].cards[card.id];
       state.categories = _objectSpread({}, newState);
+      state.errors = {};
     }
   },
   actions: {
@@ -56197,7 +56408,12 @@ var get = /*#__PURE__*/function () {
               case 0:
                 _context6.next = 2;
                 return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/add-card/' + cardData.categoryId, {
-                  cardName: cardData.cardName
+                  cardName: cardData.cardName,
+                  cardColor: cardData.cardColor
+                })["catch"](function (error) {
+                  context.commit('handleErrors', {
+                    errors: error.response.data.errors
+                  });
                 });
 
               case 2:
@@ -56260,6 +56476,10 @@ var get = /*#__PURE__*/function () {
                 _context8.next = 2;
                 return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/add-task/' + taskData.cardId + '/' + taskData.categoryId, {
                   taskName: taskData.taskName
+                })["catch"](function (error) {
+                  context.commit('handleErrors', {
+                    errors: error.response.data.errors
+                  });
                 });
 
               case 2:

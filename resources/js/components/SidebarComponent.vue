@@ -48,7 +48,7 @@
 
 <script>
     import {mapGetters} from 'vuex'
-    import Dropdown from "./layout/dropdown";
+    import Dropdown from "./partials/Dropdown";
 
     export default {
         name: "SidebarComponent",

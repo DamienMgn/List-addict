@@ -1,5 +1,5 @@
 <template>
-    <div class="cards-container">
+    <div class="cards-main-container">
         Test
     </div>
 </template>

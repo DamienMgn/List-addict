@@ -31,9 +31,16 @@ class CardsController extends Controller
      */
     public function addCard(Request $request, Categories $category) {
 
+        $validatedData = $request->validate([
+            'cardName' => 'required|max:50',
+            'cardColor' => 'required|max:7|min:7',
+        ]);
+
         $card = new Cards;
 
         $card->name = $request->cardName;
+
+        $card->color = $request->cardColor;
 
         $card->category_id = $category->id;
 
