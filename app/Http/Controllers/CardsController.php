@@ -54,6 +54,33 @@ class CardsController extends Controller
     /**
      * Return card
      */
+    public function updateCard(Request $request, Cards $card) {
+
+        $validatedData = $request->validate([
+            'cardName' => 'nullable|max:50',
+            'cardColor' => 'nullable|max:7|min:7',
+        ]);
+
+        if (!empty($request->cardName)) {
+            $card->name = $request->cardName;
+        }
+
+        if (!empty($request->cardColor)) {
+            $card->color = $request->cardColor;
+        }
+
+        $card->save();
+
+        $card['tasks'] = Tasks::where('card_id', $card->id)->get();
+
+        return response()->json([
+            'card' => $card,
+        ]);
+    }
+
+    /**
+     * Return card
+     */
     public function deleteCard(Cards $card) {
 
         $cardToDelete =  Cards::find($card->id);

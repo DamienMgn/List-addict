@@ -1949,6 +1949,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _TasksComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TasksComponent */ "./resources/js/components/TasksComponent.vue");
 /* harmony import */ var _partials_Dropdown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./partials/Dropdown */ "./resources/js/components/partials/Dropdown.vue");
+/* harmony import */ var _partials_ModalCard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./partials/ModalCard */ "./resources/js/components/partials/ModalCard.vue");
 //
 //
 //
@@ -1973,13 +1974,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CardComponent",
   components: {
     Dropdown: _partials_Dropdown__WEBPACK_IMPORTED_MODULE_1__["default"],
-    TasksComponent: _TasksComponent__WEBPACK_IMPORTED_MODULE_0__["default"]
+    TasksComponent: _TasksComponent__WEBPACK_IMPORTED_MODULE_0__["default"],
+    ModalCard: _partials_ModalCard__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   props: ['card'],
   data: function data() {
@@ -1993,6 +1997,14 @@ __webpack_require__.r(__webpack_exports__);
       this.$store.dispatch('deleteCard', {
         cardId: value.cardId,
         categoryId: value.categoryId
+      });
+    },
+    updateCard: function updateCard(value) {
+      this.$store.dispatch('updateCard', {
+        cardId: value.cardId,
+        categoryId: value.categoryId,
+        cardName: value.cardName,
+        cardColor: value.cardColor
       });
     },
     toggleFormTask: function toggleFormTask() {
@@ -2247,6 +2259,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _partials_Dropdown__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./partials/Dropdown */ "./resources/js/components/partials/Dropdown.vue");
+/* harmony import */ var _partials_ModalTask__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./partials/ModalTask */ "./resources/js/components/partials/ModalTask.vue");
+//
+//
+//
 //
 //
 //
@@ -2274,10 +2290,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "TaskComponent",
   components: {
-    Dropdown: _partials_Dropdown__WEBPACK_IMPORTED_MODULE_0__["default"]
+    Dropdown: _partials_Dropdown__WEBPACK_IMPORTED_MODULE_0__["default"],
+    ModalTask: _partials_ModalTask__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   props: ["card"],
   methods: {
@@ -2286,6 +2304,15 @@ __webpack_require__.r(__webpack_exports__);
         cardId: value.cardId,
         categoryId: value.categoryId,
         taskId: value.taskId
+      });
+    },
+    updateTask: function updateTask(value) {
+      this.$store.dispatch('updateTask', {
+        taskColor: value.taskColor,
+        cardId: value.cardId,
+        categoryId: value.categoryId,
+        taskId: value.taskId,
+        taskName: value.taskName
       });
     },
     updateTaskStatus: function updateTaskStatus(e) {
@@ -2379,9 +2406,164 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "dropdown",
-  props: ['card', 'category', 'task', 'color']
+  props: ['card', 'category', 'task', 'color', 'type'],
+  computed: {
+    taskId: function taskId() {
+      var id = '#task' + this.task + this.card + this.category;
+      return id;
+    },
+    cardId: function cardId() {
+      var id = '#card' + this.card + this.category;
+      return id;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/partials/ModalCard.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/partials/ModalCard.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ColorPicker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ColorPicker */ "./resources/js/components/partials/ColorPicker.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "modal",
+  components: {
+    ColorPicker: _ColorPicker__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  props: ['title', 'card', 'category', 'type'],
+  data: function data() {
+    return {
+      cardName: ''
+    };
+  },
+  computed: {
+    modalId: function modalId() {
+      var id = 'card' + this.card + this.category;
+      return id;
+    }
+  },
+  methods: {
+    update: function update(e) {
+      e.preventDefault();
+      this.$emit('update', {
+        cardName: e.target.card.value,
+        cardColor: e.target.color.value,
+        cardId: this.card,
+        categoryId: this.category
+      });
+      $('#' + this.modalId).modal('toggle');
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/partials/ModalTask.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/partials/ModalTask.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ColorPicker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ColorPicker */ "./resources/js/components/partials/ColorPicker.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "modal",
+  components: {
+    ColorPicker: _ColorPicker__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  props: ['title', 'card', 'category', 'type', 'task'],
+  data: function data() {
+    return {
+      cardName: ''
+    };
+  },
+  computed: {
+    modalId: function modalId() {
+      var id = 'task' + this.task + this.card + this.category;
+      return id;
+    }
+  },
+  methods: {
+    update: function update(e) {
+      e.preventDefault();
+      console.log(this.task);
+      this.$emit('update', {
+        cardId: this.card,
+        categoryId: this.category,
+        taskId: this.task,
+        taskName: e.target.task.value,
+        taskColor: e.target.color.value
+      });
+      $('#' + this.modalId).modal('toggle');
+    },
+    destroy: function destroy() {
+      this.$destroy();
+    }
+  }
 });
 
 /***/ }),
@@ -38533,9 +38715,19 @@ var render = function() {
           attrs: {
             card: _vm.card.id,
             category: _vm.card.category_id,
-            color: "black"
+            color: "black",
+            type: "card"
           },
           on: { delete: _vm.deleteCard }
+        }),
+        _vm._v(" "),
+        _c("ModalCard", {
+          attrs: {
+            title: "modifier la carte",
+            card: _vm.card.id,
+            category: _vm.card.category_id
+          },
+          on: { update: _vm.updateCard }
         })
       ],
       1
@@ -38635,7 +38827,7 @@ var render = function() {
       "div",
       { staticClass: "cards-main-container" },
       [
-        _vm._l(_vm.errors, function(error, index) {
+        _vm._l(_vm.errors, function(error) {
           return Object.entries(_vm.errors).length !== 0
             ? _c("div", [
                 _vm._v("\n            " + _vm._s(error[0]) + "\n        ")
@@ -38988,7 +39180,11 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("dropdown", {
-                    attrs: { category: categorie.id, color: "white" },
+                    attrs: {
+                      category: categorie.id,
+                      color: "white",
+                      type: "category"
+                    },
                     on: { delete: _vm.deleteCategory }
                   })
                 ],
@@ -39029,91 +39225,115 @@ var render = function() {
       "ul",
       { staticClass: "card-body-ul" },
       _vm._l(_vm.card.tasks, function(task) {
-        return _c("li", { staticClass: "card-body-li" }, [
-          _c(
-            "div",
-            { staticClass: "task-header" },
-            [
-              _c("p", { staticClass: "task-name" }, [
-                _vm._v(_vm._s(task.name))
-              ]),
-              _vm._v(" "),
-              _c("dropdown", {
-                attrs: {
-                  card: _vm.card.id,
-                  category: _vm.card.category_id,
-                  task: task.id,
-                  color: "black"
-                },
-                on: { delete: _vm.deleteTask }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "task-footer" }, [
-            _c("p", { staticClass: "task-date" }, [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(new Date(task.created_at).getDate()) +
-                  "/" +
-                  _vm._s(new Date(task.created_at).getMonth() + 1) +
-                  "/" +
-                  _vm._s(new Date(task.created_at).getFullYear()) +
-                  "\n                "
-              )
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: task.status,
-                  expression: "task.status"
-                }
-              ],
-              staticClass: "task-form-checkbox",
+        return _c(
+          "li",
+          [
+            _c("ModalTask", {
               attrs: {
-                type: "checkbox",
-                "data-task": task.id,
-                "data-card": _vm.card.id,
-                "data-category": _vm.card.category_id
+                card: _vm.card.id,
+                category: _vm.card.category_id,
+                task: task.id
               },
-              domProps: {
-                checked: Array.isArray(task.status)
-                  ? _vm._i(task.status, null) > -1
-                  : task.status
+              on: { update: _vm.updateTask }
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "card-body-li",
+                style: { borderColor: task.color }
               },
-              on: {
-                change: [
-                  function($event) {
-                    var $$a = task.status,
-                      $$el = $event.target,
-                      $$c = $$el.checked ? true : false
-                    if (Array.isArray($$a)) {
-                      var $$v = null,
-                        $$i = _vm._i($$a, $$v)
-                      if ($$el.checked) {
-                        $$i < 0 && _vm.$set(task, "status", $$a.concat([$$v]))
-                      } else {
-                        $$i > -1 &&
-                          _vm.$set(
-                            task,
-                            "status",
-                            $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                          )
+              [
+                _c(
+                  "div",
+                  { staticClass: "task-header" },
+                  [
+                    _c("p", { staticClass: "task-name" }, [
+                      _vm._v(_vm._s(task.name))
+                    ]),
+                    _vm._v(" "),
+                    _c("dropdown", {
+                      attrs: {
+                        card: _vm.card.id,
+                        category: _vm.card.category_id,
+                        task: task.id,
+                        color: "black",
+                        type: "task"
+                      },
+                      on: { delete: _vm.deleteTask }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "task-footer" }, [
+                  _c("p", { staticClass: "task-date" }, [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(new Date(task.created_at).getDate()) +
+                        "/" +
+                        _vm._s(new Date(task.created_at).getMonth() + 1) +
+                        "/" +
+                        _vm._s(new Date(task.created_at).getFullYear()) +
+                        "\n                    "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: task.status,
+                        expression: "task.status"
                       }
-                    } else {
-                      _vm.$set(task, "status", $$c)
+                    ],
+                    staticClass: "task-form-checkbox",
+                    attrs: {
+                      type: "checkbox",
+                      "data-task": task.id,
+                      "data-card": _vm.card.id,
+                      "data-category": _vm.card.category_id
+                    },
+                    domProps: {
+                      checked: Array.isArray(task.status)
+                        ? _vm._i(task.status, null) > -1
+                        : task.status
+                    },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$a = task.status,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(task, "status", $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  task,
+                                  "status",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(task, "status", $$c)
+                          }
+                        },
+                        _vm.updateTaskStatus
+                      ]
                     }
-                  },
-                  _vm.updateTaskStatus
-                ]
-              }
-            })
-          ])
-        ])
+                  })
+                ])
+              ]
+            )
+          ],
+          1
+        )
       }),
       0
     )
@@ -39178,7 +39398,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "dropdown manage-card-container" }, [
+  return _c("div", { staticClass: "dropdown" }, [
     _c(
       "button",
       {
@@ -39221,13 +39441,264 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "dropdown-divider" }),
       _vm._v(" "),
-      _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-        _vm._v("Couleur")
-      ])
+      _vm.type === "card"
+        ? _c(
+            "button",
+            {
+              staticClass: "dropdown-item btn-delete",
+              attrs: {
+                type: "button",
+                "data-toggle": "modal",
+                "data-target": _vm.cardId
+              }
+            },
+            [_vm._v("Modifier")]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.type === "task"
+        ? _c(
+            "button",
+            {
+              staticClass: "dropdown-item btn-delete",
+              attrs: {
+                type: "button",
+                "data-toggle": "modal",
+                "data-target": _vm.taskId
+              }
+            },
+            [_vm._v("Modifier")]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.type === "category"
+        ? _c(
+            "button",
+            {
+              staticClass: "dropdown-item btn-delete",
+              attrs: {
+                type: "button",
+                "data-toggle": "modal",
+                "data-target": "#update-category"
+              }
+            },
+            [_vm._v("Modifier")]
+          )
+        : _vm._e()
     ])
   ])
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/partials/ModalCard.vue?vue&type=template&id=392c33ea&scoped=true&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/partials/ModalCard.vue?vue&type=template&id=392c33ea&scoped=true& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "modal fade",
+      attrs: {
+        id: _vm.modalId,
+        tabindex: "-1",
+        role: "dialog",
+        "aria-labelledby": "updateCardModal",
+        "aria-hidden": "true"
+      }
+    },
+    [
+      _c("div", { staticClass: "modal-dialog", attrs: { role: "document" } }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("form", { on: { submit: _vm.update } }, [
+            _c(
+              "div",
+              { staticClass: "modal-body" },
+              [
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Nom de la carte",
+                    name: "card"
+                  },
+                  domProps: { value: _vm.cardName }
+                }),
+                _vm._v(" "),
+                _c("ColorPicker")
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _vm._m(1)
+          ])
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h5", { staticClass: "modal-title" }, [_vm._v("Modifier la carte")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn cancel",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Annuler")]
+      ),
+      _vm._v(" "),
+      _c("input", { staticClass: "btn submit", attrs: { type: "submit" } })
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/partials/ModalTask.vue?vue&type=template&id=69154400&scoped=true&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/partials/ModalTask.vue?vue&type=template&id=69154400&scoped=true& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "modal fade",
+      attrs: {
+        id: _vm.modalId,
+        tabindex: "-1",
+        role: "dialog",
+        "aria-labelledby": "updateCardModal",
+        "aria-hidden": "true"
+      }
+    },
+    [
+      _c("div", { staticClass: "modal-dialog", attrs: { role: "document" } }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("form", { on: { submit: _vm.update } }, [
+            _c(
+              "div",
+              { staticClass: "modal-body" },
+              [
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Nom de la carte",
+                    name: "task"
+                  },
+                  domProps: { value: _vm.cardName }
+                }),
+                _vm._v(" "),
+                _c("ColorPicker")
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _vm._m(1)
+          ])
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h5", { staticClass: "modal-title" }, [_vm._v("Modifier la tâche")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn cancel",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Annuler")]
+      ),
+      _vm._v(" "),
+      _c("input", { staticClass: "btn submit", attrs: { type: "submit" } })
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -56143,6 +56614,144 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/partials/ModalCard.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/components/partials/ModalCard.vue ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ModalCard_vue_vue_type_template_id_392c33ea_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ModalCard.vue?vue&type=template&id=392c33ea&scoped=true& */ "./resources/js/components/partials/ModalCard.vue?vue&type=template&id=392c33ea&scoped=true&");
+/* harmony import */ var _ModalCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ModalCard.vue?vue&type=script&lang=js& */ "./resources/js/components/partials/ModalCard.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ModalCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ModalCard_vue_vue_type_template_id_392c33ea_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ModalCard_vue_vue_type_template_id_392c33ea_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "392c33ea",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/partials/ModalCard.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/partials/ModalCard.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/partials/ModalCard.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ModalCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./ModalCard.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/partials/ModalCard.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ModalCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/partials/ModalCard.vue?vue&type=template&id=392c33ea&scoped=true&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/components/partials/ModalCard.vue?vue&type=template&id=392c33ea&scoped=true& ***!
+  \***************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ModalCard_vue_vue_type_template_id_392c33ea_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./ModalCard.vue?vue&type=template&id=392c33ea&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/partials/ModalCard.vue?vue&type=template&id=392c33ea&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ModalCard_vue_vue_type_template_id_392c33ea_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ModalCard_vue_vue_type_template_id_392c33ea_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/partials/ModalTask.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/components/partials/ModalTask.vue ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ModalTask_vue_vue_type_template_id_69154400_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ModalTask.vue?vue&type=template&id=69154400&scoped=true& */ "./resources/js/components/partials/ModalTask.vue?vue&type=template&id=69154400&scoped=true&");
+/* harmony import */ var _ModalTask_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ModalTask.vue?vue&type=script&lang=js& */ "./resources/js/components/partials/ModalTask.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ModalTask_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ModalTask_vue_vue_type_template_id_69154400_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ModalTask_vue_vue_type_template_id_69154400_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "69154400",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/partials/ModalTask.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/partials/ModalTask.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/partials/ModalTask.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ModalTask_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./ModalTask.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/partials/ModalTask.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ModalTask_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/partials/ModalTask.vue?vue&type=template&id=69154400&scoped=true&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/components/partials/ModalTask.vue?vue&type=template&id=69154400&scoped=true& ***!
+  \***************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ModalTask_vue_vue_type_template_id_69154400_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./ModalTask.vue?vue&type=template&id=69154400&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/partials/ModalTask.vue?vue&type=template&id=69154400&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ModalTask_vue_vue_type_template_id_69154400_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ModalTask_vue_vue_type_template_id_69154400_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/store/store.js":
 /*!*************************************!*\
   !*** ./resources/js/store/store.js ***!
@@ -56436,19 +57045,26 @@ var get = /*#__PURE__*/function () {
 
       return insertCard;
     }(),
-    deleteCard: function () {
-      var _deleteCard = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7(context, cardData) {
+    updateCard: function () {
+      var _updateCard = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7(context, cardData) {
         var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
           while (1) {
             switch (_context7.prev = _context7.next) {
               case 0:
                 _context7.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/delete/card/' + cardData.cardId + '/' + cardData.categoryId);
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/update/card/' + cardData.cardId + '/' + cardData.categoryId, {
+                  cardName: cardData.cardName,
+                  cardColor: cardData.cardColor
+                })["catch"](function (error) {
+                  context.commit('handleErrors', {
+                    errors: error.response.data.errors
+                  });
+                });
 
               case 2:
                 response = _context7.sent;
-                context.commit('removeCard', {
+                context.commit('addCard', {
                   card: response.data.card
                 });
 
@@ -56460,31 +57076,25 @@ var get = /*#__PURE__*/function () {
         }, _callee7);
       }));
 
-      function deleteCard(_x11, _x12) {
-        return _deleteCard.apply(this, arguments);
+      function updateCard(_x11, _x12) {
+        return _updateCard.apply(this, arguments);
       }
 
-      return deleteCard;
+      return updateCard;
     }(),
-    insertTask: function () {
-      var _insertTask = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8(context, taskData) {
+    deleteCard: function () {
+      var _deleteCard = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8(context, cardData) {
         var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
           while (1) {
             switch (_context8.prev = _context8.next) {
               case 0:
                 _context8.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/add-task/' + taskData.cardId + '/' + taskData.categoryId, {
-                  taskName: taskData.taskName
-                })["catch"](function (error) {
-                  context.commit('handleErrors', {
-                    errors: error.response.data.errors
-                  });
-                });
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/delete/card/' + cardData.cardId + '/' + cardData.categoryId);
 
               case 2:
                 response = _context8.sent;
-                context.commit('addCard', {
+                context.commit('removeCard', {
                   card: response.data.card
                 });
 
@@ -56496,21 +57106,27 @@ var get = /*#__PURE__*/function () {
         }, _callee8);
       }));
 
-      function insertTask(_x13, _x14) {
-        return _insertTask.apply(this, arguments);
+      function deleteCard(_x13, _x14) {
+        return _deleteCard.apply(this, arguments);
       }
 
-      return insertTask;
+      return deleteCard;
     }(),
-    deleteTask: function () {
-      var _deleteTask = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9(context, taskData) {
+    insertTask: function () {
+      var _insertTask = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9(context, taskData) {
         var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee9$(_context9) {
           while (1) {
             switch (_context9.prev = _context9.next) {
               case 0:
                 _context9.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/delete/task/' + taskData.taskId + '/' + taskData.cardId + '/' + taskData.categoryId);
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/add-task/' + taskData.cardId + '/' + taskData.categoryId, {
+                  taskName: taskData.taskName
+                })["catch"](function (error) {
+                  context.commit('handleErrors', {
+                    errors: error.response.data.errors
+                  });
+                });
 
               case 2:
                 response = _context9.sent;
@@ -56526,23 +57142,21 @@ var get = /*#__PURE__*/function () {
         }, _callee9);
       }));
 
-      function deleteTask(_x15, _x16) {
-        return _deleteTask.apply(this, arguments);
+      function insertTask(_x15, _x16) {
+        return _insertTask.apply(this, arguments);
       }
 
-      return deleteTask;
+      return insertTask;
     }(),
-    updateTask: function () {
-      var _updateTask = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10(context, taskData) {
+    deleteTask: function () {
+      var _deleteTask = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10(context, taskData) {
         var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee10$(_context10) {
           while (1) {
             switch (_context10.prev = _context10.next) {
               case 0:
                 _context10.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/update/task/' + taskData.taskId + '/' + taskData.cardId + '/' + taskData.categoryId, {
-                  status: taskData.checkbox
-                });
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/delete/task/' + taskData.taskId + '/' + taskData.cardId + '/' + taskData.categoryId);
 
               case 2:
                 response = _context10.sent;
@@ -56558,7 +57172,41 @@ var get = /*#__PURE__*/function () {
         }, _callee10);
       }));
 
-      function updateTask(_x17, _x18) {
+      function deleteTask(_x17, _x18) {
+        return _deleteTask.apply(this, arguments);
+      }
+
+      return deleteTask;
+    }(),
+    updateTask: function () {
+      var _updateTask = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee11(context, taskData) {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee11$(_context11) {
+          while (1) {
+            switch (_context11.prev = _context11.next) {
+              case 0:
+                _context11.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/update/task/' + taskData.taskId + '/' + taskData.cardId + '/' + taskData.categoryId, {
+                  status: taskData.checkbox,
+                  taskColor: taskData.taskColor,
+                  taskName: taskData.taskName
+                });
+
+              case 2:
+                response = _context11.sent;
+                context.commit('addCard', {
+                  card: response.data.card
+                });
+
+              case 4:
+              case "end":
+                return _context11.stop();
+            }
+          }
+        }, _callee11);
+      }));
+
+      function updateTask(_x19, _x20) {
         return _updateTask.apply(this, arguments);
       }
 

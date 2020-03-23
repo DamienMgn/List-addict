@@ -2,7 +2,8 @@
     <div class="card-container">
         <header class="card-header" v-bind:style="{borderColor: card.color}">
             <h5 class="card-title">{{card.name}}</h5>
-            <dropdown @delete="deleteCard" :card="card.id" :category="card.category_id" :color="'black'"></dropdown>
+            <dropdown @delete="deleteCard" :card="card.id" :category="card.category_id" :color="'black'" :type="'card'"></dropdown>
+            <ModalCard :title="'modifier la carte'" @update="updateCard" :card="card.id" :category="card.category_id"></ModalCard>
         </header>
         <div class="card-body">
             <tasks-component v-bind:card="card"></tasks-component>
@@ -25,9 +26,11 @@
 <script>
     import TasksComponent from "./TasksComponent";
     import Dropdown from "./partials/Dropdown";
+    import ModalCard from "./partials/ModalCard";
+
     export default {
         name: "CardComponent",
-        components: {Dropdown, TasksComponent},
+        components: {Dropdown, TasksComponent, ModalCard},
         props: ['card'],
         data() {
             return {
@@ -38,6 +41,9 @@
         methods:{
             deleteCard: function (value) {
                 this.$store.dispatch('deleteCard', {cardId: value.cardId, categoryId: value.categoryId})
+            },
+            updateCard: function (value) {
+                this.$store.dispatch('updateCard', {cardId: value.cardId, categoryId: value.categoryId, cardName: value.cardName, cardColor: value.cardColor})
             },
             toggleFormTask: function () {
                 if (this.isVisible) {

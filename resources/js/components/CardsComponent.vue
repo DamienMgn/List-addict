@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="cards-main-container">
-            <div v-if="Object.entries(errors).length !== 0" v-for="(error, index) in errors">
+            <div v-if="Object.entries(errors).length !== 0" v-for="error in errors">
                 {{error[0]}}
             </div>
             <div class="cards-container-header">

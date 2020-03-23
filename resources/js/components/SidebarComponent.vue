@@ -37,7 +37,7 @@
                             <router-link class="link category-link" :to="{name: 'categorie', params: {id: categorie.id}}">
                                 {{categorie.name}}
                             </router-link>
-                            <dropdown @delete="deleteCategory" :category="categorie.id" :color="'white'"></dropdown>
+                            <dropdown @delete="deleteCategory" :category="categorie.id" :color="'white'" :type="'category'"></dropdown>
                         </li>
                     </ul>
                 </li>

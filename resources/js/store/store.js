@@ -103,6 +103,15 @@ export default new Vuex.Store({
             })
             context.commit('addCard', {card: response.data.card})
         },
+        updateCard: async function (context, cardData) {
+            let response = await axios.post('/api/update/card/' + cardData.cardId + '/' + cardData.categoryId, {
+               cardName: cardData.cardName,
+               cardColor: cardData.cardColor
+            }).catch(error => {
+                context.commit('handleErrors', {errors: error.response.data.errors})
+            })
+            context.commit('addCard', {card: response.data.card})
+        },
         deleteCard: async function (context, cardData) {
             let response = await axios.post('/api/delete/card/' + cardData.cardId + '/' + cardData.categoryId)
             context.commit('removeCard', {card: response.data.card})
@@ -121,7 +130,9 @@ export default new Vuex.Store({
         },
         updateTask: async function (context, taskData) {
             let response = await axios.post('/api/update/task/' + taskData.taskId + '/' + taskData.cardId + '/' + taskData.categoryId, {
-                status: taskData.checkbox
+                status: taskData.checkbox,
+                taskColor: taskData.taskColor,
+                taskName: taskData.taskName
             })
             context.commit('addCard', {card: response.data.card})
         }
