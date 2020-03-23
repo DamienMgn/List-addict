@@ -21,7 +21,7 @@ class TasksController extends Controller
 
         $task->status = false;
 
-        $task->color = 'blue';
+        $task->color = '#FFFFFF';
 
         $task->save();
 
@@ -57,15 +57,25 @@ class TasksController extends Controller
 
         $card = $task->card;
 
-        $taskToUpdate =  Tasks::find($task->id);
+        $validatedData = $request->validate([
+            'taskName' => 'nullable|max:100',
+            'taskColor' => 'nullable|max:7|min:7',
+            'status' => 'nullable|boolean'
+        ]);
 
-        $data = $request->all();
-
-        if (isset($data['status'])) {
-            $taskToUpdate->status = $data['status'];
+        if (isset($request->status)) {
+            $task->status = $request->status;
         }
 
-        $taskToUpdate->save();
+        if (!empty($request->taskColor)) {
+            $task->color = $request->taskColor;
+        }
+
+        if (!empty($request->taskName)) {
+            $task->name = $request->taskName;
+        }
+
+        $task->save();
 
         $card['tasks'] = Tasks::where('card_id', $card->id)->get();
 
