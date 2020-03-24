@@ -11096,6 +11096,7 @@ li {
   margin: 0 !important;
   width: 100%;
   transition: transform 0.3s;
+  color: #F50057 !important;
 }
 
 .categories-form-btn:hover {
@@ -11139,8 +11140,10 @@ li {
 }
 
 .cards-header-title {
-  margin-right: 3rem;
-  margin-left: 0.5rem;
+  margin: 0 3rem 0 0.5rem;
+  border: 2px solid;
+  padding: 0.2rem 1rem;
+  border-radius: 5px;
 }
 
 .cards-container {
@@ -11158,7 +11161,7 @@ li {
   padding: 0rem !important;
   font-weight: bold;
   color: #f8fafc !important;
-  background-color: #F50057 !important;
+  background-color: #303030 !important;
   padding: 0rem 1rem !important;
   transition: transform 0.2s;
 }
@@ -11231,7 +11234,7 @@ li {
 .btn:hover {
   margin: 0.5rem;
   padding: 0rem 1rem;
-  color: #F50057;
+  color: #303030;
   font-weight: bold;
 }
 
@@ -11370,6 +11373,6 @@ li {
 }
 
 .color-container {
-  width: 18rem;
+  width: 14rem;
 }
 

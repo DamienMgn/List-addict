@@ -23,17 +23,11 @@
                         </router-link>
                     </div>
                     <div class="categories-form-container">
-                        <form v-if="isVisible" @submit="addCategory" method="post" class="categories-form">
-                            <input type="text" class="categories-form-input" id="name" name="name" v-bind:value="name">
-                            <div class="btn-add-category">
-                                <button class="btn cancel" type="button" @click="toggleFormCategory">Annuler</button>
-                                <input class="btn submit"type="submit">
-                            </div>
-                        </form>
-                        <button v-if="!isVisible" @click="toggleFormCategory" class="btn categories-form-btn">+ projet</button>
+                        <button class="btn categories-form-btn" type="button" data-toggle="modal" data-target="#modal-add-category">+ Nouveau projet</button>
                     </div>
                     <ul class="categories-scroll-container">
                         <li class="category-link-container" v-for="categorie in categories">
+                            <ModalCategory @add="addCategory"></ModalCategory>
                             <router-link class="link category-link" :to="{name: 'categorie', params: {id: categorie.id}}">
                                 {{categorie.name}}
                             </router-link>
@@ -49,38 +43,29 @@
 <script>
     import {mapGetters} from 'vuex'
     import Dropdown from "./partials/Dropdown";
+    import ModalCategory from "./partials/ModalCategory";
 
     export default {
         name: "SidebarComponent",
-        components: {Dropdown},
+        components: {Dropdown, ModalCategory},
         data() {
             return {
                 name: '',
-                isVisible: false
             }
         },
         computed: {
-            ...mapGetters(['categories'])
+            ...mapGetters(['categories']),
         },
         mounted() {
             this.$store.dispatch('loadCategories')
         },
         methods:{
-            addCategory: function (e) {
-                e.preventDefault()
-                this.toggleFormCategory()
-                this.$store.dispatch('insertCategory', e.target.name.value)
+            addCategory: function (value) {
+                this.$store.dispatch('insertCategory', {categoryName: value.categoryName, categoryColor: value.categoryColor})
             },
             deleteCategory: function (value) {
                 this.$store.dispatch('deleteCategory', value.categoryId)
                 this.$router.push({name: 'home'})
-            },
-            toggleFormCategory: function () {
-                if (this.isVisible) {
-                    this.isVisible = false
-                } else {
-                    this.isVisible = true
-                }
             },
         }
     }

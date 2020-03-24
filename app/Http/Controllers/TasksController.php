@@ -13,6 +13,10 @@ class TasksController extends Controller
      */
     public function addTask(Request $request, Cards $card) {
 
+        $validatedData = $request->validate([
+            'taskName' => 'required|max:100',
+        ]);
+
         $task = new Tasks;
 
         $task->name = $request->taskName;

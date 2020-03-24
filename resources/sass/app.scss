@@ -217,6 +217,7 @@ li {
     margin: 0 !important;
     width: 100%;
     transition: transform 0.3s;
+    color: $red !important;
 }
 
 .categories-form-btn:hover {
@@ -259,8 +260,10 @@ li {
 }
 
 .cards-header-title {
-    margin-right: 3rem;
-    margin-left: 0.5rem;
+    margin: 0 3rem 0 0.5rem;
+    border: 2px solid;
+    padding: 0.2rem 1rem;
+    border-radius: 5px;
 }
 
 .cards-container {
@@ -277,7 +280,7 @@ li {
     padding: 0rem !important;
     font-weight: bold;
     color: $body-bg !important;
-    background-color: $red !important;
+    background-color: $dark !important;
     padding: 0rem 1rem !important;
     transition: transform 0.2s;
 }
@@ -349,7 +352,7 @@ li {
 .btn, .btn:hover {
     margin: 0.5rem;
     padding: 0rem 1rem;
-    color: $red;
+    color: $dark;
     font-weight: bold;
 }
 
@@ -484,5 +487,5 @@ li {
 }
 
 .color-container {
-    width: 18rem;
+    width: 14rem;
 }

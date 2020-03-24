@@ -5,7 +5,7 @@
                 {{error[0]}}
             </div>
             <div class="cards-container-header">
-                <h3 class="cards-header-title">{{ categories[this.$route.params.id].name }}</h3>
+                <h3 class="cards-header-title" v-bind:style="{borderColor: categories[this.$route.params.id].color}">{{ categories[this.$route.params.id].name }}</h3>
                 <button class="btn-add-card btn" type="button" data-toggle="modal" data-target="#add-card-modal">+ Nouvelle carte</button>
             </div>
             <div class="cards-container">

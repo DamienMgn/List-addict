@@ -27,9 +27,16 @@ class CategoriesController extends Controller
      */
     public function addCategory(Request $request) {
 
+        $validatedData = $request->validate([
+            'name' => 'required|max:50',
+            'color' => 'required|max:7|min:7',
+        ]);
+
         $category = new Categories;
 
         $category->name = $request->name;
+
+        $category->color = $request->color;
 
         $category->user_id = $request->user()->id;
 

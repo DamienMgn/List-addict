@@ -16,14 +16,10 @@
                     {name: '#2ECC71'},
                     {name: '#F1C40F'},
                     {name: '#F39C12'},
-                    {name: '#E67E22'},
-                    {name: '#D35400'},
                     {name: '#9B59B6'},
                     {name: '#8E44AD'},
                     {name: '#2980B9'},
                     {name: '#3498DB'},
-                    {name: '#1ABC9C'},
-                    {name: '#16A085'},
                     {name: '#C0392B'},
                     {name: '#E74C3C'}
                 ]

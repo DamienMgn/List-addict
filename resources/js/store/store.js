@@ -80,9 +80,12 @@ export default new Vuex.Store({
             let response = await get('/api/categories')
             context.commit('addCategories', {categories: response.data.categories})
         },
-        insertCategory: async function (context, name) {
+        insertCategory: async function (context, dataCategory) {
             let response = await axios.post('/api/add-category', {
-                name: name
+                name: dataCategory.categoryName,
+                color: dataCategory.categoryColor
+            }).catch(error => {
+                context.commit('handleErrors', {errors: error.response.data.errors})
             })
             context.commit('addCategory', {category: response.data.category})
         },
@@ -133,6 +136,8 @@ export default new Vuex.Store({
                 status: taskData.checkbox,
                 taskColor: taskData.taskColor,
                 taskName: taskData.taskName
+            }).catch(error => {
+                context.commit('handleErrors', {errors: error.response.data.errors})
             })
             context.commit('addCard', {card: response.data.card})
         }
