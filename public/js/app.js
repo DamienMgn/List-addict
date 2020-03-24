@@ -2203,6 +2203,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -2232,6 +2233,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.dispatch('deleteCategory', value.categoryId);
       this.$router.push({
         name: 'home'
+      });
+    },
+    updateCategory: function updateCategory(value) {
+      this.$store.dispatch('updateCategory', {
+        categoryName: value.categoryName,
+        categoryColor: value.categoryColor,
+        categoryId: value.categoryId
       });
     }
   }
@@ -2401,6 +2409,10 @@ __webpack_require__.r(__webpack_exports__);
     cardId: function cardId() {
       var id = '#card' + this.card + this.category;
       return id;
+    },
+    categoryId: function categoryId() {
+      var id = '#category' + this.category;
+      return id;
     }
   }
 });
@@ -2517,7 +2529,7 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     ColorPicker: _ColorPicker__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  props: ['title', 'card', 'category', 'type'],
+  props: ['title', 'card', 'category', 'title', 'type'],
   data: function data() {
     return {
       categoryName: ''
@@ -2525,18 +2537,33 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     modalId: function modalId() {
-      var id = 'card' + this.card + this.category;
+      var id = 'modal-add-category';
+
+      if (this.type === 'update') {
+        id = 'category' + this.category;
+      }
+
       return id;
     }
   },
   methods: {
     add: function add(e) {
       e.preventDefault();
-      this.$emit('add', {
-        categoryName: e.target.category.value,
-        categoryColor: e.target.color.value
-      });
-      $('#modal-add-category').modal('toggle');
+
+      if (this.type === 'update') {
+        this.$emit('update', {
+          categoryName: e.target.category.value,
+          categoryColor: e.target.color.value,
+          categoryId: this.category
+        });
+      } else {
+        this.$emit('add', {
+          categoryName: e.target.category.value,
+          categoryColor: e.target.color.value
+        });
+      }
+
+      $('#' + this.modalId).modal('toggle');
     }
   }
 });
@@ -39167,43 +39194,57 @@ var render = function() {
           _c(
             "ul",
             { staticClass: "categories-scroll-container" },
-            _vm._l(_vm.categories, function(categorie) {
-              return _c(
-                "li",
-                { staticClass: "category-link-container" },
-                [
-                  _c("ModalCategory", { on: { add: _vm.addCategory } }),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "link category-link",
+            [
+              _c("ModalCategory", {
+                attrs: { title: "Ajouter un projet" },
+                on: { add: _vm.addCategory }
+              }),
+              _vm._v(" "),
+              _vm._l(_vm.categories, function(category) {
+                return _c(
+                  "div",
+                  { staticClass: "category-link-container" },
+                  [
+                    _c("ModalCategory", {
                       attrs: {
-                        to: { name: "categorie", params: { id: categorie.id } }
-                      }
-                    },
-                    [
-                      _vm._v(
-                        "\n                            " +
-                          _vm._s(categorie.name) +
-                          "\n                        "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("dropdown", {
-                    attrs: {
-                      category: categorie.id,
-                      color: "white",
-                      type: "category"
-                    },
-                    on: { delete: _vm.deleteCategory }
-                  })
-                ],
-                1
-              )
-            }),
-            0
+                        title: "Midifier le projet",
+                        category: category.id,
+                        type: "update"
+                      },
+                      on: { update: _vm.updateCategory }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "link category-link",
+                        attrs: {
+                          to: { name: "categorie", params: { id: category.id } }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(category.name) +
+                            "\n                        "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("dropdown", {
+                      attrs: {
+                        category: category.id,
+                        color: "white",
+                        type: "category"
+                      },
+                      on: { delete: _vm.deleteCategory }
+                    })
+                  ],
+                  1
+                )
+              })
+            ],
+            2
           )
         ])
       ])
@@ -39511,7 +39552,7 @@ var render = function() {
               attrs: {
                 type: "button",
                 "data-toggle": "modal",
-                "data-target": "#update-category"
+                "data-target": _vm.categoryId
               }
             },
             [_vm._v("Modifier")]
@@ -39652,7 +39693,7 @@ var render = function() {
     {
       staticClass: "modal fade",
       attrs: {
-        id: "modal-add-category",
+        id: _vm.modalId,
         tabindex: "-1",
         role: "dialog",
         "aria-labelledby": "updateCategoryModal",
@@ -39662,7 +39703,13 @@ var render = function() {
     [
       _c("div", { staticClass: "modal-dialog", attrs: { role: "document" } }, [
         _c("div", { staticClass: "modal-content" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "modal-header" }, [
+            _c("h5", { staticClass: "modal-title" }, [
+              _vm._v(_vm._s(_vm.title))
+            ]),
+            _vm._v(" "),
+            _vm._m(0)
+          ]),
           _vm._v(" "),
           _c("form", { on: { submit: _vm.add } }, [
             _c(
@@ -39696,22 +39743,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c("h5", { staticClass: "modal-title" }, [_vm._v("Modifier la carte")]),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      )
-    ])
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
   },
   function() {
     var _vm = this
@@ -57055,15 +57098,21 @@ var get = /*#__PURE__*/function () {
       state.categories = _objectSpread({}, state.categories, {}, obj);
       state.errors = {};
     },
+    upCategory: function upCategory(state, _ref5) {
+      var category = _ref5.category;
+      console.log(state.categories[category.id]);
+      state.categories[category.id].name = category.name;
+      state.categories[category.id].color = category.color;
+    },
     removeCategory: function removeCategory(state, id) {
       var newState = state.categories;
       delete newState[id];
       state.categories = _objectSpread({}, newState);
       state.errors = {};
     },
-    addCards: function addCards(state, _ref5) {
-      var id = _ref5.id,
-          cards = _ref5.cards;
+    addCards: function addCards(state, _ref6) {
+      var id = _ref6.id,
+          cards = _ref6.cards;
       var category = state.categories[id] || {};
 
       if (cards.length > 0) {
@@ -57077,15 +57126,15 @@ var get = /*#__PURE__*/function () {
       state.categories = _objectSpread({}, state.categories, {}, _defineProperty({}, id, category));
       state.errors = {};
     },
-    addCard: function addCard(state, _ref6) {
-      var card = _ref6.card;
+    addCard: function addCard(state, _ref7) {
+      var card = _ref7.card;
       var category = state.categories[card.category_id] || {};
       category.cards[card.id] = card;
       state.categories = _objectSpread({}, state.categories, {}, _defineProperty({}, card.category_id, category));
       state.errors = {};
     },
-    removeCard: function removeCard(state, _ref7) {
-      var card = _ref7.card;
+    removeCard: function removeCard(state, _ref8) {
+      var card = _ref8.card;
       var newState = state.categories;
       delete newState[card.category_id].cards[card.id];
       state.categories = _objectSpread({}, newState);
@@ -57426,6 +57475,43 @@ var get = /*#__PURE__*/function () {
       }
 
       return updateTask;
+    }(),
+    updateCategory: function () {
+      var _updateCategory = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee12(context, categoryData) {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee12$(_context12) {
+          while (1) {
+            switch (_context12.prev = _context12.next) {
+              case 0:
+                _context12.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/update/category/' + categoryData.categoryId, {
+                  color: categoryData.categoryColor,
+                  name: categoryData.categoryName
+                })["catch"](function (error) {
+                  context.commit('handleErrors', {
+                    errors: error.response.data.errors
+                  });
+                });
+
+              case 2:
+                response = _context12.sent;
+                context.commit('upCategory', {
+                  category: response.data.category
+                });
+
+              case 4:
+              case "end":
+                return _context12.stop();
+            }
+          }
+        }, _callee12);
+      }));
+
+      function updateCategory(_x21, _x22) {
+        return _updateCategory.apply(this, arguments);
+      }
+
+      return updateCategory;
     }()
   }
 }));

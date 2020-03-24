@@ -26,13 +26,14 @@
                         <button class="btn categories-form-btn" type="button" data-toggle="modal" data-target="#modal-add-category">+ Nouveau projet</button>
                     </div>
                     <ul class="categories-scroll-container">
-                        <li class="category-link-container" v-for="categorie in categories">
-                            <ModalCategory @add="addCategory"></ModalCategory>
-                            <router-link class="link category-link" :to="{name: 'categorie', params: {id: categorie.id}}">
-                                {{categorie.name}}
+                        <ModalCategory @add="addCategory" :title="'Ajouter un projet'"></ModalCategory>
+                        <div class="category-link-container" v-for="category in categories">
+                        <ModalCategory @update="updateCategory" :title="'Midifier le projet'" :category="category.id" :type="'update'"></ModalCategory>
+                            <router-link class="link category-link" :to="{name: 'categorie', params: {id: category.id}}">
+                                {{category.name}}
                             </router-link>
-                            <dropdown @delete="deleteCategory" :category="categorie.id" :color="'white'" :type="'category'"></dropdown>
-                        </li>
+                            <dropdown @delete="deleteCategory" :category="category.id" :color="'white'" :type="'category'"></dropdown>
+                        </div>
                     </ul>
                 </li>
             </ul>
@@ -61,12 +62,22 @@
         },
         methods:{
             addCategory: function (value) {
-                this.$store.dispatch('insertCategory', {categoryName: value.categoryName, categoryColor: value.categoryColor})
+                this.$store.dispatch('insertCategory', {
+                    categoryName: value.categoryName,
+                    categoryColor: value.categoryColor
+                    })
             },
             deleteCategory: function (value) {
                 this.$store.dispatch('deleteCategory', value.categoryId)
                 this.$router.push({name: 'home'})
             },
+            updateCategory: function (value) {
+                this.$store.dispatch('updateCategory', {
+                    categoryName: value.categoryName,
+                    categoryColor: value.categoryColor,
+                    categoryId: value.categoryId
+                    })
+            }
         }
     }
 </script>
