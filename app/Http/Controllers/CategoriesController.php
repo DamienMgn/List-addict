@@ -50,6 +50,31 @@ class CategoriesController extends Controller
     /**
      * Return category
      */
+    public function updateCategory(Request $request, Categories $category) {
+
+        $validatedData = $request->validate([
+            'name' => 'nullable|max:50',
+            'color' => 'nullable|max:7|min:7',
+        ]);
+
+        if (!empty($request->name)) {
+            $category->name = $request->name;
+        }
+        
+        if (!empty($request->color)) {
+            $category->color = $request->color;
+        }
+
+        $category->save();
+
+        return response()->json([
+            'category' => $category,
+        ]);
+    }
+
+    /**
+     * Return category
+     */
     public function deleteCategory(Categories $category) {
         $categoryId = $category->id;
 

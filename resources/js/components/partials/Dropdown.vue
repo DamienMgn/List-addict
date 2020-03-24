@@ -8,7 +8,7 @@
             <div class="dropdown-divider"></div>
             <button v-if="type === 'card'" class="dropdown-item btn-delete" type="button" data-toggle="modal" :data-target="cardId">Modifier</button>
             <button v-if="type === 'task'" class="dropdown-item btn-delete" type="button" data-toggle="modal" :data-target="taskId">Modifier</button>
-            <button v-if="type === 'category'" class="dropdown-item btn-delete" type="button" data-toggle="modal" data-target="#update-category">Modifier</button>
+            <button v-if="type === 'category'" class="dropdown-item btn-delete" type="button" data-toggle="modal" :data-target="categoryId">Modifier</button>
         </div>
     </div>
 </template>
@@ -25,6 +25,10 @@
             },
             cardId: function () {
                 let id = '#card' + this.card + this.category
+                return id 
+            },
+            categoryId: function () {
+                let id = '#category' + this.category
                 return id 
             },
         },        

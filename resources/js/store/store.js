@@ -44,6 +44,11 @@ export default new Vuex.Store({
             state.categories = {...state.categories, ...obj}
             state.errors = {}
         },
+        upCategory: function (state, {category}) {
+            console.log(state.categories[category.id])
+            state.categories[category.id].name = category.name
+            state.categories[category.id].color = category.color
+        },
         removeCategory: function (state, id) {
             let newState = state.categories
             delete newState[id]
@@ -140,6 +145,15 @@ export default new Vuex.Store({
                 context.commit('handleErrors', {errors: error.response.data.errors})
             })
             context.commit('addCard', {card: response.data.card})
+        },
+        updateCategory: async function (context, categoryData) {
+            let response = await axios.post('/api/update/category/' + categoryData.categoryId, {
+                color: categoryData.categoryColor,
+                name: categoryData.categoryName
+            }).catch(error => {
+                context.commit('handleErrors', {errors: error.response.data.errors})
+            })
+            context.commit('upCategory', {category: response.data.category})
         }
     }
 })

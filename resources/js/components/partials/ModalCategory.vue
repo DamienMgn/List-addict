@@ -1,9 +1,9 @@
 <template>
-    <div class="modal fade" id="modal-add-category" tabindex="-1" role="dialog" aria-labelledby="updateCategoryModal" aria-hidden="true">
+    <div class="modal fade" :id="modalId" tabindex="-1" role="dialog" aria-labelledby="updateCategoryModal" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Modifier la carte</h5>
+                    <h5 class="modal-title">{{ title }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -30,7 +30,7 @@ import ColorPicker from './ColorPicker'
     export default {
         name: "modal",
         components: {ColorPicker},
-        props: ['title', 'card', 'category', 'type'],
+        props: ['title', 'card', 'category', 'title', 'type'],
         data () {
             return {
                 categoryName: ''
@@ -38,15 +38,32 @@ import ColorPicker from './ColorPicker'
         },
         computed: {
             modalId: function () {
-                let id = 'card' + this.card + this.category
-                return id
+                    let id = 'modal-add-category'
+
+                    if (this.type === 'update') {
+                        id = 'category' + this.category
+                    }
+
+                    return id
             }
         },
         methods: {
             add: function (e) {
                 e.preventDefault()
-                this.$emit('add', {categoryName: e.target.category.value, categoryColor: e.target.color.value})
-                $('#modal-add-category').modal('toggle');
+
+                if (this.type === 'update') {
+                    this.$emit('update', {
+                        categoryName: e.target.category.value,
+                        categoryColor: e.target.color.value,
+                        categoryId: this.category
+                        })
+                } else {
+                    this.$emit('add', {
+                        categoryName: e.target.category.value,
+                        categoryColor: e.target.color.value})
+                }
+
+                $('#' + this.modalId).modal('toggle');
             }
         }
     }

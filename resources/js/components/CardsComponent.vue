@@ -43,7 +43,7 @@
 <script>
     import {mapGetters} from 'vuex'
     import CardComponent from './CardComponent.vue'
-    import ColorPicker from "./partials/ColorPicker";
+    import ColorPicker from './partials/ColorPicker'
 
     export default {
         components: {
