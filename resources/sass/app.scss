@@ -54,6 +54,11 @@ input:focus, button:focus, button:active, a:focus, a:active {
 
 .navbar {
     min-height: 55px;
+    background-color: $dark !important;
+}
+
+.nav-link {
+    color: $white !important;
 }
 
 .navbar .dropdown {
@@ -246,7 +251,7 @@ li {
     right: 0;
     left: 15rem;
     min-height: calc(100vh - 55px - 5rem);
-    margin: 3rem 2rem 0rem 2rem;
+    margin: 3rem 0rem 0rem 0rem;
     padding: 0rem 2rem 0rem 2rem;
     display: flex;
     flex-direction: column;
@@ -261,9 +266,7 @@ li {
 
 .cards-header-title {
     margin: 0 3rem 0 0.5rem;
-    border: 2px solid;
     padding: 0.2rem 1rem;
-    border-radius: 5px;
 }
 
 .cards-container {
