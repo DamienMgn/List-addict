@@ -15,6 +15,7 @@ class TasksController extends Controller
 
         $validatedData = $request->validate([
             'taskName' => 'required|max:100',
+            'taskColor' => 'required|min:7|max:7'
         ]);
 
         $task = new Tasks;
@@ -25,7 +26,7 @@ class TasksController extends Controller
 
         $task->status = false;
 
-        $task->color = '#FFFFFF';
+        $task->color = $request->taskColor;
 
         $task->save();
 

@@ -27,7 +27,7 @@ export default new Vuex.Store({
     mutations: {
         handleErrors: function(state, {errors}) {
             state.errors = errors
-            console.log(state.errors)          
+            console.log(state.errors)
         },
         addCategories: function (state, {categories}) {
             let obj = {}
@@ -126,7 +126,8 @@ export default new Vuex.Store({
         },
         insertTask: async function (context, taskData) {
             let response = await axios.post('/api/add-task/' + taskData.cardId + '/' + taskData.categoryId, {
-                taskName: taskData.taskName
+                taskName: taskData.taskName,
+                taskColor: taskData.taskColor
             }).catch(error => {
                 context.commit('handleErrors', {errors: error.response.data.errors})
             })

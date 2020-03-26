@@ -1,9 +1,9 @@
 <template>
-    <div class="modal fade" :id="modalId" tabindex="-1" role="dialog" aria-labelledby="updateCardModal" aria-hidden="true">
+    <div class="modal fade" :id="'modal-add-task' + card" tabindex="-1" role="dialog" aria-labelledby="updateCardModal" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Modifier la tâche</h5>
+                    <h5 class="modal-title">{{ title }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -30,7 +30,7 @@ import ColorPicker from './ColorPicker'
     export default {
         name: "modal",
         components: {ColorPicker},
-        props: ['title', 'card', 'category', 'type', 'task'],
+        props: ['title', 'card', 'category'],
         data () {
             return {
                 cardName: ''
@@ -39,21 +39,20 @@ import ColorPicker from './ColorPicker'
         computed: {
             modalId: function () {
                 let id = 'task' + this.task + this.card + this.category
-                return id 
+                return id
             }
         },
         methods: {
             update: function (e) {
                 e.preventDefault()
-                console.log(this.task)
-                this.$emit('update', {
+                this.$emit('add', {
                     cardId: this.card,
                     categoryId: this.category,
-                    taskId: this.task,
                     taskName: e.target.task.value,
                     taskColor: e.target.color.value
                     })
-                $('#' + this.modalId).modal('toggle');
+                $('#modal-add-task' + this.card).modal('toggle')
+                $('.modal-backdrop').remove()
             },
             destroy: function () {
                 this.$destroy();

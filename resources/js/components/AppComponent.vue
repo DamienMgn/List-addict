@@ -1,7 +1,10 @@
 <template>
     <div>
         <sidebar-component></sidebar-component>
-        <router-view></router-view>
+        <div class="content-wrapper">
+            <router-view></router-view>
+        </div>
+        <!-- /.content-wrapper -->
     </div>
 </template>
 

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import SidebarComponent from './components/SidebarComponent.vue'
-import CardsComponent from './components/CardsComponent.vue'
+import ProjectComponent from './components/ProjectComponent.vue'
 import CardComponent from './components/CardComponent.vue'
 import HomeComponent from './components/HomeComponent.vue'
 import AppComponent from './components/AppComponent.vue'
@@ -17,7 +17,7 @@ let categories = document.querySelector('#categories')
 if (categories) {
     const routes = [
         {path: '/', component: HomeComponent, name: 'home'},
-        {path: '/:id', component: CardsComponent, name: 'categorie'},
+        {path: '/:id', component: ProjectComponent, name: 'categorie'},
     ]
 
     const router = new VueRouter({
@@ -30,8 +30,8 @@ if (categories) {
         el: '#app',
         components: {
             SidebarComponent,
-            CardsComponent,
             CardComponent,
+            ProjectComponent,
             HomeComponent,
             AppComponent,
         },

@@ -1,36 +1,51 @@
 <template>
     <div class="card-container">
-        <header class="card-header" v-bind:style="{borderColor: card.color}">
-            <h5 class="card-title">{{card.name}}</h5>
-            <dropdown @delete="deleteCard" :card="card.id" :category="card.category_id" :color="'black'" :type="'card'"></dropdown>
-            <ModalCard :title="'modifier la carte'" @update="updateCard" :card="card.id" :category="card.category_id"></ModalCard>
-        </header>
-        <div class="card-body">
-            <tasks-component v-bind:card="card"></tasks-component>
-        </div>
-        <div class="form-add-task-container">
-            <button class="btn btn-add-task" @click="toggleFormTask" type="button" data-target="#add-card-modal" v-if="!isVisible">+ Tâche</button>
-            <form class="form-add-task" v-if="isVisible" @submit="addTask" :data-card="card.id" :data-category="card.category_id">
-                <div class="form-add-task-input-container">
-                    <input autocomplete="off" class="form-add-task-input" type="text" name="task" id="task" v-bind:value="name">
-                </div>
-                <div class="buttons-add-task">
-                    <button class="btn cancel" type="button" data-target="#add-card-modal" @click="toggleFormTask">Annuler</button>
-                    <input class="btn submit"type="submit">
-                </div>
+        <div class="card-header" :style="{backgroundColor: card.color}">
+            <h4 class="card-title">{{ card.name }}</h4>
+            <form class="card-form-delete" @submit="deleteCard">
+                <input type="hidden" name="card" :value="card.id">
+                <input type="hidden" name="category" :value="card.category_id">
+                <button type="submit" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
             </form>
         </div>
+        <div class="card-body">
+            <ul class="tasks-container">
+                <li v-for="task in card.tasks" class="task-container" :style="{borderLeftColor: task.color}">
+                    <TaskComponent :task="task" :card="card"></TaskComponent>
+                </li>
+            </ul>
+        </div>
+        <div class="card-footer">
+            <div class="box-add-task box-header with-border">
+                <button type="button" class="btn btn-box-tool" data-toggle="modal" :data-target="'#modal-add-task' + card.id">
+                    <h4 class="box-title" :style="{color: card.color}">Nouvelle tâche</h4>
+                    <i :style="{color: card.color}" class="fa fa-plus"></i>
+                </button>
+                <!-- /.box-tools -->
+            </div>
+        </div>
+        <ModalTask
+            :title="'Ajouter une tâche'"
+            @add="addTask"
+            :card="card.id"
+            :category="card.category_id"
+        >
+        </ModalTask>
     </div>
 </template>
 
 <script>
-    import TasksComponent from "./TasksComponent";
+    import TaskComponent from "./TaskComponent";
     import Dropdown from "./partials/Dropdown";
-    import ModalCard from "./partials/ModalCard";
+    import ModalTask from "./partials/ModalTask";
 
     export default {
         name: "CardComponent",
-        components: {Dropdown, TasksComponent, ModalCard},
+        components: {
+            TaskComponent,
+            Dropdown,
+            ModalTask
+        },
         props: ['card'],
         data() {
             return {
@@ -39,8 +54,12 @@
             }
         },
         methods:{
-            deleteCard: function (value) {
-                this.$store.dispatch('deleteCard', {cardId: value.cardId, categoryId: value.categoryId})
+            deleteCard: function (e) {
+                e.preventDefault()
+                this.$store.dispatch('deleteCard', {
+                    cardId: e.target.card.value,
+                    categoryId: e.target.category.value
+                })
             },
             updateCard: function (value) {
                 this.$store.dispatch('updateCard', {cardId: value.cardId, categoryId: value.categoryId, cardName: value.cardName, cardColor: value.cardColor})
@@ -52,12 +71,12 @@
                     this.isVisible = true
                 }
             },
-            addTask: function (e) {
-                e.preventDefault()
+            addTask: function (value) {
                 this.$store.dispatch('insertTask', {
-                    taskName: e.target.task.value,
-                    categoryId: e.target.dataset.category,
-                    cardId: e.target.dataset.card
+                    taskName: value.taskName,
+                    taskColor: value.taskColor,
+                    categoryId: value.categoryId,
+                    cardId: value.cardId
                 })
             }
         }

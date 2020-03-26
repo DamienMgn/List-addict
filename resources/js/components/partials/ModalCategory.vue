@@ -1,12 +1,12 @@
 <template>
-    <div class="modal fade" :id="modalId" tabindex="-1" role="dialog" aria-labelledby="updateCategoryModal" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">{{ title }}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+      <div class="modal fade" id="modal-add-category">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">{{ title }}</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
                 </div>
                 <form @submit="add">
                     <div class="modal-body">
@@ -30,7 +30,7 @@ import ColorPicker from './ColorPicker'
     export default {
         name: "modal",
         components: {ColorPicker},
-        props: ['title', 'card', 'category', 'title', 'type'],
+        props: ['title', 'card', 'category', 'type'],
         data () {
             return {
                 categoryName: ''
@@ -64,6 +64,7 @@ import ColorPicker from './ColorPicker'
                 }
 
                 $('#' + this.modalId).modal('toggle');
+                $('.modal-backdrop').remove();
             }
         }
     }
