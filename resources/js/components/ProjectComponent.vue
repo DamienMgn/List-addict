@@ -1,6 +1,12 @@
 <template>
   <div>
-      <ContentComponent :title="categories[paramsId].name"></ContentComponent>
+      <ContentComponent
+          :title="categories[paramsId].name"
+          :color="categories[paramsId].color"
+          @delete="deleteCategory"
+          :category="paramsId"
+      >
+      </ContentComponent>
       <div class="project-container">
           <div class="" v-for="card in categories[this.$route.params.id].cards">
               <CardComponent v-bind:card="card"></CardComponent>
@@ -49,7 +55,11 @@
                     categoryId: value.categoryId,
                     cardColor: value.cardColor
                     })
-            }
+            },
+            deleteCategory: function (value) {
+                this.$store.dispatch('deleteCategory', value.categoryId)
+                this.$router.push({name: 'home'})
+            },
         }
     }
 </script>

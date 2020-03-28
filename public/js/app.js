@@ -2090,6 +2090,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2124,6 +2130,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         cardName: value.cardName,
         categoryId: value.categoryId,
         cardColor: value.cardColor
+      });
+    },
+    deleteCategory: function deleteCategory(value) {
+      this.$store.dispatch('deleteCategory', value.categoryId);
+      this.$router.push({
+        name: 'home'
       });
     }
   }
@@ -2217,70 +2229,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -2304,12 +2252,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.dispatch('insertCategory', {
         categoryName: value.categoryName,
         categoryColor: value.categoryColor
-      });
-    },
-    deleteCategory: function deleteCategory(value) {
-      this.$store.dispatch('deleteCategory', value.categoryId);
-      this.$router.push({
-        name: 'home'
       });
     },
     updateCategory: function updateCategory(value) {
@@ -2465,9 +2407,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ContentComponent",
-  props: ['title']
+  props: ['title', 'color', 'category'],
+  data: function data() {
+    return {
+      dropdownStatus: false
+    };
+  },
+  methods: {
+    toggleDropdown: function toggleDropdown() {
+      if (!this.dropdownStatus) {
+        this.dropdownStatus = true;
+      } else {
+        this.dropdownStatus = false;
+      }
+    }
+  }
 });
 
 /***/ }),
@@ -39042,7 +39012,12 @@ var render = function() {
     "div",
     [
       _c("ContentComponent", {
-        attrs: { title: _vm.categories[_vm.paramsId].name }
+        attrs: {
+          title: _vm.categories[_vm.paramsId].name,
+          color: _vm.categories[_vm.paramsId].color,
+          category: _vm.paramsId
+        },
+        on: { delete: _vm.deleteCategory }
       }),
       _vm._v(" "),
       _c(
@@ -39142,7 +39117,8 @@ var render = function() {
                                 },
                                 [
                                   _c("i", {
-                                    staticClass: "far fa-circle nav-icon"
+                                    staticClass: "far fa-circle nav-icon",
+                                    style: { color: category.color }
                                   }),
                                   _vm._v(" "),
                                   _c("p", [_vm._v(_vm._s(category.name))])
@@ -39155,11 +39131,7 @@ var render = function() {
                       ],
                       2
                     )
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(5),
-                  _vm._v(" "),
-                  _vm._m(6)
+                  ])
                 ]
               )
             ])
@@ -39191,7 +39163,7 @@ var staticRenderFns = [
         }),
         _vm._v(" "),
         _c("span", { staticClass: "brand-text font-weight-light" }, [
-          _vm._v("AdminLTE 3")
+          _vm._v("Liste Addict")
         ])
       ]
     )
@@ -39221,12 +39193,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("li", { staticClass: "nav-item has-treeview" }, [
       _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-        _c("i", { staticClass: "nav-icon fas fa-chart-pie" }),
+        _c("i", { staticClass: "nav-icon fas fa-home" }),
         _vm._v(" "),
-        _c("p", [
-          _vm._v("\n                Dashboard\n                "),
-          _c("i", { staticClass: "right fas fa-angle-left" })
-        ])
+        _c("p", [_vm._v("\n                Accueil\n              ")])
       ])
     ])
   },
@@ -39235,7 +39204,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-      _c("i", { staticClass: "nav-icon fas fa-tree" }),
+      _c("i", { staticClass: "nav-icon fas fa-list-ul" }),
       _vm._v(" "),
       _c("p", [
         _vm._v("\n                Projets\n                "),
@@ -39247,7 +39216,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item" }, [
+    return _c("li", { staticClass: "nav-item li-add-category" }, [
       _c(
         "a",
         {
@@ -39257,147 +39226,12 @@ var staticRenderFns = [
             "data-target": "#modal-add-category"
           }
         },
-        [_c("p", [_vm._v("Ajouter un projet")])]
+        [
+          _c("i", { staticClass: "nav-icon fas fa-plus" }),
+          _vm._v(" "),
+          _c("p", [_vm._v("Ajouter un projet")])
+        ]
       )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item has-treeview" }, [
-      _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-        _c("i", { staticClass: "nav-icon fas fa-edit" }),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v("\n                Forms\n                "),
-          _c("i", { staticClass: "fas fa-angle-left right" })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("ul", { staticClass: "nav nav-treeview" }, [
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link",
-              attrs: { href: "pages/forms/general.html" }
-            },
-            [
-              _c("i", { staticClass: "far fa-circle nav-icon" }),
-              _vm._v(" "),
-              _c("p", [_vm._v("General Elements")])
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link",
-              attrs: { href: "pages/forms/advanced.html" }
-            },
-            [
-              _c("i", { staticClass: "far fa-circle nav-icon" }),
-              _vm._v(" "),
-              _c("p", [_vm._v("Advanced Elements")])
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link",
-              attrs: { href: "pages/forms/editors.html" }
-            },
-            [
-              _c("i", { staticClass: "far fa-circle nav-icon" }),
-              _vm._v(" "),
-              _c("p", [_vm._v("Editors")])
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link",
-              attrs: { href: "pages/forms/validation.html" }
-            },
-            [
-              _c("i", { staticClass: "far fa-circle nav-icon" }),
-              _vm._v(" "),
-              _c("p", [_vm._v("Validation")])
-            ]
-          )
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item has-treeview" }, [
-      _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-        _c("i", { staticClass: "nav-icon fas fa-table" }),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v("\n                Tables\n                "),
-          _c("i", { staticClass: "fas fa-angle-left right" })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("ul", { staticClass: "nav nav-treeview" }, [
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link",
-              attrs: { href: "pages/tables/simple.html" }
-            },
-            [
-              _c("i", { staticClass: "far fa-circle nav-icon" }),
-              _vm._v(" "),
-              _c("p", [_vm._v("Simple Tables")])
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link",
-              attrs: { href: "pages/tables/data.html" }
-            },
-            [
-              _c("i", { staticClass: "far fa-circle nav-icon" }),
-              _vm._v(" "),
-              _c("p", [_vm._v("DataTables")])
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link",
-              attrs: { href: "pages/tables/jsgrid.html" }
-            },
-            [
-              _c("i", { staticClass: "far fa-circle nav-icon" }),
-              _vm._v(" "),
-              _c("p", [_vm._v("jsGrid")])
-            ]
-          )
-        ])
-      ])
     ])
   }
 ]
@@ -39539,14 +39373,75 @@ var render = function() {
       _c("div", { staticClass: "container-fluid" }, [
         _c("div", { staticClass: "row mb-2" }, [
           _c("div", { staticClass: "col-sm-6 page-title" }, [
+            _c("div", { staticClass: "dropdown dropdown-category-main" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn-dropdown-category dropdown-toggle",
+                  attrs: {
+                    "data-toggle": "dropdown",
+                    href: "#",
+                    "aria-expanded": "true"
+                  },
+                  on: { click: _vm.toggleDropdown }
+                },
+                [_c("i", { staticClass: "nav-icon fas fa-th" })]
+              ),
+              _vm._v(" "),
+              _vm.dropdownStatus
+                ? _c("ul", { staticClass: "dropdown-menu" }, [
+                    _c("li", { attrs: { role: "presentation" } }, [
+                      _c(
+                        "a",
+                        {
+                          attrs: {
+                            role: "menuitem",
+                            tabindex: "-1",
+                            href: "#"
+                          },
+                          on: {
+                            click: function($event) {
+                              return _vm.$emit("delete", {
+                                categoryId: _vm.category
+                              })
+                            }
+                          }
+                        },
+                        [_vm._v("Supprimer")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c("li", {
+                      staticClass: "divider",
+                      attrs: { role: "presentation" }
+                    }),
+                    _vm._v(" "),
+                    _vm._m(2)
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
             _c("h1", { staticClass: "m-0 text-dark" }, [
               _vm._v(_vm._s(_vm.title))
             ]),
             _vm._v(" "),
-            _vm._m(0)
-          ]),
-          _vm._v(" "),
-          _vm._m(1)
+            _c(
+              "button",
+              {
+                staticClass: "btn-add-card btn btn-box-tool",
+                style: { backgroundColor: _vm.color },
+                attrs: {
+                  "data-toggle": "modal",
+                  "data-target": "#modal-add-card"
+                }
+              },
+              [_c("i", { staticClass: "fa fa-plus" })]
+            )
+          ])
         ])
       ])
     ])
@@ -39557,28 +39452,29 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "btn-add-card btn btn-box-tool",
-        attrs: { "data-toggle": "modal", "data-target": "#modal-add-card" }
-      },
-      [_c("i", { staticClass: "fa fa-plus" })]
-    )
+    return _c("li", { attrs: { role: "presentation" } }, [
+      _c("a", { attrs: { role: "menuitem", tabindex: "-1", href: "#" } }, [
+        _vm._v("Another action")
+      ])
+    ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-6" }, [
-      _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
-        _c("li", { staticClass: "breadcrumb-item" }, [
-          _c("a", { attrs: { href: "#" } }, [_vm._v("Home")])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "breadcrumb-item active" }, [
-          _vm._v("Starter Page")
-        ])
+    return _c("li", { attrs: { role: "presentation" } }, [
+      _c("a", { attrs: { role: "menuitem", tabindex: "-1", href: "#" } }, [
+        _vm._v("Something else here")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { attrs: { role: "presentation" } }, [
+      _c("a", { attrs: { role: "menuitem", tabindex: "-1", href: "#" } }, [
+        _vm._v("Separated link")
       ])
     ])
   }
