@@ -19,11 +19,10 @@
 
 <script>
     import Dropdown from "./partials/Dropdown";
-    import ModalTask from "./partials/ModalTask";
 
     export default {
         name: "TaskComponent",
-        components: {Dropdown, ModalTask},
+        components: {Dropdown},
         props: ['task', 'card'],
         methods:{
             deleteTask: function (e) {
