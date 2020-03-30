@@ -123,6 +123,21 @@ body {
     border-top-right-radius: 0;
 }
 
+.divider {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    line-height: 1.42857143;
+    color: #333;
+    font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    list-style: none;
+    box-sizing: border-box;
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+    background-color: #eee;
+}
+
 /* End dropdown */
 
 .page-title {
@@ -130,20 +145,6 @@ body {
     flex-direction: row;
     padding-left: 4rem !important;
 }
-
-.btn-add-card {
-    background-color: $orange;
-    color: $dark !important;
-    height: 40px;
-    width: 40px;
-    border-radius: 50px !important;
-    padding: 0;
-    margin: 0 0 0 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 
     /* Card */
 .card-container {

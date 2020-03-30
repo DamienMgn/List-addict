@@ -7,28 +7,22 @@
                     <div class="col-sm-6 page-title">
                         <div class="dropdown dropdown-category-main">
                             <a class="btn-dropdown-category dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true" @click="toggleDropdown">
-                                <i class="nav-icon fas fa-th"></i>
+                                <i class="nav-icon fas fa-th" :style="{color: color}"></i>
                             </a>
                             <ul class="dropdown-menu" v-if="dropdownStatus">
                                 <li role="presentation">
                                     <a role="menuitem" tabindex="-1" href="#" @click="$emit('delete', {categoryId: category})">Supprimer</a>
                                 </li>
                                 <li role="presentation">
-                                    <a role="menuitem" tabindex="-1" href="#">Another action</a>
-                                </li>
-                                <li role="presentation">
-                                    <a role="menuitem" tabindex="-1" href="#">Something else here</a>
+                                    <a role="menuitem" tabindex="-1" href="#">Modifier</a>
                                 </li>
                                 <li role="presentation" class="divider"></li>
                                 <li role="presentation">
-                                    <a role="menuitem" tabindex="-1" href="#">Separated link</a>
+                                    <a data-toggle="modal" data-target="#modal-add-card" role="menuitem" tabindex="-1" href="#">Ajouter une carte</a>
                                 </li>
                             </ul>
                         </div>
                         <h1 class="m-0 text-dark">{{title}}</h1>
-                        <button class="btn-add-card btn btn-box-tool" data-toggle="modal" data-target="#modal-add-card" :style="{backgroundColor: color}">
-                            <i class="fa fa-plus"></i>
-                        </button>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->

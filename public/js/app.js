@@ -2415,12 +2415,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ContentComponent",
   props: ['title', 'color', 'category'],
@@ -39385,7 +39379,12 @@ var render = function() {
                   },
                   on: { click: _vm.toggleDropdown }
                 },
-                [_c("i", { staticClass: "nav-icon fas fa-th" })]
+                [
+                  _c("i", {
+                    staticClass: "nav-icon fas fa-th",
+                    style: { color: _vm.color }
+                  })
+                ]
               ),
               _vm._v(" "),
               _vm.dropdownStatus
@@ -39413,34 +39412,19 @@ var render = function() {
                     _vm._v(" "),
                     _vm._m(0),
                     _vm._v(" "),
-                    _vm._m(1),
-                    _vm._v(" "),
                     _c("li", {
                       staticClass: "divider",
                       attrs: { role: "presentation" }
                     }),
                     _vm._v(" "),
-                    _vm._m(2)
+                    _vm._m(1)
                   ])
                 : _vm._e()
             ]),
             _vm._v(" "),
             _c("h1", { staticClass: "m-0 text-dark" }, [
               _vm._v(_vm._s(_vm.title))
-            ]),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn-add-card btn btn-box-tool",
-                style: { backgroundColor: _vm.color },
-                attrs: {
-                  "data-toggle": "modal",
-                  "data-target": "#modal-add-card"
-                }
-              },
-              [_c("i", { staticClass: "fa fa-plus" })]
-            )
+            ])
           ])
         ])
       ])
@@ -39454,7 +39438,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("li", { attrs: { role: "presentation" } }, [
       _c("a", { attrs: { role: "menuitem", tabindex: "-1", href: "#" } }, [
-        _vm._v("Another action")
+        _vm._v("Modifier")
       ])
     ])
   },
@@ -39463,19 +39447,19 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", { attrs: { role: "presentation" } }, [
-      _c("a", { attrs: { role: "menuitem", tabindex: "-1", href: "#" } }, [
-        _vm._v("Something else here")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { attrs: { role: "presentation" } }, [
-      _c("a", { attrs: { role: "menuitem", tabindex: "-1", href: "#" } }, [
-        _vm._v("Separated link")
-      ])
+      _c(
+        "a",
+        {
+          attrs: {
+            "data-toggle": "modal",
+            "data-target": "#modal-add-card",
+            role: "menuitem",
+            tabindex: "-1",
+            href: "#"
+          }
+        },
+        [_vm._v("Ajouter une carte")]
+      )
     ])
   }
 ]
