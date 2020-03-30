@@ -2435,11 +2435,16 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     toggleDropdown: function toggleDropdown() {
+      console.log('hey');
+      console.log(this.dropdownStatus);
+
       if (!this.dropdownStatus) {
         this.dropdownStatus = true;
       } else {
         this.dropdownStatus = false;
       }
+
+      console.log(this.dropdownStatus);
     }
   }
 });
@@ -39274,37 +39279,44 @@ var render = function() {
               ),
               _vm._v(" "),
               _vm.dropdownStatus
-                ? _c("ul", { staticClass: "dropdown-menu" }, [
-                    _c("li", { attrs: { role: "presentation" } }, [
-                      _c(
-                        "a",
-                        {
-                          attrs: {
-                            role: "menuitem",
-                            tabindex: "-1",
-                            href: "#"
-                          },
-                          on: {
-                            click: function($event) {
-                              return _vm.$emit("delete", {
-                                categoryId: _vm.category
-                              })
+                ? _c(
+                    "ul",
+                    {
+                      staticClass: "dropdown-menu",
+                      on: { click: _vm.toggleDropdown }
+                    },
+                    [
+                      _c("li", { attrs: { role: "presentation" } }, [
+                        _c(
+                          "a",
+                          {
+                            attrs: {
+                              role: "menuitem",
+                              tabindex: "-1",
+                              href: "#"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.$emit("delete", {
+                                  categoryId: _vm.category
+                                })
+                              }
                             }
-                          }
-                        },
-                        [_vm._v("Supprimer")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _vm._m(0),
-                    _vm._v(" "),
-                    _c("li", {
-                      staticClass: "divider",
-                      attrs: { role: "presentation" }
-                    }),
-                    _vm._v(" "),
-                    _vm._m(1)
-                  ])
+                          },
+                          [_vm._v("Supprimer")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c("li", {
+                        staticClass: "divider",
+                        attrs: { role: "presentation" }
+                      }),
+                      _vm._v(" "),
+                      _vm._m(1)
+                    ]
+                  )
                 : _vm._e()
             ]),
             _vm._v(" "),

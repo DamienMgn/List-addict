@@ -5,11 +5,11 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6 page-title">
-                        <div class="dropdown dropdown-category-main">
+                        <div class="dropdown dropdown-category-main" >
                             <a class="btn-dropdown-category dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true" @click="toggleDropdown">
                                 <i class="nav-icon fas fa-th" :style="{color: color}"></i>
                             </a>
-                            <ul class="dropdown-menu" v-if="dropdownStatus">
+                            <ul class="dropdown-menu" v-if="dropdownStatus" @click="toggleDropdown">
                                 <li role="presentation">
                                     <a role="menuitem" tabindex="-1" href="#" @click="$emit('delete', {categoryId: category})">Supprimer</a>
                                 </li>
@@ -41,11 +41,14 @@
         },
         methods: {
             toggleDropdown: function () {
+                console.log('hey')
+                console.log(this.dropdownStatus)
                 if (!this.dropdownStatus) {
                     this.dropdownStatus = true
                 } else {
                     this.dropdownStatus = false
                 }
+                console.log(this.dropdownStatus)
             }
         }
     }
