@@ -12,7 +12,13 @@
               <CardComponent v-bind:card="card"></CardComponent>
           </div>
       </div>
-      <ModalCard @add="addCard" :category="paramsId"></ModalCard>
+      <Modal
+          :type="'card'"
+          :id="'modal-add-card'"
+          :title="'Ajouter une carte'"
+          @add="addCard"
+          :category="paramsId">
+      </Modal>
   </div>
 </template>
 
@@ -20,13 +26,13 @@
     import {mapGetters} from 'vuex'
     import CardComponent from './CardComponent.vue'
     import ContentComponent from './partials/ContentComponent'
-    import ModalCard from "./partials/ModalCard";
+    import Modal from "./partials/Modal";
 
     export default {
         components: {
             CardComponent,
             ContentComponent,
-            ModalCard
+            Modal
         },
         data() {
             return {

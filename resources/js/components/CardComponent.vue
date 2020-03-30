@@ -24,27 +24,29 @@
                 <!-- /.box-tools -->
             </div>
         </div>
-        <ModalTask
+        <Modal
+            :type="'task'"
             :title="'Ajouter une tâche'"
+            :id="'modal-add-task' + card.id"
             @add="addTask"
             :card="card.id"
             :category="card.category_id"
         >
-        </ModalTask>
+        </Modal>
     </div>
 </template>
 
 <script>
     import TaskComponent from "./TaskComponent";
     import Dropdown from "./partials/Dropdown";
-    import ModalTask from "./partials/ModalTask";
+    import Modal from "./partials/Modal";
 
     export default {
         name: "CardComponent",
         components: {
             TaskComponent,
             Dropdown,
-            ModalTask
+            Modal
         },
         props: ['card'],
         data() {

@@ -62,18 +62,23 @@
     </div>
     <!-- /.sidebar -->
   </aside>
-  <ModalCategory :title="'Nouveau Projet'" @add="addCategory"></ModalCategory>
+  <Modal
+      :type="'category'"
+      :title="'Nouveau Projet'"
+      @add="addCategory"
+      :id="'modal-add-category'">
+  </Modal>
 </div>
 </template>
 
 <script>
     import {mapGetters} from 'vuex'
     import Dropdown from "./partials/Dropdown";
-    import ModalCategory from "./partials/ModalCategory";
+    import Modal from "./partials/Modal";
 
     export default {
         name: "SidebarComponent",
-        components: {Dropdown, ModalCategory},
+        components: {Dropdown, Modal},
         data() {
             return {
                 name: '',
