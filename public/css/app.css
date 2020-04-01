@@ -10882,10 +10882,6 @@ a.text-dark:focus {
   }
 }
 
-body {
-  overflow: hidden;
-}
-
 /* ColorPicker */
 
 .color-container {
