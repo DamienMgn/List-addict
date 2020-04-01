@@ -2,12 +2,24 @@
     <div>
         <div class="task-header">
             <p class="task-name">{{ task.name }}</p>
-            <form @submit="deleteTask">
-                <input type="hidden" name="task" :value="task.id">
-                <input type="hidden" name="card" :value="card.id">
-                <input type="hidden" name="category" :value="card.category_id">
-                <button type="submit" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-            </form>
+            <div class="dropdown dropdown-category-main" >
+                <a class="btn-dropdown dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true" @click="toggleDropdown">
+                    <i class="fa fa-ellipsis-v"></i>
+                </a>
+                <ul class="dropdown-menu" v-if="dropdownStatus">
+                    <li role="presentation">
+                        <form @submit="deleteTask">
+                            <input type="hidden" name="task" :value="task.id">
+                            <input type="hidden" name="card" :value="card.id">
+                            <input type="hidden" name="category" :value="card.category_id">
+                            <button type="submit" class="btn-delete-task btn btn-box-tool" data-widget="remove">Supprimer</button>
+                        </form>
+                    </li>
+                    <li role="presentation" @click="toggleDropdown">
+                        <a data-toggle="modal" :data-target="'#modal-update-task' + task.id" role="menuitem" tabindex="-1" href="#">Modifier</a>
+                    </li>
+                </ul>
+            </div>
         </div>
         <div class="task-footer">
             <p class="task-date">
@@ -23,6 +35,11 @@
         name: "TaskComponent",
         components: {},
         props: ['task', 'card'],
+        data () {
+            return {
+                dropdownStatus: false
+            }
+        },
         methods:{
             deleteTask: function (e) {
                 e.preventDefault()
@@ -32,16 +49,7 @@
                         categoryId: e.target.category.value,
                         taskId: e.target.task.value
                     })
-            },
-            updateTask: function (value) {
-                this.$store.dispatch('updateTask',
-                    {
-                        taskColor: value.taskColor,
-                        cardId: value.cardId,
-                        categoryId: value.categoryId,
-                        taskId: value.taskId,
-                        taskName: value.taskName
-                    })
+                this.toggleDropdown
             },
             updateTaskStatus: function (e) {
                 this.$store.dispatch('updateTask',
@@ -51,6 +59,13 @@
                         categoryId: e.target.dataset.category,
                         taskId: e.target.dataset.task
                     })
+            },
+            toggleDropdown: function () {
+                if (!this.dropdownStatus) {
+                    this.dropdownStatus = true
+                } else {
+                    this.dropdownStatus = false
+                }
             }
         }
     }

@@ -6,7 +6,7 @@
                 <div class="row mb-2">
                     <div class="col-sm-6 page-title">
                         <div class="dropdown dropdown-category-main" >
-                            <a class="btn-dropdown-category dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true" @click="toggleDropdown">
+                            <a class="btn-dropdown dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true" @click="toggleDropdown">
                                 <i class="nav-icon fas fa-th" :style="{color: color}"></i>
                             </a>
                             <ul class="dropdown-menu" v-if="dropdownStatus" @click="toggleDropdown">

@@ -1,28 +1,30 @@
 <template>
-    <div class="card-container">
-        <div class="card-header" :style="{backgroundColor: card.color}">
-            <h4 class="card-title">{{ card.name }}</h4>
-            <form class="card-form-delete" @submit="deleteCard">
-                <input type="hidden" name="card" :value="card.id">
-                <input type="hidden" name="category" :value="card.category_id">
-                <button type="submit" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                <a data-toggle="modal" :data-target="'#modal-update-card' + card.id" class="btn btn-box-tool" ><i class="fas fa-pen"></i></a>
-            </form>
-        </div>
-        <div class="card-body">
-            <ul class="tasks-container">
-                <li v-for="task in card.tasks" class="task-container" :style="{borderLeftColor: task.color}">
-                    <TaskComponent :task="task" :card="card"></TaskComponent>
-                </li>
-            </ul>
-        </div>
-        <div class="card-footer">
-            <div class="box-add-task box-header with-border">
-                <button type="button" class="btn btn-box-tool" data-toggle="modal" :data-target="'#modal-add-task' + card.id">
-                    <h4 class="box-title" :style="{color: card.color}">Nouvelle tâche</h4>
-                    <i :style="{color: card.color}" class="fa fa-plus"></i>
-                </button>
-                <!-- /.box-tools -->
+    <div>
+        <div class="card-container">
+            <div class="card-header" :style="{backgroundColor: card.color}">
+                <h4 class="card-title">{{ card.name }}</h4>
+                <form class="card-form-delete" @submit="deleteCard">
+                    <input type="hidden" name="card" :value="card.id">
+                    <input type="hidden" name="category" :value="card.category_id">
+                    <button type="submit" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    <a data-toggle="modal" :data-target="'#modal-update-card' + card.id" class="btn btn-box-tool" ><i class="fas fa-pen"></i></a>
+                </form>
+            </div>
+            <div class="card-body">
+                <ul class="tasks-container">
+                    <li v-for="task in card.tasks" class="task-container" :style="{borderLeftColor: task.color}">
+                        <TaskComponent :task="task" :card="card"></TaskComponent>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-footer">
+                <div class="box-add-task box-header with-border">
+                    <button type="button" class="btn btn-box-tool" data-toggle="modal" :data-target="'#modal-add-task' + card.id">
+                        <h4 class="box-title" :style="{color: card.color}">Nouvelle tâche</h4>
+                        <i :style="{color: card.color}" class="fa fa-plus"></i>
+                    </button>
+                    <!-- /.box-tools -->
+                </div>
             </div>
         </div>
         <Modal
@@ -43,6 +45,18 @@
             :category="card.category_id"
         >
         </Modal>
+        <div v-for="task in card.tasks">
+            <Modal
+                :type="'updateTask'"
+                :title="'Modifier la tâche'"
+                :id="'modal-update-task' + task.id"
+                @update="updateTask"
+                :card="card.id"
+                :category="card.category_id"
+                :task="task.id"
+            >
+            </Modal>
+        </div>
     </div>
 </template>
 
@@ -86,7 +100,19 @@
                     categoryId: value.categoryId,
                     cardId: value.cardId
                 })
-            }
+            },
+            updateTask: function (value) {
+                console.log('hihihihii')
+                console.log(value)
+                this.$store.dispatch('updateTask',
+                    {
+                        taskColor: value.taskColor,
+                        cardId: value.cardId,
+                        categoryId: value.categoryId,
+                        taskId: value.taskId,
+                        taskName: value.taskName
+                    })
+            },
         }
     }
 </script>
