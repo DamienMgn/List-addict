@@ -25,12 +25,19 @@
                         <h1 class="m-0 text-dark">{{title}}</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
+                <div class="alert alert-warning alert-dismissible" v-if="Object.entries(errors).length !== 0" v-for="(error, index) in errors">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    {{error[0]}}
+                </div>
             </div><!-- /.container-fluid -->
         </div>
     </div>
 </template>
 
 <script>
+
+    import {mapGetters} from 'vuex'
+
     export default {
         name: "ContentComponent",
         props: ['title', 'color', 'category'],
@@ -38,6 +45,9 @@
             return {
                 dropdownStatus: false
             }
+        },
+        computed: {
+            ...mapGetters(['errors'])
         },
         methods: {
             toggleDropdown: function () {

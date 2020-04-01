@@ -2393,6 +2393,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2425,6 +2432,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ContentComponent",
   props: ['title', 'color', 'category'],
@@ -2433,6 +2445,7 @@ __webpack_require__.r(__webpack_exports__);
       dropdownStatus: false
     };
   },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['errors'])),
   methods: {
     toggleDropdown: function toggleDropdown() {
       console.log('hey');
@@ -39253,77 +39266,108 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "content-header" }, [
-      _c("div", { staticClass: "container-fluid" }, [
-        _c("div", { staticClass: "row mb-2" }, [
-          _c("div", { staticClass: "col-sm-6 page-title" }, [
-            _c("div", { staticClass: "dropdown dropdown-category-main" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "btn-dropdown-category dropdown-toggle",
-                  attrs: {
-                    "data-toggle": "dropdown",
-                    href: "#",
-                    "aria-expanded": "true"
-                  },
-                  on: { click: _vm.toggleDropdown }
-                },
-                [
-                  _c("i", {
-                    staticClass: "nav-icon fas fa-th",
-                    style: { color: _vm.color }
-                  })
-                ]
-              ),
-              _vm._v(" "),
-              _vm.dropdownStatus
-                ? _c(
-                    "ul",
-                    {
-                      staticClass: "dropdown-menu",
-                      on: { click: _vm.toggleDropdown }
+      _c(
+        "div",
+        { staticClass: "container-fluid" },
+        [
+          _c("div", { staticClass: "row mb-2" }, [
+            _c("div", { staticClass: "col-sm-6 page-title" }, [
+              _c("div", { staticClass: "dropdown dropdown-category-main" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn-dropdown-category dropdown-toggle",
+                    attrs: {
+                      "data-toggle": "dropdown",
+                      href: "#",
+                      "aria-expanded": "true"
                     },
-                    [
-                      _c("li", { attrs: { role: "presentation" } }, [
-                        _c(
-                          "a",
-                          {
-                            attrs: {
-                              role: "menuitem",
-                              tabindex: "-1",
-                              href: "#"
-                            },
-                            on: {
-                              click: function($event) {
-                                return _vm.$emit("delete", {
-                                  categoryId: _vm.category
-                                })
+                    on: { click: _vm.toggleDropdown }
+                  },
+                  [
+                    _c("i", {
+                      staticClass: "nav-icon fas fa-th",
+                      style: { color: _vm.color }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _vm.dropdownStatus
+                  ? _c(
+                      "ul",
+                      {
+                        staticClass: "dropdown-menu",
+                        on: { click: _vm.toggleDropdown }
+                      },
+                      [
+                        _c("li", { attrs: { role: "presentation" } }, [
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                role: "menuitem",
+                                tabindex: "-1",
+                                href: "#"
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.$emit("delete", {
+                                    categoryId: _vm.category
+                                  })
+                                }
                               }
-                            }
-                          },
-                          [_vm._v("Supprimer")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _vm._m(0),
-                      _vm._v(" "),
-                      _c("li", {
-                        staticClass: "divider",
-                        attrs: { role: "presentation" }
-                      }),
-                      _vm._v(" "),
-                      _vm._m(1)
-                    ]
-                  )
-                : _vm._e()
-            ]),
-            _vm._v(" "),
-            _c("h1", { staticClass: "m-0 text-dark" }, [
-              _vm._v(_vm._s(_vm.title))
+                            },
+                            [_vm._v("Supprimer")]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(0),
+                        _vm._v(" "),
+                        _c("li", {
+                          staticClass: "divider",
+                          attrs: { role: "presentation" }
+                        }),
+                        _vm._v(" "),
+                        _vm._m(1)
+                      ]
+                    )
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("h1", { staticClass: "m-0 text-dark" }, [
+                _vm._v(_vm._s(_vm.title))
+              ])
             ])
-          ])
-        ])
-      ])
+          ]),
+          _vm._v(" "),
+          _vm._l(_vm.errors, function(error, index) {
+            return Object.entries(_vm.errors).length !== 0
+              ? _c(
+                  "div",
+                  { staticClass: "alert alert-warning alert-dismissible" },
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "close",
+                        attrs: {
+                          type: "button",
+                          "data-dismiss": "alert",
+                          "aria-hidden": "true"
+                        }
+                      },
+                      [_vm._v("×")]
+                    ),
+                    _vm._v(
+                      "\n                " + _vm._s(error[0]) + "\n            "
+                    )
+                  ]
+                )
+              : _vm._e()
+          })
+        ],
+        2
+      )
     ])
   ])
 }
