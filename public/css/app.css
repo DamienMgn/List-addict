@@ -11075,7 +11075,8 @@ btn-dropdown-category:hover {
   right: 0.5rem;
 }
 
-.card-container .card-header .card-form-delete .fa {
+.card-container .card-header .card-form-delete .fa,
+.card-container .card-header .card-form-delete .fas {
   color: #fff;
 }
 

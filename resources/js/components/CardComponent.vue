@@ -6,6 +6,7 @@
                 <input type="hidden" name="card" :value="card.id">
                 <input type="hidden" name="category" :value="card.category_id">
                 <button type="submit" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                <a data-toggle="modal" :data-target="'#modal-update-card' + card.id" class="btn btn-box-tool" ><i class="fas fa-pen"></i></a>
             </form>
         </div>
         <div class="card-body">
@@ -33,19 +34,26 @@
             :category="card.category_id"
         >
         </Modal>
+        <Modal
+            :type="'updateCard'"
+            :title="'Modifier la carte'"
+            :id="'modal-update-card' + card.id"
+            @update="updateCard"
+            :card="card.id"
+            :category="card.category_id"
+        >
+        </Modal>
     </div>
 </template>
 
 <script>
     import TaskComponent from "./TaskComponent";
-    import Dropdown from "./partials/Dropdown";
     import Modal from "./partials/Modal";
 
     export default {
         name: "CardComponent",
         components: {
             TaskComponent,
-            Dropdown,
             Modal
         },
         props: ['card'],
@@ -64,14 +72,12 @@
                 })
             },
             updateCard: function (value) {
-                this.$store.dispatch('updateCard', {cardId: value.cardId, categoryId: value.categoryId, cardName: value.cardName, cardColor: value.cardColor})
-            },
-            toggleFormTask: function () {
-                if (this.isVisible) {
-                    this.isVisible = false
-                } else {
-                    this.isVisible = true
-                }
+                this.$store.dispatch('updateCard', {
+                    cardId: value.cardId,
+                    categoryId: value.categoryId,
+                    cardName: value.cardName,
+                    cardColor: value.cardColor
+                })
             },
             addTask: function (value) {
                 this.$store.dispatch('insertTask', {
