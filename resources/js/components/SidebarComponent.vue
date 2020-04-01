@@ -82,12 +82,11 @@
 
 <script>
     import {mapGetters} from 'vuex'
-    import Dropdown from "./partials/Dropdown";
     import Modal from "./partials/Modal";
 
     export default {
         name: "SidebarComponent",
-        components: {Dropdown, Modal},
+        components: {Modal},
         data() {
             return {
                 name: '',

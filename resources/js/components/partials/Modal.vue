@@ -70,6 +70,15 @@
                     })
                 }
 
+                if (this.type === 'updateCard') {
+                    this.$emit('update', {
+                        cardName: e.target.updateCard.value,
+                        cardColor: e.target.color.value,
+                        categoryId: this.category,
+                        cardId: this.card
+                    })
+                }
+
                 $('#' + this.id).modal('toggle');
                 $('.modal-backdrop').remove();
             }
