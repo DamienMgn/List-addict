@@ -8,9 +8,9 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form @submit="addCard">
+                <form @submit="actionToDo">
                     <div class="modal-body">
-                        <input class="form-control" type="text" placeholder="Nom de la carte" :name="type" v-bind:value="cardName">
+                        <input class="form-control" type="text" placeholder="Nom de la carte" :name="type" v-bind:value="name">
                         <ColorPicker></ColorPicker>
                     </div>
                     <div class="modal-footer">
@@ -33,17 +33,11 @@
         props: ['title', 'card', 'category', 'type', 'id'],
         data () {
             return {
-                cardName: '',
-            }
-        },
-        computed: {
-            modalId: function () {
-                let id = 'card' + this.card + this.category
-                return id
+                name: '',
             }
         },
         methods: {
-            addCard: function (e) {
+            actionToDo: function (e) {
                 e.preventDefault()
 
                 if (this.id === 'modal-add-card') {
@@ -63,10 +57,17 @@
                 }
 
                 if (this.id === 'modal-add-category') {
-                    console.log('heyho')
                     this.$emit('add', {
                         categoryName: e.target.category.value,
                         categoryColor: e.target.color.value})
+                }
+
+                if (this.type === 'updateCategory') {
+                    this.$emit('update', {
+                        categoryName: e.target.updateCategory.value,
+                        categoryColor: e.target.color.value,
+                        categoryId: this.category
+                    })
                 }
 
                 $('#' + this.id).modal('toggle');

@@ -14,7 +14,7 @@
                                     <a role="menuitem" tabindex="-1" href="#" @click="$emit('delete', {categoryId: category})">Supprimer</a>
                                 </li>
                                 <li role="presentation">
-                                    <a role="menuitem" tabindex="-1" href="#">Modifier</a>
+                                    <a data-toggle="modal" :data-target="'#modal-update-category' + category" role="menuitem" tabindex="-1" href="#">Modifier</a>
                                 </li>
                                 <li role="presentation" class="divider"></li>
                                 <li role="presentation">
