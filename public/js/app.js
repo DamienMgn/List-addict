@@ -2052,6 +2052,7 @@ __webpack_require__.r(__webpack_exports__);
         categoryId: value.categoryId,
         cardId: value.cardId
       });
+      $('#modal-add-task').find("input[type=text]").val('');
     },
     updateTask: function updateTask(value) {
       console.log('hihihihii');
@@ -2164,6 +2165,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         categoryId: value.categoryId,
         cardColor: value.cardColor
       });
+      $('#modal-add-card').find("input[type=text]").val('');
     },
     deleteCategory: function deleteCategory(value) {
       this.$store.dispatch('deleteCategory', value.categoryId);
@@ -2297,6 +2299,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         categoryName: value.categoryName,
         categoryColor: value.categoryColor
       });
+      $('#modal-add-category').find("input[type=text]").val('');
     },
     updateCategory: function updateCategory(value) {
       console.log(value);
@@ -2363,7 +2366,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     deleteTask: function deleteTask(e) {
-      this.toggleDropdown;
+      this.toggleDropdown();
       e.preventDefault();
       this.$store.dispatch('deleteTask', {
         cardId: e.target.card.value,
@@ -39047,7 +39050,7 @@ var render = function() {
               }),
               _vm._v(" "),
               _c("span", { staticClass: "brand-text font-weight-light" }, [
-                _vm._v("Liste Addict")
+                _vm._v("List Addict")
               ])
             ]
           ),
@@ -39184,7 +39187,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("div", { staticClass: "info" }, [
         _c("a", { staticClass: "d-block", attrs: { href: "#" } }, [
-          _vm._v("Alexander Pierce")
+          _vm._v("Damien")
         ])
       ])
     ])
@@ -39295,7 +39298,7 @@ var render = function() {
                       "button",
                       {
                         staticClass: "btn-delete-task btn btn-box-tool",
-                        attrs: { type: "submit", "data-widget": "remove" }
+                        attrs: { "data-widget": "remove" }
                       },
                       [_vm._v("Supprimer")]
                     )
@@ -39648,6 +39651,7 @@ var render = function() {
                 _c("input", {
                   staticClass: "form-control",
                   attrs: {
+                    autocomplete: "off",
                     type: "text",
                     placeholder: "Nom de la carte",
                     name: _vm.type

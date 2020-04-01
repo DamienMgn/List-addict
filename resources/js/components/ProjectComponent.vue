@@ -61,6 +61,7 @@
                     categoryId: value.categoryId,
                     cardColor: value.cardColor
                     })
+                $('#modal-add-card').find("input[type=text]").val('');
             },
             deleteCategory: function (value) {
                 this.$store.dispatch('deleteCategory', value.categoryId)

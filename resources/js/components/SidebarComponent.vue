@@ -7,7 +7,7 @@
     <router-link :to="{name: 'home'}" class="brand-link">
       <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">Liste Addict</span>
+      <span class="brand-text font-weight-light">List Addict</span>
     </router-link>
 
     <!-- Sidebar -->
@@ -18,7 +18,7 @@
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">Damien</a>
         </div>
       </div>
 
@@ -104,6 +104,7 @@
                     categoryName: value.categoryName,
                     categoryColor: value.categoryColor
                     })
+                $('#modal-add-category').find("input[type=text]").val('');
             },
             updateCategory: function (value) {
                 console.log(value)

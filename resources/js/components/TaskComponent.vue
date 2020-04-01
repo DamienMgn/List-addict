@@ -12,7 +12,7 @@
                             <input type="hidden" name="task" :value="task.id">
                             <input type="hidden" name="card" :value="card.id">
                             <input type="hidden" name="category" :value="card.category_id">
-                            <button type="submit" class="btn-delete-task btn btn-box-tool" data-widget="remove">Supprimer</button>
+                            <button class="btn-delete-task btn btn-box-tool" data-widget="remove">Supprimer</button>
                         </form>
                     </li>
                     <li role="presentation" @click="toggleDropdown">
@@ -43,7 +43,7 @@
         },
         methods:{
             deleteTask: function (e) {
-                this.toggleDropdown
+                this.toggleDropdown()
                 e.preventDefault()
                 this.$store.dispatch('deleteTask',
                     {

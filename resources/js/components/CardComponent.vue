@@ -100,6 +100,7 @@
                     categoryId: value.categoryId,
                     cardId: value.cardId
                 })
+                $('#modal-add-task').find("input[type=text]").val('');
             },
             updateTask: function (value) {
                 console.log('hihihihii')
