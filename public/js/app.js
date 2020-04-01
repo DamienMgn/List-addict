@@ -2363,13 +2363,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     deleteTask: function deleteTask(e) {
+      this.toggleDropdown;
       e.preventDefault();
       this.$store.dispatch('deleteTask', {
         cardId: e.target.card.value,
         categoryId: e.target.category.value,
         taskId: e.target.task.value
       });
-      this.toggleDropdown;
     },
     updateTaskStatus: function updateTaskStatus(e) {
       this.$store.dispatch('updateTask', {

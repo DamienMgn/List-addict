@@ -43,6 +43,7 @@
         },
         methods:{
             deleteTask: function (e) {
+                this.toggleDropdown
                 e.preventDefault()
                 this.$store.dispatch('deleteTask',
                     {
@@ -50,7 +51,6 @@
                         categoryId: e.target.category.value,
                         taskId: e.target.task.value
                     })
-                this.toggleDropdown
             },
             updateTaskStatus: function (e) {
                 this.$store.dispatch('updateTask',
