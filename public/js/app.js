@@ -2242,6 +2242,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2268,6 +2277,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     updateCategory: function updateCategory(value) {
+      console.log(value);
       this.$store.dispatch('updateCategory', {
         categoryName: value.categoryName,
         categoryColor: value.categoryColor,
@@ -2553,17 +2563,11 @@ __webpack_require__.r(__webpack_exports__);
   props: ['title', 'card', 'category', 'type', 'id'],
   data: function data() {
     return {
-      cardName: ''
+      name: ''
     };
   },
-  computed: {
-    modalId: function modalId() {
-      var id = 'card' + this.card + this.category;
-      return id;
-    }
-  },
   methods: {
-    addCard: function addCard(e) {
+    actionToDo: function actionToDo(e) {
       e.preventDefault();
 
       if (this.id === 'modal-add-card') {
@@ -2584,10 +2588,17 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       if (this.id === 'modal-add-category') {
-        console.log('heyho');
         this.$emit('add', {
           categoryName: e.target.category.value,
           categoryColor: e.target.color.value
+        });
+      }
+
+      if (this.type === 'updateCategory') {
+        this.$emit('update', {
+          categoryName: e.target.updateCategory.value,
+          categoryColor: e.target.color.value,
+          categoryId: this.category
         });
       }
 
@@ -39058,9 +39069,27 @@ var render = function() {
           id: "modal-add-category"
         },
         on: { add: _vm.addCategory }
+      }),
+      _vm._v(" "),
+      _vm._l(_vm.categories, function(category) {
+        return _c(
+          "div",
+          [
+            _c("Modal", {
+              attrs: {
+                category: category.id,
+                type: "updateCategory",
+                title: "Modifier la catégorie",
+                id: "modal-update-category" + category.id
+              },
+              on: { update: _vm.updateCategory }
+            })
+          ],
+          1
+        )
       })
     ],
-    1
+    2
   )
 }
 var staticRenderFns = [
@@ -39321,14 +39350,29 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _vm._m(0),
+                        _c("li", { attrs: { role: "presentation" } }, [
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                "data-toggle": "modal",
+                                "data-target":
+                                  "#modal-update-category" + _vm.category,
+                                role: "menuitem",
+                                tabindex: "-1",
+                                href: "#"
+                              }
+                            },
+                            [_vm._v("Modifier")]
+                          )
+                        ]),
                         _vm._v(" "),
                         _c("li", {
                           staticClass: "divider",
                           attrs: { role: "presentation" }
                         }),
                         _vm._v(" "),
-                        _vm._m(1)
+                        _vm._m(0)
                       ]
                     )
                   : _vm._e()
@@ -39372,16 +39416,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { attrs: { role: "presentation" } }, [
-      _c("a", { attrs: { role: "menuitem", tabindex: "-1", href: "#" } }, [
-        _vm._v("Modifier")
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -39559,7 +39593,7 @@ var render = function() {
             _vm._m(0)
           ]),
           _vm._v(" "),
-          _c("form", { on: { submit: _vm.addCard } }, [
+          _c("form", { on: { submit: _vm.actionToDo } }, [
             _c(
               "div",
               { staticClass: "modal-body" },
@@ -39571,7 +39605,7 @@ var render = function() {
                     placeholder: "Nom de la carte",
                     name: _vm.type
                   },
-                  domProps: { value: _vm.cardName }
+                  domProps: { value: _vm.name }
                 }),
                 _vm._v(" "),
                 _c("ColorPicker")

@@ -62,12 +62,21 @@
     </div>
     <!-- /.sidebar -->
   </aside>
-  <Modal
+    <Modal
       :type="'category'"
       :title="'Nouveau Projet'"
       @add="addCategory"
       :id="'modal-add-category'">
-  </Modal>
+    </Modal>
+    <div v-for="category in categories">
+        <Modal
+            :category="category.id"
+            :type="'updateCategory'"
+            :title="'Modifier la catégorie'"
+            @update="updateCategory"
+            :id="'modal-update-category' + category.id">
+        </Modal>
+    </div>
 </div>
 </template>
 
@@ -98,11 +107,12 @@
                     })
             },
             updateCategory: function (value) {
+                console.log(value)
                 this.$store.dispatch('updateCategory', {
                     categoryName: value.categoryName,
                     categoryColor: value.categoryColor,
                     categoryId: value.categoryId
-                    })
+                })
             }
         }
     }
