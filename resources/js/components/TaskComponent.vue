@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="task-container" :class="{'checked' : task.status}" :style="{borderLeftColor: task.color}">
         <div class="task-header">
             <p class="task-name">{{ task.name }}</p>
             <div class="dropdown dropdown-category-main" >
@@ -25,6 +25,7 @@
             <p class="task-date">
                 {{ new Date(task.created_at).getDate() }}/{{ new Date(task.created_at).getMonth() + 1 }}/{{ new Date(task.created_at).getFullYear() }}
             </p>
+            <input @change="updateTaskStatus" class="task-form-checkbox" type="checkbox" v-model="task.status" :data-task="task.id" :data-card="card.id" :data-category="card.category_id">
         </div>
     </div>
 </template>

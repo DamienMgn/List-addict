@@ -11116,13 +11116,20 @@ btn-dropdown:hover {
 
 .tasks-container .task-container {
   list-style-type: none !important;
-  background-color: #fff;
   margin: 0.7rem 0.5rem;
   padding: 0;
   border-radius: 3px !important;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   background-color: #FAFAFA;
-  border-left: 3px solid #27AE60;
+  border-left: 3px solid;
+  transition: 0.3s transform;
+}
+
+.tasks-container .checked {
+  color: #C0C0C0;
+  opacity: 0.5;
+  transform: scale(0.98);
+  border-left: 1px solid;
 }
 
 .tasks-container .task-header {
@@ -11197,6 +11204,12 @@ btn-dropdown:hover {
   border-top-right-radius: 0;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tasks-container .task-footer .task-date {
+  font-size: 0.8rem;
 }
 
 .tasks-container p {

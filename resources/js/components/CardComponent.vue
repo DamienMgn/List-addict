@@ -12,7 +12,7 @@
             </div>
             <div class="card-body">
                 <ul class="tasks-container">
-                    <li v-for="task in card.tasks" class="task-container" :style="{borderLeftColor: task.color}">
+                    <li v-for="task in card.tasks">
                         <TaskComponent :task="task" :card="card"></TaskComponent>
                     </li>
                 </ul>

@@ -2351,6 +2351,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "TaskComponent",
   components: {},
@@ -38817,10 +38818,6 @@ var render = function() {
             _vm._l(_vm.card.tasks, function(task) {
               return _c(
                 "li",
-                {
-                  staticClass: "task-container",
-                  style: { borderLeftColor: task.color }
-                },
                 [
                   _c("TaskComponent", { attrs: { task: task, card: _vm.card } })
                 ],
@@ -39070,16 +39067,36 @@ var render = function() {
                   }
                 },
                 [
-                  _vm._m(1),
+                  _c(
+                    "li",
+                    { staticClass: "nav-item has-treeview" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { to: { name: "home" }, href: "#" }
+                        },
+                        [
+                          _c("i", { staticClass: "nav-icon fas fa-home" }),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v("\n                Accueil\n              ")
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
                   _c("li", { staticClass: "nav-item has-treeview" }, [
-                    _vm._m(2),
+                    _vm._m(1),
                     _vm._v(" "),
                     _c(
                       "ul",
                       { staticClass: "nav nav-treeview" },
                       [
-                        _vm._m(3),
+                        _vm._m(2),
                         _vm._v(" "),
                         _vm._l(_vm.categories, function(category) {
                           return _c(
@@ -39176,18 +39193,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item has-treeview" }, [
-      _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-        _c("i", { staticClass: "nav-icon fas fa-home" }),
-        _vm._v(" "),
-        _c("p", [_vm._v("\n                Accueil\n              ")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
       _c("i", { staticClass: "nav-icon fas fa-list-ul" }),
       _vm._v(" "),
@@ -39241,96 +39246,153 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "task-header" }, [
-      _c("p", { staticClass: "task-name" }, [_vm._v(_vm._s(_vm.task.name))]),
-      _vm._v(" "),
-      _c("div", { staticClass: "dropdown dropdown-category-main" }, [
-        _c(
-          "a",
-          {
-            staticClass: "btn-dropdown dropdown-toggle",
-            attrs: {
-              "data-toggle": "dropdown",
-              href: "#",
-              "aria-expanded": "true"
-            },
-            on: { click: _vm.toggleDropdown }
-          },
-          [_c("i", { staticClass: "fa fa-ellipsis-v" })]
-        ),
+  return _c(
+    "div",
+    {
+      staticClass: "task-container",
+      class: { checked: _vm.task.status },
+      style: { borderLeftColor: _vm.task.color }
+    },
+    [
+      _c("div", { staticClass: "task-header" }, [
+        _c("p", { staticClass: "task-name" }, [_vm._v(_vm._s(_vm.task.name))]),
         _vm._v(" "),
-        _vm.dropdownStatus
-          ? _c("ul", { staticClass: "dropdown-menu" }, [
-              _c("li", { attrs: { role: "presentation" } }, [
-                _c("form", { on: { submit: _vm.deleteTask } }, [
-                  _c("input", {
-                    attrs: { type: "hidden", name: "task" },
-                    domProps: { value: _vm.task.id }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    attrs: { type: "hidden", name: "card" },
-                    domProps: { value: _vm.card.id }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    attrs: { type: "hidden", name: "category" },
-                    domProps: { value: _vm.card.category_id }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn-delete-task btn btn-box-tool",
-                      attrs: { type: "submit", "data-widget": "remove" }
-                    },
-                    [_vm._v("Supprimer")]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c(
-                "li",
-                {
-                  attrs: { role: "presentation" },
-                  on: { click: _vm.toggleDropdown }
-                },
-                [
-                  _c(
-                    "a",
-                    {
-                      attrs: {
-                        "data-toggle": "modal",
-                        "data-target": "#modal-update-task" + _vm.task.id,
-                        role: "menuitem",
-                        tabindex: "-1",
-                        href: "#"
-                      }
-                    },
-                    [_vm._v("Modifier")]
-                  )
-                ]
-              )
-            ])
-          : _vm._e()
+        _c("div", { staticClass: "dropdown dropdown-category-main" }, [
+          _c(
+            "a",
+            {
+              staticClass: "btn-dropdown dropdown-toggle",
+              attrs: {
+                "data-toggle": "dropdown",
+                href: "#",
+                "aria-expanded": "true"
+              },
+              on: { click: _vm.toggleDropdown }
+            },
+            [_c("i", { staticClass: "fa fa-ellipsis-v" })]
+          ),
+          _vm._v(" "),
+          _vm.dropdownStatus
+            ? _c("ul", { staticClass: "dropdown-menu" }, [
+                _c("li", { attrs: { role: "presentation" } }, [
+                  _c("form", { on: { submit: _vm.deleteTask } }, [
+                    _c("input", {
+                      attrs: { type: "hidden", name: "task" },
+                      domProps: { value: _vm.task.id }
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: { type: "hidden", name: "card" },
+                      domProps: { value: _vm.card.id }
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: { type: "hidden", name: "category" },
+                      domProps: { value: _vm.card.category_id }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn-delete-task btn btn-box-tool",
+                        attrs: { type: "submit", "data-widget": "remove" }
+                      },
+                      [_vm._v("Supprimer")]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    attrs: { role: "presentation" },
+                    on: { click: _vm.toggleDropdown }
+                  },
+                  [
+                    _c(
+                      "a",
+                      {
+                        attrs: {
+                          "data-toggle": "modal",
+                          "data-target": "#modal-update-task" + _vm.task.id,
+                          role: "menuitem",
+                          tabindex: "-1",
+                          href: "#"
+                        }
+                      },
+                      [_vm._v("Modifier")]
+                    )
+                  ]
+                )
+              ])
+            : _vm._e()
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "task-footer" }, [
+        _c("p", { staticClass: "task-date" }, [
+          _vm._v(
+            "\n            " +
+              _vm._s(new Date(_vm.task.created_at).getDate()) +
+              "/" +
+              _vm._s(new Date(_vm.task.created_at).getMonth() + 1) +
+              "/" +
+              _vm._s(new Date(_vm.task.created_at).getFullYear()) +
+              "\n        "
+          )
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.task.status,
+              expression: "task.status"
+            }
+          ],
+          staticClass: "task-form-checkbox",
+          attrs: {
+            type: "checkbox",
+            "data-task": _vm.task.id,
+            "data-card": _vm.card.id,
+            "data-category": _vm.card.category_id
+          },
+          domProps: {
+            checked: Array.isArray(_vm.task.status)
+              ? _vm._i(_vm.task.status, null) > -1
+              : _vm.task.status
+          },
+          on: {
+            change: [
+              function($event) {
+                var $$a = _vm.task.status,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = null,
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 && _vm.$set(_vm.task, "status", $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      _vm.$set(
+                        _vm.task,
+                        "status",
+                        $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                      )
+                  }
+                } else {
+                  _vm.$set(_vm.task, "status", $$c)
+                }
+              },
+              _vm.updateTaskStatus
+            ]
+          }
+        })
       ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "task-footer" }, [
-      _c("p", { staticClass: "task-date" }, [
-        _vm._v(
-          "\n            " +
-            _vm._s(new Date(_vm.task.created_at).getDate()) +
-            "/" +
-            _vm._s(new Date(_vm.task.created_at).getMonth() + 1) +
-            "/" +
-            _vm._s(new Date(_vm.task.created_at).getFullYear()) +
-            "\n        "
-        )
-      ])
-    ])
-  ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
