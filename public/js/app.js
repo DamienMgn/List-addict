@@ -2000,6 +2000,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2037,6 +2051,17 @@ __webpack_require__.r(__webpack_exports__);
         taskColor: value.taskColor,
         categoryId: value.categoryId,
         cardId: value.cardId
+      });
+    },
+    updateTask: function updateTask(value) {
+      console.log('hihihihii');
+      console.log(value);
+      this.$store.dispatch('updateTask', {
+        taskColor: value.taskColor,
+        cardId: value.cardId,
+        categoryId: value.categoryId,
+        taskId: value.taskId,
+        taskName: value.taskName
       });
     }
   }
@@ -2314,10 +2339,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "TaskComponent",
   components: {},
   props: ['task', 'card'],
+  data: function data() {
+    return {
+      dropdownStatus: false
+    };
+  },
   methods: {
     deleteTask: function deleteTask(e) {
       e.preventDefault();
@@ -2326,15 +2369,7 @@ __webpack_require__.r(__webpack_exports__);
         categoryId: e.target.category.value,
         taskId: e.target.task.value
       });
-    },
-    updateTask: function updateTask(value) {
-      this.$store.dispatch('updateTask', {
-        taskColor: value.taskColor,
-        cardId: value.cardId,
-        categoryId: value.categoryId,
-        taskId: value.taskId,
-        taskName: value.taskName
-      });
+      this.toggleDropdown;
     },
     updateTaskStatus: function updateTaskStatus(e) {
       this.$store.dispatch('updateTask', {
@@ -2343,6 +2378,13 @@ __webpack_require__.r(__webpack_exports__);
         categoryId: e.target.dataset.category,
         taskId: e.target.dataset.task
       });
+    },
+    toggleDropdown: function toggleDropdown() {
+      if (!this.dropdownStatus) {
+        this.dropdownStatus = true;
+      } else {
+        this.dropdownStatus = false;
+      }
     }
   }
 });
@@ -2508,7 +2550,7 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     ColorPicker: _ColorPicker__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  props: ['title', 'card', 'category', 'type', 'id'],
+  props: ['title', 'card', 'category', 'task', 'type', 'id'],
   data: function data() {
     return {
       name: ''
@@ -2556,6 +2598,16 @@ __webpack_require__.r(__webpack_exports__);
           cardColor: e.target.color.value,
           categoryId: this.category,
           cardId: this.card
+        });
+      }
+
+      if (this.type === 'updateTask') {
+        this.$emit('update', {
+          taskName: e.target.updateTask.value,
+          taskColor: e.target.color.value,
+          categoryId: this.category,
+          cardId: this.card,
+          taskId: this.task
         });
       }
 
@@ -38711,95 +38763,100 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "card-container" },
     [
-      _c(
-        "div",
-        {
-          staticClass: "card-header",
-          style: { backgroundColor: _vm.card.color }
-        },
-        [
-          _c("h4", { staticClass: "card-title" }, [
-            _vm._v(_vm._s(_vm.card.name))
-          ]),
-          _vm._v(" "),
-          _c(
-            "form",
-            { staticClass: "card-form-delete", on: { submit: _vm.deleteCard } },
-            [
-              _c("input", {
-                attrs: { type: "hidden", name: "card" },
-                domProps: { value: _vm.card.id }
-              }),
-              _vm._v(" "),
-              _c("input", {
-                attrs: { type: "hidden", name: "category" },
-                domProps: { value: _vm.card.category_id }
-              }),
-              _vm._v(" "),
-              _vm._m(0),
-              _vm._v(" "),
-              _c(
-                "a",
-                {
-                  staticClass: "btn btn-box-tool",
-                  attrs: {
-                    "data-toggle": "modal",
-                    "data-target": "#modal-update-card" + _vm.card.id
-                  }
-                },
-                [_c("i", { staticClass: "fas fa-pen" })]
-              )
-            ]
-          )
-        ]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
+      _c("div", { staticClass: "card-container" }, [
         _c(
-          "ul",
-          { staticClass: "tasks-container" },
-          _vm._l(_vm.card.tasks, function(task) {
-            return _c(
-              "li",
+          "div",
+          {
+            staticClass: "card-header",
+            style: { backgroundColor: _vm.card.color }
+          },
+          [
+            _c("h4", { staticClass: "card-title" }, [
+              _vm._v(_vm._s(_vm.card.name))
+            ]),
+            _vm._v(" "),
+            _c(
+              "form",
               {
-                staticClass: "task-container",
-                style: { borderLeftColor: task.color }
+                staticClass: "card-form-delete",
+                on: { submit: _vm.deleteCard }
               },
-              [_c("TaskComponent", { attrs: { task: task, card: _vm.card } })],
-              1
+              [
+                _c("input", {
+                  attrs: { type: "hidden", name: "card" },
+                  domProps: { value: _vm.card.id }
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: { type: "hidden", name: "category" },
+                  domProps: { value: _vm.card.category_id }
+                }),
+                _vm._v(" "),
+                _vm._m(0),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-box-tool",
+                    attrs: {
+                      "data-toggle": "modal",
+                      "data-target": "#modal-update-card" + _vm.card.id
+                    }
+                  },
+                  [_c("i", { staticClass: "fas fa-pen" })]
+                )
+              ]
             )
-          }),
-          0
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-footer" }, [
-        _c("div", { staticClass: "box-add-task box-header with-border" }, [
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
           _c(
-            "button",
-            {
-              staticClass: "btn btn-box-tool",
-              attrs: {
-                type: "button",
-                "data-toggle": "modal",
-                "data-target": "#modal-add-task" + _vm.card.id
-              }
-            },
-            [
-              _c(
-                "h4",
-                { staticClass: "box-title", style: { color: _vm.card.color } },
-                [_vm._v("Nouvelle tâche")]
-              ),
-              _vm._v(" "),
-              _c("i", {
-                staticClass: "fa fa-plus",
-                style: { color: _vm.card.color }
-              })
-            ]
+            "ul",
+            { staticClass: "tasks-container" },
+            _vm._l(_vm.card.tasks, function(task) {
+              return _c(
+                "li",
+                [
+                  _c("TaskComponent", { attrs: { task: task, card: _vm.card } })
+                ],
+                1
+              )
+            }),
+            0
           )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-footer" }, [
+          _c("div", { staticClass: "box-add-task box-header with-border" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-box-tool",
+                attrs: {
+                  type: "button",
+                  "data-toggle": "modal",
+                  "data-target": "#modal-add-task" + _vm.card.id
+                }
+              },
+              [
+                _c(
+                  "h4",
+                  {
+                    staticClass: "box-title",
+                    style: { color: _vm.card.color }
+                  },
+                  [_vm._v("Nouvelle tâche")]
+                ),
+                _vm._v(" "),
+                _c("i", {
+                  staticClass: "fa fa-plus",
+                  style: { color: _vm.card.color }
+                })
+              ]
+            )
+          ])
         ])
       ]),
       _vm._v(" "),
@@ -38823,9 +38880,29 @@ var render = function() {
           category: _vm.card.category_id
         },
         on: { update: _vm.updateCard }
+      }),
+      _vm._v(" "),
+      _vm._l(_vm.card.tasks, function(task) {
+        return _c(
+          "div",
+          [
+            _c("Modal", {
+              attrs: {
+                type: "updateTask",
+                title: "Modifier la tâche",
+                id: "modal-update-task" + task.id,
+                card: _vm.card.id,
+                category: _vm.card.category_id,
+                task: task.id
+              },
+              on: { update: _vm.updateTask }
+            })
+          ],
+          1
+        )
       })
     ],
-    1
+    2
   )
 }
 var staticRenderFns = [
@@ -38990,16 +39067,36 @@ var render = function() {
                   }
                 },
                 [
-                  _vm._m(1),
+                  _c(
+                    "li",
+                    { staticClass: "nav-item has-treeview" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { to: { name: "home" }, href: "#" }
+                        },
+                        [
+                          _c("i", { staticClass: "nav-icon fas fa-home" }),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v("\n                Accueil\n              ")
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
                   _c("li", { staticClass: "nav-item has-treeview" }, [
-                    _vm._m(2),
+                    _vm._m(1),
                     _vm._v(" "),
                     _c(
                       "ul",
                       { staticClass: "nav nav-treeview" },
                       [
-                        _vm._m(3),
+                        _vm._m(2),
                         _vm._v(" "),
                         _vm._l(_vm.categories, function(category) {
                           return _c(
@@ -39096,18 +39193,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item has-treeview" }, [
-      _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-        _c("i", { staticClass: "nav-icon fas fa-home" }),
-        _vm._v(" "),
-        _c("p", [_vm._v("\n                Accueil\n              ")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
       _c("i", { staticClass: "nav-icon fas fa-list-ul" }),
       _vm._v(" "),
@@ -39161,60 +39246,155 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "task-header" }, [
-      _c("p", { staticClass: "task-name" }, [_vm._v(_vm._s(_vm.task.name))]),
+  return _c(
+    "div",
+    {
+      staticClass: "task-container",
+      class: { checked: _vm.task.status },
+      style: { borderLeftColor: _vm.task.color }
+    },
+    [
+      _c("div", { staticClass: "task-header" }, [
+        _c("p", { staticClass: "task-name" }, [_vm._v(_vm._s(_vm.task.name))]),
+        _vm._v(" "),
+        _c("div", { staticClass: "dropdown dropdown-category-main" }, [
+          _c(
+            "a",
+            {
+              staticClass: "btn-dropdown dropdown-toggle",
+              attrs: {
+                "data-toggle": "dropdown",
+                href: "#",
+                "aria-expanded": "true"
+              },
+              on: { click: _vm.toggleDropdown }
+            },
+            [_c("i", { staticClass: "fa fa-ellipsis-v" })]
+          ),
+          _vm._v(" "),
+          _vm.dropdownStatus
+            ? _c("ul", { staticClass: "dropdown-menu" }, [
+                _c("li", { attrs: { role: "presentation" } }, [
+                  _c("form", { on: { submit: _vm.deleteTask } }, [
+                    _c("input", {
+                      attrs: { type: "hidden", name: "task" },
+                      domProps: { value: _vm.task.id }
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: { type: "hidden", name: "card" },
+                      domProps: { value: _vm.card.id }
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: { type: "hidden", name: "category" },
+                      domProps: { value: _vm.card.category_id }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn-delete-task btn btn-box-tool",
+                        attrs: { type: "submit", "data-widget": "remove" }
+                      },
+                      [_vm._v("Supprimer")]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    attrs: { role: "presentation" },
+                    on: { click: _vm.toggleDropdown }
+                  },
+                  [
+                    _c(
+                      "a",
+                      {
+                        attrs: {
+                          "data-toggle": "modal",
+                          "data-target": "#modal-update-task" + _vm.task.id,
+                          role: "menuitem",
+                          tabindex: "-1",
+                          href: "#"
+                        }
+                      },
+                      [_vm._v("Modifier")]
+                    )
+                  ]
+                )
+              ])
+            : _vm._e()
+        ])
+      ]),
       _vm._v(" "),
-      _c("form", { on: { submit: _vm.deleteTask } }, [
-        _c("input", {
-          attrs: { type: "hidden", name: "task" },
-          domProps: { value: _vm.task.id }
-        }),
+      _c("div", { staticClass: "task-footer" }, [
+        _c("p", { staticClass: "task-date" }, [
+          _vm._v(
+            "\n            " +
+              _vm._s(new Date(_vm.task.created_at).getDate()) +
+              "/" +
+              _vm._s(new Date(_vm.task.created_at).getMonth() + 1) +
+              "/" +
+              _vm._s(new Date(_vm.task.created_at).getFullYear()) +
+              "\n        "
+          )
+        ]),
         _vm._v(" "),
         _c("input", {
-          attrs: { type: "hidden", name: "card" },
-          domProps: { value: _vm.card.id }
-        }),
-        _vm._v(" "),
-        _c("input", {
-          attrs: { type: "hidden", name: "category" },
-          domProps: { value: _vm.card.category_id }
-        }),
-        _vm._v(" "),
-        _vm._m(0)
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.task.status,
+              expression: "task.status"
+            }
+          ],
+          staticClass: "task-form-checkbox",
+          attrs: {
+            type: "checkbox",
+            "data-task": _vm.task.id,
+            "data-card": _vm.card.id,
+            "data-category": _vm.card.category_id
+          },
+          domProps: {
+            checked: Array.isArray(_vm.task.status)
+              ? _vm._i(_vm.task.status, null) > -1
+              : _vm.task.status
+          },
+          on: {
+            change: [
+              function($event) {
+                var $$a = _vm.task.status,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = null,
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 && _vm.$set(_vm.task, "status", $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      _vm.$set(
+                        _vm.task,
+                        "status",
+                        $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                      )
+                  }
+                } else {
+                  _vm.$set(_vm.task, "status", $$c)
+                }
+              },
+              _vm.updateTaskStatus
+            ]
+          }
+        })
       ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "task-footer" }, [
-      _c("p", { staticClass: "task-date" }, [
-        _vm._v(
-          "\n            " +
-            _vm._s(new Date(_vm.task.created_at).getDate()) +
-            "/" +
-            _vm._s(new Date(_vm.task.created_at).getMonth() + 1) +
-            "/" +
-            _vm._s(new Date(_vm.task.created_at).getFullYear()) +
-            "\n        "
-        )
-      ])
-    ])
-  ])
+    ]
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "btn btn-box-tool",
-        attrs: { type: "submit", "data-widget": "remove" }
-      },
-      [_c("i", { staticClass: "fa fa-times" })]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -39285,7 +39465,7 @@ var render = function() {
                 _c(
                   "a",
                   {
-                    staticClass: "btn-dropdown-category dropdown-toggle",
+                    staticClass: "btn-dropdown dropdown-toggle",
                     attrs: {
                       "data-toggle": "dropdown",
                       href: "#",
@@ -39446,7 +39626,6 @@ var render = function() {
         id: _vm.id,
         tabindex: "-1",
         role: "dialog",
-        "aria-labelledby": "updateCardModal",
         "aria-hidden": "true"
       }
     },

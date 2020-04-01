@@ -1,5 +1,5 @@
 <template>
-    <div class="modal fade" :id="id" tabindex="-1" role="dialog" aria-labelledby="updateCardModal" aria-hidden="true">
+    <div class="modal fade" :id="id" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -30,7 +30,7 @@
     export default {
         name: "modal",
         components: {ColorPicker},
-        props: ['title', 'card', 'category', 'type', 'id'],
+        props: ['title', 'card', 'category', 'task', 'type', 'id'],
         data () {
             return {
                 name: '',
@@ -76,6 +76,16 @@
                         cardColor: e.target.color.value,
                         categoryId: this.category,
                         cardId: this.card
+                    })
+                }
+
+                if (this.type === 'updateTask') {
+                    this.$emit('update', {
+                        taskName: e.target.updateTask.value,
+                        taskColor: e.target.color.value,
+                        categoryId: this.category,
+                        cardId: this.card,
+                        taskId: this.task
                     })
                 }
 

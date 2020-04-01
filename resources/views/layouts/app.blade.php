@@ -86,6 +86,7 @@
             @yield('content')
         </main>
     </div>
+
     <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->

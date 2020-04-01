@@ -26,12 +26,12 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <router-link :to="{name: 'home'}" href="#" class="nav-link">
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Accueil
               </p>
-            </a>
+            </router-link>
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
