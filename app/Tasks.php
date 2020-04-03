@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tasks extends Model
 {
+
     /**
      * Get the card that owns the task.
      */

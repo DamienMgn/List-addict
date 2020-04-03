@@ -2030,7 +2030,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       isVisible: false,
-      name: ''
+      name: '',
+      newTasksOrder: this.card.tasks
     };
   },
   methods: {
@@ -2058,9 +2059,19 @@ __webpack_require__.r(__webpack_exports__);
       });
       $('#modal-add-task').find("input[type=text]").val('');
     },
+    updateTasksOrder: function updateTasksOrder() {
+      var obj = {};
+      var tasks = this.newTasksOrder.forEach(function (element, index) {
+        return obj.id = element.id[element.id].order = index;
+      });
+      console.log(obj);
+      this.$store.dispatch('updateTasksOrder', {
+        tasks: obj,
+        categoryId: this.card.category_id,
+        cardId: this.card.id
+      });
+    },
     updateTask: function updateTask(value) {
-      console.log('hihihihii');
-      console.log(value);
       this.$store.dispatch('updateTask', {
         taskColor: value.taskColor,
         cardId: value.cardId,
@@ -42579,18 +42590,13 @@ var render = function() {
               {
                 staticClass: "tasks-container",
                 attrs: {
-                  list: _vm.card.tasks,
+                  list: _vm.newTasksOrder,
                   options: { animation: 200, group: "status" },
                   element: "li"
                 },
-                on: {
-                  add: function($event) {
-                    return _vm.onAdd($event, _vm.card.id)
-                  },
-                  change: _vm.update
-                }
+                on: { change: _vm.updateTasksOrder }
               },
-              _vm._l(_vm.card.tasks, function(task) {
+              _vm._l(_vm.newTasksOrder, function(task) {
                 return _c(
                   "li",
                   [
@@ -64224,6 +64230,42 @@ var get = /*#__PURE__*/function () {
       }
 
       return updateCategory;
+    }(),
+    updateTasksOrder: function () {
+      var _updateTasksOrder = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee13(context, tasksData) {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee13$(_context13) {
+          while (1) {
+            switch (_context13.prev = _context13.next) {
+              case 0:
+                _context13.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/update/tasks/order/' + tasksData.cardId + '/' + tasksData.categoryId, {
+                  tasks: tasksData.tasks
+                })["catch"](function (error) {
+                  context.commit('handleErrors', {
+                    errors: error.response.data.errors
+                  });
+                });
+
+              case 2:
+                response = _context13.sent;
+                context.commit('addCard', {
+                  card: response.data.card
+                });
+
+              case 4:
+              case "end":
+                return _context13.stop();
+            }
+          }
+        }, _callee13);
+      }));
+
+      function updateTasksOrder(_x23, _x24) {
+        return _updateTasksOrder.apply(this, arguments);
+      }
+
+      return updateTasksOrder;
     }()
   }
 }));
