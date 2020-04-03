@@ -11172,6 +11172,7 @@ btn-dropdown:hover {
 /* Tasks */
 
 .tasks-container {
+  list-style: none;
   padding: 0;
 }
 

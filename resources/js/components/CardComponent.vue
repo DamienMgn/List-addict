@@ -11,11 +11,11 @@
                 </form>
             </div>
             <div class="card-body">
-                <ul class="tasks-container">
+                <draggable class="tasks-container" :list="card.tasks" :options="{animation:200, group:'status'}" :element="'li'" @add="onAdd($event, card.id)"  @change="update">
                     <li v-for="task in card.tasks">
                         <TaskComponent :task="task" :card="card"></TaskComponent>
                     </li>
-                </ul>
+                </draggable>
             </div>
             <div class="card-footer">
                 <div class="box-add-task box-header with-border">
@@ -63,12 +63,15 @@
 <script>
     import TaskComponent from "./TaskComponent";
     import Modal from "./partials/Modal";
+    import draggable from 'vuedraggable';
+
 
     export default {
         name: "CardComponent",
         components: {
             TaskComponent,
-            Modal
+            Modal,
+            draggable
         },
         props: ['card'],
         data() {
