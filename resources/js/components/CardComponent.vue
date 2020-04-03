@@ -11,8 +11,8 @@
                 </form>
             </div>
             <div class="card-body">
-                <draggable class="tasks-container" :list="card.tasks" :options="{animation:200, group:'status'}" :element="'li'" @add="onAdd($event, card.id)"  @change="update">
-                    <li v-for="task in card.tasks">
+                <draggable class="tasks-container" :list="newTasksOrder" :options="{animation:200, group:'status'}" :element="'li'" @change="updateTasksOrder">
+                    <li v-for="task in newTasksOrder">
                         <TaskComponent :task="task" :card="card"></TaskComponent>
                     </li>
                 </draggable>
@@ -77,7 +77,8 @@
         data() {
             return {
                 isVisible: false,
-                name: ''
+                name: '',
+                newTasksOrder: this.card.tasks
             }
         },
         methods:{
@@ -105,11 +106,21 @@
                 })
                 $('#modal-add-task').find("input[type=text]").val('');
             },
+            updateTasksOrder: function () {
+
+                let obj = {}
+                let tasks = this.newTasksOrder.forEach((element, index) => obj.id = element.id [element.id].order = index);
+
+                console.log(obj)
+
+                this.$store.dispatch('updateTasksOrder', {
+                        tasks: obj,
+                        categoryId: this.card.category_id,
+                        cardId: this.card.id
+                    })
+            },
             updateTask: function (value) {
-                console.log('hihihihii')
-                console.log(value)
-                this.$store.dispatch('updateTask',
-                    {
+                this.$store.dispatch('updateTask', {
                         taskColor: value.taskColor,
                         cardId: value.cardId,
                         categoryId: value.categoryId,

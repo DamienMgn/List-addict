@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class TasksController extends Controller
 {
     /**
-     * Return task
+     * Return card
      */
     public function addTask(Request $request, Cards $card) {
 
@@ -30,7 +30,7 @@ class TasksController extends Controller
 
         $task->save();
 
-        $card['tasks'] = Tasks::where('card_id', $card->id)->get();
+        $card['tasks'] = Tasks::where('card_id', $card->id)->orderBy('order', 'desc')->get();
 
         return response()->json([
             'card' => $card,
@@ -38,7 +38,7 @@ class TasksController extends Controller
     }
 
     /**
-    * Return task
+    * Return card
     */
     public function deleteTask(Tasks $task) {
 
@@ -48,10 +48,38 @@ class TasksController extends Controller
 
         $taskToDelete->delete();
 
-        $card['tasks'] = Tasks::where('card_id', $card->id)->get();
+        $card['tasks'] = Tasks::where('card_id', $card->id)->orderBy('order', 'desc')->get();
 
         return response()->json([
             'card' => $card,
+        ]);
+    }
+
+    /**
+     * Return card
+     */
+    public function updateTaskOrder(Request $request, Cards $card) {
+
+        $tasks = Tasks::where('card_id', $card->id)->get();
+
+        $newTasks = $request->tasks;
+        return response()->json([
+            'card' => $newTasks,
+        ]); exit;
+
+        foreach ($tasks as $task) {
+            $id = $task->id;
+            foreach ($request->tasks as $tasksNew) {
+                if ($tasksNew['id'] == $id) {
+                    $task->update(['order' => $tasksNew['order']]);
+                }
+            }
+        }
+
+        $card['tasks'] = Tasks::where('card_id', $card->id)->orderBy('order', 'asc')->get();
+
+        return response()->json([
+            'card' => $newTasks,
         ]);
     }
 
@@ -82,7 +110,7 @@ class TasksController extends Controller
 
         $task->save();
 
-        $card['tasks'] = Tasks::where('card_id', $card->id)->get();
+        $card['tasks'] = Tasks::where('card_id', $card->id)->orderBy('order', 'desc')->get();
 
         return response()->json([
             'card' => $card,
