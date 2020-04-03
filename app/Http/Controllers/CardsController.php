@@ -18,7 +18,7 @@ class CardsController extends Controller
 
 
         foreach ($cards as $card) {
-            $card['tasks'] = Tasks::where('card_id', $card->id)->get();
+            $card['tasks'] = Tasks::where('card_id', $card->id)->orderBy('order', 'asc')->get();
         }
 
         return response()->json([
@@ -71,7 +71,7 @@ class CardsController extends Controller
 
         $card->save();
 
-        $card['tasks'] = Tasks::where('card_id', $card->id)->get();
+        $card['tasks'] = Tasks::where('card_id', $card->id)->orderBy('order', 'asc')->get();
 
         return response()->json([
             'card' => $card,

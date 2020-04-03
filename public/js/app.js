@@ -2060,13 +2060,15 @@ __webpack_require__.r(__webpack_exports__);
       $('#modal-add-task').find("input[type=text]").val('');
     },
     updateTasksOrder: function updateTasksOrder() {
-      var obj = {};
-      var tasks = this.newTasksOrder.forEach(function (element, index) {
-        return obj.id = element.id[element.id].order = index;
+      var tasks = {};
+      this.newTasksOrder.forEach(function (element, index) {
+        return tasks[element.id] = {
+          id: element.id,
+          order: index
+        };
       });
-      console.log(obj);
       this.$store.dispatch('updateTasksOrder', {
-        tasks: obj,
+        tasks: tasks,
         categoryId: this.card.category_id,
         cardId: this.card.id
       });
@@ -64249,11 +64251,12 @@ var get = /*#__PURE__*/function () {
 
               case 2:
                 response = _context13.sent;
+                console.log(response);
                 context.commit('addCard', {
                   card: response.data.card
                 });
 
-              case 4:
+              case 5:
               case "end":
                 return _context13.stop();
             }

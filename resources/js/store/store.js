@@ -162,6 +162,7 @@ export default new Vuex.Store({
             }).catch(error => {
                 context.commit('handleErrors', {errors: error.response.data.errors})
             })
+            console.log(response)
             context.commit('addCard', {card: response.data.card})
         },
     }
