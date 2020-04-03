@@ -76,7 +76,7 @@ class TasksController extends Controller
     }
 
     /**
-     * Return task
+     * Return card
      */
     public function updateTask(Tasks $task, Request $request) {
 
