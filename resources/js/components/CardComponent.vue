@@ -108,13 +108,12 @@
             },
             updateTasksOrder: function () {
 
-                let obj = {}
-                let tasks = this.newTasksOrder.forEach((element, index) => obj.id = element.id [element.id].order = index);
+                let tasks = {}
 
-                console.log(obj)
+                this.newTasksOrder.forEach((element, index) => tasks[element.id] = {id: element.id, order: index})
 
                 this.$store.dispatch('updateTasksOrder', {
-                        tasks: obj,
+                        tasks: tasks,
                         categoryId: this.card.category_id,
                         cardId: this.card.id
                     })

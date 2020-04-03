@@ -30,7 +30,7 @@ class TasksController extends Controller
 
         $task->save();
 
-        $card['tasks'] = Tasks::where('card_id', $card->id)->orderBy('order', 'desc')->get();
+        $card['tasks'] = Tasks::where('card_id', $card->id)->orderBy('order', 'asc')->get();
 
         return response()->json([
             'card' => $card,
@@ -48,7 +48,7 @@ class TasksController extends Controller
 
         $taskToDelete->delete();
 
-        $card['tasks'] = Tasks::where('card_id', $card->id)->orderBy('order', 'desc')->get();
+        $card['tasks'] = Tasks::where('card_id', $card->id)->orderBy('order', 'asc')->get();
 
         return response()->json([
             'card' => $card,
@@ -60,31 +60,23 @@ class TasksController extends Controller
      */
     public function updateTaskOrder(Request $request, Cards $card) {
 
-        $tasks = Tasks::where('card_id', $card->id)->get();
+        $requestTasks = $request->tasks;
 
-        $newTasks = $request->tasks;
-        return response()->json([
-            'card' => $newTasks,
-        ]); exit;
-
-        foreach ($tasks as $task) {
-            $id = $task->id;
-            foreach ($request->tasks as $tasksNew) {
-                if ($tasksNew['id'] == $id) {
-                    $task->update(['order' => $tasksNew['order']]);
-                }
+        foreach ($requestTasks as $newTask) {
+                $task = Tasks::find($newTask['id']);
+                $task->order = $newTask['order'];
+                $task->save();
             }
-        }
 
         $card['tasks'] = Tasks::where('card_id', $card->id)->orderBy('order', 'asc')->get();
 
         return response()->json([
-            'card' => $newTasks,
+            'card' => $card,
         ]);
     }
 
     /**
-     * Return task
+     * Return card
      */
     public function updateTask(Tasks $task, Request $request) {
 
