@@ -13,12 +13,13 @@
             <div class="card-body">
                 <draggable 
                     class="tasks-container"
-                    :list="newTasksOrder"
-                    v-bind="{animation:200, group:'status'}"
+                    :list="newTasksOrder.tasks"
+                    :animation="200"
+                    :group="'status'"
                     :tag="'li'"
-                    @change="updateTasksOrder"
-                    @add="updateTaskCard($event, card.id)">
-                    <li v-for="task in newTasksOrder" :key="task.id" :data-id="task.id">
+                    v-on:change="updateTasksOrder"
+                    v-on:add="updateTaskCard($event, card.id)">
+                    <li v-for="task in newTasksOrder.tasks" :key="task.id" :data-id="task.id">
                         <TaskComponent :task="task" :card="card"></TaskComponent>
                     </li>
                 </draggable>
@@ -83,8 +84,13 @@
         data() {
             return {
                 isVisible: false,
-                name: '',
-                newTasksOrder: this.card.tasks
+                name: '',   
+                newTasksOrder: this.card
+            }
+        },
+        watch: {
+            card: function (newVal) {
+                this.newTasksOrder = newVal
             }
         },
         methods:{
@@ -112,15 +118,12 @@
                 })
                 $('#modal-add-task').find("input[type=text]").val('');
             },
-            updateTasksOrder: function () {
+            updateTasksOrder: async function () {
                 let tasks = {}
-                this.newTasksOrder.forEach((element, index) => tasks[element.id] = {id: element.id, order: index})
-
-                this.$store.dispatch('updateTasksOrder', {
-                        tasks: tasks,
-                        categoryId: this.card.category_id,
-                        cardId: this.card.id
-                    })
+                this.newTasksOrder.tasks.forEach((element, index) => tasks[element.id] = {id: element.id, order: index + 1})
+                let response = await axios.post('/api/update/tasks/order/' + this.card.id + '/' + this.card.category_id, {
+                    tasks : tasks
+                })
             },
             updateTask: function (value) {
                 this.$store.dispatch('updateTask', {

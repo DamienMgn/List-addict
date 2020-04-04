@@ -1950,10 +1950,19 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _TaskComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TaskComponent */ "./resources/js/components/TaskComponent.vue");
-/* harmony import */ var _partials_Modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./partials/Modal */ "./resources/js/components/partials/Modal.vue");
-/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.common.js");
-/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _TaskComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TaskComponent */ "./resources/js/components/TaskComponent.vue");
+/* harmony import */ var _partials_Modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./partials/Modal */ "./resources/js/components/partials/Modal.vue");
+/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.common.js");
+/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_3__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
 //
 //
 //
@@ -2028,17 +2037,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CardComponent",
   components: {
-    TaskComponent: _TaskComponent__WEBPACK_IMPORTED_MODULE_0__["default"],
-    Modal: _partials_Modal__WEBPACK_IMPORTED_MODULE_1__["default"],
-    draggable: vuedraggable__WEBPACK_IMPORTED_MODULE_2___default.a
+    TaskComponent: _TaskComponent__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Modal: _partials_Modal__WEBPACK_IMPORTED_MODULE_2__["default"],
+    draggable: vuedraggable__WEBPACK_IMPORTED_MODULE_3___default.a
   },
   props: ['card'],
   data: function data() {
     return {
       isVisible: false,
       name: '',
-      newTasksOrder: this.card.tasks
+      newTasksOrder: this.card
     };
+  },
+  watch: {
+    card: function card(newVal) {
+      this.newTasksOrder = newVal;
+    }
   },
   methods: {
     deleteCard: function deleteCard(e) {
@@ -2065,20 +2079,42 @@ __webpack_require__.r(__webpack_exports__);
       });
       $('#modal-add-task').find("input[type=text]").val('');
     },
-    updateTasksOrder: function updateTasksOrder() {
-      var tasks = {};
-      this.newTasksOrder.forEach(function (element, index) {
-        return tasks[element.id] = {
-          id: element.id,
-          order: index
-        };
-      });
-      this.$store.dispatch('updateTasksOrder', {
-        tasks: tasks,
-        categoryId: this.card.category_id,
-        cardId: this.card.id
-      });
-    },
+    updateTasksOrder: function () {
+      var _updateTasksOrder = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var tasks, response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                tasks = {};
+                this.newTasksOrder.tasks.forEach(function (element, index) {
+                  return tasks[element.id] = {
+                    id: element.id,
+                    order: index + 1
+                  };
+                });
+                _context.next = 4;
+                return axios.post('/api/update/tasks/order/' + this.card.id + '/' + this.card.category_id, {
+                  tasks: tasks
+                });
+
+              case 4:
+                response = _context.sent;
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function updateTasksOrder() {
+        return _updateTasksOrder.apply(this, arguments);
+      }
+
+      return updateTasksOrder;
+    }(),
     updateTask: function updateTask(value) {
       this.$store.dispatch('updateTask', {
         taskColor: value.taskColor,
@@ -2110,7 +2146,15 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2154,7 +2198,39 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "HomeComponent",
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['categories']))
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['categories'])),
+  mounted: function () {
+    var _mounted = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var _this = this;
+
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return axios.get('api/categories');
+
+            case 2:
+              response = _context.sent;
+              response.data.categories.forEach(function (el) {
+                return _this.$store.dispatch('loadCards', el.id);
+              });
+
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    function mounted() {
+      return _mounted.apply(this, arguments);
+    }
+
+    return mounted;
+  }()
 });
 
 /***/ }),
@@ -42608,22 +42684,22 @@ var render = function() {
           [
             _c(
               "draggable",
-              _vm._b(
-                {
-                  staticClass: "tasks-container",
-                  attrs: { list: _vm.newTasksOrder, tag: "li" },
-                  on: {
-                    change: _vm.updateTasksOrder,
-                    add: function($event) {
-                      return _vm.updateTaskCard($event, _vm.card.id)
-                    }
-                  }
+              {
+                staticClass: "tasks-container",
+                attrs: {
+                  list: _vm.newTasksOrder.tasks,
+                  animation: 200,
+                  group: "status",
+                  tag: "li"
                 },
-                "draggable",
-                { animation: 200, group: "status" },
-                false
-              ),
-              _vm._l(_vm.newTasksOrder, function(task) {
+                on: {
+                  change: _vm.updateTasksOrder,
+                  add: function($event) {
+                    return _vm.updateTaskCard($event, _vm.card.id)
+                  }
+                }
+              },
+              _vm._l(_vm.newTasksOrder.tasks, function(task) {
                 return _c(
                   "li",
                   { key: task.id, attrs: { "data-id": task.id } },
@@ -63771,11 +63847,12 @@ __webpack_require__.r(__webpack_exports__);
 /*!*************************************!*\
   !*** ./resources/js/store/store.js ***!
   \*************************************/
-/*! exports provided: default */
+/*! exports provided: strict, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strict", function() { return strict; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
@@ -63827,6 +63904,7 @@ var get = /*#__PURE__*/function () {
   };
 }();
 
+var strict = false;
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
   strict: true,
   state: {
@@ -64280,50 +64358,14 @@ var get = /*#__PURE__*/function () {
 
       return updateCategory;
     }(),
-    updateTasksOrder: function () {
-      var _updateTasksOrder = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee13(context, tasksData) {
+    updateTaskCard: function () {
+      var _updateTaskCard = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee13(context, taskData) {
         var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee13$(_context13) {
           while (1) {
             switch (_context13.prev = _context13.next) {
               case 0:
                 _context13.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/update/tasks/order/' + tasksData.cardId + '/' + tasksData.categoryId, {
-                  tasks: tasksData.tasks
-                })["catch"](function (error) {
-                  context.commit('handleErrors', {
-                    errors: error.response.data.errors
-                  });
-                });
-
-              case 2:
-                response = _context13.sent;
-                context.commit('addCard', {
-                  card: response.data.card
-                });
-
-              case 4:
-              case "end":
-                return _context13.stop();
-            }
-          }
-        }, _callee13);
-      }));
-
-      function updateTasksOrder(_x23, _x24) {
-        return _updateTasksOrder.apply(this, arguments);
-      }
-
-      return updateTasksOrder;
-    }(),
-    updateTaskCard: function () {
-      var _updateTaskCard = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee14(context, taskData) {
-        var response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee14$(_context14) {
-          while (1) {
-            switch (_context14.prev = _context14.next) {
-              case 0:
-                _context14.next = 2;
                 return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/update/task/card/' + taskData.taskId + '/' + taskData.cardId + '/' + taskData.categoryId)["catch"](function (error) {
                   context.commit('handleErrors', {
                     errors: error.response.data.errors
@@ -64331,7 +64373,7 @@ var get = /*#__PURE__*/function () {
                 });
 
               case 2:
-                response = _context14.sent;
+                response = _context13.sent;
                 context.commit('addCard', {
                   card: response.data.oldCard
                 });
@@ -64341,13 +64383,13 @@ var get = /*#__PURE__*/function () {
 
               case 5:
               case "end":
-                return _context14.stop();
+                return _context13.stop();
             }
           }
-        }, _callee14);
+        }, _callee13);
       }));
 
-      function updateTaskCard(_x25, _x26) {
+      function updateTaskCard(_x23, _x24) {
         return _updateTaskCard.apply(this, arguments);
       }
 

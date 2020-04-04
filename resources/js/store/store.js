@@ -10,6 +10,8 @@ const get = async function (url) {
     return response
 }
 
+export const strict = false
+
 export default new Vuex.Store({
     strict: true,
     state: {
@@ -155,14 +157,6 @@ export default new Vuex.Store({
                 context.commit('handleErrors', {errors: error.response.data.errors})
             })
             context.commit('upCategory', {category: response.data.category})
-        },
-        updateTasksOrder: async function (context, tasksData) {
-            let response = await axios.post('/api/update/tasks/order/' + tasksData.cardId + '/' + tasksData.categoryId, {
-                tasks : tasksData.tasks
-            }).catch(error => {
-                context.commit('handleErrors', {errors: error.response.data.errors})
-            })
-            context.commit('addCard', {card: response.data.card})
         },
         updateTaskCard: async function (context, taskData) {
             let response = await axios.post('/api/update/task/card/' + taskData.taskId + '/' + taskData.cardId + '/' + taskData.categoryId)
