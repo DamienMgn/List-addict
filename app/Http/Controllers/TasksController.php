@@ -58,7 +58,7 @@ class TasksController extends Controller
     /**
      * Return card
      */
-    public function updateTaskOrder(Request $request, Cards $card) {
+    public function updateTasksOrder(Request $request, Cards $card) {
 
         $requestTasks = $request->tasks;
 
@@ -72,6 +72,27 @@ class TasksController extends Controller
 
         return response()->json([
             'card' => $card,
+        ]);
+    }
+
+    /**
+     * Return card
+     */
+    public function updateTaskCard(Request $request, Tasks $task) {
+
+        $oldCard = Cards::find($task->card_id);
+        $newCard = Cards::find($request->card);
+
+        $task->card_id = $request->card;
+
+        $task->save();
+
+        $oldCard['tasks'] = Tasks::where('card_id', $oldCard->id)->orderBy('order', 'asc')->get();
+        $newCard['tasks'] = Tasks::where('card_id', $newCard->id)->orderBy('order', 'asc')->get();
+
+        return response()->json([
+            'oldCard' => $oldCard,
+            'newCard' => $newCard
         ]);
     }
 
