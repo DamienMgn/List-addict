@@ -42549,6 +42549,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { key: _vm.card.id },
     [
       _c("div", { staticClass: "card-container" }, [
         _c(
@@ -42971,7 +42972,7 @@ var render = function() {
                         _vm._l(_vm.categories, function(category) {
                           return _c(
                             "li",
-                            { staticClass: "nav-item" },
+                            { key: category.id, staticClass: "nav-item" },
                             [
                               _c(
                                 "router-link",

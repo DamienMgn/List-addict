@@ -48,7 +48,7 @@
                   <p>Ajouter un projet</p>
                 </a>
               </li>
-              <li class="nav-item" v-for="category in categories">
+              <li class="nav-item" v-for="category in categories" :key="category.id">
                 <router-link :to="{name: 'categorie', params: {id: category.id}}" class="nav-link">
                   <i class="far fa-circle nav-icon" :style="{color: category.color}"></i>
                   <p>{{ category.name }}</p>

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div :key="card.id">
         <div class="card-container">
             <div class="card-header" :style="{backgroundColor: card.color}">
                 <h4 class="card-title">{{ card.name }}</h4>
