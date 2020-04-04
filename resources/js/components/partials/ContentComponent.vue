@@ -51,14 +51,11 @@
         },
         methods: {
             toggleDropdown: function () {
-                console.log('hey')
-                console.log(this.dropdownStatus)
                 if (!this.dropdownStatus) {
                     this.dropdownStatus = true
                 } else {
                     this.dropdownStatus = false
                 }
-                console.log(this.dropdownStatus)
             }
         }
     }

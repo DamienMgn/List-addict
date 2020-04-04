@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="categories[paramsId] !== undefined">
       <ContentComponent
           :title="categories[paramsId].name"
           :color="categories[paramsId].color"
@@ -7,7 +7,7 @@
           :category="paramsId"
       >
       </ContentComponent>
-      <div class="project-container">
+      <div class="project-container" >
           <div class="" v-for="card in categories[this.$route.params.id].cards">
               <CardComponent v-bind:card="card"></CardComponent>
           </div>

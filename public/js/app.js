@@ -2644,16 +2644,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['errors'])),
   methods: {
     toggleDropdown: function toggleDropdown() {
-      console.log('hey');
-      console.log(this.dropdownStatus);
-
       if (!this.dropdownStatus) {
         this.dropdownStatus = true;
       } else {
         this.dropdownStatus = false;
       }
-
-      console.log(this.dropdownStatus);
     }
   }
 });
@@ -42938,44 +42933,46 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("ContentComponent", {
-        attrs: {
-          title: _vm.categories[_vm.paramsId].name,
-          color: _vm.categories[_vm.paramsId].color,
-          category: _vm.paramsId
-        },
-        on: { delete: _vm.deleteCategory }
-      }),
-      _vm._v(" "),
-      _c(
+  return _vm.categories[_vm.paramsId] !== undefined
+    ? _c(
         "div",
-        { staticClass: "project-container" },
-        _vm._l(_vm.categories[this.$route.params.id].cards, function(card) {
-          return _c(
+        [
+          _c("ContentComponent", {
+            attrs: {
+              title: _vm.categories[_vm.paramsId].name,
+              color: _vm.categories[_vm.paramsId].color,
+              category: _vm.paramsId
+            },
+            on: { delete: _vm.deleteCategory }
+          }),
+          _vm._v(" "),
+          _c(
             "div",
-            {},
-            [_c("CardComponent", { attrs: { card: card } })],
-            1
-          )
-        }),
-        0
-      ),
-      _vm._v(" "),
-      _c("Modal", {
-        attrs: {
-          type: "card",
-          id: "modal-add-card",
-          title: "Ajouter une carte",
-          category: _vm.paramsId
-        },
-        on: { add: _vm.addCard }
-      })
-    ],
-    1
-  )
+            { staticClass: "project-container" },
+            _vm._l(_vm.categories[this.$route.params.id].cards, function(card) {
+              return _c(
+                "div",
+                {},
+                [_c("CardComponent", { attrs: { card: card } })],
+                1
+              )
+            }),
+            0
+          ),
+          _vm._v(" "),
+          _c("Modal", {
+            attrs: {
+              type: "card",
+              id: "modal-add-card",
+              title: "Ajouter une carte",
+              category: _vm.paramsId
+            },
+            on: { add: _vm.addCard }
+          })
+        ],
+        1
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
