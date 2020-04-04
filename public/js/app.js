@@ -2150,7 +2150,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "HomeComponent",
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['categories']))
+  data: function data() {
+    return {
+      categoriesToLoad: []
+    };
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['categories'])),
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -42604,20 +42610,21 @@ var render = function() {
           [
             _c(
               "draggable",
-              {
-                staticClass: "tasks-container",
-                attrs: {
-                  list: _vm.newTasksOrder,
-                  options: { animation: 200, group: "status" },
-                  element: "li"
-                },
-                on: {
-                  change: _vm.updateTasksOrder,
-                  add: function($event) {
-                    return _vm.updateTaskCard($event, _vm.card.id)
+              _vm._b(
+                {
+                  staticClass: "tasks-container",
+                  attrs: { list: _vm.newTasksOrder, tag: "li" },
+                  on: {
+                    change: _vm.updateTasksOrder,
+                    add: function($event) {
+                      return _vm.updateTaskCard($event, _vm.card.id)
+                    }
                   }
-                }
-              },
+                },
+                "draggable",
+                { animation: 200, group: "status" },
+                false
+              ),
               _vm._l(_vm.newTasksOrder, function(task) {
                 return _c(
                   "li",

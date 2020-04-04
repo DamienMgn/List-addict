@@ -14,8 +14,8 @@
                 <draggable 
                     class="tasks-container"
                     :list="newTasksOrder"
-                    :options="{animation:200, group:'status'}"
-                    :element="'li'"
+                    v-bind="{animation:200, group:'status'}"
+                    :tag="'li'"
                     @change="updateTasksOrder"
                     @add="updateTaskCard($event, card.id)">
                     <li v-for="task in newTasksOrder" :key="task.id" :data-id="task.id">
