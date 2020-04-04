@@ -162,8 +162,16 @@ export default new Vuex.Store({
             }).catch(error => {
                 context.commit('handleErrors', {errors: error.response.data.errors})
             })
-            console.log(response)
             context.commit('addCard', {card: response.data.card})
+        },
+        updateTaskCard: async function (context, taskData) {
+            let response = await axios.post('/api/update/task/card/' + taskData.taskId + '/' + taskData.cardId + '/' + taskData.categoryId)
+            .catch(error => {
+                context.commit('handleErrors', {errors: error.response.data.errors})
+            })
+
+            context.commit('addCard', {card: response.data.oldCard})
+            context.commit('addCard', {card: response.data.newCard})
         },
     }
 })

@@ -2016,6 +2016,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2080,6 +2086,14 @@ __webpack_require__.r(__webpack_exports__);
         categoryId: value.categoryId,
         taskId: value.taskId,
         taskName: value.taskName
+      });
+    },
+    updateTaskCard: function updateTaskCard(event, card) {
+      var task = event.item.getAttribute('data-id');
+      this.$store.dispatch('updateTaskCard', {
+        cardId: card,
+        categoryId: this.card.category_id,
+        taskId: task
       });
     }
   }
@@ -42535,6 +42549,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { key: _vm.card.id },
     [
       _c("div", { staticClass: "card-container" }, [
         _c(
@@ -42596,11 +42611,17 @@ var render = function() {
                   options: { animation: 200, group: "status" },
                   element: "li"
                 },
-                on: { change: _vm.updateTasksOrder }
+                on: {
+                  change: _vm.updateTasksOrder,
+                  add: function($event) {
+                    return _vm.updateTaskCard($event, _vm.card.id)
+                  }
+                }
               },
               _vm._l(_vm.newTasksOrder, function(task) {
                 return _c(
                   "li",
+                  { key: task.id, attrs: { "data-id": task.id } },
                   [
                     _c("TaskComponent", {
                       attrs: { task: task, card: _vm.card }
@@ -42951,7 +42972,7 @@ var render = function() {
                         _vm._l(_vm.categories, function(category) {
                           return _c(
                             "li",
-                            { staticClass: "nav-item" },
+                            { key: category.id, staticClass: "nav-item" },
                             [
                               _c(
                                 "router-link",
@@ -64251,12 +64272,11 @@ var get = /*#__PURE__*/function () {
 
               case 2:
                 response = _context13.sent;
-                console.log(response);
                 context.commit('addCard', {
                   card: response.data.card
                 });
 
-              case 5:
+              case 4:
               case "end":
                 return _context13.stop();
             }
@@ -64269,6 +64289,43 @@ var get = /*#__PURE__*/function () {
       }
 
       return updateTasksOrder;
+    }(),
+    updateTaskCard: function () {
+      var _updateTaskCard = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee14(context, taskData) {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee14$(_context14) {
+          while (1) {
+            switch (_context14.prev = _context14.next) {
+              case 0:
+                _context14.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/update/task/card/' + taskData.taskId + '/' + taskData.cardId + '/' + taskData.categoryId)["catch"](function (error) {
+                  context.commit('handleErrors', {
+                    errors: error.response.data.errors
+                  });
+                });
+
+              case 2:
+                response = _context14.sent;
+                context.commit('addCard', {
+                  card: response.data.oldCard
+                });
+                context.commit('addCard', {
+                  card: response.data.newCard
+                });
+
+              case 5:
+              case "end":
+                return _context14.stop();
+            }
+          }
+        }, _callee14);
+      }));
+
+      function updateTaskCard(_x25, _x26) {
+        return _updateTaskCard.apply(this, arguments);
+      }
+
+      return updateTaskCard;
     }()
   }
 }));

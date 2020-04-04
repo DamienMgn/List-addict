@@ -29,6 +29,7 @@ Route::middleware('auth:api')->post('/delete/task/{task}/{card}/{category}', 'Ta
 Route::middleware('auth:api')->post('/update/task/{task}/{card}/{category}', 'TasksController@updateTask')->middleware('categories', 'cards', 'tasks');
 Route::middleware('auth:api')->post('/update/card/{card}/{category}', 'CardsController@updateCard')->middleware('categories', 'cards');
 Route::middleware('auth:api')->post('/update/category/{category}', 'CategoriesController@updateCategory')->middleware('categories');
-Route::middleware('auth:api')->post('/update/tasks/order/{card}/{category}', 'TasksController@updateTaskOrder')->middleware('categories', 'cards');
+Route::middleware('auth:api')->post('/update/tasks/order/{card}/{category}', 'TasksController@updateTasksOrder')->middleware('categories', 'cards');
+Route::middleware('auth:api')->post('/update/task/card/{task}/{card}/{category}', 'TasksController@updateTaskCard')->middleware('categories');
 
 

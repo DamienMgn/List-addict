@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div :key="card.id">
         <div class="card-container">
             <div class="card-header" :style="{backgroundColor: card.color}">
                 <h4 class="card-title">{{ card.name }}</h4>
@@ -11,8 +11,14 @@
                 </form>
             </div>
             <div class="card-body">
-                <draggable class="tasks-container" :list="newTasksOrder" :options="{animation:200, group:'status'}" :element="'li'" @change="updateTasksOrder">
-                    <li v-for="task in newTasksOrder">
+                <draggable 
+                    class="tasks-container"
+                    :list="newTasksOrder"
+                    :options="{animation:200, group:'status'}"
+                    :element="'li'"
+                    @change="updateTasksOrder"
+                    @add="updateTaskCard($event, card.id)">
+                    <li v-for="task in newTasksOrder" :key="task.id" :data-id="task.id">
                         <TaskComponent :task="task" :card="card"></TaskComponent>
                     </li>
                 </draggable>
@@ -107,9 +113,7 @@
                 $('#modal-add-task').find("input[type=text]").val('');
             },
             updateTasksOrder: function () {
-
                 let tasks = {}
-
                 this.newTasksOrder.forEach((element, index) => tasks[element.id] = {id: element.id, order: index})
 
                 this.$store.dispatch('updateTasksOrder', {
@@ -125,6 +129,14 @@
                         categoryId: value.categoryId,
                         taskId: value.taskId,
                         taskName: value.taskName
+                    })
+            },
+            updateTaskCard: function (event, card) {
+                let task = event.item.getAttribute('data-id');
+                this.$store.dispatch('updateTaskCard', {
+                        cardId: card,
+                        categoryId: this.card.category_id,
+                        taskId: task
                     })
             },
         }
