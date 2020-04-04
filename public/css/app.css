@@ -11287,3 +11287,14 @@ btn-dropdown:hover {
   padding: 2rem;
 }
 
+.dashboard-container .dashboard-cards-container {
+  display: flex;
+}
+
+.dashboard-container .dashboard-cards-container .dashboard-card {
+  margin: 0 0.2rem 0 0.2rem;
+  padding: 0.2 0.5rem;
+  color: #fff;
+  border-radius: 3px;
+}
+

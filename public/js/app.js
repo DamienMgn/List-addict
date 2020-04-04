@@ -2147,16 +2147,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "HomeComponent",
-  data: function data() {
-    return {
-      categoriesToLoad: []
-    };
-  },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['categories'])),
-  mounted: function mounted() {}
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['categories']))
 });
 
 /***/ }),
@@ -42775,7 +42773,28 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(category.created_at))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(category.cards))]),
+                  _c(
+                    "td",
+                    { staticClass: "dashboard-cards-container" },
+                    _vm._l(category.cards, function(card) {
+                      return _c(
+                        "div",
+                        {
+                          staticClass: "dashboard-card",
+                          style: { backgroundColor: card.color },
+                          attrs: { keys: card.id }
+                        },
+                        [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(Object.keys(card.tasks).length) +
+                              "\n                        "
+                          )
+                        ]
+                      )
+                    }),
+                    0
+                  ),
                   _vm._v(" "),
                   _vm._m(2, true)
                 ])

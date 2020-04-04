@@ -18,7 +18,11 @@
                         <td>{{ category.id }}</td>
                         <td>{{ category.name }}</td>
                         <td>{{ category.created_at }}</td>
-                        <td>{{ category.cards }}</td>
+                        <td class="dashboard-cards-container">
+                            <div class="dashboard-card" v-for="card in category.cards" :keys="card.id" :style="{backgroundColor: card.color}">
+                                {{ Object.keys(card.tasks).length }}
+                            </div>
+                        </td>
                         <td><span class="badge bg-red">55%</span></td>
                     </tr>
                     </tbody></table>
@@ -29,20 +33,12 @@
 </template>
 
 <script>
-    import {mapGetters, mapState} from "vuex";
+    import {mapGetters} from "vuex";
 
     export default {
         name: "HomeComponent",
-        data () {
-            return {
-                categoriesToLoad: []
-            }
-        },
         computed: {
             ...mapGetters(['categories']),
-        },
-        mounted () {
-
         },
     }
 </script>

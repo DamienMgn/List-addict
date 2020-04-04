@@ -415,4 +415,15 @@ input[type="radio"]:after {
 
 .dashboard-container {
     padding: 2rem;
+
+    .dashboard-cards-container {
+        display: flex;
+
+        .dashboard-card {
+            margin: 0 0.2rem 0 0.2rem;
+            padding: 0.2 0.5rem;
+            color: $white;
+            border-radius: 3px;
+        }
+    }
 }
