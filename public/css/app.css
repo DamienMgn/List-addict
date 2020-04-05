@@ -10893,10 +10893,6 @@ body {
   margin: 0;
 }
 
-.full-height {
-  height: 100vh;
-}
-
 .flex-center {
   align-items: center;
   display: flex;
@@ -10915,18 +10911,47 @@ body {
 
 .content {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
   text-align: center;
-  background-image: url(/images/bg-image.jpeg?9d88101ea0efb88a4a6ff80cee483140);
   background-size: cover;
-  height: 100vh;
+  min-height: 90vh;
+}
+
+.sub-content-1 {
+  height: 50vh;
 }
 
 .title {
-  font-size: 130px;
+  font-size: 100px;
   font-weight: 300;
+}
+
+.content-p {
+  font-size: 2rem;
+}
+
+.welcome-img-container {
+  margin-top: -5rem;
+  padding: 0 0 10rem 0;
+}
+
+.welcome-img {
+  width: 55rem;
+  height: 30rem;
+}
+
+.welcome-footer {
+  width: 25%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.welcome-footer > a {
+  color: #636b6f;
 }
 
 .links > a {

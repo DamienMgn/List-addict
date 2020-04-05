@@ -17,7 +17,7 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        <div class="flex-center flex-column position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -31,12 +31,21 @@
                     @endauth
                 </div>
             @endif
-
             <div class="content">
                 <div class="title m-b-md">
                     List Addict
                 </div>
+                <div>
+                    <p class="content-p">Application de gestion de projet</p>
+                </div>
             </div>
+            <div class="welcome-img-container">
+                <img class="welcome-img" src="{{asset('/images/welcome-img.png')}}" alt="welcome-img">
+            </div>
+            <footer class="welcome-footer">
+                <p>maquignondm@gmail.com</p>
+                <a href="https://github.com/DamienMgn/Laravel-vue">github</a>
+            </footer>
         </div>
     </body>
 </html>
