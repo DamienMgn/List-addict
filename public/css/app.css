@@ -11006,7 +11006,7 @@ input[type=radio]:after {
   overflow-x: auto;
   overflow-y: hidden;
   height: calc(100vh - 130px);
-  padding: 1rem 2rem 3rem 2rem;
+  padding: 0rem 2rem 3rem 2rem;
 }
 
 /* Dropdown */
@@ -11120,7 +11120,7 @@ btn-dropdown:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 5rem;
+  height: 4rem;
   padding: 0;
   margin: 0;
   position: relative;
@@ -11130,8 +11130,8 @@ btn-dropdown:hover {
   margin: 0;
   padding: 0;
   position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
+  top: 0rem;
+  right: 0.3rem;
 }
 
 .card-container .card-header .card-form-delete .fa,
@@ -11158,7 +11158,7 @@ btn-dropdown:hover {
 }
 
 .card-container .box-title {
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin: 0 1rem 0 0;
 }
 
@@ -11174,6 +11174,10 @@ btn-dropdown:hover {
 .tasks-container {
   list-style: none;
   padding: 0;
+}
+
+.tasks-container .task-container:hover .btn-dropdown {
+  display: initial;
 }
 
 .tasks-container .task-container {
@@ -11209,10 +11213,12 @@ btn-dropdown:hover {
 
 .tasks-container .task-header .btn-dropdown {
   padding: 0;
+  display: none;
 }
 
 .tasks-container .task-header .btn-dropdown .fa {
   color: #C0C0C0;
+  margin-left: 0.3rem;
 }
 
 .tasks-container .task-header .dropdown-menu .btn-delete-task {

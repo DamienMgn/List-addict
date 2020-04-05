@@ -43003,27 +43003,10 @@ var render = function() {
         "aside",
         { staticClass: "main-sidebar sidebar-dark-primary elevation-4" },
         [
-          _c(
-            "router-link",
-            { staticClass: "brand-link", attrs: { to: { name: "home" } } },
-            [
-              _c("img", {
-                staticClass: "brand-image img-circle elevation-3",
-                staticStyle: { opacity: ".8" },
-                attrs: {
-                  src: "dist/img/AdminLTELogo.png",
-                  alt: "AdminLTE Logo"
-                }
-              }),
-              _vm._v(" "),
-              _c("span", { staticClass: "brand-text font-weight-light" }, [
-                _vm._v("List Addict")
-              ])
-            ]
-          ),
+          _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "sidebar" }, [
-            _vm._m(0),
+            _vm._m(1),
             _vm._v(" "),
             _c("nav", { staticClass: "mt-2" }, [
               _c(
@@ -43060,13 +43043,13 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("li", { staticClass: "nav-item has-treeview" }, [
-                    _vm._m(1),
+                    _vm._m(2),
                     _vm._v(" "),
                     _c(
                       "ul",
                       { staticClass: "nav nav-treeview" },
                       [
-                        _vm._m(2),
+                        _vm._m(3),
                         _vm._v(" "),
                         _vm._l(_vm.categories, function(category) {
                           return _c(
@@ -43105,8 +43088,7 @@ var render = function() {
               )
             ])
           ])
-        ],
-        1
+        ]
       ),
       _vm._v(" "),
       _c("Modal", {
@@ -43140,6 +43122,22 @@ var render = function() {
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "brand-link" }, [
+      _c("img", {
+        staticClass: "brand-image img-circle elevation-3",
+        staticStyle: { opacity: ".8" },
+        attrs: { src: "dist/img/AdminLTELogo.png", alt: "AdminLTE Logo" }
+      }),
+      _vm._v(" "),
+      _c("span", { staticClass: "brand-text font-weight-light" }, [
+        _vm._v("List Addict")
+      ])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

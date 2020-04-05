@@ -135,7 +135,7 @@ input[type="radio"]:after {
     overflow-x: auto;
     overflow-y: hidden;
     height: calc(100vh - 130px);
-    padding: 1rem 2rem 3rem 2rem;
+    padding: 0rem 2rem 3rem 2rem;
 }
 
 /* Dropdown */
@@ -246,7 +246,7 @@ input[type="radio"]:after {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 5rem;
+        height: 4rem;
         padding: 0;
         margin: 0;
         position: relative;
@@ -255,8 +255,8 @@ input[type="radio"]:after {
             margin: 0;
             padding: 0;
             position: absolute;
-            top: 0.5rem;
-            right: 0.5rem;
+            top: 0rem;
+            right: 0.3rem;
 
             .fa, .fas {
                 color: $white
@@ -283,7 +283,7 @@ input[type="radio"]:after {
     }
 
     .box-title {
-        font-size: 1.2rem;
+        font-size: 1rem;
         margin: 0 1rem 0 0;
     }
 
@@ -301,6 +301,10 @@ input[type="radio"]:after {
 
     list-style: none;
     padding: 0;
+
+    .task-container:hover .btn-dropdown {
+        display: initial;
+    }
 
     .task-container {
         list-style-type: none !important;
@@ -334,9 +338,11 @@ input[type="radio"]:after {
 
         .btn-dropdown {
             padding: 0;
+            display: none;
 
             .fa {
                 color: #C0C0C0;
+                margin-left: 0.3rem;
             }
         }
 

@@ -123,7 +123,7 @@ class TasksController extends Controller
 
         $task->save();
 
-        $card['tasks'] = Tasks::where('card_id', $card->id)->orderBy('order', 'desc')->get();
+        $card['tasks'] = Tasks::where('card_id', $card->id)->orderBy('order', 'asc')->get();
 
         return response()->json([
             'card' => $card,
