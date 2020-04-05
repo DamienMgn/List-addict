@@ -2195,10 +2195,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "HomeComponent",
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['categories'])),
+  data: function data() {
+    return {
+      newCategories: this.categories
+    };
+  },
   mounted: function () {
     var _mounted = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       var _this = this;
@@ -2230,7 +2239,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
 
     return mounted;
-  }()
+  }(),
+  watch: {
+    categories: function categories(newVal) {
+      this.newCategories = newVal;
+    }
+  },
+  methods: {
+    calulatePercentage: function calulatePercentage(id) {
+      if (this.newCategories !== undefined) {
+        var tasks = [];
+        Object.values(this.newCategories[id].cards).forEach(function (card) {
+          return card.tasks.forEach(function (task) {
+            return tasks.push(task);
+          });
+        });
+
+        if (tasks.length > 0) {
+          var tasksTrue = tasks.filter(function (el) {
+            return el.status === 1;
+          });
+          var percentage = Math.floor(tasksTrue.length / tasks.length * 100) + '%';
+          return percentage;
+        } else {
+          return '';
+        }
+      }
+    }
+  }
 });
 
 /***/ }),
@@ -42842,7 +42878,15 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(category.name))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(category.created_at))]),
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(new Date(category.created_at).getDate()) +
+                        "/" +
+                        _vm._s(new Date(category.created_at).getMonth() + 1) +
+                        "/" +
+                        _vm._s(new Date(category.created_at).getFullYear())
+                    )
+                  ]),
                   _vm._v(" "),
                   _c(
                     "td",
@@ -42867,7 +42911,17 @@ var render = function() {
                     0
                   ),
                   _vm._v(" "),
-                  _vm._m(2, true)
+                  _c("td", [
+                    _c("div", { staticClass: "progress progress-xs" }, [
+                      _c("div", {
+                        staticClass: "progress-bar progress-bar-danger",
+                        style: {
+                          width: _vm.calulatePercentage(category.id),
+                          backgroundColor: category.color
+                        }
+                      })
+                    ])
+                  ])
                 ])
               })
             ],
@@ -42901,14 +42955,6 @@ var staticRenderFns = [
       _c("th", [_vm._v("Cartes")]),
       _vm._v(" "),
       _c("th", { staticStyle: { width: "40px" } }, [_vm._v("Progression")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("span", { staticClass: "badge bg-red" }, [_vm._v("55%")])
     ])
   }
 ]
