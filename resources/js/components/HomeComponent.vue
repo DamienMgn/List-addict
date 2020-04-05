@@ -17,13 +17,17 @@
                     <tr v-for="category in categories">
                         <td>{{ category.id }}</td>
                         <td>{{ category.name }}</td>
-                        <td>{{ category.created_at }}</td>
+                        <td>{{ new Date(category.created_at).getDate() }}/{{ new Date(category.created_at).getMonth() + 1 }}/{{ new Date(category.created_at).getFullYear() }}</td>
                         <td class="dashboard-cards-container">
                             <div class="dashboard-card" v-for="card in category.cards" :keys="card.id" :style="{backgroundColor: card.color}">
                                 {{ Object.keys(card.tasks).length }}
                             </div>
                         </td>
-                        <td><span class="badge bg-red">55%</span></td>
+                        <td>
+                            <div class="progress progress-xs">
+                                <div class="progress-bar progress-bar-danger" :style="{width: calulatePercentage(category.id), backgroundColor: category.color}"></div>
+                            </div>
+                        </td>
                     </tr>
                     </tbody></table>
             </div>
@@ -40,9 +44,40 @@
         computed: {
             ...mapGetters(['categories']),
         },
+        data () {
+            return {
+                newCategories: this.categories,
+            }
+        },
         mounted: async function () {
             let response = await axios.get('api/categories')
             response.data.categories.forEach(el => this.$store.dispatch('loadCards', el.id))
+        },
+        watch: {
+            categories: function (newVal) {
+                this.newCategories = newVal
+            }
+        },
+        methods: {
+            calulatePercentage: function (id) {
+
+                if (this.newCategories !== undefined) {
+
+                    let tasks = []
+                        
+                    Object.values(this.newCategories[id].cards).forEach(card => card.tasks.forEach(task => tasks.push(task)))
+
+                    if (tasks.length > 0) {
+                        let tasksTrue = tasks.filter(el => el.status === 1)
+
+                        let percentage = Math.floor(tasksTrue.length / tasks.length * 100) + '%'
+
+                        return percentage
+                    } else {
+                        return ''
+                    }
+                }
+            }
         }
     }
 </script>
