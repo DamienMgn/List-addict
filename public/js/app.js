@@ -63167,14 +63167,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _components_SidebarComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/SidebarComponent.vue */ "./resources/js/components/SidebarComponent.vue");
-/* harmony import */ var _components_ProjectComponent_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/ProjectComponent.vue */ "./resources/js/components/ProjectComponent.vue");
-/* harmony import */ var _components_CardComponent_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/CardComponent.vue */ "./resources/js/components/CardComponent.vue");
-/* harmony import */ var _components_HomeComponent_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/HomeComponent.vue */ "./resources/js/components/HomeComponent.vue");
-/* harmony import */ var _components_AppComponent_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/AppComponent.vue */ "./resources/js/components/AppComponent.vue");
-/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./store/store */ "./resources/js/store/store.js");
-
-
+/* harmony import */ var _components_ProjectComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/ProjectComponent.vue */ "./resources/js/components/ProjectComponent.vue");
+/* harmony import */ var _components_HomeComponent_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/HomeComponent.vue */ "./resources/js/components/HomeComponent.vue");
+/* harmony import */ var _components_AppComponent_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/AppComponent.vue */ "./resources/js/components/AppComponent.vue");
+/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./store/store */ "./resources/js/store/store.js");
 
 
 
@@ -63190,11 +63186,11 @@ var categories = document.querySelector('#categories');
 if (categories) {
   var routes = [{
     path: '/',
-    component: _components_HomeComponent_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+    component: _components_HomeComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     name: 'home'
   }, {
     path: '/:id',
-    component: _components_ProjectComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    component: _components_ProjectComponent_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     name: 'categorie'
   }];
   var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
@@ -63205,13 +63201,9 @@ if (categories) {
   new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
     el: '#app',
     components: {
-      SidebarComponent: _components_SidebarComponent_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-      CardComponent: _components_CardComponent_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
-      ProjectComponent: _components_ProjectComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-      HomeComponent: _components_HomeComponent_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
-      AppComponent: _components_AppComponent_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
+      AppComponent: _components_AppComponent_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
     },
-    store: _store_store__WEBPACK_IMPORTED_MODULE_7__["default"],
+    store: _store_store__WEBPACK_IMPORTED_MODULE_5__["default"],
     router: router
   });
 }

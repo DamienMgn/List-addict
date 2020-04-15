@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import SidebarComponent from './components/SidebarComponent.vue'
 import ProjectComponent from './components/ProjectComponent.vue'
-import CardComponent from './components/CardComponent.vue'
 import HomeComponent from './components/HomeComponent.vue'
 import AppComponent from './components/AppComponent.vue'
 import store from './store/store'
@@ -29,10 +27,6 @@ if (categories) {
     new Vue({
         el: '#app',
         components: {
-            SidebarComponent,
-            CardComponent,
-            ProjectComponent,
-            HomeComponent,
             AppComponent,
         },
         store,
