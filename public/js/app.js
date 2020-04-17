@@ -43192,7 +43192,7 @@ var staticRenderFns = [
       _c("div", { staticClass: "image" }, [
         _c("img", {
           staticClass: "img-circle elevation-2",
-          attrs: { src: "dist/img/user2-160x160.jpg", alt: "User Image" }
+          attrs: { src: "dist/img/avatar3.png", alt: "User Image" }
         })
       ]),
       _vm._v(" "),
