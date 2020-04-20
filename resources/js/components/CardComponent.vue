@@ -1,7 +1,7 @@
 <template>
     <div :key="card.id">
         <div class="card-container">
-            <div class="card-header" :style="{backgroundColor: card.color}">
+            <div class="card-header" :style="{borderColor: card.color}">
                 <h4 class="card-title">{{ card.name }}</h4>
                 <form class="card-form-delete" @submit="deleteCard">
                     <input type="hidden" name="card" :value="card.id">
@@ -11,7 +11,7 @@
                 </form>
             </div>
             <div class="card-body">
-                <draggable 
+                <draggable
                     class="tasks-container"
                     :list="newTasksOrder.tasks"
                     :animation="200"
@@ -84,7 +84,7 @@
         data() {
             return {
                 isVisible: false,
-                name: '',   
+                name: '',
                 newTasksOrder: this.card
             }
         },

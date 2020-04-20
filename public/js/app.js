@@ -42667,7 +42667,7 @@ var render = function() {
           "div",
           {
             staticClass: "card-header",
-            style: { backgroundColor: _vm.card.color }
+            style: { borderColor: _vm.card.color }
           },
           [
             _c("h4", { staticClass: "card-title" }, [
@@ -43487,12 +43487,7 @@ var render = function() {
                     },
                     on: { click: _vm.toggleDropdown }
                   },
-                  [
-                    _c("i", {
-                      staticClass: "nav-icon fas fa-th",
-                      style: { color: _vm.color }
-                    })
-                  ]
+                  [_c("i", { staticClass: "nav-icon fas fa-th" })]
                 ),
                 _vm._v(" "),
                 _vm.dropdownStatus
