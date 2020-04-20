@@ -88,21 +88,31 @@ export default new Vuex.Store({
             context.commit('addCategories', {categories: response.data.categories})
         },
         insertCategory: async function (context, dataCategory) {
-            let response = await axios.post('/api/add-category', {
-                name: dataCategory.categoryName,
-                color: dataCategory.categoryColor
-            }).catch(error => {
+            try {
+                let response = await axios.post('/api/add-category', {
+                    name: dataCategory.categoryName,
+                    color: dataCategory.categoryColor
+                })
+                context.commit('addCategory', {category: response.data.category})
+            } catch(error) {
                 context.commit('handleErrors', {errors: error.response.data.errors})
-            })
-            context.commit('addCategory', {category: response.data.category})
+            }
         },
         deleteCategory: async function (context, id) {
-            let response = await axios.post('/api/delete/category/' + id)
-            context.commit('removeCategory', response.data.categoryId)
+            try {
+                let response = await axios.post('/api/delete/category/' + id)
+                context.commit('removeCategory', response.data.categoryId)
+            } catch (error) {
+                context.commit('handleErrors', {errors: error.response.data.errors})
+            }
         },
         loadCards: async function (context, id) {
-            let response = await get('/api/cards/' + id)
-            context.commit('addCards', {id: id, cards: response.data.cards})
+            try {
+                let response = await get('/api/cards/' + id)
+                context.commit('addCards', {id: id, cards: response.data.cards})
+            } catch (error) {
+                context.commit('handleErrors', {errors: error.response.data.errors})
+            }
         },
         insertCard: async function (context, cardData) {
             let response = await axios.post('/api/add-card/' + cardData.categoryId, {

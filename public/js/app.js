@@ -64056,28 +64056,34 @@ var strict = false;
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _context3.next = 2;
+                _context3.prev = 0;
+                _context3.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/add-category', {
                   name: dataCategory.categoryName,
                   color: dataCategory.categoryColor
-                })["catch"](function (error) {
-                  context.commit('handleErrors', {
-                    errors: error.response.data.errors
-                  });
                 });
 
-              case 2:
+              case 3:
                 response = _context3.sent;
                 context.commit('addCategory', {
                   category: response.data.category
                 });
+                _context3.next = 10;
+                break;
 
-              case 4:
+              case 7:
+                _context3.prev = 7;
+                _context3.t0 = _context3["catch"](0);
+                context.commit('handleErrors', {
+                  errors: _context3.t0.response.data.errors
+                });
+
+              case 10:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3);
+        }, _callee3, null, [[0, 7]]);
       }));
 
       function insertCategory(_x3, _x4) {
@@ -64093,19 +64099,29 @@ var strict = false;
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                _context4.next = 2;
+                _context4.prev = 0;
+                _context4.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/delete/category/' + id);
 
-              case 2:
+              case 3:
                 response = _context4.sent;
                 context.commit('removeCategory', response.data.categoryId);
+                _context4.next = 10;
+                break;
 
-              case 4:
+              case 7:
+                _context4.prev = 7;
+                _context4.t0 = _context4["catch"](0);
+                context.commit('handleErrors', {
+                  errors: _context4.t0.response.data.errors
+                });
+
+              case 10:
               case "end":
                 return _context4.stop();
             }
           }
-        }, _callee4);
+        }, _callee4, null, [[0, 7]]);
       }));
 
       function deleteCategory(_x5, _x6) {
@@ -64121,22 +64137,32 @@ var strict = false;
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                _context5.next = 2;
+                _context5.prev = 0;
+                _context5.next = 3;
                 return get('/api/cards/' + id);
 
-              case 2:
+              case 3:
                 response = _context5.sent;
                 context.commit('addCards', {
                   id: id,
                   cards: response.data.cards
                 });
+                _context5.next = 10;
+                break;
 
-              case 4:
+              case 7:
+                _context5.prev = 7;
+                _context5.t0 = _context5["catch"](0);
+                context.commit('handleErrors', {
+                  errors: _context5.t0.response.data.errors
+                });
+
+              case 10:
               case "end":
                 return _context5.stop();
             }
           }
-        }, _callee5);
+        }, _callee5, null, [[0, 7]]);
       }));
 
       function loadCards(_x7, _x8) {
