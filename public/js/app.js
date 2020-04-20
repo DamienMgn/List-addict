@@ -64026,21 +64026,31 @@ var strict = false;
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
+                _context2.prev = 0;
+                _context2.next = 3;
                 return get('/api/categories');
 
-              case 2:
+              case 3:
                 response = _context2.sent;
                 context.commit('addCategories', {
                   categories: response.data.categories
                 });
+                _context2.next = 10;
+                break;
 
-              case 4:
+              case 7:
+                _context2.prev = 7;
+                _context2.t0 = _context2["catch"](0);
+                context.commit('handleErrors', {
+                  errors: _context2.t0.response.data.errors
+                });
+
+              case 10:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2);
+        }, _callee2, null, [[0, 7]]);
       }));
 
       function loadCategories(_x2) {
@@ -64178,28 +64188,34 @@ var strict = false;
           while (1) {
             switch (_context6.prev = _context6.next) {
               case 0:
-                _context6.next = 2;
+                _context6.prev = 0;
+                _context6.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/add-card/' + cardData.categoryId, {
                   cardName: cardData.cardName,
                   cardColor: cardData.cardColor
-                })["catch"](function (error) {
-                  context.commit('handleErrors', {
-                    errors: error.response.data.errors
-                  });
                 });
 
-              case 2:
+              case 3:
                 response = _context6.sent;
                 context.commit('addCard', {
                   card: response.data.card
                 });
+                _context6.next = 10;
+                break;
 
-              case 4:
+              case 7:
+                _context6.prev = 7;
+                _context6.t0 = _context6["catch"](0);
+                context.commit('handleErrors', {
+                  errors: _context6.t0.response.data.errors
+                });
+
+              case 10:
               case "end":
                 return _context6.stop();
             }
           }
-        }, _callee6);
+        }, _callee6, null, [[0, 7]]);
       }));
 
       function insertCard(_x9, _x10) {
@@ -64215,28 +64231,34 @@ var strict = false;
           while (1) {
             switch (_context7.prev = _context7.next) {
               case 0:
-                _context7.next = 2;
+                _context7.prev = 0;
+                _context7.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/update/card/' + cardData.cardId + '/' + cardData.categoryId, {
                   cardName: cardData.cardName,
                   cardColor: cardData.cardColor
-                })["catch"](function (error) {
-                  context.commit('handleErrors', {
-                    errors: error.response.data.errors
-                  });
                 });
 
-              case 2:
+              case 3:
                 response = _context7.sent;
                 context.commit('addCard', {
                   card: response.data.card
                 });
+                _context7.next = 10;
+                break;
 
-              case 4:
+              case 7:
+                _context7.prev = 7;
+                _context7.t0 = _context7["catch"](0);
+                context.commit('handleErrors', {
+                  errors: _context7.t0.response.data.errors
+                });
+
+              case 10:
               case "end":
                 return _context7.stop();
             }
           }
-        }, _callee7);
+        }, _callee7, null, [[0, 7]]);
       }));
 
       function updateCard(_x11, _x12) {
@@ -64252,21 +64274,31 @@ var strict = false;
           while (1) {
             switch (_context8.prev = _context8.next) {
               case 0:
-                _context8.next = 2;
+                _context8.prev = 0;
+                _context8.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/delete/card/' + cardData.cardId + '/' + cardData.categoryId);
 
-              case 2:
+              case 3:
                 response = _context8.sent;
                 context.commit('removeCard', {
                   card: response.data.card
                 });
+                _context8.next = 10;
+                break;
 
-              case 4:
+              case 7:
+                _context8.prev = 7;
+                _context8.t0 = _context8["catch"](0);
+                context.commit('handleErrors', {
+                  errors: _context8.t0.response.data.errors
+                });
+
+              case 10:
               case "end":
                 return _context8.stop();
             }
           }
-        }, _callee8);
+        }, _callee8, null, [[0, 7]]);
       }));
 
       function deleteCard(_x13, _x14) {
@@ -64282,28 +64314,34 @@ var strict = false;
           while (1) {
             switch (_context9.prev = _context9.next) {
               case 0:
-                _context9.next = 2;
+                _context9.prev = 0;
+                _context9.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/add-task/' + taskData.cardId + '/' + taskData.categoryId, {
                   taskName: taskData.taskName,
                   taskColor: taskData.taskColor
-                })["catch"](function (error) {
-                  context.commit('handleErrors', {
-                    errors: error.response.data.errors
-                  });
                 });
 
-              case 2:
+              case 3:
                 response = _context9.sent;
                 context.commit('addCard', {
                   card: response.data.card
                 });
+                _context9.next = 10;
+                break;
 
-              case 4:
+              case 7:
+                _context9.prev = 7;
+                _context9.t0 = _context9["catch"](0);
+                context.commit('handleErrors', {
+                  errors: _context9.t0.response.data.errors
+                });
+
+              case 10:
               case "end":
                 return _context9.stop();
             }
           }
-        }, _callee9);
+        }, _callee9, null, [[0, 7]]);
       }));
 
       function insertTask(_x15, _x16) {
@@ -64319,21 +64357,31 @@ var strict = false;
           while (1) {
             switch (_context10.prev = _context10.next) {
               case 0:
-                _context10.next = 2;
+                _context10.prev = 0;
+                _context10.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/delete/task/' + taskData.taskId + '/' + taskData.cardId + '/' + taskData.categoryId);
 
-              case 2:
+              case 3:
                 response = _context10.sent;
                 context.commit('addCard', {
                   card: response.data.card
                 });
+                _context10.next = 10;
+                break;
 
-              case 4:
+              case 7:
+                _context10.prev = 7;
+                _context10.t0 = _context10["catch"](0);
+                context.commit('handleErrors', {
+                  errors: _context10.t0.response.data.errors
+                });
+
+              case 10:
               case "end":
                 return _context10.stop();
             }
           }
-        }, _callee10);
+        }, _callee10, null, [[0, 7]]);
       }));
 
       function deleteTask(_x17, _x18) {
@@ -64349,29 +64397,35 @@ var strict = false;
           while (1) {
             switch (_context11.prev = _context11.next) {
               case 0:
-                _context11.next = 2;
+                _context11.prev = 0;
+                _context11.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/update/task/' + taskData.taskId + '/' + taskData.cardId + '/' + taskData.categoryId, {
                   status: taskData.checkbox,
                   taskColor: taskData.taskColor,
                   taskName: taskData.taskName
-                })["catch"](function (error) {
-                  context.commit('handleErrors', {
-                    errors: error.response.data.errors
-                  });
                 });
 
-              case 2:
+              case 3:
                 response = _context11.sent;
                 context.commit('addCard', {
                   card: response.data.card
                 });
+                _context11.next = 10;
+                break;
 
-              case 4:
+              case 7:
+                _context11.prev = 7;
+                _context11.t0 = _context11["catch"](0);
+                context.commit('handleErrors', {
+                  errors: _context11.t0.response.data.errors
+                });
+
+              case 10:
               case "end":
                 return _context11.stop();
             }
           }
-        }, _callee11);
+        }, _callee11, null, [[0, 7]]);
       }));
 
       function updateTask(_x19, _x20) {
@@ -64387,28 +64441,34 @@ var strict = false;
           while (1) {
             switch (_context12.prev = _context12.next) {
               case 0:
-                _context12.next = 2;
+                _context12.prev = 0;
+                _context12.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/update/category/' + categoryData.categoryId, {
                   color: categoryData.categoryColor,
                   name: categoryData.categoryName
-                })["catch"](function (error) {
-                  context.commit('handleErrors', {
-                    errors: error.response.data.errors
-                  });
                 });
 
-              case 2:
+              case 3:
                 response = _context12.sent;
                 context.commit('upCategory', {
                   category: response.data.category
                 });
+                _context12.next = 10;
+                break;
 
-              case 4:
+              case 7:
+                _context12.prev = 7;
+                _context12.t0 = _context12["catch"](0);
+                context.commit('handleErrors', {
+                  errors: _context12.t0.response.data.errors
+                });
+
+              case 10:
               case "end":
                 return _context12.stop();
             }
           }
-        }, _callee12);
+        }, _callee12, null, [[0, 7]]);
       }));
 
       function updateCategory(_x21, _x22) {
@@ -64424,14 +64484,11 @@ var strict = false;
           while (1) {
             switch (_context13.prev = _context13.next) {
               case 0:
-                _context13.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/update/task/card/' + taskData.taskId + '/' + taskData.cardId + '/' + taskData.categoryId)["catch"](function (error) {
-                  context.commit('handleErrors', {
-                    errors: error.response.data.errors
-                  });
-                });
+                _context13.prev = 0;
+                _context13.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/update/task/card/' + taskData.taskId + '/' + taskData.cardId + '/' + taskData.categoryId);
 
-              case 2:
+              case 3:
                 response = _context13.sent;
                 context.commit('addCard', {
                   card: response.data.oldCard
@@ -64439,13 +64496,22 @@ var strict = false;
                 context.commit('addCard', {
                   card: response.data.newCard
                 });
+                _context13.next = 11;
+                break;
 
-              case 5:
+              case 8:
+                _context13.prev = 8;
+                _context13.t0 = _context13["catch"](0);
+                context.commit('handleErrors', {
+                  errors: _context13.t0.response.data.errors
+                });
+
+              case 11:
               case "end":
                 return _context13.stop();
             }
           }
-        }, _callee13);
+        }, _callee13, null, [[0, 8]]);
       }));
 
       function updateTaskCard(_x23, _x24) {

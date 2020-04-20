@@ -84,8 +84,12 @@ export default new Vuex.Store({
     },
     actions: {
         loadCategories: async function (context) {
-            let response = await get('/api/categories')
-            context.commit('addCategories', {categories: response.data.categories})
+            try {
+                let response = await get('/api/categories')
+                context.commit('addCategories', {categories: response.data.categories})
+            } catch(error) {
+                context.commit('handleErrors', {errors: error.response.data.errors})
+            }
         },
         insertCategory: async function (context, dataCategory) {
             try {
@@ -115,67 +119,85 @@ export default new Vuex.Store({
             }
         },
         insertCard: async function (context, cardData) {
-            let response = await axios.post('/api/add-card/' + cardData.categoryId, {
-               cardName: cardData.cardName,
-               cardColor: cardData.cardColor
-            }).catch(error => {
+            try {
+                let response = await axios.post('/api/add-card/' + cardData.categoryId, {
+                    cardName: cardData.cardName,
+                    cardColor: cardData.cardColor
+                })
+                context.commit('addCard', {card: response.data.card})
+            } catch (error) {
                 context.commit('handleErrors', {errors: error.response.data.errors})
-            })
-            context.commit('addCard', {card: response.data.card})
+            }
         },
         updateCard: async function (context, cardData) {
-            let response = await axios.post('/api/update/card/' + cardData.cardId + '/' + cardData.categoryId, {
-               cardName: cardData.cardName,
-               cardColor: cardData.cardColor
-            }).catch(error => {
+            try {
+                let response = await axios.post('/api/update/card/' + cardData.cardId + '/' + cardData.categoryId, {
+                    cardName: cardData.cardName,
+                    cardColor: cardData.cardColor
+                })
+                context.commit('addCard', {card: response.data.card})
+            } catch (error) {
                 context.commit('handleErrors', {errors: error.response.data.errors})
-            })
-            context.commit('addCard', {card: response.data.card})
+            }
         },
         deleteCard: async function (context, cardData) {
-            let response = await axios.post('/api/delete/card/' + cardData.cardId + '/' + cardData.categoryId)
-            context.commit('removeCard', {card: response.data.card})
+            try {
+                let response = await axios.post('/api/delete/card/' + cardData.cardId + '/' + cardData.categoryId)
+                context.commit('removeCard', {card: response.data.card})
+            } catch (error) {
+                context.commit('handleErrors', {errors: error.response.data.errors})
+            }
         },
         insertTask: async function (context, taskData) {
-            let response = await axios.post('/api/add-task/' + taskData.cardId + '/' + taskData.categoryId, {
-                taskName: taskData.taskName,
-                taskColor: taskData.taskColor
-            }).catch(error => {
+            try {
+                let response = await axios.post('/api/add-task/' + taskData.cardId + '/' + taskData.categoryId, {
+                    taskName: taskData.taskName,
+                    taskColor: taskData.taskColor
+                })
+                context.commit('addCard', {card: response.data.card})
+            } catch (error) {
                 context.commit('handleErrors', {errors: error.response.data.errors})
-            })
-            context.commit('addCard', {card: response.data.card})
+            }
         },
         deleteTask: async function (context, taskData) {
-            let response = await axios.post('/api/delete/task/' + taskData.taskId + '/' + taskData.cardId + '/' + taskData.categoryId)
-            context.commit('addCard', {card: response.data.card})
+            try {
+                let response = await axios.post('/api/delete/task/' + taskData.taskId + '/' + taskData.cardId + '/' + taskData.categoryId)
+                context.commit('addCard', {card: response.data.card})
+            } catch (error) {
+                context.commit('handleErrors', {errors: error.response.data.errors})
+            }
         },
         updateTask: async function (context, taskData) {
-            let response = await axios.post('/api/update/task/' + taskData.taskId + '/' + taskData.cardId + '/' + taskData.categoryId, {
-                status: taskData.checkbox,
-                taskColor: taskData.taskColor,
-                taskName: taskData.taskName
-            }).catch(error => {
+            try {
+                let response = await axios.post('/api/update/task/' + taskData.taskId + '/' + taskData.cardId + '/' + taskData.categoryId, {
+                    status: taskData.checkbox,
+                    taskColor: taskData.taskColor,
+                    taskName: taskData.taskName
+                })
+                context.commit('addCard', {card: response.data.card})
+            } catch (error) {
                 context.commit('handleErrors', {errors: error.response.data.errors})
-            })
-            context.commit('addCard', {card: response.data.card})
+            }
         },
         updateCategory: async function (context, categoryData) {
-            let response = await axios.post('/api/update/category/' + categoryData.categoryId, {
-                color: categoryData.categoryColor,
-                name: categoryData.categoryName
-            }).catch(error => {
+            try {
+                let response = await axios.post('/api/update/category/' + categoryData.categoryId, {
+                    color: categoryData.categoryColor,
+                    name: categoryData.categoryName
+                })
+                context.commit('upCategory', {category: response.data.category})
+            } catch (error) {
                 context.commit('handleErrors', {errors: error.response.data.errors})
-            })
-            context.commit('upCategory', {category: response.data.category})
+            }
         },
         updateTaskCard: async function (context, taskData) {
-            let response = await axios.post('/api/update/task/card/' + taskData.taskId + '/' + taskData.cardId + '/' + taskData.categoryId)
-            .catch(error => {
+            try {
+                let response = await axios.post('/api/update/task/card/' + taskData.taskId + '/' + taskData.cardId + '/' + taskData.categoryId)
+                context.commit('addCard', {card: response.data.oldCard})
+                context.commit('addCard', {card: response.data.newCard})
+            } catch (error) {
                 context.commit('handleErrors', {errors: error.response.data.errors})
-            })
-
-            context.commit('addCard', {card: response.data.oldCard})
-            context.commit('addCard', {card: response.data.newCard})
+            }
         },
     }
 })
