@@ -2538,7 +2538,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "TaskComponent",
   components: {},
@@ -43344,17 +43343,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "task-footer" }, [
-        _c("p", { staticClass: "task-date" }, [
-          _vm._v(
-            "\n            " +
-              _vm._s(new Date(_vm.task.created_at).getDate()) +
-              "/" +
-              _vm._s(new Date(_vm.task.created_at).getMonth() + 1) +
-              "/" +
-              _vm._s(new Date(_vm.task.created_at).getFullYear()) +
-              "\n        "
-          )
-        ]),
+        _c("p", { staticClass: "task-date" }),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -43659,7 +43648,7 @@ var render = function() {
                   attrs: {
                     autocomplete: "off",
                     type: "text",
-                    placeholder: "Nom de la carte",
+                    placeholder: "Nom",
                     name: _vm.type
                   },
                   domProps: { value: _vm.name }

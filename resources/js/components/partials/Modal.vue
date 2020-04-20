@@ -10,7 +10,7 @@
                 </div>
                 <form @submit="actionToDo">
                     <div class="modal-body">
-                        <input autocomplete="off" class="form-control" type="text" placeholder="Nom de la carte" :name="type" v-bind:value="name">
+                        <input autocomplete="off" class="form-control" type="text" placeholder="Nom" :name="type" v-bind:value="name">
                         <ColorPicker></ColorPicker>
                     </div>
                     <div class="modal-footer">

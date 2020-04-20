@@ -23,7 +23,6 @@
         </div>
         <div class="task-footer">
             <p class="task-date">
-                {{ new Date(task.created_at).getDate() }}/{{ new Date(task.created_at).getMonth() + 1 }}/{{ new Date(task.created_at).getFullYear() }}
             </p>
             <input @change="updateTaskStatus" class="task-form-checkbox" type="checkbox" v-model="task.status" :data-task="task.id" :data-card="card.id" :data-category="card.category_id">
         </div>

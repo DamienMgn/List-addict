@@ -11144,7 +11144,7 @@ btn-dropdown:hover {
 
 .card-container {
   min-width: 18.5rem !important;
-  background-color: #fff;
+  background-color: #ECECEC;
   margin: 0rem 0.5rem;
   display: table;
   box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.1);
@@ -11154,13 +11154,13 @@ btn-dropdown:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 4rem;
+  height: 3rem;
   padding: 0;
   margin: 0;
   position: relative;
   border-top: 2px solid;
   border-bottom: 0px;
-  background-color: #F4F4F4;
+  background-color: #ECECEC;
 }
 
 .card-container .card-header .card-form-delete {
@@ -11207,6 +11207,11 @@ btn-dropdown:hover {
   align-items: center;
 }
 
+.card-container .card-footer {
+  padding: 0.4rem 0.4rem;
+  background-color: #ECECEC;
+}
+
 /* Tasks */
 
 .tasks-container {
@@ -11220,7 +11225,7 @@ btn-dropdown:hover {
 
 .tasks-container .task-container {
   list-style-type: none !important;
-  margin: 0.7rem 0.5rem;
+  margin: 0.5rem 0.5rem;
   padding: 0;
   border-radius: 3px !important;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
@@ -11237,7 +11242,7 @@ btn-dropdown:hover {
 }
 
 .tasks-container .task-header {
-  padding: 0.6rem 1rem;
+  padding: 0.4rem 1rem;
   border-bottom: 1px solid #F4F4F4;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
@@ -11305,7 +11310,7 @@ btn-dropdown:hover {
 }
 
 .tasks-container .task-footer {
-  padding: 0.6rem 1rem;
+  padding: 0.4rem 1rem;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   border-bottom-right-radius: 3px;
