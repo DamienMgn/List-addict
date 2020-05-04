@@ -108,13 +108,13 @@ html, body {
 
 input[type="radio"] {
     background-color: red;
-    border-radius: 15px;
+    border-radius: 1px;
     cursor: pointer;
     display: inline-block;
-    height: 25px;
+    height: 30px;
     margin-right: 15px;
     position: relative;
-    width: 25px;
+    width: 30px;
     -webkit-appearance: none;
 }
 
@@ -137,6 +137,10 @@ input[type="radio"]:after {
 .main-sidebar {
     background-color: $dark !important;
     font-size: 0.9rem;
+
+    .brand-image {
+        opacity: 1 !important;
+    }
 
     .sidebar {
         max-height: calc(100vh - 4rem);
@@ -180,7 +184,7 @@ input[type="radio"]:after {
     .dropdown-toggle {
 
         .nav-icon {
-            color: $grey-light-2;
+            color: $dark-blue;
         }
     }
 }
@@ -267,13 +271,15 @@ input[type="radio"]:after {
     padding-left: 4rem !important;
 
     .text-dark {
-        color: $grey-light-2 !important;
+        color: $dark-blue !important;
+        font-size: 1.3rem;
     }
 }
 
     /* Card */
 .card-container {
-    min-width: 18.5rem !important;
+    width: 18.5rem !important;
+    max-width: 18.5rem !important;
     background-color: #ECECEC;
     margin: 0rem 0.5rem;
     display: table;
@@ -306,13 +312,13 @@ input[type="radio"]:after {
     }
 
     .card-title {
-        color: $grey-light-2;
-        font-size: 1.2rem !important;
-        font-weight: 500 !important;
+        color: $dark-blue;
+        font-size: 1.05rem !important;
+        font-weight: 600 !important;
     }
 
     .card-body {
-        padding: 0.5rem 0;
+        padding: 0 0 0.5rem 0;
         max-height: 60vh;
         overflow: auto;
     }
@@ -361,6 +367,7 @@ input[type="radio"]:after {
         background-color: #FAFAFA;
         border-left: 2px solid;
         transition: 0.3s transform;
+        font-size: 0.95rem;
     }
 
     .checked {
@@ -372,7 +379,7 @@ input[type="radio"]:after {
 
     .task-header {
         padding: 0.4rem 1rem;
-        border-bottom: 1px solid $grey-light;
+        border-bottom: 0px solid $grey-light;
         border-top-left-radius: 3px;
         border-top-right-radius: 3px;
         border-bottom-right-radius: 0px;
@@ -381,10 +388,12 @@ input[type="radio"]:after {
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
+        color: $dark-blue;
 
         .btn-dropdown {
             padding: 0;
             display: none;
+            margin: 0;
 
             .fa {
                 color: #C0C0C0;

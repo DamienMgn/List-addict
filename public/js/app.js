@@ -43175,7 +43175,7 @@ var staticRenderFns = [
       _c("img", {
         staticClass: "brand-image img-circle elevation-3",
         staticStyle: { opacity: ".8" },
-        attrs: { src: "dist/img/AdminLTELogo.png", alt: "AdminLTE Logo" }
+        attrs: { src: "dist/img/logo.png", alt: "AdminLTE Logo" }
       }),
       _vm._v(" "),
       _c("span", { staticClass: "brand-text font-weight-light" }, [
@@ -43197,7 +43197,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("div", { staticClass: "info" }, [
         _c("a", { staticClass: "d-block", attrs: { href: "#" } }, [
-          _vm._v("Damien")
+          _vm._v("Name")
         ])
       ])
     ])

@@ -10979,13 +10979,13 @@ body {
 
 input[type=radio] {
   background-color: red;
-  border-radius: 15px;
+  border-radius: 1px;
   cursor: pointer;
   display: inline-block;
-  height: 25px;
+  height: 30px;
   margin-right: 15px;
   position: relative;
-  width: 25px;
+  width: 30px;
   -webkit-appearance: none;
 }
 
@@ -11006,6 +11006,10 @@ input[type=radio]:after {
 .main-sidebar {
   background-color: #222D32 !important;
   font-size: 0.9rem;
+}
+
+.main-sidebar .brand-image {
+  opacity: 1 !important;
 }
 
 .main-sidebar .sidebar {
@@ -11051,7 +11055,7 @@ btn-dropdown:hover {
 }
 
 .dropdown-category-main .dropdown-toggle .nav-icon {
-  color: #808080;
+  color: #172A4D;
 }
 
 .btn-dropdown:after {
@@ -11137,13 +11141,15 @@ btn-dropdown:hover {
 }
 
 .page-title .text-dark {
-  color: #808080 !important;
+  color: #172A4D !important;
+  font-size: 1.3rem;
 }
 
 /* Card */
 
 .card-container {
-  min-width: 18.5rem !important;
+  width: 18.5rem !important;
+  max-width: 18.5rem !important;
   background-color: #ECECEC;
   margin: 0rem 0.5rem;
   display: table;
@@ -11178,13 +11184,13 @@ btn-dropdown:hover {
 }
 
 .card-container .card-title {
-  color: #808080;
-  font-size: 1.2rem !important;
-  font-weight: 500 !important;
+  color: #172A4D;
+  font-size: 1.05rem !important;
+  font-weight: 600 !important;
 }
 
 .card-container .card-body {
-  padding: 0.5rem 0;
+  padding: 0 0 0.5rem 0;
   max-height: 60vh;
   overflow: auto;
 }
@@ -11232,6 +11238,7 @@ btn-dropdown:hover {
   background-color: #FAFAFA;
   border-left: 2px solid;
   transition: 0.3s transform;
+  font-size: 0.95rem;
 }
 
 .tasks-container .checked {
@@ -11243,7 +11250,7 @@ btn-dropdown:hover {
 
 .tasks-container .task-header {
   padding: 0.4rem 1rem;
-  border-bottom: 1px solid #F4F4F4;
+  border-bottom: 0px solid #F4F4F4;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 0px;
@@ -11252,11 +11259,13 @@ btn-dropdown:hover {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  color: #172A4D;
 }
 
 .tasks-container .task-header .btn-dropdown {
   padding: 0;
   display: none;
+  margin: 0;
 }
 
 .tasks-container .task-header .btn-dropdown .fa {
