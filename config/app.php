@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'fr',
 
     /*
     |--------------------------------------------------------------------------
@@ -105,6 +105,9 @@ return [
     | localized telephone numbers, street address information and more.
     |
     */
+
+    'locales' => ['fr', 'en',],
+
 
     'faker_locale' => 'en_US',
 
