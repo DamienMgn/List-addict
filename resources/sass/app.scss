@@ -24,7 +24,7 @@ html, body {
 
 .welcome-main {
     min-height: 100vh;
-    background-color: #FFFAF0;
+    background-color: #F4F4F5;
 
     .welcome-header {
         display: flex !important;
@@ -123,6 +123,10 @@ html, body {
             .welcome-demo {
                 width: 307px;
                 height: 507px;
+                background-image: url('../img/fond2.png');
+                background-size: 207px 430px;
+                background-position: 50px 45px;
+                background-repeat: no-repeat;
             }
         }
     }
@@ -195,6 +199,12 @@ html, body {
             width: 1230px !important;
         }
     }
+}
+
+/* Login Page */
+
+.login-container {
+    background-color: #FFFAF0;
 }
 
 .m-b-md {

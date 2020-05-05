@@ -10895,7 +10895,7 @@ body {
 
 .welcome-main {
   min-height: 100vh;
-  background-color: #FFFAF0;
+  background-color: #F4F4F5;
 }
 
 .welcome-main .welcome-header {
@@ -10996,6 +10996,10 @@ body {
 .welcome-main .welcome-content .right .welcome-demo {
   width: 307px;
   height: 507px;
+  background-image: url(/images/fond2.png?98337c2b17eba8c4fea6bf57ba50f5c8);
+  background-size: 207px 430px;
+  background-position: 50px 45px;
+  background-repeat: no-repeat;
 }
 
 .welcome-main .welcome-footer {
@@ -11054,6 +11058,12 @@ body {
   .welcome-main .welcome-content {
     width: 1230px !important;
   }
+}
+
+/* Login Page */
+
+.login-container {
+  background-color: #FFFAF0;
 }
 
 .m-b-md {
