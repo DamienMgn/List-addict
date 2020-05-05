@@ -33,7 +33,7 @@
             </ul>
         </div>
         <div class="welcome-side right">
-             <img class="welcome-demo" src="images/app-mask.png" alt="demonstration">
+           <img class="welcome-demo" src="images/app-mask.png" alt="demonstration">
         </div>
     </div>
 @endsection
