@@ -18,7 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    <link href="{{ asset('css/heroku.css') }}" rel="stylesheet">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <!-- Font Awesome Icons -->
