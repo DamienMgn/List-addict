@@ -13,6 +13,7 @@ html, body {
 .welcome-main {
     min-height: 100vh;
     background-color: #F4F4F5;
+    position: relative;
 }
 
 .welcome-main .welcome-header {
@@ -131,16 +132,20 @@ html, body {
 .welcome-main .welcome-demo {
     width: 307px;
     height: 507px;
-    background-image: url('../images/fond2.png');
-    background-size: 207px 430px;
-    background-position: 50px 45px;
+    background-image: url('../images/demo-2.png');
+    background-size: 190px 380px;
     background-repeat: no-repeat;
+    background-position: 57px 55px;
+
 }
 
 .welcome-main .welcome-footer {
     width: 100%;
     height: 30%;
     background-color: green;
+}
+
+.welcome-main .welcome-side .demo-container {
 }
 
 /* Auth Page */
@@ -217,9 +222,10 @@ html, body {
 
     .welcome-main .right {
         width: 30%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    }
+
+    #demo-container {
+        margin-top: -5rem;
     }
 }
 
