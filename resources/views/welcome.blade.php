@@ -3,19 +3,21 @@
 <div class="wrapper welcome-main">
 @section('navbar')
     <header class="welcome-header">
-        <nav class="welcome-nav">
-            @auth
-                <a href="{{ url('/home') }}">Home</a>
-            @else
-                <a class="nav-li" href="{{ route('login') }}">Connexion</a>
+        <div class="welcome-header-cont">
+            <a class="welcome-brand nav-li" href="{{ url('/') }}">Home</a>
+            <nav class="welcome-nav">
+                @auth
+                @else
+                    <a class="nav-li" href="{{ route('login') }}">Connexion</a>
 
-                @if (Route::has('register'))
-                    <a class="nav-li" href="{{ route('register') }}">Inscription</a>
-                @endif
-            @endauth
-        </nav>
+                    @if (Route::has('register'))
+                        <a class="nav-li" href="{{ route('register') }}">Inscription</a>
+                    @endif
+                @endauth
+            </nav>
+        </div>
         <div class="welcome-title">
-            <h1>Bienvenue sur List-Addict ! Vous venez d arriver ? <a href="{{ route('register') }}">Créez un compte</a> !</h1>
+            <h3>Bienvenue sur List-Addict ! Vous venez d arriver ? <a href="{{ route('register') }}">Créez un compte</a> !</h3>
         </div>
     </header>
 @endsection
@@ -23,7 +25,7 @@
 @section('content')
     <div class="welcome-content">
         <div class="welcome-side left">
-            <h3>List-Addict facilite et vous aide dans votre quotidien.</h3>
+            <h1>List-Addict facilite et vous aide dans votre quotidien.</h1>
             <ul class="welcome-ul">
                 <li class="welcome-li">Gérer facilement vos projets !</li>
                 <li class="welcome-li">Consulter votre agenda !</li>

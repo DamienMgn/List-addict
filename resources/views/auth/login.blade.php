@@ -1,7 +1,29 @@
 @extends('layouts.app')
 
+<div class="wrapper welcome-main">
+@section('navbar')
+    <header class="welcome-header">
+        <div class="welcome-header-cont">
+            <a class="welcome-brand nav-li" href="{{ url('/') }}">Home</a>
+            <nav class="welcome-nav">
+                @auth
+                @else
+                    <a class="nav-li" href="{{ route('login') }}">Connexion</a>
+
+                    @if (Route::has('register'))
+                        <a class="nav-li" href="{{ route('register') }}">Inscription</a>
+                    @endif
+                @endauth
+            </nav>
+        </div>
+        <div class="welcome-title">
+            <h3>Bienvenue sur List-Addict ! Vous venez d arriver ? <a href="{{ route('register') }}">Créez un compte</a> !</h3>
+        </div>
+    </header>
+@endsection
+
 @section('content')
-<div class="container login-container">
+<div class="container auth-container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
