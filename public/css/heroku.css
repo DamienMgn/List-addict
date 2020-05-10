@@ -760,6 +760,14 @@ input[type="radio"]:after {
     border-radius: 3px;
 }
 
+.dashboard-link, .dashboard-link:hover {
+    color: #172A4D;
+    text-decoration: underline;
+    padding: 0;
+    margin: 0;
+}
+
+
 @keyframes appear {
     from {
         opacity: 0;

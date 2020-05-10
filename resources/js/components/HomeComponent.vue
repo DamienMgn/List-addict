@@ -17,7 +17,11 @@
                         </tr>
                         <tr v-for="category in categories">
                             <td>{{ category.id }}</td>
-                            <td>{{ category.name }}</td>
+                            <td>
+                                <router-link :to="{name: 'categorie', params: {id: category.id}}" class="dashboard-link">
+                                    {{ category.name }}
+                                </router-link>
+                            </td>
                             <td>{{ new Date(category.created_at).getDate() }}/{{ new Date(category.created_at).getMonth() + 1 }}/{{ new Date(category.created_at).getFullYear() }}</td>
                             <td class="dashboard-cards-container">
                                 <div class="dashboard-card" v-for="card in category.cards" :keys="card.id" :style="{backgroundColor: card.color}">

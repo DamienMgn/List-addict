@@ -109,6 +109,7 @@
 
                 $('#' + this.id).modal('toggle');
                 $('.modal-backdrop').remove();
+                document.querySelectorAll('.form-control').value = '';
             },
             deleteTask: function(e) {
                 e.preventDefault();

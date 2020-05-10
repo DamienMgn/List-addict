@@ -13,7 +13,7 @@
             return {
                 colors: [
                     {name: '#00FFB3'},
-                    {name: '#C9FF8D'},
+                    {name: '#BF6FB2'},
                     {name: '#92F2DC'},
                     {name: '#95B275'},
                     {name: '#348899'},

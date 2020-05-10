@@ -2230,6 +2230,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "HomeComponent",
@@ -2603,7 +2607,7 @@ __webpack_require__.r(__webpack_exports__);
       colors: [{
         name: '#00FFB3'
       }, {
-        name: '#C9FF8D'
+        name: '#BF6FB2'
       }, {
         name: '#92F2DC'
       }, {
@@ -2835,6 +2839,7 @@ __webpack_require__.r(__webpack_exports__);
 
       $('#' + this.id).modal('toggle');
       $('.modal-backdrop').remove();
+      document.querySelectorAll('.form-control').value = '';
     },
     deleteTask: function deleteTask(e) {
       e.preventDefault();
@@ -42935,7 +42940,31 @@ var render = function() {
                 return _c("tr", [
                   _c("td", [_vm._v(_vm._s(category.id))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(category.name))]),
+                  _c(
+                    "td",
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "dashboard-link",
+                          attrs: {
+                            to: {
+                              name: "categorie",
+                              params: { id: category.id }
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                " +
+                              _vm._s(category.name) +
+                              "\n                            "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
                   _c("td", [
                     _vm._v(
