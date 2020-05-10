@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-<div class="wrapper welcome-main">
 @section('navbar')
+<div class="welcome-main">
     <header class="welcome-header">
         <div class="welcome-header-cont">
             <a class="welcome-brand nav-li" href="{{ url('/') }}">Home</a>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-<div class="wrapper welcome-main">
 @section('navbar')
+<div class="welcome-main">
     <header class="welcome-header">
         <div class="welcome-header-cont">
             <a class="welcome-brand nav-li" href="{{ url('/') }}">Home</a>
@@ -23,17 +23,17 @@
 @endsection
 
 @section('content')
-    <div class="welcome-content">
-        <div class="welcome-side left">
-            <h1>List-Addict facilite et vous aide dans votre quotidien.</h1>
-            <ul class="welcome-ul">
-                <li class="welcome-li">Gérer facilement vos projets !</li>
-                <li class="welcome-li">Consulter votre agenda !</li>
-                <li class="welcome-li">Organiser vos activités quotidiennes !</li>
-            </ul>
+        <div class="welcome-content">
+            <div class="welcome-side left">
+                <h1>List-Addict facilite et vous aide dans votre quotidien.</h1>
+                <ul class="welcome-ul">
+                    <li class="welcome-li">Gérer facilement vos projets !</li>
+                    <li class="welcome-li">Consulter votre agenda !</li>
+                    <li class="welcome-li">Organiser vos activités quotidiennes !</li>
+                </ul>
+            </div>
+            <div class="welcome-side right">
+               <img class="welcome-demo" src="images/app-mask.png" alt="demonstration">
+            </div>
         </div>
-        <div class="welcome-side right">
-           <img class="welcome-demo" src="images/app-mask.png" alt="demonstration">
-        </div>
-    </div>
 @endsection

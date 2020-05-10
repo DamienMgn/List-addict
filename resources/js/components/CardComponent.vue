@@ -3,25 +3,37 @@
         <div class="card-container">
             <div class="card-header" :style="{borderColor: card.color}">
                 <h4 class="card-title">{{ card.name }}</h4>
-                <form class="card-form-delete" @submit="deleteCard">
-                    <input type="hidden" name="card" :value="card.id">
-                    <input type="hidden" name="category" :value="card.category_id">
-                    <button type="submit" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                    <a data-toggle="modal" :data-target="'#modal-update-card' + card.id" class="btn btn-box-tool" ><i class="fas fa-pen"></i></a>
-                </form>
+                <div class="card-form-delete">
+                    <a class="btn-dropdown dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true" @click="toggleDropdown">
+                        <i class="fa fa-ellipsis-v"></i>
+                    </a>
+                    <ul class="dropdown-menu" v-if="dropdownStatus">
+                        <li role="presentation">
+                            <form @submit="deleteCard">
+                                <input type="hidden" name="card" :value="card.id">
+                                <input type="hidden" name="category" :value="card.category_id">
+                                <button class="btn-delete-task btn btn-box-tool" data-widget="remove">Supprimer</button>
+                            </form>
+                        </li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation">
+                            <a class="btn btn-box-tool" data-toggle="modal" :data-target="'#modal-update-card' + card.id">Modifier</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
             <div class="card-body">
                 <draggable
-                    class="tasks-container"
                     :list="newTasksOrder.tasks"
+                    class="tasks-container"
                     :animation="200"
                     :group="'status'"
-                    :tag="'li'"
+                    :tag="'ul'"
                     v-on:change="updateTasksOrder"
                     v-on:add="updateTaskCard($event, card.id)">
-                    <li v-for="task in newTasksOrder.tasks" :key="task.id" :data-id="task.id">
-                        <TaskComponent :task="task" :card="card"></TaskComponent>
-                    </li>
+                        <li v-for="task in newTasksOrder.tasks" :key="task.id" :data-id="task.id">
+                            <TaskComponent :task="task" :card="card"></TaskComponent>
+                        </li>
                 </draggable>
             </div>
             <div class="card-footer">
@@ -58,6 +70,7 @@
                 :title="'Modifier la tâche'"
                 :id="'modal-update-task' + task.id"
                 @update="updateTask"
+                @delete="deleteTask"
                 :card="card.id"
                 :category="card.category_id"
                 :task="task.id"
@@ -85,7 +98,8 @@
             return {
                 isVisible: false,
                 name: '',
-                newTasksOrder: this.card
+                newTasksOrder: this.card,
+                dropdownStatus: false
             }
         },
         watch: {
@@ -142,6 +156,21 @@
                         taskId: task
                     })
             },
+            deleteTask: function (value) {
+                this.$store.dispatch('deleteTask',
+                    {
+                        cardId: value.cardId,
+                        categoryId: value.categoryId,
+                        taskId: value.taskId
+                    })
+            },
+            toggleDropdown: function () {
+                if (!this.dropdownStatus) {
+                    this.dropdownStatus = true
+                } else {
+                    this.dropdownStatus = false
+                }
+            }
         }
     }
 </script>

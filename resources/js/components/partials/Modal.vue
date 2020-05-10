@@ -8,10 +8,17 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form @submit="actionToDo">
-                    <div class="modal-body">
+                <form v-if="this.type === 'updateTask'" @submit="deleteTask">
+                    <input type="submit" class="btn submit" value="Supprimer">
+                </form>
+                <form class="form-modal" @submit="actionToDo">
+                    <div class="form-group">
+                        <label class="form-modal-label">Nom</label>
                         <input autocomplete="off" class="form-control" type="text" placeholder="Nom" :name="type" v-bind:value="name">
-                        <ColorPicker></ColorPicker>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-modal-label">Définir une couleur</label>
+                        <ColorPicker v-if="isNotTask && isNotTaskUpdate"></ColorPicker>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn cancel" data-dismiss="modal">Annuler</button>
@@ -35,6 +42,14 @@
             return {
                 name: '',
             }
+        },
+        computed: {
+            isNotTask: function () {
+                return this.type !== 'task'
+            },
+            isNotTaskUpdate: function () {
+                return this.type !== 'updateTask'
+            },
         },
         methods: {
             actionToDo: function (e) {
@@ -89,6 +104,16 @@
                     })
                 }
 
+                $('#' + this.id).modal('toggle');
+                $('.modal-backdrop').remove();
+            },
+            deleteTask: function(e) {
+                e.preventDefault();
+                this.$emit('delete', {
+                    categoryId: this.category,
+                    cardId: this.card,
+                    taskId: this.task
+                })
                 $('#' + this.id).modal('toggle');
                 $('.modal-backdrop').remove();
             }

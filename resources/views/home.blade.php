@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-<div class="wrapper">
 @section('navbar')
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">

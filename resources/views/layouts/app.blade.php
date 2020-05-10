@@ -24,10 +24,14 @@
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/adminlte.css">
+    <link href="css/app.css" rel="stylesheet">
+    <link href="css/heroku.css" rel="stylesheet">
+
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body>
+    <div class="wrapper">
     <div id="app">
         @section('navbar')
                 <header class="welcome-header">

@@ -2031,6 +2031,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2046,7 +2059,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       isVisible: false,
       name: '',
-      newTasksOrder: this.card
+      newTasksOrder: this.card,
+      dropdownStatus: false
     };
   },
   watch: {
@@ -2131,6 +2145,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         categoryId: this.card.category_id,
         taskId: task
       });
+    },
+    deleteTask: function deleteTask(value) {
+      this.$store.dispatch('deleteTask', {
+        cardId: value.cardId,
+        categoryId: value.categoryId,
+        taskId: value.taskId
+      });
+    },
+    toggleDropdown: function toggleDropdown() {
+      if (!this.dropdownStatus) {
+        this.dropdownStatus = true;
+      } else {
+        this.dropdownStatus = false;
+      }
     }
   }
 });
@@ -2537,7 +2565,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "TaskComponent",
   components: {},
@@ -2548,15 +2575,6 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    deleteTask: function deleteTask(e) {
-      this.toggleDropdown();
-      e.preventDefault();
-      this.$store.dispatch('deleteTask', {
-        cardId: e.target.card.value,
-        categoryId: e.target.category.value,
-        taskId: e.target.task.value
-      });
-    },
     updateTaskStatus: function updateTaskStatus(e) {
       this.$store.dispatch('updateTask', {
         checkbox: e.target.checked,
@@ -2564,13 +2582,6 @@ __webpack_require__.r(__webpack_exports__);
         categoryId: e.target.dataset.category,
         taskId: e.target.dataset.task
       });
-    },
-    toggleDropdown: function toggleDropdown() {
-      if (!this.dropdownStatus) {
-        this.dropdownStatus = true;
-      } else {
-        this.dropdownStatus = false;
-      }
     }
   }
 });
@@ -2667,6 +2678,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ContentComponent",
@@ -2725,6 +2737,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "modal",
@@ -2736,6 +2755,14 @@ __webpack_require__.r(__webpack_exports__);
     return {
       name: ''
     };
+  },
+  computed: {
+    isNotTask: function isNotTask() {
+      return this.type !== 'task';
+    },
+    isNotTaskUpdate: function isNotTaskUpdate() {
+      return this.type !== 'updateTask';
+    }
   },
   methods: {
     actionToDo: function actionToDo(e) {
@@ -2792,6 +2819,16 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
 
+      $('#' + this.id).modal('toggle');
+      $('.modal-backdrop').remove();
+    },
+    deleteTask: function deleteTask(e) {
+      e.preventDefault();
+      this.$emit('delete', {
+        categoryId: this.category,
+        cardId: this.card,
+        taskId: this.task
+      });
       $('#' + this.id).modal('toggle');
       $('.modal-backdrop').remove();
     }
@@ -42673,38 +42710,67 @@ var render = function() {
               _vm._v(_vm._s(_vm.card.name))
             ]),
             _vm._v(" "),
-            _c(
-              "form",
-              {
-                staticClass: "card-form-delete",
-                on: { submit: _vm.deleteCard }
-              },
-              [
-                _c("input", {
-                  attrs: { type: "hidden", name: "card" },
-                  domProps: { value: _vm.card.id }
-                }),
-                _vm._v(" "),
-                _c("input", {
-                  attrs: { type: "hidden", name: "category" },
-                  domProps: { value: _vm.card.category_id }
-                }),
-                _vm._v(" "),
-                _vm._m(0),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "btn btn-box-tool",
-                    attrs: {
-                      "data-toggle": "modal",
-                      "data-target": "#modal-update-card" + _vm.card.id
-                    }
+            _c("div", { staticClass: "card-form-delete" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn-dropdown dropdown-toggle",
+                  attrs: {
+                    "data-toggle": "dropdown",
+                    href: "#",
+                    "aria-expanded": "true"
                   },
-                  [_c("i", { staticClass: "fas fa-pen" })]
-                )
-              ]
-            )
+                  on: { click: _vm.toggleDropdown }
+                },
+                [_c("i", { staticClass: "fa fa-ellipsis-v" })]
+              ),
+              _vm._v(" "),
+              _vm.dropdownStatus
+                ? _c("ul", { staticClass: "dropdown-menu" }, [
+                    _c("li", { attrs: { role: "presentation" } }, [
+                      _c("form", { on: { submit: _vm.deleteCard } }, [
+                        _c("input", {
+                          attrs: { type: "hidden", name: "card" },
+                          domProps: { value: _vm.card.id }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: { type: "hidden", name: "category" },
+                          domProps: { value: _vm.card.category_id }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn-delete-task btn btn-box-tool",
+                            attrs: { "data-widget": "remove" }
+                          },
+                          [_vm._v("Supprimer")]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", {
+                      staticClass: "divider",
+                      attrs: { role: "presentation" }
+                    }),
+                    _vm._v(" "),
+                    _c("li", { attrs: { role: "presentation" } }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-box-tool",
+                          attrs: {
+                            "data-toggle": "modal",
+                            "data-target": "#modal-update-card" + _vm.card.id
+                          }
+                        },
+                        [_vm._v("Modifier")]
+                      )
+                    ])
+                  ])
+                : _vm._e()
+            ])
           ]
         ),
         _vm._v(" "),
@@ -42720,7 +42786,7 @@ var render = function() {
                   list: _vm.newTasksOrder.tasks,
                   animation: 200,
                   group: "status",
-                  tag: "li"
+                  tag: "ul"
                 },
                 on: {
                   change: _vm.updateTasksOrder,
@@ -42814,7 +42880,7 @@ var render = function() {
                 category: _vm.card.category_id,
                 task: task.id
               },
-              on: { update: _vm.updateTask }
+              on: { update: _vm.updateTask, delete: _vm.deleteTask }
             })
           ],
           1
@@ -42824,21 +42890,7 @@ var render = function() {
     2
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "btn btn-box-tool",
-        attrs: { type: "submit", "data-widget": "remove" }
-      },
-      [_c("i", { staticClass: "fa fa-times" })]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -42914,10 +42966,7 @@ var render = function() {
                     _c("div", { staticClass: "progress progress-xs" }, [
                       _c("div", {
                         staticClass: "progress-bar progress-bar-danger",
-                        style: {
-                          width: _vm.calulatePercentage(category.id),
-                          backgroundColor: category.color
-                        }
+                        style: { width: _vm.calulatePercentage(category.id) }
                       })
                     ])
                   ])
@@ -43276,11 +43325,12 @@ var render = function() {
             {
               staticClass: "btn-dropdown dropdown-toggle",
               attrs: {
-                "data-toggle": "dropdown",
-                href: "#",
-                "aria-expanded": "true"
-              },
-              on: { click: _vm.toggleDropdown }
+                "data-toggle": "modal",
+                "data-target": "#modal-update-task" + _vm.task.id,
+                role: "menuitem",
+                tabindex: "-1",
+                href: "#"
+              }
             },
             [_c("i", { staticClass: "fa fa-ellipsis-v" })]
           ),
@@ -43315,28 +43365,10 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _c(
-                  "li",
-                  {
-                    attrs: { role: "presentation" },
-                    on: { click: _vm.toggleDropdown }
-                  },
-                  [
-                    _c(
-                      "a",
-                      {
-                        attrs: {
-                          "data-toggle": "modal",
-                          "data-target": "#modal-update-task" + _vm.task.id,
-                          role: "menuitem",
-                          tabindex: "-1",
-                          href: "#"
-                        }
-                      },
-                      [_vm._v("Modifier")]
-                    )
-                  ]
-                )
+                _c("li", {
+                  attrs: { role: "presentation" },
+                  on: { click: _vm.toggleDropdown }
+                })
               ])
             : _vm._e()
         ])
@@ -43508,6 +43540,11 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
+                        _c("li", {
+                          staticClass: "divider",
+                          attrs: { role: "presentation" }
+                        }),
+                        _vm._v(" "),
                         _c("li", { attrs: { role: "presentation" } }, [
                           _c(
                             "a",
@@ -43638,11 +43675,24 @@ var render = function() {
             _vm._m(0)
           ]),
           _vm._v(" "),
-          _c("form", { on: { submit: _vm.actionToDo } }, [
-            _c(
-              "div",
-              { staticClass: "modal-body" },
-              [
+          this.type === "updateTask"
+            ? _c("form", { on: { submit: _vm.deleteTask } }, [
+                _c("input", {
+                  staticClass: "btn submit",
+                  attrs: { type: "submit", value: "Supprimer" }
+                })
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "form",
+            { staticClass: "form-modal", on: { submit: _vm.actionToDo } },
+            [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { staticClass: "form-modal-label" }, [
+                  _vm._v("Nom")
+                ]),
+                _vm._v(" "),
                 _c("input", {
                   staticClass: "form-control",
                   attrs: {
@@ -43652,15 +43702,27 @@ var render = function() {
                     name: _vm.type
                   },
                   domProps: { value: _vm.name }
-                }),
-                _vm._v(" "),
-                _c("ColorPicker")
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _vm._m(1)
-          ])
+                })
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group" },
+                [
+                  _c("label", { staticClass: "form-modal-label" }, [
+                    _vm._v("Définir une couleur")
+                  ]),
+                  _vm._v(" "),
+                  _vm.isNotTask && _vm.isNotTaskUpdate
+                    ? _c("ColorPicker")
+                    : _vm._e()
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(1)
+            ]
+          )
         ])
       ])
     ]
@@ -64527,8 +64589,8 @@ var strict = false;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/damien/Desktop/Laravel-vue/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/damien/Desktop/Laravel-vue/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/damien/Desktop/List-addict/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/damien/Desktop/List-addict/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

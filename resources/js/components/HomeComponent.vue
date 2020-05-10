@@ -25,7 +25,7 @@
                         </td>
                         <td>
                             <div class="progress progress-xs">
-                                <div class="progress-bar progress-bar-danger" :style="{width: calulatePercentage(category.id), backgroundColor: category.color}"></div>
+                                <div class="progress-bar progress-bar-danger" :style="{width: calulatePercentage(category.id)}"></div>
                             </div>
                         </td>
                     </tr>
@@ -64,7 +64,7 @@
                 if (this.newCategories !== undefined) {
 
                     let tasks = []
-                        
+
                     Object.values(this.newCategories[id].cards).forEach(card => card.tasks.forEach(task => tasks.push(task)))
 
                     if (tasks.length > 0) {
