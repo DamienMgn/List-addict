@@ -6,18 +6,6 @@
                 <a class="btn-dropdown dropdown-toggle" data-toggle="modal" :data-target="'#modal-update-task' + task.id" role="menuitem" tabindex="-1" href="#">
                     <i class="fa fa-ellipsis-v"></i>
                 </a>
-                <ul class="dropdown-menu" v-if="dropdownStatus">
-                    <li role="presentation">
-                        <form @submit="deleteTask">
-                            <input type="hidden" name="task" :value="task.id">
-                            <input type="hidden" name="card" :value="card.id">
-                            <input type="hidden" name="category" :value="card.category_id">
-                            <button class="btn-delete-task btn btn-box-tool" data-widget="remove">Supprimer</button>
-                        </form>
-                    </li>
-                    <li role="presentation" @click="toggleDropdown">
-                    </li>
-                </ul>
             </div>
         </div>
         <div class="task-footer">

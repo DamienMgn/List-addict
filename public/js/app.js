@@ -2071,6 +2071,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   methods: {
     deleteCard: function deleteCard(e) {
       e.preventDefault();
+      this.toggleDropdown();
       this.$store.dispatch('deleteCard', {
         cardId: e.target.card.value,
         categoryId: e.target.category.value
@@ -2189,6 +2190,8 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
 //
 //
 //
@@ -2553,18 +2556,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "TaskComponent",
   components: {},
@@ -2610,15 +2601,35 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       colors: [{
-        name: '#27AE60'
+        name: '#00FFB3'
       }, {
-        name: '#F39C12'
+        name: '#C9FF8D'
       }, {
-        name: '#8E44AD'
+        name: '#92F2DC'
       }, {
-        name: '#2980B9'
+        name: '#95B275'
       }, {
-        name: '#C0392B'
+        name: '#348899'
+      }, {
+        name: '#EADF86'
+      }, {
+        name: '#FF6257'
+      }, {
+        name: '#962D3E'
+      }, {
+        name: '#DC7716'
+      }, {
+        name: '#FFA68D'
+      }, {
+        name: '#CC9586'
+      }, {
+        name: '#A7BAFF'
+      }, {
+        name: '#5D9CCF'
+      }, {
+        name: '#4162A6'
+      }, {
+        name: '#7872A6'
       }]
     };
   }
@@ -2744,6 +2755,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "modal",
@@ -2781,7 +2795,7 @@ __webpack_require__.r(__webpack_exports__);
           cardId: this.card,
           categoryId: this.category,
           taskName: e.target.task.value,
-          taskColor: e.target.color.value
+          taskColor: '#FFFFFF'
         });
       }
 
@@ -2812,7 +2826,7 @@ __webpack_require__.r(__webpack_exports__);
       if (this.type === 'updateTask') {
         this.$emit('update', {
           taskName: e.target.updateTask.value,
-          taskColor: e.target.color.value,
+          taskColor: '#FFFFFF',
           categoryId: this.category,
           cardId: this.card,
           taskId: this.task
@@ -42743,7 +42757,7 @@ var render = function() {
                           "button",
                           {
                             staticClass: "btn-delete-task btn btn-box-tool",
-                            attrs: { "data-widget": "remove" }
+                            attrs: { type: "submit" }
                           },
                           [_vm._v("Supprimer")]
                         )
@@ -42763,7 +42777,8 @@ var render = function() {
                           attrs: {
                             "data-toggle": "modal",
                             "data-target": "#modal-update-card" + _vm.card.id
-                          }
+                          },
+                          on: { click: _vm.toggleDropdown }
                         },
                         [_vm._v("Modifier")]
                       )
@@ -42818,7 +42833,8 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn btn-box-tool",
+                staticClass: "btn btn-box-tool add-task",
+                style: { borderColor: _vm.card.color },
                 attrs: {
                   type: "button",
                   "data-toggle": "modal",
@@ -42826,19 +42842,11 @@ var render = function() {
                 }
               },
               [
-                _c(
-                  "h4",
-                  {
-                    staticClass: "box-title",
-                    style: { color: _vm.card.color }
-                  },
-                  [_vm._v("Nouvelle tâche")]
-                ),
+                _c("h4", { staticClass: "box-title" }, [
+                  _vm._v("Nouvelle tâche")
+                ]),
                 _vm._v(" "),
-                _c("i", {
-                  staticClass: "fa fa-plus",
-                  style: { color: _vm.card.color }
-                })
+                _c("i", { staticClass: "fa fa-plus" })
               ]
             )
           ])
@@ -42952,9 +42960,9 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n                            " +
+                            "\n                                " +
                               _vm._s(Object.keys(card.tasks).length) +
-                              "\n                        "
+                              "\n                            "
                           )
                         ]
                       )
@@ -42986,7 +42994,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "box-header" }, [
-      _c("h3", { staticClass: "box-title" }, [_vm._v("Dashboard")])
+      _c("h3", { staticClass: "box-title" }, [_vm._v("Tableau de bord")])
     ])
   },
   function() {
@@ -42994,15 +43002,15 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("tr", [
-      _c("th", { staticStyle: { width: "10px" } }, [_vm._v("#")]),
+      _c("th", { staticClass: "head-dashboard" }, [_vm._v("#")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Projet")]),
+      _c("th", { staticClass: "head-dashboard" }, [_vm._v("Projet")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Date Création")]),
+      _c("th", { staticClass: "head-dashboard" }, [_vm._v("Date Création")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Cartes")]),
+      _c("th", { staticClass: "head-dashboard" }, [_vm._v("Cartes")]),
       _vm._v(" "),
-      _c("th", { staticStyle: { width: "40px" } }, [_vm._v("Progression")])
+      _c("th", { staticClass: "head-dashboard" }, [_vm._v("Progression")])
     ])
   }
 ]
@@ -43333,44 +43341,7 @@ var render = function() {
               }
             },
             [_c("i", { staticClass: "fa fa-ellipsis-v" })]
-          ),
-          _vm._v(" "),
-          _vm.dropdownStatus
-            ? _c("ul", { staticClass: "dropdown-menu" }, [
-                _c("li", { attrs: { role: "presentation" } }, [
-                  _c("form", { on: { submit: _vm.deleteTask } }, [
-                    _c("input", {
-                      attrs: { type: "hidden", name: "task" },
-                      domProps: { value: _vm.task.id }
-                    }),
-                    _vm._v(" "),
-                    _c("input", {
-                      attrs: { type: "hidden", name: "card" },
-                      domProps: { value: _vm.card.id }
-                    }),
-                    _vm._v(" "),
-                    _c("input", {
-                      attrs: { type: "hidden", name: "category" },
-                      domProps: { value: _vm.card.category_id }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn-delete-task btn btn-box-tool",
-                        attrs: { "data-widget": "remove" }
-                      },
-                      [_vm._v("Supprimer")]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", {
-                  attrs: { role: "presentation" },
-                  on: { click: _vm.toggleDropdown }
-                })
-              ])
-            : _vm._e()
+          )
         ])
       ]),
       _vm._v(" "),
@@ -43676,12 +43647,11 @@ var render = function() {
           ]),
           _vm._v(" "),
           this.type === "updateTask"
-            ? _c("form", { on: { submit: _vm.deleteTask } }, [
-                _c("input", {
-                  staticClass: "btn submit",
-                  attrs: { type: "submit", value: "Supprimer" }
-                })
-              ])
+            ? _c(
+                "form",
+                { staticClass: "form-modal", on: { submit: _vm.deleteTask } },
+                [_vm._m(1)]
+              )
             : _vm._e(),
           _vm._v(" "),
           _c(
@@ -43705,22 +43675,22 @@ var render = function() {
                 })
               ]),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "form-group" },
-                [
-                  _c("label", { staticClass: "form-modal-label" }, [
-                    _vm._v("Définir une couleur")
-                  ]),
-                  _vm._v(" "),
-                  _vm.isNotTask && _vm.isNotTaskUpdate
-                    ? _c("ColorPicker")
-                    : _vm._e()
-                ],
-                1
-              ),
+              _vm.isNotTask && _vm.isNotTaskUpdate
+                ? _c(
+                    "div",
+                    { staticClass: "form-group" },
+                    [
+                      _c("label", { staticClass: "form-modal-label" }, [
+                        _vm._v("Définir une couleur")
+                      ]),
+                      _vm._v(" "),
+                      _c("ColorPicker")
+                    ],
+                    1
+                  )
+                : _vm._e(),
               _vm._v(" "),
-              _vm._m(1)
+              _vm._m(2)
             ]
           )
         ])
@@ -43745,6 +43715,21 @@ var staticRenderFns = [
       },
       [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group delete-form" }, [
+      _c("label", { staticClass: "form-modal-label" }, [
+        _vm._v("Supprimer la tâche")
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "btn delete form-control",
+        attrs: { type: "submit", value: "Supprimer" }
+      })
+    ])
   },
   function() {
     var _vm = this

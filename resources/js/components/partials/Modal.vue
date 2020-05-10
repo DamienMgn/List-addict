@@ -8,17 +8,20 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form v-if="this.type === 'updateTask'" @submit="deleteTask">
-                    <input type="submit" class="btn submit" value="Supprimer">
+                <form class="form-modal" v-if="this.type === 'updateTask'" @submit="deleteTask">
+                    <div class="form-group delete-form">
+                        <label class="form-modal-label">Supprimer la tâche</label>
+                        <input type="submit" class="btn delete form-control" value="Supprimer">
+                    </div>
                 </form>
                 <form class="form-modal" @submit="actionToDo">
                     <div class="form-group">
                         <label class="form-modal-label">Nom</label>
                         <input autocomplete="off" class="form-control" type="text" placeholder="Nom" :name="type" v-bind:value="name">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" v-if="isNotTask && isNotTaskUpdate">
                         <label class="form-modal-label">Définir une couleur</label>
-                        <ColorPicker v-if="isNotTask && isNotTaskUpdate"></ColorPicker>
+                        <ColorPicker></ColorPicker>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn cancel" data-dismiss="modal">Annuler</button>
@@ -67,7 +70,7 @@
                         cardId: this.card,
                         categoryId: this.category,
                         taskName: e.target.task.value,
-                        taskColor: e.target.color.value
+                        taskColor: '#FFFFFF'
                     })
                 }
 
@@ -97,7 +100,7 @@
                 if (this.type === 'updateTask') {
                     this.$emit('update', {
                         taskName: e.target.updateTask.value,
-                        taskColor: e.target.color.value,
+                        taskColor: '#FFFFFF',
                         categoryId: this.category,
                         cardId: this.card,
                         taskId: this.task

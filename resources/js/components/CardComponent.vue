@@ -8,16 +8,16 @@
                         <i class="fa fa-ellipsis-v"></i>
                     </a>
                     <ul class="dropdown-menu" v-if="dropdownStatus">
-                        <li role="presentation">
+                        <li role="presentation" >
                             <form @submit="deleteCard">
                                 <input type="hidden" name="card" :value="card.id">
                                 <input type="hidden" name="category" :value="card.category_id">
-                                <button class="btn-delete-task btn btn-box-tool" data-widget="remove">Supprimer</button>
+                                <button type="submit" class="btn-delete-task btn btn-box-tool">Supprimer</button>
                             </form>
                         </li>
                         <li role="presentation" class="divider"></li>
                         <li role="presentation">
-                            <a class="btn btn-box-tool" data-toggle="modal" :data-target="'#modal-update-card' + card.id">Modifier</a>
+                            <a class="btn btn-box-tool" data-toggle="modal" :data-target="'#modal-update-card' + card.id" @click="toggleDropdown">Modifier</a>
                         </li>
                     </ul>
                 </div>
@@ -38,9 +38,9 @@
             </div>
             <div class="card-footer">
                 <div class="box-add-task box-header with-border">
-                    <button type="button" class="btn btn-box-tool" data-toggle="modal" :data-target="'#modal-add-task' + card.id">
-                        <h4 class="box-title" :style="{color: card.color}">Nouvelle tâche</h4>
-                        <i :style="{color: card.color}" class="fa fa-plus"></i>
+                    <button :style="{borderColor: card.color}" type="button" class="btn btn-box-tool add-task" data-toggle="modal" :data-target="'#modal-add-task' + card.id">
+                        <h4 class="box-title">Nouvelle tâche</h4>
+                        <i class="fa fa-plus"></i>
                     </button>
                     <!-- /.box-tools -->
                 </div>
@@ -109,7 +109,8 @@
         },
         methods:{
             deleteCard: function (e) {
-                e.preventDefault()
+                e.preventDefault();
+                this.toggleDropdown();
                 this.$store.dispatch('deleteCard', {
                     cardId: e.target.card.value,
                     categoryId: e.target.category.value

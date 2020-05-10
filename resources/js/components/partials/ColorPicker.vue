@@ -12,11 +12,21 @@
         data () {
             return {
                 colors: [
-                    {name: '#27AE60'},
-                    {name: '#F39C12'},
-                    {name: '#8E44AD'},
-                    {name: '#2980B9'},
-                    {name: '#C0392B'},
+                    {name: '#00FFB3'},
+                    {name: '#C9FF8D'},
+                    {name: '#92F2DC'},
+                    {name: '#95B275'},
+                    {name: '#348899'},
+                    {name: '#EADF86'},
+                    {name: '#FF6257'},
+                    {name: '#962D3E'},
+                    {name: '#DC7716'},
+                    {name: '#FFA68D'},
+                    {name: '#CC9586'},
+                    {name: '#A7BAFF'},
+                    {name: '#5D9CCF'},
+                    {name: '#4162A6'},
+                    {name: '#7872A6'},
                 ]
             }
         }
