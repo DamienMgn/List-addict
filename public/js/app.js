@@ -2605,35 +2605,35 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       colors: [{
-        name: '#00FFB3'
+        name: '#38BF33'
       }, {
-        name: '#BF6FB2'
+        name: '#A1DC8E'
       }, {
-        name: '#92F2DC'
+        name: '#3AAE9B'
       }, {
-        name: '#30B257'
+        name: '#9C5EF2'
       }, {
-        name: '#348899'
+        name: '#883DF2'
       }, {
-        name: '#EADF86'
+        name: '#490C59'
       }, {
-        name: '#FF6257'
+        name: '#FF1D23'
       }, {
-        name: '#962D3E'
+        name: '#D40D12'
       }, {
-        name: '#DC7716'
+        name: '#94090D'
       }, {
-        name: '#FFA68D'
+        name: '#F2C53D'
       }, {
-        name: '#CC9586'
+        name: '#BF820F'
       }, {
-        name: '#920DFF'
+        name: '#A65814'
       }, {
-        name: '#F23D4C'
+        name: '#9DC8D1'
       }, {
-        name: '#4162A6'
+        name: '#639EA9'
       }, {
-        name: '#F2CB05'
+        name: '#24B4F0'
       }]
     };
   }
@@ -2727,7 +2727,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ColorPicker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ColorPicker */ "./resources/js/components/partials/ColorPicker.vue");
-//
 //
 //
 //
@@ -43179,8 +43178,6 @@ var render = function() {
                       "ul",
                       { staticClass: "nav nav-treeview" },
                       [
-                        _vm._m(3),
-                        _vm._v(" "),
                         _vm._l(_vm.categories, function(category) {
                           return _c(
                             "li",
@@ -43209,7 +43206,9 @@ var render = function() {
                             ],
                             1
                           )
-                        })
+                        }),
+                        _vm._v(" "),
+                        _vm._m(3)
                       ],
                       2
                     )
@@ -43291,7 +43290,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+    return _c("a", { staticClass: "nav-link" }, [
       _c("i", { staticClass: "nav-icon fas fa-list-ul" }),
       _vm._v(" "),
       _c("p", [
@@ -43749,13 +43748,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form-group delete-form" }, [
-      _c("label", { staticClass: "form-modal-label" }, [
-        _vm._v("Supprimer la tâche")
-      ]),
-      _vm._v(" "),
       _c("input", {
         staticClass: "btn delete form-control",
-        attrs: { type: "submit", value: "Supprimer" }
+        attrs: { type: "submit", value: "Supprimer la tâche" }
       })
     ])
   },

@@ -10,8 +10,7 @@
                 </div>
                 <form class="form-modal" v-if="this.type === 'updateTask'" @submit="deleteTask">
                     <div class="form-group delete-form">
-                        <label class="form-modal-label">Supprimer la tâche</label>
-                        <input type="submit" class="btn delete form-control" value="Supprimer">
+                        <input type="submit" class="btn delete form-control" value="Supprimer la tâche">
                     </div>
                 </form>
                 <form class="form-modal" @submit="actionToDo">

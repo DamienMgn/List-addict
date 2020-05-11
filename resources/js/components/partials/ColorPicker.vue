@@ -12,21 +12,21 @@
         data () {
             return {
                 colors: [
-                    {name: '#00FFB3'},
-                    {name: '#BF6FB2'},
-                    {name: '#92F2DC'},
-                    {name: '#30B257'},
-                    {name: '#348899'},
-                    {name: '#EADF86'},
-                    {name: '#FF6257'},
-                    {name: '#962D3E'},
-                    {name: '#DC7716'},
-                    {name: '#FFA68D'},
-                    {name: '#CC9586'},
-                    {name: '#920DFF'},
-                    {name: '#F23D4C'},
-                    {name: '#4162A6'},
-                    {name: '#F2CB05'},
+                    {name: '#38BF33'},
+                    {name: '#A1DC8E'},
+                    {name: '#3AAE9B'},
+                    {name: '#9C5EF2'},
+                    {name: '#883DF2'},
+                    {name: '#490C59'},
+                    {name: '#FF1D23'},
+                    {name: '#D40D12'},
+                    {name: '#94090D'},
+                    {name: '#F2C53D'},
+                    {name: '#BF820F'},
+                    {name: '#A65814'},
+                    {name: '#9DC8D1'},
+                    {name: '#639EA9'},
+                    {name: '#24B4F0'},
                 ]
             }
         }

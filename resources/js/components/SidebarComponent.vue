@@ -34,7 +34,7 @@
             </router-link>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a class="nav-link">
               <i class="nav-icon fas fa-list-ul"></i>
               <p>
                 Projets
@@ -42,18 +42,18 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item li-add-category">
-                <a class="nav-link" data-toggle="modal" data-target="#modal-add-category">
-                  <i class="nav-icon fas fa-plus"></i>
-                  <p>Ajouter un projet</p>
-                </a>
-              </li>
               <li class="nav-item" v-for="category in categories" :key="category.id">
                 <router-link :to="{name: 'categorie', params: {id: category.id}}" class="nav-link">
                   <i class="far fa-circle nav-icon" :style="{color: category.color}"></i>
                   <p>{{ category.name }}</p>
                 </router-link>
               </li>
+                <li class="nav-item li-add-category">
+                    <a class="nav-link" data-toggle="modal" data-target="#modal-add-category">
+                        <i class="nav-icon fas fa-plus"></i>
+                        <p>Ajouter un projet</p>
+                    </a>
+                </li>
             </ul>
           </li>
         </ul>
