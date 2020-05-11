@@ -17,7 +17,7 @@
             </nav>
         </div>
         <div class="welcome-title">
-            <h3>Bienvenue sur List-Addict ! Vous venez d arriver ? <a href="{{ route('register') }}">Créez un compte</a> !</h3>
+            <h3>Bienvenue sur List-Addict ! Vous venez d'arriver ? <a href="{{ route('register') }}">Créez un compte</a> !</h3>
         </div>
     </header>
 @endsection
@@ -25,7 +25,7 @@
 @section('content')
         <div class="welcome-content">
             <div class="welcome-side left">
-                <h1>List-Addict facilite et vous aide dans votre quotidien.</h1>
+                <h1>List-Addict, l'application qui facilite votre quotidien !</h1>
                 <ul class="welcome-ul">
                     <li class="welcome-li">Gérer facilement vos projets !</li>
                     <li class="welcome-li">Consulter votre agenda !</li>

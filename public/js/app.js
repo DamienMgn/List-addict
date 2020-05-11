@@ -2611,7 +2611,7 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         name: '#92F2DC'
       }, {
-        name: '#95B275'
+        name: '#30B257'
       }, {
         name: '#348899'
       }, {
@@ -2627,13 +2627,13 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         name: '#CC9586'
       }, {
-        name: '#A7BAFF'
+        name: '#920DFF'
       }, {
-        name: '#5D9CCF'
+        name: '#F23D4C'
       }, {
         name: '#4162A6'
       }, {
-        name: '#7872A6'
+        name: '#F2CB05'
       }]
     };
   }
@@ -42839,7 +42839,6 @@ var render = function() {
               "button",
               {
                 staticClass: "btn btn-box-tool add-task",
-                style: { borderColor: _vm.card.color },
                 attrs: {
                   type: "button",
                   "data-toggle": "modal",

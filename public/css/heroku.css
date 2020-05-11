@@ -4,7 +4,7 @@
 html, body {
     background-color: #FFFFFF;
     color: #636b6f;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 200;
 
     margin: 0;
@@ -12,7 +12,7 @@ html, body {
 
 .welcome-main {
     min-height: 100vh;
-    background-color: #F4F4F5;
+    background-color: #FFFFFF;
     position: relative;
 }
 
@@ -48,13 +48,13 @@ html, body {
 }
 
 .welcome-main .welcome-header .nav-li {
-    background-color: #0037A6;
+    background-color: #2A97FF;
     margin: 0.5rem 1rem;
     padding: 0.5rem 1rem;
     font-size: 1rem;
     font-weight: bold;
     border-radius: 5px;
-    color: #FFFAF0;
+    color: #FFFFFF;
 }
 
 .welcome-main .welcome-header .welcome-title {
@@ -64,8 +64,8 @@ html, body {
     width: 100%;
     margin: 0rem 0;
     text-align: center;
-    color: #FFFAF0;
-    background-color: #0037A6;
+    color: #FFFFFF;
+    background-color: #2A97FF;
 }
 
 .welcome-main .welcome-header .welcome-title h3 {
@@ -171,9 +171,9 @@ html, body {
 }
 
 .auth-container .row .col-md-8 .card .btn {
-    background-color: #0037A6;
-    border-color: #0037A6;
-    color: #FFFAF0;
+    background-color: #2A97FF;
+    border-color: #2A97FF;
+    color: #FFFFFF;
     font-weight: bold;
 }
 
@@ -283,13 +283,21 @@ input[type="radio"]:after {
 /* Sidebar */
 
 .main-sidebar {
-    background-color: #0037A6 !important;
+    background-color: #172A4D !important;
     font-size: 1rem;
     opacity: 1 !important;
+    box-shadow: 2px 0px 2px #ECECEC !important;
+    font-weight: 400;
 }
 
 .brand-text {
-    color: #FFFFFF;
+    color: #2A97FF;
+    font-weight: 400 !important;
+    font-style: italic;
+}
+
+.brand-link {
+    border-color: #2A97FF !important;
 }
 
 .info .d-block {
@@ -303,62 +311,90 @@ input[type="radio"]:after {
     transform: scale(0.9);
 }
 
+.sidebar {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.sidebar .mt-2 {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+}
+
 .main-sidebar .sidebar {
     max-height: calc(100vh - 4rem);
 }
 
-.main-sidebar .sidebar .nav-link:hover,.main-sidebar .sidebar .nav-link:active,.main-sidebar .sidebar .nav-link:visited {
-    background-color: #044BD9 !important;
+.main-sidebar .sidebar .nav-link:hover {
+    background-color: #2A97FF !important;
+    color: #FFFFFF !important;
 }
 
-.main-sidebar .sidebar .nav-item:hover, .main-sidebar .sidebar .nav-item:active, .main-sidebar .sidebar .nav-item {
-    background-color: transparent !important;
-    opacity: 1 !important;
-}
-
-.router-link-exact-active {
-    background-color: #044BD9 !important;
-}
-
-.main-sidebar .sidebar .nav-link {
+.main-sidebar .nav-sidebar .has-treeview .nav-link, .main-sidebar .nav-sidebar .has-treeview .nav-link:active, .main-sidebar .nav-sidebar .has-treeview .nav-link:focus, .main-sidebar .nav-sidebar .has-treeview .nav-link:visited {
     color: #FFFFFF;
     opacity: 1 !important;
 }
 
 .nav .nav-item .nav-link {
-    color: #FFFFFF !important;
     opacity: 1 !important;
 }
 
 .nav-sidebar .nav-treeview .nav-item >.nav-link {
+    color: #FFFFFF;
     font-size: 0.85rem;
     animation: appear 0.5s linear;
 }
 
-.nav-sidebar .nav-treeview .nav-item .nav-link .fas {
-    color: #FFFFFF !important;
-    opacity: 1 !important;
-}
-
 .nav-item .nav-link p .fas {
     color: #FFFFFF !important;
-    opacity: 0.8 !important;
+}
+
+.nav-item .nav-link:hover p .fas {
+    color: #FFFFFF !important;
 }
 
 .nav-item >.nav-link > .fas {
-    color: #16294D;
+    color: #FFFFFF;
     opacity: 1 !important;
+}
+
+.nav-item >.nav-link:hover > .fas {
+    color: #FFFFFF;
 }
 
 .main-sidebar .sidebar .li-add-category {
     cursor: pointer;
 }
 
+.li-add-category .nav-link {
+    color: #2A97FF !important;
+}
+
+.li-add-category .nav-link .nav-icon {
+    color: #2A97FF !important;
+}
+
+.li-add-category .nav-link:hover .nav-icon {
+    color: #FFFFFF !important;
+}
+
 .nav-item .nav-link .nav-icon {
-    color: #FFFAF0;
+    color: #FFFFFF;
     opacity: 1;
 }
 
+.nav .nav-item .router-link-exact-active {
+    background-color: #2A97FF !important;
+    color: #FFFFFF !important;
+}
+
+.nav .nav-item .router-link-exact-active .fas {
+    color: #FFFFFF !important;
+}
+
+.user-panel {
+    border-color: #2A97FF !important;
+}
 /* Page Project show Cards */
 
 .app-section {
@@ -381,7 +417,7 @@ input[type="radio"]:after {
     background-color: transparent !important;
     border: none;
     margin-right: 0.5rem;
-    color: #1E282C !important;
+    color: #172A4D !important;
 }
 
 .dropdown-category-main {
@@ -406,7 +442,7 @@ input[type="radio"]:after {
 .dropdown-toggle .dropdown-menu li {
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     line-height: 1.42857143;
-    font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 400;
     font-size: 14px;
     list-style: none;
@@ -415,7 +451,7 @@ input[type="radio"]:after {
 
 .dropdown-menu li a {
     -webkit-tap-highlight-color: rgba(0,0,0,0);
-    font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-size: 14px;
     list-style: none;
     box-sizing: border-box;
@@ -434,7 +470,7 @@ input[type="radio"]:after {
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     line-height: 1.42857143;
     color: #333;
-    font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 400;
     box-sizing: border-box !important;
     position: absolute !important;
@@ -456,7 +492,7 @@ input[type="radio"]:after {
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     line-height: 1.42857143;
     color: #333;
-    font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 400;
     font-size: 14px;
     list-style: none;
@@ -525,8 +561,8 @@ input[type="radio"]:after {
 }
 
 .modal-content .form-modal .btn.submit {
-    border: 1px solid #0037A6;
-    background-color: #0037A6;
+    border: 1px solid #2A97FF;
+    background-color: #2A97FF;
     color: #FFFFFF;
     font-weight: bold;
 }
@@ -546,6 +582,7 @@ input[type="radio"]:after {
 .page-title .text-dark {
     color: #172A4D !important;
     font-size: 1.3rem;
+    font-weight: 400;
 }
 
 /* Card */
@@ -585,8 +622,8 @@ input[type="radio"]:after {
 
 .card-container .card-title {
     color: #172A4D;
-    font-size: 1.15rem !important;
-    font-weight: bold !important;
+    font-size: 1.05rem !important;
+    font-weight: 600 !important;
 }
 
 .card-container .card-body {
@@ -623,8 +660,7 @@ input[type="radio"]:after {
     color: #172A4D;
     border: 1px solid #172A4D;
     transition: all 0.5s;
-    background-color: #F4F4F4;
-    box-shadow: 1px 1px 2px #172A4D;
+    background-color: #F5F6F9;
 }
 
 .card-container .card-footer .btn.add-task:hover {
@@ -654,7 +690,7 @@ input[type="radio"]:after {
     border-radius: 3px !important;
     box-shadow: 0 1px 1px rgba(0,0,0,0.1);
     background-color: #FAFAFA;
-    transition: 0.3s transform;
+    transition: 0.3s all;
     font-size: 0.95rem;
     animation: appear 0.5s linear;
 }
@@ -677,7 +713,7 @@ input[type="radio"]:after {
     align-items: center;
     justify-content: space-between;
     color: #172A4D;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .task-header .btn-dropdown {
@@ -695,10 +731,8 @@ input[type="radio"]:after {
     --breakpoint-md: 768px;
     --breakpoint-lg: 992px;
     --breakpoint-xl: 1200px;
-    --font-family-sans-serif: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-size: 14px;
     list-style: none;
     box-sizing: border-box;
@@ -734,7 +768,7 @@ input[type="radio"]:after {
 /* Home Page */
 
 .progress-bar {
-    background-color: #0037A6;
+    background-color: #2A97FF;
 }
 
 /* Dashboard */
@@ -745,8 +779,7 @@ input[type="radio"]:after {
 }
 
 .dashboard-container .head-dashboard {
-    font-weight: 700 !important;
-    text-decoration: underline;
+    font-weight: bold !important;
 }
 
 .dashboard-container .dashboard-cards-container {

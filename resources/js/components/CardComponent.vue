@@ -38,7 +38,7 @@
             </div>
             <div class="card-footer">
                 <div class="box-add-task box-header with-border">
-                    <button :style="{borderColor: card.color}" type="button" class="btn btn-box-tool add-task" data-toggle="modal" :data-target="'#modal-add-task' + card.id">
+                    <button type="button" class="btn btn-box-tool add-task" data-toggle="modal" :data-target="'#modal-add-task' + card.id">
                         <h4 class="box-title">Nouvelle tâche</h4>
                         <i class="fa fa-plus"></i>
                     </button>

@@ -15,7 +15,7 @@
                     {name: '#00FFB3'},
                     {name: '#BF6FB2'},
                     {name: '#92F2DC'},
-                    {name: '#95B275'},
+                    {name: '#30B257'},
                     {name: '#348899'},
                     {name: '#EADF86'},
                     {name: '#FF6257'},
@@ -23,10 +23,10 @@
                     {name: '#DC7716'},
                     {name: '#FFA68D'},
                     {name: '#CC9586'},
-                    {name: '#A7BAFF'},
-                    {name: '#5D9CCF'},
+                    {name: '#920DFF'},
+                    {name: '#F23D4C'},
                     {name: '#4162A6'},
-                    {name: '#7872A6'},
+                    {name: '#F2CB05'},
                 ]
             }
         }
