@@ -2567,22 +2567,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "TaskComponent",
   components: {},
-  props: ['task', 'card'],
-  data: function data() {
-    return {
-      dropdownStatus: false
-    };
-  },
-  methods: {
-    updateTaskStatus: function updateTaskStatus(e) {
-      this.$store.dispatch('updateTask', {
-        checkbox: e.target.checked,
-        cardId: e.target.dataset.card,
-        categoryId: e.target.dataset.category,
-        taskId: e.target.dataset.task
-      });
-    }
-  }
+  props: ['task', 'card']
 });
 
 /***/ }),

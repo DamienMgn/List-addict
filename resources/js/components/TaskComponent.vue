@@ -22,21 +22,5 @@
         name: "TaskComponent",
         components: {},
         props: ['task', 'card'],
-        data () {
-            return {
-                dropdownStatus: false
-            }
-        },
-        methods:{
-            updateTaskStatus: function (e) {
-                this.$store.dispatch('updateTask',
-                    {
-                        checkbox: e.target.checked,
-                        cardId: e.target.dataset.card,
-                        categoryId: e.target.dataset.category,
-                        taskId: e.target.dataset.task
-                    })
-            },
-        }
     }
 </script>
