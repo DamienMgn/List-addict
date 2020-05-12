@@ -85,7 +85,6 @@
     import Modal from "./partials/Modal";
     import draggable from 'vuedraggable';
 
-
     export default {
         name: "CardComponent",
         components: {

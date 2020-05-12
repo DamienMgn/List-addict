@@ -415,6 +415,7 @@ input[type="radio"]:after {
 }
 
 .project-container {
+    list-style: none;
     display: flex;
     flex-direction: row;
     min-width: 100%;
@@ -698,7 +699,7 @@ input[type="radio"]:after {
     padding: 0;
     border-radius: 3px !important;
     box-shadow: 0 1px 1px rgba(0,0,0,0.1);
-    background-color: #FAFAFA;
+    background-color: #FFFFFF;
     transition: 0.3s all;
     font-size: 0.95rem;
     animation: appear 0.5s linear;

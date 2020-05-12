@@ -2319,6 +2319,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CardComponent_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CardComponent.vue */ "./resources/js/components/CardComponent.vue");
 /* harmony import */ var _partials_ContentComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./partials/ContentComponent */ "./resources/js/components/partials/ContentComponent.vue");
 /* harmony import */ var _partials_Modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./partials/Modal */ "./resources/js/components/partials/Modal.vue");
+/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.common.js");
+/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_4__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2349,6 +2351,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+
 
 
 
@@ -2357,7 +2365,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   components: {
     CardComponent: _CardComponent_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     ContentComponent: _partials_ContentComponent__WEBPACK_IMPORTED_MODULE_2__["default"],
-    Modal: _partials_Modal__WEBPACK_IMPORTED_MODULE_3__["default"]
+    Modal: _partials_Modal__WEBPACK_IMPORTED_MODULE_3__["default"],
+    draggable: vuedraggable__WEBPACK_IMPORTED_MODULE_4___default.a
   },
   data: function data() {
     return {
@@ -2370,6 +2379,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['categories']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['errors']), {
     paramsId: function paramsId() {
       return this.$route.params.id;
+    },
+    myCategories: {
+      get: function get() {
+        return this.$store.state.categories;
+      },
+      set: function set(value) {
+        this.$store.commit('updateCardsOrder', value);
+      }
     }
   }),
   watch: {
@@ -43076,12 +43093,19 @@ var render = function() {
           }),
           _vm._v(" "),
           _c(
-            "div",
-            { staticClass: "project-container" },
-            _vm._l(_vm.categories[this.$route.params.id].cards, function(card) {
+            "draggable",
+            {
+              staticClass: "project-container",
+              attrs: {
+                list: Object.values(_vm.categories[this.paramsId].cards),
+                animation: 0,
+                group: "share",
+                tag: "ul"
+              }
+            },
+            _vm._l(_vm.categories[this.paramsId].cards, function(card) {
               return _c(
-                "div",
-                {},
+                "li",
                 [_c("CardComponent", { attrs: { card: card } })],
                 1
               )
@@ -64597,8 +64621,8 @@ var strict = false;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/damien/Desktop/List-addict/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/damien/Desktop/List-addict/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/damien/Desktop/List-addict-2/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/damien/Desktop/List-addict-2/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -7,11 +7,16 @@
           :category="paramsId"
       >
       </ContentComponent>
-      <div class="project-container" >
-          <div class="" v-for="card in categories[this.$route.params.id].cards">
-              <CardComponent v-bind:card="card"></CardComponent>
-          </div>
-      </div>
+          <draggable
+              :list="Object.values(categories[this.paramsId].cards)"
+              class="project-container"
+              :animation="0"
+              :group="'share'"
+              :tag="'ul'">
+              <li v-for="card in categories[this.paramsId].cards">
+                  <CardComponent v-bind:card="card"></CardComponent>
+              </li>
+          </draggable>
       <Modal
           :type="'card'"
           :id="'modal-add-card'"
@@ -23,16 +28,19 @@
 </template>
 
 <script>
-    import {mapGetters} from 'vuex'
-    import CardComponent from './CardComponent.vue'
-    import ContentComponent from './partials/ContentComponent'
+    import {mapGetters} from 'vuex';
+    import CardComponent from './CardComponent.vue';
+    import ContentComponent from './partials/ContentComponent';
     import Modal from "./partials/Modal";
+    import draggable from 'vuedraggable';
+
 
     export default {
         components: {
             CardComponent,
             ContentComponent,
-            Modal
+            Modal,
+            draggable
         },
         data() {
             return {
@@ -47,6 +55,14 @@
             ...mapGetters(['errors']),
             paramsId: function () {
                 return this.$route.params.id
+            },
+            myCategories: {
+                get() {
+                    return this.$store.state.categories
+                },
+                set(value) {
+                    this.$store.commit('updateCardsOrder', value)
+                }
             }
         },
         watch: {
