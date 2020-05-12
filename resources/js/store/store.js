@@ -81,7 +81,14 @@ export default new Vuex.Store({
             state.errors = {}
         },
         removeCards: function (state, {id, cards}) {
-            state.categories[id].cards = cards
+
+            console.log(state.categories[id])
+
+            cards.forEach(el => {
+                state.categories[id].cards[el.id].order = el.order
+            })
+
+            console.log(state.categories[id])
         }
     },
     actions: {

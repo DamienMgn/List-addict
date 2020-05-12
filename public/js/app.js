@@ -64098,7 +64098,11 @@ var strict = false;
     removeCards: function removeCards(state, _ref9) {
       var id = _ref9.id,
           cards = _ref9.cards;
-      state.categories[id].cards = cards;
+      console.log(state.categories[id]);
+      cards.forEach(function (el) {
+        state.categories[id].cards[el.id].order = el.order;
+      });
+      console.log(state.categories[id]);
     }
   },
   actions: {

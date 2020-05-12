@@ -709,6 +709,7 @@ input[type="radio"]:after {
     color: #808080;
     opacity: 0.5;
     transform: scale(0.98);
+    animation: none;
 }
 
 .task-header {
