@@ -29,7 +29,6 @@ export default new Vuex.Store({
     mutations: {
         handleErrors: function(state, {errors}) {
             state.errors = errors
-            console.log(state.errors)
         },
         addCategories: function (state, {categories}) {
             let obj = {}
@@ -47,7 +46,6 @@ export default new Vuex.Store({
             state.errors = {}
         },
         upCategory: function (state, {category}) {
-            console.log(state.categories[category.id])
             state.categories[category.id].name = category.name
             state.categories[category.id].color = category.color
         },
@@ -66,6 +64,7 @@ export default new Vuex.Store({
             } else {
                 category.cards = {}
             }
+
             state.categories = {...state.categories, ...{[id]: category}}
             state.errors = {}
         },
@@ -81,6 +80,9 @@ export default new Vuex.Store({
             state.categories = {...newState}
             state.errors = {}
         },
+        removeCards: function (state, {id, cards}) {
+            state.categories[id].cards = cards
+        }
     },
     actions: {
         loadCategories: async function (context) {
@@ -199,5 +201,13 @@ export default new Vuex.Store({
                 context.commit('handleErrors', {errors: error.response.data.errors})
             }
         },
+        updateCardsOrder: async function (context, cardsData) {
+                let cards = {}
+                cardsData.newCardsOrder.forEach((element, index) => {cards[element.id] = {id: element.id, order: index + 1}})
+                let response = await axios.post('/api/update/cards/order/' + cardsData.categoryId, {
+                    cards : cards
+                })
+                context.commit('removeCards', {id: cardsData.categoryId, cards: response.data.cards})
+        }
     }
 })

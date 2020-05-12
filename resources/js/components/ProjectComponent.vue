@@ -8,12 +8,13 @@
       >
       </ContentComponent>
           <draggable
-              :list="Object.values(categories[this.paramsId].cards)"
+              :list="newCardsOrder"
               class="project-container"
-              :animation="0"
+              :animation="500"
               :group="'share'"
-              :tag="'ul'">
-              <li v-for="card in categories[this.paramsId].cards">
+              :tag="'ul'"
+              @change="updateCardsOrder">
+              <li v-for="card in Object.values(categories[this.paramsId].cards).sort((a, b) => {return a.order - b.order})">
                   <CardComponent v-bind:card="card"></CardComponent>
               </li>
           </draggable>
@@ -45,6 +46,7 @@
         data() {
             return {
                 cardName: '',
+                newCardsOrder: this.categories
             }
         },
         mounted () {
@@ -56,18 +58,13 @@
             paramsId: function () {
                 return this.$route.params.id
             },
-            myCategories: {
-                get() {
-                    return this.$store.state.categories
-                },
-                set(value) {
-                    this.$store.commit('updateCardsOrder', value)
-                }
-            }
         },
         watch: {
             $route(to, from) {
                 this.$store.dispatch('loadCards', this.$route.params.id)
+            },
+            categories: function (newVal) {
+                this.newCardsOrder = Object.values(newVal[this.$route.params.id].cards)
             }
         },
         methods: {
@@ -82,6 +79,9 @@
             deleteCategory: function (value) {
                 this.$store.dispatch('deleteCategory', value.categoryId)
                 this.$router.push({name: 'home'})
+            },
+            updateCardsOrder: function () {
+                this.$store.dispatch('updateCardsOrder', {newCardsOrder: this.newCardsOrder, categoryId: this.paramsId})
             },
         }
     }

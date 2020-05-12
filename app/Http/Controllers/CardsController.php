@@ -14,7 +14,7 @@ class CardsController extends Controller
      */
     public function showCards(Categories $category) {
 
-        $cards =  Cards::where('category_id', $category->id)->get();
+        $cards =  Cards::where('category_id', $category->id)->orderBy('order', 'asc')->get();
 
 
         foreach ($cards as $card) {
@@ -75,6 +75,30 @@ class CardsController extends Controller
 
         return response()->json([
             'card' => $card,
+        ]);
+    }
+
+    /**
+     * Return card
+     */
+    public function updateCardsOrder(Request $request, Categories $category) {
+
+        $requestCards = $request->cards;
+
+        foreach ($requestCards as $newCard) {
+                $card = Cards::find($newCard['id']);
+                $card->order = $newCard['order'];
+                $card->save();
+            }
+
+        $cards =  Cards::where('category_id', $category->id)->orderBy('order', 'asc')->get();
+
+        foreach ($cards as $card) {
+            $card['tasks'] = Tasks::where('card_id', $card->id)->orderBy('order', 'asc')->get();
+        }
+
+        return response()->json([
+            'cards' => $cards
         ]);
     }
 

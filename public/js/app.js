@@ -2238,15 +2238,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "HomeComponent",
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['categories'])),
-  data: function data() {
-    return {
-      newCategories: this.categories
-    };
-  },
   mounted: function () {
     var _mounted = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var _this = this;
-
       var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
@@ -2257,11 +2250,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
             case 2:
               response = _context.sent;
-              response.data.categories.forEach(function (el) {
-                return _this.$store.dispatch('loadCards', el.id);
-              });
 
-            case 4:
+            case 3:
             case "end":
               return _context.stop();
           }
@@ -2356,6 +2346,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -2370,7 +2361,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      cardName: ''
+      cardName: '',
+      newCardsOrder: this.categories
     };
   },
   mounted: function mounted() {
@@ -2379,19 +2371,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['categories']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['errors']), {
     paramsId: function paramsId() {
       return this.$route.params.id;
-    },
-    myCategories: {
-      get: function get() {
-        return this.$store.state.categories;
-      },
-      set: function set(value) {
-        this.$store.commit('updateCardsOrder', value);
-      }
     }
   }),
   watch: {
     $route: function $route(to, from) {
       this.$store.dispatch('loadCards', this.$route.params.id);
+    },
+    categories: function categories(newVal) {
+      this.newCardsOrder = Object.values(newVal[this.$route.params.id].cards);
     }
   },
   methods: {
@@ -2407,6 +2394,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.dispatch('deleteCategory', value.categoryId);
       this.$router.push({
         name: 'home'
+      });
+    },
+    updateCardsOrder: function updateCardsOrder() {
+      this.$store.dispatch('updateCardsOrder', {
+        newCardsOrder: this.newCardsOrder,
+        categoryId: this.paramsId
       });
     }
   }
@@ -43097,19 +43090,28 @@ var render = function() {
             {
               staticClass: "project-container",
               attrs: {
-                list: Object.values(_vm.categories[this.paramsId].cards),
-                animation: 0,
+                list: _vm.newCardsOrder,
+                animation: 500,
                 group: "share",
                 tag: "ul"
-              }
+              },
+              on: { change: _vm.updateCardsOrder }
             },
-            _vm._l(_vm.categories[this.paramsId].cards, function(card) {
-              return _c(
-                "li",
-                [_c("CardComponent", { attrs: { card: card } })],
-                1
-              )
-            }),
+            _vm._l(
+              Object.values(_vm.categories[this.paramsId].cards).sort(function(
+                a,
+                b
+              ) {
+                return a.order - b.order
+              }),
+              function(card) {
+                return _c(
+                  "li",
+                  [_c("CardComponent", { attrs: { card: card } })],
+                  1
+                )
+              }
+            ),
             0
           ),
           _vm._v(" "),
@@ -64034,7 +64036,6 @@ var strict = false;
     handleErrors: function handleErrors(state, _ref2) {
       var errors = _ref2.errors;
       state.errors = errors;
-      console.log(state.errors);
     },
     addCategories: function addCategories(state, _ref3) {
       var categories = _ref3.categories;
@@ -64055,7 +64056,6 @@ var strict = false;
     },
     upCategory: function upCategory(state, _ref5) {
       var category = _ref5.category;
-      console.log(state.categories[category.id]);
       state.categories[category.id].name = category.name;
       state.categories[category.id].color = category.color;
     },
@@ -64094,6 +64094,11 @@ var strict = false;
       delete newState[card.category_id].cards[card.id];
       state.categories = _objectSpread({}, newState);
       state.errors = {};
+    },
+    removeCards: function removeCards(state, _ref9) {
+      var id = _ref9.id,
+          cards = _ref9.cards;
+      state.categories[id].cards = cards;
     }
   },
   actions: {
@@ -64597,6 +64602,46 @@ var strict = false;
       }
 
       return updateTaskCard;
+    }(),
+    updateCardsOrder: function () {
+      var _updateCardsOrder = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee14(context, cardsData) {
+        var cards, response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee14$(_context14) {
+          while (1) {
+            switch (_context14.prev = _context14.next) {
+              case 0:
+                cards = {};
+                cardsData.newCardsOrder.forEach(function (element, index) {
+                  cards[element.id] = {
+                    id: element.id,
+                    order: index + 1
+                  };
+                });
+                _context14.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/update/cards/order/' + cardsData.categoryId, {
+                  cards: cards
+                });
+
+              case 4:
+                response = _context14.sent;
+                context.commit('removeCards', {
+                  id: cardsData.categoryId,
+                  cards: response.data.cards
+                });
+
+              case 6:
+              case "end":
+                return _context14.stop();
+            }
+          }
+        }, _callee14);
+      }));
+
+      function updateCardsOrder(_x25, _x26) {
+        return _updateCardsOrder.apply(this, arguments);
+      }
+
+      return updateCardsOrder;
     }()
   }
 }));

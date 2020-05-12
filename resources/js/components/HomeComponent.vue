@@ -50,14 +50,9 @@
         computed: {
             ...mapGetters(['categories']),
         },
-        data () {
-            return {
-                newCategories: this.categories,
-            }
-        },
         mounted: async function () {
             let response = await axios.get('api/categories')
-            response.data.categories.forEach(el => this.$store.dispatch('loadCards', el.id))
+            //response.data.categories.forEach(el => this.$store.dispatch('loadCards', el.id))
         },
         watch: {
             categories: function (newVal) {
