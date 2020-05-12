@@ -81,14 +81,9 @@ export default new Vuex.Store({
             state.errors = {}
         },
         removeCards: function (state, {id, cards}) {
-
-            console.log(state.categories[id])
-
             cards.forEach(el => {
                 state.categories[id].cards[el.id].order = el.order
             })
-
-            console.log(state.categories[id])
         }
     },
     actions: {
@@ -138,7 +133,8 @@ export default new Vuex.Store({
                 context.commit('handleErrors', {errors: error.response.data.errors})
             }
         },
-        updateCard: async function (context, cardData) {
+        updateCard: async function (context, data) {
+            let cardData = data.value
             try {
                 let response = await axios.post('/api/update/card/' + cardData.cardId + '/' + cardData.categoryId, {
                     cardName: cardData.cardName,
@@ -157,7 +153,8 @@ export default new Vuex.Store({
                 context.commit('handleErrors', {errors: error.response.data.errors})
             }
         },
-        insertTask: async function (context, taskData) {
+        insertTask: async function (context, data) {
+            let taskData = data.value
             try {
                 let response = await axios.post('/api/add-task/' + taskData.cardId + '/' + taskData.categoryId, {
                     taskName: taskData.taskName,
@@ -168,7 +165,8 @@ export default new Vuex.Store({
                 context.commit('handleErrors', {errors: error.response.data.errors})
             }
         },
-        deleteTask: async function (context, taskData) {
+        deleteTask: async function (context, data) {
+            let taskData = data.value
             try {
                 let response = await axios.post('/api/delete/task/' + taskData.taskId + '/' + taskData.cardId + '/' + taskData.categoryId)
                 context.commit('addCard', {card: response.data.card})
@@ -176,7 +174,8 @@ export default new Vuex.Store({
                 context.commit('handleErrors', {errors: error.response.data.errors})
             }
         },
-        updateTask: async function (context, taskData) {
+        updateTask: async function (context, data) {
+            let taskData = data.value
             try {
                 let response = await axios.post('/api/update/task/' + taskData.taskId + '/' + taskData.cardId + '/' + taskData.categoryId, {
                     status: taskData.checkbox,

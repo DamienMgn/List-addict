@@ -107,30 +107,18 @@
             }
         },
         methods:{
-            deleteCard: function (e) {
-                e.preventDefault();
-                this.toggleDropdown();
-                this.$store.dispatch('deleteCard', {
-                    cardId: e.target.card.value,
-                    categoryId: e.target.category.value
-                })
+            deleteTask: function (value) {
+                this.$store.dispatch('deleteTask', {value})
             },
             updateCard: function (value) {
-                this.$store.dispatch('updateCard', {
-                    cardId: value.cardId,
-                    categoryId: value.categoryId,
-                    cardName: value.cardName,
-                    cardColor: value.cardColor
-                })
+                this.$store.dispatch('updateCard', {value})
             },
             addTask: function (value) {
-                this.$store.dispatch('insertTask', {
-                    taskName: value.taskName,
-                    taskColor: value.taskColor,
-                    categoryId: value.categoryId,
-                    cardId: value.cardId
-                })
+                this.$store.dispatch('insertTask', {value});
                 $('#modal-add-task').find("input[type=text]").val('');
+            },
+            updateTask: function (value) {
+                this.$store.dispatch('updateTask', {value})
             },
             updateTasksOrder: async function () {
                 let tasks = {}
@@ -139,14 +127,13 @@
                     tasks : tasks
                 })
             },
-            updateTask: function (value) {
-                this.$store.dispatch('updateTask', {
-                        taskColor: value.taskColor,
-                        cardId: value.cardId,
-                        categoryId: value.categoryId,
-                        taskId: value.taskId,
-                        taskName: value.taskName
-                    })
+            deleteCard: function (e) {
+                e.preventDefault();
+                this.toggleDropdown();
+                this.$store.dispatch('deleteCard', {
+                    cardId: e.target.card.value,
+                    categoryId: e.target.category.value
+                })
             },
             updateTaskCard: function (event, card) {
                 let task = event.item.getAttribute('data-id');
@@ -154,14 +141,6 @@
                         cardId: card,
                         categoryId: this.card.category_id,
                         taskId: task
-                    })
-            },
-            deleteTask: function (value) {
-                this.$store.dispatch('deleteTask',
-                    {
-                        cardId: value.cardId,
-                        categoryId: value.categoryId,
-                        taskId: value.taskId
                     })
             },
             toggleDropdown: function () {
