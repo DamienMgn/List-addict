@@ -36,4 +36,9 @@
                <img class="welcome-demo" src="images/app-mask.png" alt="demonstration">
             </div>
         </div>
+        <div class="welcome-footer">
+            <p>maquignondm@gmail.com</p>
+            <span>-</span>
+            <a href="https://github.com/DamienMgn/List-addict">github</a>
+        </div>
 @endsection
