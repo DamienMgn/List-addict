@@ -22,6 +22,14 @@
                         <label class="form-modal-label">Définir une couleur</label>
                         <ColorPicker></ColorPicker>
                     </div>
+                    <div class="form-group" v-if="this.type === 'updateTask'">
+                        <label>Deadline de la tâche</label>
+                        <datepicker format="yyyy/MM/dd" input-class="form-control" name="date" ></datepicker>
+                    </div>
+                    <div class="form-group" v-if="this.type === 'updateTask'">
+                        <label>Status de la tâche</label>
+                        <input class="task-form-checkbox" type="checkbox" v-model="status" name="status">
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn cancel" data-dismiss="modal">Annuler</button>
                         <input type="submit" class="btn submit">
@@ -34,15 +42,19 @@
 
 <script>
 
-    import ColorPicker from './ColorPicker'
+    import ColorPicker from './ColorPicker';
+    import Datepicker from 'vuejs-datepicker';
+    import {fr} from 'vuejs-datepicker/dist/locale'
 
     export default {
         name: "modal",
-        components: {ColorPicker},
-        props: ['title', 'card', 'category', 'task', 'type', 'id'],
+        components: {ColorPicker, Datepicker},
+        props: ['title', 'card', 'category', 'task', 'type', 'id', 'taskStatus'],
         data () {
             return {
                 name: '',
+                status: this.taskStatus,
+                fr: fr
             }
         },
         computed: {
@@ -100,6 +112,8 @@
                     this.$emit('update', {
                         taskName: e.target.updateTask.value,
                         taskColor: '#FFFFFF',
+                        taskDeadline: e.target.date.value,
+                        taskStatus: this.status,
                         categoryId: this.category,
                         cardId: this.card,
                         taskId: this.task

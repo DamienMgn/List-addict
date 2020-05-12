@@ -120,6 +120,10 @@ class TasksController extends Controller
         if (!empty($request->taskName)) {
             $task->name = $request->taskName;
         }
+        if (!empty($request->taskDeadline)) {
+            $newDate = new \DateTime($request->taskDeadline);
+            $task->deadline = $newDate;
+        }
 
         $task->save();
 
