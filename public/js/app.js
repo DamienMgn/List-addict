@@ -2069,30 +2069,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   methods: {
-    deleteCard: function deleteCard(e) {
-      e.preventDefault();
-      this.toggleDropdown();
-      this.$store.dispatch('deleteCard', {
-        cardId: e.target.card.value,
-        categoryId: e.target.category.value
+    deleteTask: function deleteTask(value) {
+      this.$store.dispatch('deleteTask', {
+        value: value
       });
     },
     updateCard: function updateCard(value) {
       this.$store.dispatch('updateCard', {
-        cardId: value.cardId,
-        categoryId: value.categoryId,
-        cardName: value.cardName,
-        cardColor: value.cardColor
+        value: value
       });
     },
     addTask: function addTask(value) {
       this.$store.dispatch('insertTask', {
-        taskName: value.taskName,
-        taskColor: value.taskColor,
-        categoryId: value.categoryId,
-        cardId: value.cardId
+        value: value
       });
       $('#modal-add-task').find("input[type=text]").val('');
+    },
+    updateTask: function updateTask(value) {
+      this.$store.dispatch('updateTask', {
+        value: value
+      });
     },
     updateTasksOrder: function () {
       var _updateTasksOrder = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -2130,13 +2126,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       return updateTasksOrder;
     }(),
-    updateTask: function updateTask(value) {
-      this.$store.dispatch('updateTask', {
-        taskColor: value.taskColor,
-        cardId: value.cardId,
-        categoryId: value.categoryId,
-        taskId: value.taskId,
-        taskName: value.taskName
+    deleteCard: function deleteCard(e) {
+      e.preventDefault();
+      this.toggleDropdown();
+      this.$store.dispatch('deleteCard', {
+        cardId: e.target.card.value,
+        categoryId: e.target.category.value
       });
     },
     updateTaskCard: function updateTaskCard(event, card) {
@@ -2145,13 +2140,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         cardId: card,
         categoryId: this.card.category_id,
         taskId: task
-      });
-    },
-    deleteTask: function deleteTask(value) {
-      this.$store.dispatch('deleteTask', {
-        cardId: value.cardId,
-        categoryId: value.categoryId,
-        taskId: value.taskId
       });
     },
     toggleDropdown: function toggleDropdown() {
@@ -2240,6 +2228,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['categories'])),
   mounted: function () {
     var _mounted = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var _this = this;
+
       var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
@@ -2250,8 +2240,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
             case 2:
               response = _context.sent;
+              response.data.categories.forEach(function (el) {
+                return _this.$store.dispatch('loadCards', el.id);
+              });
 
-            case 3:
+            case 4:
             case "end":
               return _context.stop();
           }
@@ -64098,11 +64091,9 @@ var strict = false;
     removeCards: function removeCards(state, _ref9) {
       var id = _ref9.id,
           cards = _ref9.cards;
-      console.log(state.categories[id]);
       cards.forEach(function (el) {
         state.categories[id].cards[el.id].order = el.order;
       });
-      console.log(state.categories[id]);
     }
   },
   actions: {
@@ -64312,40 +64303,41 @@ var strict = false;
       return insertCard;
     }(),
     updateCard: function () {
-      var _updateCard = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7(context, cardData) {
-        var response;
+      var _updateCard = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7(context, data) {
+        var cardData, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
           while (1) {
             switch (_context7.prev = _context7.next) {
               case 0:
-                _context7.prev = 0;
-                _context7.next = 3;
+                cardData = data.value;
+                _context7.prev = 1;
+                _context7.next = 4;
                 return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/update/card/' + cardData.cardId + '/' + cardData.categoryId, {
                   cardName: cardData.cardName,
                   cardColor: cardData.cardColor
                 });
 
-              case 3:
+              case 4:
                 response = _context7.sent;
                 context.commit('addCard', {
                   card: response.data.card
                 });
-                _context7.next = 10;
+                _context7.next = 11;
                 break;
 
-              case 7:
-                _context7.prev = 7;
-                _context7.t0 = _context7["catch"](0);
+              case 8:
+                _context7.prev = 8;
+                _context7.t0 = _context7["catch"](1);
                 context.commit('handleErrors', {
                   errors: _context7.t0.response.data.errors
                 });
 
-              case 10:
+              case 11:
               case "end":
                 return _context7.stop();
             }
           }
-        }, _callee7, null, [[0, 7]]);
+        }, _callee7, null, [[1, 8]]);
       }));
 
       function updateCard(_x11, _x12) {
@@ -64395,40 +64387,41 @@ var strict = false;
       return deleteCard;
     }(),
     insertTask: function () {
-      var _insertTask = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9(context, taskData) {
-        var response;
+      var _insertTask = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9(context, data) {
+        var taskData, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee9$(_context9) {
           while (1) {
             switch (_context9.prev = _context9.next) {
               case 0:
-                _context9.prev = 0;
-                _context9.next = 3;
+                taskData = data.value;
+                _context9.prev = 1;
+                _context9.next = 4;
                 return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/add-task/' + taskData.cardId + '/' + taskData.categoryId, {
                   taskName: taskData.taskName,
                   taskColor: taskData.taskColor
                 });
 
-              case 3:
+              case 4:
                 response = _context9.sent;
                 context.commit('addCard', {
                   card: response.data.card
                 });
-                _context9.next = 10;
+                _context9.next = 11;
                 break;
 
-              case 7:
-                _context9.prev = 7;
-                _context9.t0 = _context9["catch"](0);
+              case 8:
+                _context9.prev = 8;
+                _context9.t0 = _context9["catch"](1);
                 context.commit('handleErrors', {
                   errors: _context9.t0.response.data.errors
                 });
 
-              case 10:
+              case 11:
               case "end":
                 return _context9.stop();
             }
           }
-        }, _callee9, null, [[0, 7]]);
+        }, _callee9, null, [[1, 8]]);
       }));
 
       function insertTask(_x15, _x16) {
@@ -64438,37 +64431,38 @@ var strict = false;
       return insertTask;
     }(),
     deleteTask: function () {
-      var _deleteTask = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10(context, taskData) {
-        var response;
+      var _deleteTask = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10(context, data) {
+        var taskData, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee10$(_context10) {
           while (1) {
             switch (_context10.prev = _context10.next) {
               case 0:
-                _context10.prev = 0;
-                _context10.next = 3;
+                taskData = data.value;
+                _context10.prev = 1;
+                _context10.next = 4;
                 return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/delete/task/' + taskData.taskId + '/' + taskData.cardId + '/' + taskData.categoryId);
 
-              case 3:
+              case 4:
                 response = _context10.sent;
                 context.commit('addCard', {
                   card: response.data.card
                 });
-                _context10.next = 10;
+                _context10.next = 11;
                 break;
 
-              case 7:
-                _context10.prev = 7;
-                _context10.t0 = _context10["catch"](0);
+              case 8:
+                _context10.prev = 8;
+                _context10.t0 = _context10["catch"](1);
                 context.commit('handleErrors', {
                   errors: _context10.t0.response.data.errors
                 });
 
-              case 10:
+              case 11:
               case "end":
                 return _context10.stop();
             }
           }
-        }, _callee10, null, [[0, 7]]);
+        }, _callee10, null, [[1, 8]]);
       }));
 
       function deleteTask(_x17, _x18) {
@@ -64478,41 +64472,42 @@ var strict = false;
       return deleteTask;
     }(),
     updateTask: function () {
-      var _updateTask = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee11(context, taskData) {
-        var response;
+      var _updateTask = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee11(context, data) {
+        var taskData, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee11$(_context11) {
           while (1) {
             switch (_context11.prev = _context11.next) {
               case 0:
-                _context11.prev = 0;
-                _context11.next = 3;
+                taskData = data.value;
+                _context11.prev = 1;
+                _context11.next = 4;
                 return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/update/task/' + taskData.taskId + '/' + taskData.cardId + '/' + taskData.categoryId, {
                   status: taskData.checkbox,
                   taskColor: taskData.taskColor,
                   taskName: taskData.taskName
                 });
 
-              case 3:
+              case 4:
                 response = _context11.sent;
                 context.commit('addCard', {
                   card: response.data.card
                 });
-                _context11.next = 10;
+                _context11.next = 11;
                 break;
 
-              case 7:
-                _context11.prev = 7;
-                _context11.t0 = _context11["catch"](0);
+              case 8:
+                _context11.prev = 8;
+                _context11.t0 = _context11["catch"](1);
                 context.commit('handleErrors', {
                   errors: _context11.t0.response.data.errors
                 });
 
-              case 10:
+              case 11:
               case "end":
                 return _context11.stop();
             }
           }
-        }, _callee11, null, [[0, 7]]);
+        }, _callee11, null, [[1, 8]]);
       }));
 
       function updateTask(_x19, _x20) {
