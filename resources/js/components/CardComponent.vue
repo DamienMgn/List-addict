@@ -74,6 +74,7 @@
                 :card="card.id"
                 :category="card.category_id"
                 :task="task.id"
+                :taskStatus="task.status"
             >
             </Modal>
         </div>

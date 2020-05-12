@@ -178,9 +178,10 @@ export default new Vuex.Store({
             let taskData = data.value
             try {
                 let response = await axios.post('/api/update/task/' + taskData.taskId + '/' + taskData.cardId + '/' + taskData.categoryId, {
-                    status: taskData.checkbox,
+                    status: taskData.taskStatus,
                     taskColor: taskData.taskColor,
-                    taskName: taskData.taskName
+                    taskName: taskData.taskName,
+                    taskDeadline: taskData.taskDeadline,
                 })
                 context.commit('addCard', {card: response.data.card})
             } catch (error) {

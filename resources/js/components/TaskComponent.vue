@@ -9,9 +9,9 @@
             </div>
         </div>
         <div class="task-footer">
-            <p class="task-date">
+            <p class="task-date" v-if="task.deadline">
+                {{task.deadline}}
             </p>
-            <input @change="updateTaskStatus" class="task-form-checkbox" type="checkbox" v-model="task.status" :data-task="task.id" :data-card="card.id" :data-category="card.category_id">
         </div>
     </div>
 </template>
