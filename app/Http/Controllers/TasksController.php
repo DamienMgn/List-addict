@@ -151,7 +151,7 @@ class TasksController extends Controller
             foreach ($cards as $card) {
                 $tasks = Tasks::where('card_id', $card->id)->get();
                 foreach ($tasks as $task) {
-                    $tasksArray[$task->id] = $task;
+                    $tasksArray[] = $task;
                 }
             }
         }

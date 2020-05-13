@@ -4,7 +4,7 @@
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-6 page-title">
+                    <div class="col-sm-6 page-title" v-if="category">
                         <div class="dropdown dropdown-category-main" >
                             <a class="btn-dropdown dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true" @click="toggleDropdown">
                                 <i class="nav-icon fas fa-th"></i>
