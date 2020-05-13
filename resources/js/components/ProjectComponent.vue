@@ -7,17 +7,17 @@
           :category="paramsId"
       >
       </ContentComponent>
-          <draggable
-              :list="newCardsOrder"
-              class="project-container"
-              :animation="500"
-              :group="'share'"
-              :tag="'ul'"
-              @change="updateCardsOrder">
-              <li v-for="card in Object.values(categories[this.paramsId].cards).sort((a, b) => {return a.order - b.order})">
-                  <CardComponent v-bind:card="card"></CardComponent>
-              </li>
-          </draggable>
+      <draggable
+          :list="newCardsOrder"
+          class="project-container"
+          :animation="500"
+          :group="'share'"
+          :tag="'ul'"
+          @change="updateCardsOrder">
+          <li v-for="card in Object.values(categories[this.paramsId].cards).sort((a, b) => {return a.order - b.order})">
+              <CardComponent v-bind:card="card"></CardComponent>
+          </li>
+      </draggable>
       <Modal
           :type="'card'"
           :id="'modal-add-card'"
@@ -37,6 +37,7 @@
 
 
     export default {
+        name: "ProjectComponent",
         components: {
             CardComponent,
             ContentComponent,

@@ -16,6 +16,7 @@ export default new Vuex.Store({
     strict: true,
     state: {
         categories: {},
+        tasks: {},
         errors: {}
     },
     getters: {
@@ -80,7 +81,7 @@ export default new Vuex.Store({
             state.categories = {...newState}
             state.errors = {}
         },
-        removeCards: function (state, {id, cards}) {
+        updateCardsOrder: function (state, {id, cards}) {
             cards.forEach(el => {
                 state.categories[id].cards[el.id].order = el.order
             })
@@ -214,7 +215,16 @@ export default new Vuex.Store({
                 let response = await axios.post('/api/update/cards/order/' + cardsData.categoryId, {
                     cards : cards
                 })
-                context.commit('removeCards', {id: cardsData.categoryId, cards: response.data.cards})
+                context.commit('updateCardsOrder', {id: cardsData.categoryId, cards: response.data.cards})
+        },
+        loadTasks: async function (context) {
+            try {
+                let response = await axios.get('/api/tasks/')
+                context.commit('addTasks', {tasks: response.data.tasks})
+                console.log(response)
+            } catch (error) {
+                context.commit('handleErrors', {errors: error.response.data.errors})
+            }
         }
     }
 })

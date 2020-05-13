@@ -47,7 +47,7 @@
     import {fr} from 'vuejs-datepicker/dist/locale'
 
     export default {
-        name: "modal",
+        name: "ModalComponent",
         components: {ColorPicker, Datepicker},
         props: ['title', 'card', 'category', 'task', 'type', 'id', 'taskStatus'],
         data () {
