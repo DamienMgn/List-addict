@@ -60,7 +60,7 @@ class CategoriesController extends Controller
         if (!empty($request->name)) {
             $category->name = $request->name;
         }
-        
+
         if (!empty($request->color)) {
             $category->color = $request->color;
         }

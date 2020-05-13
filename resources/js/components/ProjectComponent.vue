@@ -14,7 +14,7 @@
           :group="'share'"
           :tag="'ul'"
           @change="updateCardsOrder">
-          <li v-for="card in Object.values(categories[this.paramsId].cards).sort((a, b) => {return a.order - b.order})">
+          <li v-for="card in newCardsOrder">
               <CardComponent v-bind:card="card"></CardComponent>
           </li>
       </draggable>
@@ -65,7 +65,7 @@
                 this.$store.dispatch('loadCards', this.$route.params.id)
             },
             categories: function (newVal) {
-                this.newCardsOrder = Object.values(newVal[this.$route.params.id].cards)
+                this.newCardsOrder = Object.values(newVal[this.$route.params.id].cards).sort((a, b) => {return a.order - b.order})
             }
         },
         methods: {

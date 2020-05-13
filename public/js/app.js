@@ -2447,7 +2447,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.dispatch('loadCards', this.$route.params.id);
     },
     categories: function categories(newVal) {
-      this.newCardsOrder = Object.values(newVal[this.$route.params.id].cards);
+      this.newCardsOrder = Object.values(newVal[this.$route.params.id].cards).sort(function (a, b) {
+        return a.order - b.order;
+      });
     }
   },
   methods: {
@@ -2654,7 +2656,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['task', 'card'],
   computed: {
     date: function date() {
-      var date = this.formatDate(new Date(this.task.deadline).getDate()) + '/' + this.formatDate(new Date(this.task.deadline).getMonth() + 1) + '/' + new Date(this.task.deadline).getFullYear();
+      var date = this.formatDate(new Date(this.task.deadline).getDate()) + '/' + this.formatDate(new Date(this.task.deadline).getMonth() + 1) + '/' + this.formatDate(new Date(this.task.deadline).getFullYear());
       return date;
     }
   },
@@ -43314,21 +43316,13 @@ var render = function() {
               },
               on: { change: _vm.updateCardsOrder }
             },
-            _vm._l(
-              Object.values(_vm.categories[this.paramsId].cards).sort(function(
-                a,
-                b
-              ) {
-                return a.order - b.order
-              }),
-              function(card) {
-                return _c(
-                  "li",
-                  [_c("CardComponent", { attrs: { card: card } })],
-                  1
-                )
-              }
-            ),
+            _vm._l(_vm.newCardsOrder, function(card) {
+              return _c(
+                "li",
+                [_c("CardComponent", { attrs: { card: card } })],
+                1
+              )
+            }),
             0
           ),
           _vm._v(" "),
