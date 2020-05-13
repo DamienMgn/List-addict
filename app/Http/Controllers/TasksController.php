@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cards;
+use App\Categories;
 use App\Tasks;
 use Illuminate\Http\Request;
 
@@ -132,5 +133,32 @@ class TasksController extends Controller
         return response()->json([
             'card' => $card,
         ]);
+    }
+
+    /**
+     * Return tasks
+     */
+    public function loadTasks(Request $request) {
+
+        $userId = $request->user()->id;
+
+        $tasksArray = [];
+
+        $categories = Categories::where('user_id', $request->user()->id)->get();
+
+        foreach ($categories as $category) {
+            $cards = Cards::where('category_id', $category->id)->get();
+            foreach ($cards as $card) {
+                $tasks = Tasks::where('card_id', $card->id)->get();
+                foreach ($tasks as $task) {
+                    $tasksArray[$task->id] = $task;
+                }
+            }
+        }
+
+        return response()->json([
+            'tasks' => $tasksArray,
+        ]);
+
     }
 }
