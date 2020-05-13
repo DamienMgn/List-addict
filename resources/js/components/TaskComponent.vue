@@ -10,7 +10,7 @@
         </div>
         <div class="task-footer">
             <p class="task-date" v-if="task.deadline">
-                {{task.deadline}}
+                {{date}}
             </p>
         </div>
     </div>
@@ -22,5 +22,21 @@
         name: "TaskComponent",
         components: {},
         props: ['task', 'card'],
+        computed: {
+            date: function () {
+                let date = this.formatDate(new Date(this.task.deadline).getDate()) + '/' + this.formatDate((new Date(this.task.deadline).getMonth() + 1)) + '/' + new Date(this.task.deadline).getFullYear()
+                return date
+            },
+        },
+        methods: {
+            formatDate: function (nbr) {
+                if (nbr <= 9) {
+                    let newNbr = '0' + nbr
+                    return newNbr
+                } else {
+                    return nbr
+                }
+            }
+        }
     }
 </script>

@@ -2567,7 +2567,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "TaskComponent",
   components: {},
-  props: ['task', 'card']
+  props: ['task', 'card'],
+  computed: {
+    date: function date() {
+      var date = this.formatDate(new Date(this.task.deadline).getDate()) + '/' + this.formatDate(new Date(this.task.deadline).getMonth() + 1) + '/' + new Date(this.task.deadline).getFullYear();
+      return date;
+    }
+  },
+  methods: {
+    formatDate: function formatDate(nbr) {
+      if (nbr <= 9) {
+        var newNbr = '0' + nbr;
+        return newNbr;
+      } else {
+        return nbr;
+      }
+    }
+  }
 });
 
 /***/ }),
@@ -2784,6 +2800,13 @@ __webpack_require__.r(__webpack_exports__);
     },
     isNotTaskUpdate: function isNotTaskUpdate() {
       return this.type !== 'updateTask';
+    },
+    disabledDates: function disabledDates() {
+      var date = new Date();
+      var dateMinusOneDay = new Date(date.setDate(date.getDate() - 1));
+      return {
+        to: dateMinusOneDay
+      };
     }
   },
   methods: {
@@ -43399,9 +43422,7 @@ var render = function() {
       _c("div", { staticClass: "task-footer" }, [
         _vm.task.deadline
           ? _c("p", { staticClass: "task-date" }, [
-              _vm._v(
-                "\n            " + _vm._s(_vm.task.deadline) + "\n        "
-              )
+              _vm._v("\n            " + _vm._s(_vm.date) + "\n        ")
             ])
           : _vm._e()
       ])
@@ -43707,9 +43728,11 @@ var render = function() {
                       _vm._v(" "),
                       _c("datepicker", {
                         attrs: {
+                          language: _vm.fr,
                           format: "yyyy/MM/dd",
                           "input-class": "form-control",
-                          name: "date"
+                          name: "date",
+                          "disabled-dates": _vm.disabledDates
                         }
                       })
                     ],
