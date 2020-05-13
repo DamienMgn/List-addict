@@ -16,12 +16,15 @@ export default new Vuex.Store({
     strict: true,
     state: {
         categories: {},
-        tasks: {},
+        tasks: [],
         errors: {}
     },
     getters: {
         categories: function (state) {
             return state.categories
+        },
+        tasks: function (state) {
+            return state.tasks
         },
         errors: function (state) {
             return state.errors
@@ -39,6 +42,11 @@ export default new Vuex.Store({
             });
             state.categories = obj
             state.errors = {}
+        },
+        addTasks: function (state, {tasks}) {
+            state.tasks = tasks
+            state.errors = {}
+            console.log(state.tasks)
         },
         addCategory: function (state, {category}) {
             let obj = {}
@@ -221,7 +229,6 @@ export default new Vuex.Store({
             try {
                 let response = await axios.get('/api/tasks/')
                 context.commit('addTasks', {tasks: response.data.tasks})
-                console.log(response)
             } catch (error) {
                 context.commit('handleErrors', {errors: error.response.data.errors})
             }

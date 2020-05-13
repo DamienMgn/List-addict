@@ -2300,6 +2300,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _partials_ContentComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./partials/ContentComponent */ "./resources/js/components/partials/ContentComponent.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2310,10 +2332,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     ContentComponent: _partials_ContentComponent__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['tasks']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['errors']), {
+    today: function today() {
+      return new Date().getTime();
+    },
+    pastDays: function pastDays() {
+      var date = new Date();
+      var pastDays = new Date(date.setDate(date.getDate() - 1)).getTime();
+      return pastDays;
+    },
+    tomorrow: function tomorrow() {
+      var date = new Date();
+      var tomorrow = new Date(date.setDate(date.getDate() + 1)).getTime();
+      return tomorrow;
+    },
+    nextDays: function nextDays() {
+      var date = new Date();
+      var nextDays = new Date(date.setDate(date.getDate() + 2)).getTime();
+      return nextDays;
+    }
+  }),
   mounted: function mounted() {
     this.$store.dispatch('loadTasks');
   }
@@ -43134,17 +43177,95 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("ContentComponent"),
-      _vm._v(" "),
-      _c("div", { staticClass: "project-container" }, [
-        _vm._v("\n        Planning-Container\n    ")
-      ])
-    ],
-    1
-  )
+  return _vm.tasks !== undefined
+    ? _c(
+        "div",
+        [
+          _c("ContentComponent"),
+          _vm._v(" "),
+          _c("div", { staticClass: "planning-container" }, [
+            _c(
+              "div",
+              { staticClass: "planning last" },
+              [
+                _c("h6", [_vm._v(_vm._s(_vm.pastDays))]),
+                _vm._v(" "),
+                _vm._l(_vm.tasks, function(task) {
+                  return new Date(task.deadline).getTime() < _vm.pastDays
+                    ? _c("p", [
+                        _vm._v(
+                          _vm._s(task.name) + " / " + _vm._s(task.deadline)
+                        )
+                      ])
+                    : _vm._e()
+                })
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "planning today" },
+              [
+                _c("h6", [_vm._v(_vm._s(_vm.today))]),
+                _vm._v(" "),
+                _vm._l(_vm.tasks, function(task) {
+                  return new Date(task.deadline).getTime() > _vm.pastDays &&
+                    new Date(task.deadline) < _vm.tomorrow
+                    ? _c("p", [
+                        _vm._v(
+                          _vm._s(task.name) + " / " + _vm._s(task.deadline)
+                        )
+                      ])
+                    : _vm._e()
+                })
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "planning tomorrow" },
+              [
+                _c("h6", [_vm._v(_vm._s(_vm.tomorrow))]),
+                _vm._v(" "),
+                _vm._l(_vm.tasks, function(task) {
+                  return new Date(task.deadline).getTime() > _vm.today &&
+                    new Date(task.deadline) < _vm.nextDays
+                    ? _c("p", [
+                        _vm._v(
+                          _vm._s(task.name) + " / " + _vm._s(task.deadline)
+                        )
+                      ])
+                    : _vm._e()
+                })
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "planning few" },
+              [
+                _c("h6", [_vm._v(_vm._s(_vm.nextDays))]),
+                _vm._v(" "),
+                _vm._l(_vm.tasks, function(task) {
+                  return new Date(task.deadline).getTime() > _vm.nextDays
+                    ? _c("p", [
+                        _vm._v(
+                          _vm._s(task.name) + " / " + _vm._s(task.deadline)
+                        )
+                      ])
+                    : _vm._e()
+                })
+              ],
+              2
+            )
+          ])
+        ],
+        1
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -43598,88 +43719,94 @@ var render = function() {
         { staticClass: "container-fluid" },
         [
           _c("div", { staticClass: "row mb-2" }, [
-            _c("div", { staticClass: "col-sm-6 page-title" }, [
-              _c("div", { staticClass: "dropdown dropdown-category-main" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "btn-dropdown dropdown-toggle",
-                    attrs: {
-                      "data-toggle": "dropdown",
-                      href: "#",
-                      "aria-expanded": "true"
-                    },
-                    on: { click: _vm.toggleDropdown }
-                  },
-                  [_c("i", { staticClass: "nav-icon fas fa-th" })]
-                ),
-                _vm._v(" "),
-                _vm.dropdownStatus
-                  ? _c(
-                      "ul",
-                      {
-                        staticClass: "dropdown-menu",
-                        on: { click: _vm.toggleDropdown }
-                      },
-                      [
-                        _c("li", { attrs: { role: "presentation" } }, [
-                          _c(
-                            "a",
+            _vm.category
+              ? _c("div", { staticClass: "col-sm-6 page-title" }, [
+                  _c(
+                    "div",
+                    { staticClass: "dropdown dropdown-category-main" },
+                    [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn-dropdown dropdown-toggle",
+                          attrs: {
+                            "data-toggle": "dropdown",
+                            href: "#",
+                            "aria-expanded": "true"
+                          },
+                          on: { click: _vm.toggleDropdown }
+                        },
+                        [_c("i", { staticClass: "nav-icon fas fa-th" })]
+                      ),
+                      _vm._v(" "),
+                      _vm.dropdownStatus
+                        ? _c(
+                            "ul",
                             {
-                              attrs: {
-                                role: "menuitem",
-                                tabindex: "-1",
-                                href: "#"
-                              },
-                              on: {
-                                click: function($event) {
-                                  return _vm.$emit("delete", {
-                                    categoryId: _vm.category
-                                  })
-                                }
-                              }
+                              staticClass: "dropdown-menu",
+                              on: { click: _vm.toggleDropdown }
                             },
-                            [_vm._v("Supprimer")]
+                            [
+                              _c("li", { attrs: { role: "presentation" } }, [
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: {
+                                      role: "menuitem",
+                                      tabindex: "-1",
+                                      href: "#"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.$emit("delete", {
+                                          categoryId: _vm.category
+                                        })
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Supprimer")]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("li", {
+                                staticClass: "divider",
+                                attrs: { role: "presentation" }
+                              }),
+                              _vm._v(" "),
+                              _c("li", { attrs: { role: "presentation" } }, [
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: {
+                                      "data-toggle": "modal",
+                                      "data-target":
+                                        "#modal-update-category" + _vm.category,
+                                      role: "menuitem",
+                                      tabindex: "-1",
+                                      href: "#"
+                                    }
+                                  },
+                                  [_vm._v("Modifier")]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("li", {
+                                staticClass: "divider",
+                                attrs: { role: "presentation" }
+                              }),
+                              _vm._v(" "),
+                              _vm._m(0)
+                            ]
                           )
-                        ]),
-                        _vm._v(" "),
-                        _c("li", {
-                          staticClass: "divider",
-                          attrs: { role: "presentation" }
-                        }),
-                        _vm._v(" "),
-                        _c("li", { attrs: { role: "presentation" } }, [
-                          _c(
-                            "a",
-                            {
-                              attrs: {
-                                "data-toggle": "modal",
-                                "data-target":
-                                  "#modal-update-category" + _vm.category,
-                                role: "menuitem",
-                                tabindex: "-1",
-                                href: "#"
-                              }
-                            },
-                            [_vm._v("Modifier")]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("li", {
-                          staticClass: "divider",
-                          attrs: { role: "presentation" }
-                        }),
-                        _vm._v(" "),
-                        _vm._m(0)
-                      ]
-                    )
-                  : _vm._e()
-              ]),
-              _vm._v(" "),
-              _c("h1", { staticClass: "m-0 text-dark" }, [
-                _vm._v(_vm._s(_vm.title))
-              ])
-            ])
+                        : _vm._e()
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("h1", { staticClass: "m-0 text-dark" }, [
+                    _vm._v(_vm._s(_vm.title))
+                  ])
+                ])
+              : _vm._e()
           ]),
           _vm._v(" "),
           _vm._l(_vm.errors, function(error, index) {
@@ -66704,12 +66831,15 @@ var strict = false;
   strict: true,
   state: {
     categories: {},
-    tasks: {},
+    tasks: [],
     errors: {}
   },
   getters: {
     categories: function categories(state) {
       return state.categories;
+    },
+    tasks: function tasks(state) {
+      return state.tasks;
     },
     errors: function errors(state) {
       return state.errors;
@@ -66730,15 +66860,21 @@ var strict = false;
       state.categories = obj;
       state.errors = {};
     },
-    addCategory: function addCategory(state, _ref4) {
-      var category = _ref4.category;
+    addTasks: function addTasks(state, _ref4) {
+      var tasks = _ref4.tasks;
+      state.tasks = tasks;
+      state.errors = {};
+      console.log(state.tasks);
+    },
+    addCategory: function addCategory(state, _ref5) {
+      var category = _ref5.category;
       var obj = {};
       obj[category.id] = category;
       state.categories = _objectSpread({}, state.categories, {}, obj);
       state.errors = {};
     },
-    upCategory: function upCategory(state, _ref5) {
-      var category = _ref5.category;
+    upCategory: function upCategory(state, _ref6) {
+      var category = _ref6.category;
       state.categories[category.id].name = category.name;
       state.categories[category.id].color = category.color;
     },
@@ -66748,9 +66884,9 @@ var strict = false;
       state.categories = _objectSpread({}, newState);
       state.errors = {};
     },
-    addCards: function addCards(state, _ref6) {
-      var id = _ref6.id,
-          cards = _ref6.cards;
+    addCards: function addCards(state, _ref7) {
+      var id = _ref7.id,
+          cards = _ref7.cards;
       var category = state.categories[id] || {};
 
       if (cards.length > 0) {
@@ -66764,23 +66900,23 @@ var strict = false;
       state.categories = _objectSpread({}, state.categories, {}, _defineProperty({}, id, category));
       state.errors = {};
     },
-    addCard: function addCard(state, _ref7) {
-      var card = _ref7.card;
+    addCard: function addCard(state, _ref8) {
+      var card = _ref8.card;
       var category = state.categories[card.category_id] || {};
       category.cards[card.id] = card;
       state.categories = _objectSpread({}, state.categories, {}, _defineProperty({}, card.category_id, category));
       state.errors = {};
     },
-    removeCard: function removeCard(state, _ref8) {
-      var card = _ref8.card;
+    removeCard: function removeCard(state, _ref9) {
+      var card = _ref9.card;
       var newState = state.categories;
       delete newState[card.category_id].cards[card.id];
       state.categories = _objectSpread({}, newState);
       state.errors = {};
     },
-    updateCardsOrder: function updateCardsOrder(state, _ref9) {
-      var id = _ref9.id,
-          cards = _ref9.cards;
+    updateCardsOrder: function updateCardsOrder(state, _ref10) {
+      var id = _ref10.id,
+          cards = _ref10.cards;
       cards.forEach(function (el) {
         state.categories[id].cards[el.id].order = el.order;
       });
@@ -67349,23 +67485,22 @@ var strict = false;
                 context.commit('addTasks', {
                   tasks: response.data.tasks
                 });
-                console.log(response);
-                _context15.next = 11;
+                _context15.next = 10;
                 break;
 
-              case 8:
-                _context15.prev = 8;
+              case 7:
+                _context15.prev = 7;
                 _context15.t0 = _context15["catch"](0);
                 context.commit('handleErrors', {
                   errors: _context15.t0.response.data.errors
                 });
 
-              case 11:
+              case 10:
               case "end":
                 return _context15.stop();
             }
           }
-        }, _callee15, null, [[0, 8]]);
+        }, _callee15, null, [[0, 7]]);
       }));
 
       function loadTasks(_x27) {
