@@ -24,7 +24,7 @@
         props: ['task', 'card'],
         computed: {
             date: function () {
-                let date = this.formatDate(new Date(this.task.deadline).getDate()) + '/' + this.formatDate((new Date(this.task.deadline).getMonth() + 1)) + '/' + new Date(this.task.deadline).getFullYear()
+                let date = this.formatDate(new Date(this.task.deadline).getDate()) + '/' + this.formatDate((new Date(this.task.deadline).getMonth() + 1)) + '/' + this.formatDate(new Date(this.task.deadline).getFullYear())
                 return date
             },
         },
