@@ -24,7 +24,7 @@
                     </div>
                     <div class="form-group" v-if="this.type === 'updateTask'">
                         <label>Deadline de la tâche</label>
-                        <datepicker format="yyyy/MM/dd" input-class="form-control" name="date" ></datepicker>
+                        <datepicker :language="fr" format="yyyy/MM/dd" input-class="form-control" name="date" :disabled-dates="disabledDates"></datepicker>
                     </div>
                     <div class="form-group" v-if="this.type === 'updateTask'">
                         <label>Status de la tâche</label>
@@ -64,6 +64,11 @@
             isNotTaskUpdate: function () {
                 return this.type !== 'updateTask'
             },
+            disabledDates: function () {
+                let date = new Date();
+                let dateMinusOneDay = new Date(date.setDate(date.getDate() - 1))
+                return {to: dateMinusOneDay}
+            }
         },
         methods: {
             actionToDo: function (e) {
