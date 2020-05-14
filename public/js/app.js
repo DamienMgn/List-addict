@@ -42856,7 +42856,7 @@ var render = function() {
           "div",
           {
             staticClass: "card-header",
-            style: { borderColor: _vm.card.color }
+            style: { backgroundColor: _vm.card.color }
           },
           [
             _c("h4", { staticClass: "card-title" }, [

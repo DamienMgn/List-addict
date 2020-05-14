@@ -658,13 +658,12 @@ input[type="radio"]:after {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 3rem;
     padding: 0;
     margin: 0;
     position: relative;
-    border-top: 5px solid;
     border-bottom: 0px;
     background-color: #ECECEC;
+    color: #FFFFFF;
 }
 
 .card-container .card-header .card-form-delete {
@@ -675,14 +674,17 @@ input[type="radio"]:after {
 }
 
 .card-container .card-header .fa, .fas {
-    color: #808080;
-    opacity: 0.5;
+    color: #FFFFFF;
+    opacity: 0.7;
 }
 
 .card-container .card-title {
-    color: #0D0D0D;
+    padding: 0.5rem 0 0.5rem 0;
     font-size: 1.05rem !important;
     font-weight: 600 !important;
+    color: #FFFFFF;
+    width: 100%;
+    text-align: center;
 }
 
 .card-container .card-body {
@@ -824,7 +826,7 @@ input[type="radio"]:after {
 /* Home Page */
 
 .progress-bar {
-    background-color: #5D6D7E;
+    background-color: #1a9bfc;
 }
 
 /* Dashboard */
@@ -865,7 +867,7 @@ input[type="radio"]:after {
     height: 100%;
     overflow: auto;
     min-height: 70vh;
-    margin: 1rem 3rem;
+    margin: 1rem 2rem;
 }
 
 .planning-container {
@@ -890,6 +892,8 @@ input[type="radio"]:after {
     width: 100%;
     background-color: #1a9bfc;
     text-align: center;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
 }
 
 .planning-container li{
