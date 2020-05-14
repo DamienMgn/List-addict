@@ -31,6 +31,7 @@ html, body {
 
 .welcome-header .navbar {
     background-color: #F2F2F3 !important;
+    padding-top: 2rem !important;
 }
 
 .navbar-collapse .navbar-nav {
@@ -39,8 +40,12 @@ html, body {
     justify-content: flex-end;
 }
 
+.navbar-collapse {
+    margin-right: 3rem;
+}
+
 .welcome-header .welcome-brand {
-    margin:  1rem 0 0 3rem !important;
+    margin:  0rem 0 0 3rem !important;
     padding-bottom: 0 !important;
     padding-top: 0 !important;
     max-height: 2.5rem;
@@ -90,7 +95,7 @@ html, body {
 
 .welcome-main .welcome-content {
     width: 100%;
-    min-height: 80vh;
+    min-height: calc(80vh - 2rem);
     display: flex;
     flex-direction: column;
     justify-content: center;

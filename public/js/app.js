@@ -43464,7 +43464,7 @@ var render = function() {
                           attrs: { to: { name: "planning" }, href: "#" }
                         },
                         [
-                          _c("i", { staticClass: "nav-icon fas fa-home" }),
+                          _c("i", { staticClass: "nav-icon fas fa-calendar" }),
                           _vm._v(" "),
                           _c("p", [
                             _vm._v(

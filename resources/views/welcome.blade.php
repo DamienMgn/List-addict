@@ -33,7 +33,7 @@
 @section('content')
         <div class="welcome-content">
             <div class="welcome-side left">
-                <h1>List-Addict, planifier son quotidien n'a jamais était aussi simple !</h1>
+                <h1>List-Addict, planifier son quotidien n'a jamais été aussi simple !</h1>
                 <ul class="welcome-ul">
                     <li class="welcome-li">Gérer facilement vos projets !</li>
                     <li class="welcome-li">Consulter votre agenda !</li>

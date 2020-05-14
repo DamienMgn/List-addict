@@ -59,7 +59,7 @@
                         </li>
                         <li class="nav-item has-treeview">
                             <router-link :to="{name: 'planning'}" href="#" class="nav-link">
-                                <i class="nav-icon fas fa-home"></i>
+                                <i class="nav-icon fas fa-calendar"></i>
                                 <p>
                                     Planning
                                 </p>
