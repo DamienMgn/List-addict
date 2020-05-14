@@ -858,40 +858,45 @@ input[type="radio"]:after {
 
 /* Planning */
 
-.planning-container {
+.plannings-container {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
     color: #FFFFFF;
+    height: 100%;
+    overflow: auto;
+    min-height: 70vh;
+    margin: 1rem 3rem;
 }
 
-.planning {
-    width: 45%;
-    height: 20rem;
+.planning-container {
+    width: 20%;
+    min-width: 20rem;
     display: flex;
+    max-height: 75vh;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    overflow: auto;
+    background-color: #ECECEC;
+    list-style: none;
+    margin: 0.5rem;
+    padding: 0rem;
 }
 
-.planning.last {
-    background-color: goldenrod;
+.planning-title {
+    padding: 0.5rem 0 0.5rem 0;
+    font-size: 1.05rem;
+    font-weight: 600 !important;
+    color: #FFFFFF;
+    width: 100%;
+    background-color: #1a9bfc;
+    text-align: center;
 }
 
-.planning.today {
-    background-color: darkgreen;
+.planning-container li{
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
-
-.planning.tomorrow {
-    background-color: blueviolet;
-}
-
-.planning.few {
-    background-color: hotpink;
-}
-
 
 @keyframes appear {
     from {

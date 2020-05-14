@@ -1,22 +1,38 @@
 <template>
     <div v-if="tasks !== undefined">
         <ContentComponent></ContentComponent>
-        <div class="planning-container">
-            <div class="planning last">
-                <h6>{{pastDays}}</h6>
-                <p v-for="task in tasks" v-if="new Date(task.deadline).getTime() < pastDays">{{task.name}} / {{task.deadline}}</p>
+        <div class="plannings-container">
+            <div class="planning-container">
+                <h3 class="planning-title">En retard</h3>
+                <ul class="planning-container">
+                    <li v-for="task in tasks" :key="task.id" :data-id="task.id">
+                        <TaskComponent :task="task"></TaskComponent>
+                    </li>
+                </ul>
             </div>
-            <div class="planning today">
-                <h6>{{today}}</h6>
-                <p v-for="task in tasks" v-if="new Date(task.deadline).getTime() > pastDays && new Date(task.deadline) < tomorrow">{{task.name}} / {{task.deadline}}</p>
+            <div class="planning-container">
+                <h3 class="planning-title">Aujourd'hui</h3>
+                <ul class="planning-container last">
+                    <li v-for="task in tasks" :key="task.id" :data-id="task.id">
+                        <TaskComponent :task="task"></TaskComponent>
+                    </li>
+                </ul>
             </div>
-            <div class="planning tomorrow">
-                <h6>{{tomorrow}}</h6>
-                <p v-for="task in tasks" v-if="new Date(task.deadline).getTime() > today && new Date(task.deadline) < nextDays">{{task.name}} / {{task.deadline}}</p>
+            <div class="planning-container">
+                <h3 class="planning-title">Demain</h3>
+                <ul class="planning-container last">
+                    <li v-for="task in tasks" :key="task.id" :data-id="task.id">
+                        <TaskComponent :task="task"></TaskComponent>
+                    </li>
+                </ul>
             </div>
-            <div class="planning few">
-                <h6>{{nextDays}}</h6>
-                <p v-for="task in tasks" v-if="new Date(task.deadline).getTime() > nextDays">{{task.name}} / {{task.deadline}}</p>
+            <div class="planning-container">
+                <h3 class="planning-title">A venir</h3>
+                <ul class="planning-container last">
+                    <li v-for="task in tasks" :key="task.id" :data-id="task.id">
+                        <TaskComponent :task="task"></TaskComponent>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
@@ -24,11 +40,13 @@
 
 <script>
     import ContentComponent from './partials/ContentComponent';
+    import TaskComponent from "./TaskComponent";
     import {mapGetters} from 'vuex';
 
     export default {
         components: {
             ContentComponent,
+            TaskComponent
         },
         computed: {
             ...mapGetters(['tasks']),
