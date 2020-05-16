@@ -6,6 +6,7 @@ use App\Cards;
 use App\Categories;
 use App\Tasks;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TasksController extends Controller
 {
@@ -142,23 +143,33 @@ class TasksController extends Controller
 
         $userId = $request->user()->id;
 
-        $tasksArray = [];
+        $today  = date("Y/m/d");
+        $tomorrow = new \DateTime('tomorrow');
 
-        $categories = Categories::where('user_id', $request->user()->id)->get();
+        $allTasks = [];
 
-        foreach ($categories as $category) {
-            $cards = Cards::where('category_id', $category->id)->get();
-            foreach ($cards as $card) {
-                $tasks = Tasks::where('card_id', $card->id)->get();
-                foreach ($tasks as $task) {
-                    $tasksArray[] = $task;
-                }
-            }
-        }
+        $allTasks['today'] = $this->getTasksFromDate($request->user()->id, $today, '=');
+        $allTasks['past'] = $this->getTasksFromDate($request->user()->id, $today, '<');
+        $allTasks['tomorrow'] = $this->getTasksFromDate($request->user()->id, $tomorrow, '=');
+        $allTasks['next'] = $this->getTasksFromDate($request->user()->id, $tomorrow, '>');
+
 
         return response()->json([
-            'tasks' => $tasksArray,
+            'tasks' => $allTasks,
         ]);
 
+    }
+
+    private function getTasksFromDate($userId, $date, $operator) {
+        $tasks = DB::table('categories')
+            ->where('user_id', $userId)
+            ->join('cards', 'categories.id', '=', 'cards.category_id')
+                 ->join('tasks', 'cards.id', '=', 'tasks.card_id')
+                 ->where('tasks.deadline', $operator, $date)
+                 ->where('tasks.status', 0)
+                 ->select('cards.*', 'tasks.*')
+                 ->get();
+
+        return $tasks;
     }
 }

@@ -2356,26 +2356,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     ContentComponent: _partials_ContentComponent__WEBPACK_IMPORTED_MODULE_0__["default"],
     TaskComponent: _TaskComponent__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])(['tasks']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])(['errors']), {
-    today: function today() {
-      return new Date().getTime();
-    },
-    pastDays: function pastDays() {
-      var date = new Date();
-      var pastDays = new Date(date.setDate(date.getDate() - 1)).getTime();
-      return pastDays;
-    },
-    tomorrow: function tomorrow() {
-      var date = new Date();
-      var tomorrow = new Date(date.setDate(date.getDate() + 1)).getTime();
-      return tomorrow;
-    },
-    nextDays: function nextDays() {
-      var date = new Date();
-      var nextDays = new Date(date.setDate(date.getDate() + 2)).getTime();
-      return nextDays;
-    }
-  }),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])(['tasks']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])(['errors'])),
   mounted: function mounted() {
     this.$store.dispatch('loadTasks');
   }
@@ -42856,7 +42837,7 @@ var render = function() {
           "div",
           {
             staticClass: "card-header",
-            style: { backgroundColor: _vm.card.color }
+            style: { borderColor: _vm.card.color }
           },
           [
             _c("h4", { staticClass: "card-title" }, [
@@ -43213,7 +43194,7 @@ var render = function() {
               _c(
                 "ul",
                 { staticClass: "planning-container" },
-                _vm._l(_vm.tasks, function(task) {
+                _vm._l(_vm.tasks.past, function(task) {
                   return _c(
                     "li",
                     { key: task.id, attrs: { "data-id": task.id } },
@@ -43233,7 +43214,7 @@ var render = function() {
               _c(
                 "ul",
                 { staticClass: "planning-container last" },
-                _vm._l(_vm.tasks, function(task) {
+                _vm._l(_vm.tasks.today, function(task) {
                   return _c(
                     "li",
                     { key: task.id, attrs: { "data-id": task.id } },
@@ -43251,7 +43232,7 @@ var render = function() {
               _c(
                 "ul",
                 { staticClass: "planning-container last" },
-                _vm._l(_vm.tasks, function(task) {
+                _vm._l(_vm.tasks.tomorrow, function(task) {
                   return _c(
                     "li",
                     { key: task.id, attrs: { "data-id": task.id } },
@@ -43269,7 +43250,7 @@ var render = function() {
               _c(
                 "ul",
                 { staticClass: "planning-container last" },
-                _vm._l(_vm.tasks, function(task) {
+                _vm._l(_vm.tasks.next, function(task) {
                   return _c(
                     "li",
                     { key: task.id, attrs: { "data-id": task.id } },
