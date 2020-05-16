@@ -663,7 +663,8 @@ input[type="radio"]:after {
     position: relative;
     border-bottom: 0px;
     background-color: #ECECEC;
-    color: #FFFFFF;
+    border-top: 4px solid #000000;
+    color: #0D0D0D;
 }
 
 .card-container .card-header .card-form-delete {
@@ -674,7 +675,7 @@ input[type="radio"]:after {
 }
 
 .card-container .card-header .fa, .fas {
-    color: #FFFFFF;
+    color: #0D0D0D;
     opacity: 0.7;
 }
 
@@ -682,7 +683,7 @@ input[type="radio"]:after {
     padding: 0.5rem 0 0.5rem 0;
     font-size: 1.05rem !important;
     font-weight: 600 !important;
-    color: #FFFFFF;
+    color: #0D0D0D;
     width: 100%;
     text-align: center;
 }
@@ -866,8 +867,9 @@ input[type="radio"]:after {
     color: #FFFFFF;
     height: 100%;
     overflow: auto;
-    min-height: 70vh;
+    min-height: 75vh;
     margin: 1rem 2rem;
+    padding-bottom: 2rem;
 }
 
 .planning-container {
@@ -888,9 +890,9 @@ input[type="radio"]:after {
     padding: 0.5rem 0 0.5rem 0;
     font-size: 1.05rem;
     font-weight: 600 !important;
-    color: #FFFFFF;
+    color: #0D0D0D;
     width: 100%;
-    background-color: #1a9bfc;
+    border-top: 4px solid #1a9bfc;
     text-align: center;
     border-top-right-radius: 4px;
     border-top-left-radius: 4px;
@@ -900,6 +902,10 @@ input[type="radio"]:after {
     width: 100%;
     margin: 0;
     padding: 0;
+}
+
+.planning-container .task-footer {
+    color: #0D0D0D;
 }
 
 @keyframes appear {

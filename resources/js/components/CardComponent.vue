@@ -1,7 +1,7 @@
 <template>
     <div :key="card.id">
         <div class="card-container">
-            <div class="card-header" :style="{backgroundColor: card.color}">
+            <div class="card-header" :style="{borderColor: card.color}">
                 <h4 class="card-title">{{ card.name }}</h4>
                 <div class="card-form-delete">
                     <a class="btn-dropdown dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true" @click="toggleDropdown">
