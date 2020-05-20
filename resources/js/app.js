@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import AccountComponent from './components/AccountComponent.vue'
 import ProjectComponent from './components/ProjectComponent.vue'
 import PlanningComponent from './components/PlanningComponent.vue'
 import HomeComponent from './components/HomeComponent.vue'
@@ -18,6 +19,7 @@ if (categories) {
         {path: '/', component: HomeComponent, name: 'home'},
         {path: '/:id', component: ProjectComponent, name: 'categorie'},
         {path: '/planning', component: PlanningComponent, name: 'planning'},
+        {path: '/account', component: AccountComponent, name: 'account'},
     ]
 
     const router = new VueRouter({

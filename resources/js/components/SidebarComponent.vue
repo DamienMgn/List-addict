@@ -18,7 +18,11 @@
                         <img src="dist/img/avatar3.png" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Name</a>
+                        <router-link :to="{name: 'account'}" href="#" class="nav-link">
+                            <p>
+                                Name
+                            </p>
+                        </router-link>
                     </div>
                 </div>
 
