@@ -1936,7 +1936,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AccountComponent"
 });
@@ -2527,8 +2526,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
 //
 //
 //
@@ -42841,9 +42838,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "account-container" }, [
-      _c("h1", [_vm._v("ACCOUNT COMPONENT")]),
-      _vm._v(" "),
-      _c("form", [
+      _c("form", { staticClass: "form-account" }, [
         _c("div", { staticClass: "form-group" }, [
           _c("label", { attrs: { for: "update-mail" } }, [
             _vm._v("Modification adresse email")
@@ -43483,18 +43478,13 @@ var render = function() {
                 [
                   _c(
                     "router-link",
-                    {
-                      staticClass: "nav-link",
-                      attrs: { to: { name: "account" }, href: "#" }
-                    },
+                    { attrs: { to: { name: "account" }, href: "#" } },
                     [
-                      _c("p", [
-                        _vm._v(
-                          "\n                            " +
-                            _vm._s(_vm.user.name) +
-                            "\n                        "
-                        )
-                      ])
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(_vm.user.name) +
+                          "\n                    "
+                      )
                     ]
                   )
                 ],
