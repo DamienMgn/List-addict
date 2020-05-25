@@ -20,7 +20,7 @@
                     <div class="info">
                         <router-link :to="{name: 'account'}" href="#" class="nav-link">
                             <p>
-                                Name
+                                {{user.name}}
                             </p>
                         </router-link>
                     </div>
@@ -106,10 +106,11 @@
             }
         },
         computed: {
-            ...mapGetters(['categories']),
+            ...mapGetters(['categories', 'user']),
         },
         mounted() {
             this.$store.dispatch('loadCategories')
+            this.$store.dispatch('loadUser')
         },
         methods:{
             addCategory: function (value) {

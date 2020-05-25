@@ -15,6 +15,7 @@ export const strict = false
 export default new Vuex.Store({
     strict: true,
     state: {
+        user: {},
         categories: {},
         tasks: [],
         errors: {}
@@ -28,11 +29,17 @@ export default new Vuex.Store({
         },
         errors: function (state) {
             return state.errors
+        },
+        user: function (state) {
+            return state.user
         }
     },
     mutations: {
         handleErrors: function(state, {errors}) {
             state.errors = errors
+        },
+        addUser: function(state, {user}) {
+            state.user = user;
         },
         addCategories: function (state, {categories}) {
             let obj = {}
@@ -96,6 +103,14 @@ export default new Vuex.Store({
         }
     },
     actions: {
+        loadUser: async function (context) {
+            try {
+                let response = await get('api/user')
+                context.commit('addUser', {user: response.data.user})
+            } catch(error) {
+                context.commit('handleErrors', {errors: error.response.data.errors})
+            }
+        },
         loadCategories: async function (context) {
             try {
                 let response = await get('/api/categories')
