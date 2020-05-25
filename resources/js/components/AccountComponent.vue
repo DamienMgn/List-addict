@@ -1,7 +1,6 @@
 <template>
     <div class="account-container">
-        <h1>ACCOUNT COMPONENT</h1>
-        <form>
+        <form class="form-account">
             <div class="form-group">
                 <label for="update-mail">Modification adresse email</label>
                 <input type="email" class="form-control" id="update-mail" aria-describedby="emailHelp">
