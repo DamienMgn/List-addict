@@ -18,6 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::middleware('auth:api')->get('/user', 'UserController@showUser');
+
 Route::middleware('auth:api')->get('/categories', 'CategoriesController@showCategories');
 Route::middleware('auth:api')->get('/tasks', 'TasksController@loadTasks');
 Route::middleware('auth:api')->post('/add-category', 'CategoriesController@addCategory');
