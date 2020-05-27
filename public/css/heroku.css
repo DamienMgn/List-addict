@@ -933,6 +933,12 @@ input[type="radio"]:after {
     margin-top: 2rem;
 }
 
+.profil-picture {
+    width: 15rem;
+    height: 15rem;
+    margin-bottom: 2rem;
+}
+
 @keyframes appear {
     from {
         opacity: 0;

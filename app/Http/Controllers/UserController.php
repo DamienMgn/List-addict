@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 class UserController extends Controller
 {
@@ -29,7 +31,9 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => 'nullable|min:2|max:25',
             'email' => 'email|nullable|min:3|max:100',
+            'picture' => 'nullable'
         ]);
+
 
         if (!empty($request->name)) {
             $user->name = $request->name;
@@ -37,6 +41,10 @@ class UserController extends Controller
 
         if (!empty($request->email)) {
             $user->email = $request->email;
+        }
+
+        if (!empty($request->picture)) {
+            Storage::disk('local')->put('new.jpg', $request->picture);
         }
 
         $user->save();
