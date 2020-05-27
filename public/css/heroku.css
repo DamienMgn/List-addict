@@ -315,7 +315,7 @@ input[type="radio"]:after {
 /* Sidebar */
 
 .main-sidebar {
-    background-color: #2E4053 !important;
+    background-color: #2D2D2D !important;
     font-size: 1rem;
     opacity: 1 !important;
     font-weight: 400;
@@ -330,7 +330,7 @@ input[type="radio"]:after {
 }
 
 .brand-link {
-    border-color: #34495E !important;
+    border-color: #595959 !important;
     display: flex;
     align-items: center;
 }
@@ -361,7 +361,7 @@ input[type="radio"]:after {
 }
 
 .main-sidebar .sidebar .nav-link:hover {
-    background-color: rgba(248, 60, 102, 0.7) !important;
+    background-color: #595959 !important;
     color: #D6DBDF !important;
 }
 
@@ -403,6 +403,18 @@ input[type="radio"]:after {
     cursor: pointer;
 }
 
+.main-sidebar .sidebar .li-add-category .nav-link {
+    color: #1a9bfc !important;
+}
+
+.main-sidebar .sidebar .li-add-category .nav-link:hover {
+    transform: scale(1.03)
+}
+
+.main-sidebar .sidebar .li-add-category .nav-link .nav-icon {
+    color: #1a9bfc !important;
+}
+
 .li-add-category .nav-link {
     color: #D6DBDF !important;
 }
@@ -427,7 +439,7 @@ input[type="radio"]:after {
 }
 
 .nav .nav-item .router-link-exact-active {
-    background-color: rgba(248, 60, 102, 0.7) !important;
+    background-color: #595959 !important;
     color: #D6DBDF !important;
 }
 
@@ -440,7 +452,7 @@ input[type="radio"]:after {
 }
 
 .user-panel {
-    border-color: #34495E !important;
+    border-color: #595959 !important;
 }
 /* Page Project show Cards */
 
