@@ -1936,6 +1936,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AccountComponent",
   data: function data() {
@@ -1949,7 +1954,8 @@ __webpack_require__.r(__webpack_exports__);
       e.preventDefault();
       this.$store.dispatch('updateUser', {
         name: this.name,
-        email: this.email
+        email: this.email,
+        picture: e.target.profilPicture.value
       });
       this.email = '';
       this.name = '';
@@ -42851,6 +42857,13 @@ var render = function() {
       "form",
       { staticClass: "form-account", on: { submit: _vm.updateUser } },
       [
+        _c("img", {
+          staticClass: "profil-picture",
+          attrs: { src: "../storage/logo.jpg" }
+        }),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
           _c("label", { attrs: { for: "update-mail" } }, [
             _vm._v("Modifier adresse mail")
@@ -42921,7 +42934,23 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "profilPicture" } }, [
+        _vm._v("Modifier votre photo de profil")
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control-file",
+        attrs: { type: "file", id: "profilPicture", name: "profilPicture" }
+      })
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -67208,7 +67237,8 @@ var strict = false;
                 _context3.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/update/user', {
                   name: dataUser.name,
-                  email: dataUser.email
+                  email: dataUser.email,
+                  picture: dataUser.picture
                 });
 
               case 3:

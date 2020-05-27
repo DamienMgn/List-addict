@@ -114,7 +114,8 @@ export default new Vuex.Store({
             try {
                 let response = await axios.post('/api/update/user', {
                     name: dataUser.name,
-                    email: dataUser.email
+                    email: dataUser.email,
+                    picture: dataUser.picture
                 })
                 context.commit('addUser', {user: response.data.user})
             } catch(error) {

@@ -1,6 +1,11 @@
 <template>
     <div class="account-container">
         <form class="form-account" @submit="updateUser">
+            <img class="profil-picture" :src="'../storage/logo.jpg'">
+            <div class="form-group">
+                <label for="profilPicture">Modifier votre photo de profil</label>
+                <input type="file" class="form-control-file" id="profilPicture" name="profilPicture">
+            </div>
             <div class="form-group">
                 <label for="update-mail">Modifier adresse mail</label>
                 <input type="email" class="form-control" id="update-mail" aria-describedby="emailHelp" v-model="email" name="email">
@@ -26,7 +31,7 @@
         methods: {
             updateUser: function (e) {
                 e.preventDefault();
-                this.$store.dispatch('updateUser', {name: this.name, email: this.email})
+                this.$store.dispatch('updateUser', {name: this.name, email: this.email, picture: e.target.profilPicture.value})
 
                 this.email = '';
                 this.name = '';
