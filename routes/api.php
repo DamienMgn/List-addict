@@ -19,6 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:api')->get('/user', 'UserController@showUser');
+Route::middleware('auth:api')->post('/update/user', 'UserController@updateUser');
+
 
 Route::middleware('auth:api')->get('/categories', 'CategoriesController@showCategories');
 Route::middleware('auth:api')->get('/tasks', 'TasksController@loadTasks');

@@ -119,7 +119,6 @@
                 $('#modal-add-category').find("input[type=text]").val('');
             },
             updateCategory: function (value) {
-                console.log(value)
                 this.$store.dispatch('updateCategory', {
                     categoryName: value.categoryName,
                     categoryColor: value.categoryColor,
