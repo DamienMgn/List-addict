@@ -53,7 +53,6 @@ export default new Vuex.Store({
         addTasks: function (state, {tasks}) {
             state.tasks = tasks
             state.errors = {}
-            console.log(state.tasks)
         },
         addCategory: function (state, {category}) {
             let obj = {}
@@ -106,6 +105,17 @@ export default new Vuex.Store({
         loadUser: async function (context) {
             try {
                 let response = await get('api/user')
+                context.commit('addUser', {user: response.data.user})
+            } catch(error) {
+                context.commit('handleErrors', {errors: error.response.data.errors})
+            }
+        },
+        updateUser: async function (context, dataUser) {
+            try {
+                let response = await axios.post('/api/update/user', {
+                    name: dataUser.name,
+                    email: dataUser.email
+                })
                 context.commit('addUser', {user: response.data.user})
             } catch(error) {
                 context.commit('handleErrors', {errors: error.response.data.errors})

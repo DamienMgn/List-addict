@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -12,6 +13,33 @@ class UserController extends Controller
     public function showUser(Request $request) {
 
         $user =  $request->user();
+
+        return response()->json([
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * Return user
+     */
+    public function updateUser(Request $request) {
+
+        $user =  User::find($request->user()->id);
+
+        $validatedData = $request->validate([
+            'name' => 'nullable|min:2|max:25',
+            'email' => 'email|nullable|min:3|max:100',
+        ]);
+
+        if (!empty($request->name)) {
+            $user->name = $request->name;
+        }
+
+        if (!empty($request->email)) {
+            $user->email = $request->email;
+        }
+
+        $user->save();
 
         return response()->json([
             'user' => $user,
