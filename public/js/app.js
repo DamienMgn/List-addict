@@ -1946,7 +1946,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       email: '',
-      name: ''
+      name: '',
+      image: ''
     };
   },
   methods: {
@@ -1955,10 +1956,26 @@ __webpack_require__.r(__webpack_exports__);
       this.$store.dispatch('updateUser', {
         name: this.name,
         email: this.email,
-        picture: e.target.profilPicture.value
+        picture: this.image
       });
       this.email = '';
       this.name = '';
+    },
+    onImageChange: function onImageChange(e) {
+      var file = e.target.files || e.dataTransfer.files;
+      if (!file.length) return;
+      this.createImage(file[0]);
+    },
+    createImage: function createImage(file) {
+      var _this = this;
+
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        _this.image = e.target.result;
+      };
+
+      reader.readAsDataURL(file);
     }
   }
 });
@@ -42862,7 +42879,17 @@ var render = function() {
           attrs: { src: "../storage/logo.jpg" }
         }),
         _vm._v(" "),
-        _vm._m(0),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "profilPicture" } }, [
+            _vm._v("Modifier votre photo de profil")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control-file",
+            attrs: { type: "file", id: "profilPicture", name: "profilPicture" },
+            on: { change: _vm.onImageChange }
+          })
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
           _c("label", { attrs: { for: "update-mail" } }, [
@@ -42934,23 +42961,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "profilPicture" } }, [
-        _vm._v("Modifier votre photo de profil")
-      ]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control-file",
-        attrs: { type: "file", id: "profilPicture", name: "profilPicture" }
-      })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -67243,25 +67254,26 @@ var strict = false;
 
               case 3:
                 response = _context3.sent;
+                console.log(response);
                 context.commit('addUser', {
                   user: response.data.user
                 });
-                _context3.next = 10;
+                _context3.next = 11;
                 break;
 
-              case 7:
-                _context3.prev = 7;
+              case 8:
+                _context3.prev = 8;
                 _context3.t0 = _context3["catch"](0);
                 context.commit('handleErrors', {
                   errors: _context3.t0.response.data.errors
                 });
 
-              case 10:
+              case 11:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, null, [[0, 7]]);
+        }, _callee3, null, [[0, 8]]);
       }));
 
       function updateUser(_x3, _x4) {

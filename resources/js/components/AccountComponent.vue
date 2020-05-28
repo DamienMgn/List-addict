@@ -4,7 +4,7 @@
             <img class="profil-picture" :src="'../storage/logo.jpg'">
             <div class="form-group">
                 <label for="profilPicture">Modifier votre photo de profil</label>
-                <input type="file" class="form-control-file" id="profilPicture" name="profilPicture">
+                <input type="file" class="form-control-file" id="profilPicture" name="profilPicture" @change="onImageChange">
             </div>
             <div class="form-group">
                 <label for="update-mail">Modifier adresse mail</label>
@@ -25,17 +25,30 @@
         data () {
             return {
                 email: '',
-                name: ''
+                name: '',
+                image: ''
             }
         },
         methods: {
             updateUser: function (e) {
                 e.preventDefault();
-                this.$store.dispatch('updateUser', {name: this.name, email: this.email, picture: e.target.profilPicture.value})
-
+                this.$store.dispatch('updateUser', {name: this.name, email: this.email, picture: this.image})
                 this.email = '';
                 this.name = '';
-            }
+            },
+            onImageChange: function (e) {
+                let file = e.target.files || e.dataTransfer.files;
+                if (!file.length)
+                    return;
+                this.createImage(file[0]);
+            },
+            createImage: function (file) {
+                let reader = new FileReader();
+                reader.onload = (e) => {
+                    this.image = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            },
         }
     }
 </script>
