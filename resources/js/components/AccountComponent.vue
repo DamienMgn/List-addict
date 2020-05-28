@@ -1,7 +1,7 @@
 <template>
     <div class="account-container">
         <form class="form-account" @submit="updateUser">
-            <img class="profil-picture" :src="'../storage/logo.jpg'">
+            <img class="profil-picture" :src="'../storage/' + user.avatar">
             <div class="form-group">
                 <label for="profilPicture">Modifier votre photo de profil</label>
                 <input type="file" class="form-control-file" id="profilPicture" name="profilPicture" @change="onImageChange">
@@ -20,6 +20,8 @@
 </template>
 
 <script>
+    import {mapGetters} from 'vuex';
+
     export default {
         name: "AccountComponent",
         data () {
@@ -28,6 +30,9 @@
                 name: '',
                 image: ''
             }
+        },
+        computed: {
+            ...mapGetters(['user']),
         },
         methods: {
             updateUser: function (e) {
