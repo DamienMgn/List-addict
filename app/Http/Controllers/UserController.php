@@ -44,7 +44,9 @@ class UserController extends Controller
         }
 
         if (!empty($request->picture)) {
-            Storage::disk('local')->put('new.jpg', $request->picture);
+            $data = substr($request->picture, strpos($request->picture, ',') + 1);
+            $data = base64_decode($data);
+            Storage::disk('local')->put("test.jpg", $data);
         }
 
         $user->save();
