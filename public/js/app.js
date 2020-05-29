@@ -2339,11 +2339,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     return mounted;
   }(),
-  watch: {
-    categories: function categories(newVal) {
-      this.newCategories = newVal;
-    }
-  },
   methods: {
     calulatePercentage: function calulatePercentage(id) {
       if (this.newCategories !== undefined) {
@@ -2436,9 +2431,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     ContentComponent: _partials_ContentComponent__WEBPACK_IMPORTED_MODULE_0__["default"],
     TaskComponent: _TaskComponent__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])(['tasks']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])(['errors'])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])(['tasks', 'errors'])),
   mounted: function mounted() {
-    this.$store.dispatch('loadTasks');
+    //this.$store.dispatch('loadTasks');
+    console.log('mounted');
   }
 });
 
@@ -2517,7 +2513,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     this.$store.dispatch('loadCards', this.$route.params.id);
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['categories']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['errors']), {
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['categories', 'errors']), {
     paramsId: function paramsId() {
       return this.$route.params.id;
     }
@@ -2527,9 +2523,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.dispatch('loadCards', this.$route.params.id);
     },
     categories: function categories(newVal) {
-      this.newCardsOrder = Object.values(newVal[this.$route.params.id].cards).sort(function (a, b) {
-        return a.order - b.order;
-      });
+      if (this.$route.params.id >= 0) {
+        this.newCardsOrder = Object.values(newVal[this.$route.params.id].cards).sort(function (a, b) {
+          return a.order - b.order;
+        });
+      }
     }
   },
   methods: {
@@ -67154,6 +67152,7 @@ var strict = false;
     addTasks: function addTasks(state, _ref5) {
       var tasks = _ref5.tasks;
       state.tasks = tasks;
+      console.log(state);
       state.errors = {};
     },
     addCategory: function addCategory(state, _ref6) {
