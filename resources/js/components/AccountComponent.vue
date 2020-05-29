@@ -37,7 +37,7 @@
         methods: {
             updateUser: function (e) {
                 e.preventDefault();
-                this.$store.dispatch('updateUser', {name: this.name, email: this.email, picture: this.image})
+                this.$store.dispatch('updateUser', {name: this.name, email: this.email, picture: [this.image, e.target.profilPicture.value]})
                 this.email = '';
                 this.name = '';
             },
