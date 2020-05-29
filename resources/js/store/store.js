@@ -52,6 +52,7 @@ export default new Vuex.Store({
         },
         addTasks: function (state, {tasks}) {
             state.tasks = tasks
+            console.log(state)
             state.errors = {}
         },
         addCategory: function (state, {category}) {

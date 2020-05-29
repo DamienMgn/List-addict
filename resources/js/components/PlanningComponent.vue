@@ -49,11 +49,11 @@
             TaskComponent
         },
         computed: {
-            ...mapGetters(['tasks']),
-            ...mapGetters(['errors']),
+            ...mapGetters(['tasks', 'errors']),
         },
         mounted () {
-            this.$store.dispatch('loadTasks')
+            //this.$store.dispatch('loadTasks');
+            console.log('mounted')
         },
     }
 </script>

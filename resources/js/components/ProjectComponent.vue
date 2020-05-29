@@ -54,8 +54,7 @@
             this.$store.dispatch('loadCards', this.$route.params.id)
         },
         computed: {
-            ...mapGetters(['categories']),
-            ...mapGetters(['errors']),
+            ...mapGetters(['categories', 'errors']),
             paramsId: function () {
                 return this.$route.params.id
             },
@@ -65,7 +64,9 @@
                 this.$store.dispatch('loadCards', this.$route.params.id)
             },
             categories: function (newVal) {
-                this.newCardsOrder = Object.values(newVal[this.$route.params.id].cards).sort((a, b) => {return a.order - b.order})
+                if(this.$route.params.id >= 0) {
+                    this.newCardsOrder = Object.values(newVal[this.$route.params.id].cards).sort((a, b) => {return a.order - b.order})
+                }
             }
         },
         methods: {
