@@ -117,7 +117,6 @@ export default new Vuex.Store({
                     email: dataUser.email,
                     picture: dataUser.picture
                 })
-                console.log(response)
                 context.commit('addUser', {user: response.data.user})
             } catch(error) {
                 context.commit('handleErrors', {errors: error.response.data.errors})

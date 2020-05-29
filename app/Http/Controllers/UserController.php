@@ -43,14 +43,19 @@ class UserController extends Controller
             $user->email = $request->email;
         }
 
-        if (!empty($request->picture)) {
-            $data = substr($request->picture, strpos($request->picture, ',') + 1);
-            $data = base64_decode($data);
-            
-            $name = 'avatar' . $user->id . '.jpg';
-            $user->avatar = $name;
+        if (!empty($request->picture[0])) {
 
-            Storage::delete($name);
+            Storage::disk('public')->delete($user->avatar);
+
+            $data = substr($request->picture[0], strpos($request->picture[0], ',') + 1);
+            $data = base64_decode($data);
+
+            $extension = pathinfo($request->picture[1]);
+            $extension = $extension['extension'];
+            
+            $name = $user->id . '_avatar'. time() . '.' . $extension;
+
+            $user->avatar = $name;
 
             Storage::disk('public')->put($name, $data);
         }

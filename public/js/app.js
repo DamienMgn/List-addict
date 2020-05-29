@@ -1965,7 +1965,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.dispatch('updateUser', {
         name: this.name,
         email: this.email,
-        picture: this.image
+        picture: [this.image, e.target.profilPicture.value]
       });
       this.email = '';
       this.name = '';
@@ -67270,26 +67270,25 @@ var strict = false;
 
               case 3:
                 response = _context3.sent;
-                console.log(response);
                 context.commit('addUser', {
                   user: response.data.user
                 });
-                _context3.next = 11;
+                _context3.next = 10;
                 break;
 
-              case 8:
-                _context3.prev = 8;
+              case 7:
+                _context3.prev = 7;
                 _context3.t0 = _context3["catch"](0);
                 context.commit('handleErrors', {
                   errors: _context3.t0.response.data.errors
                 });
 
-              case 11:
+              case 10:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, null, [[0, 8]]);
+        }, _callee3, null, [[0, 7]]);
       }));
 
       function updateUser(_x3, _x4) {
