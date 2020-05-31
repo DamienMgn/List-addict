@@ -1948,6 +1948,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AccountComponent",
@@ -42882,10 +42883,19 @@ var render = function() {
       "form",
       { staticClass: "form-account", on: { submit: _vm.updateUser } },
       [
-        _c("img", {
-          staticClass: "profil-picture",
-          attrs: { src: "../storage/" + _vm.user.avatar }
-        }),
+        _vm.user.avatar != null
+          ? _c("img", {
+              staticClass: "profil-picture",
+              attrs: { src: "../storage/" + _vm.user.avatar }
+            })
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.user.avatar === null
+          ? _c("img", {
+              staticClass: "profil-picture",
+              attrs: { src: "dist/img/avatar3.png" }
+            })
+          : _vm._e(),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
           _c("label", { attrs: { for: "profilPicture" } }, [
@@ -43567,7 +43577,7 @@ var render = function() {
           _c("div", { staticClass: "sidebar" }, [
             _c("div", { staticClass: "user-panel mt-3 pb-3 mb-3 d-flex" }, [
               _c("div", { staticClass: "image" }, [
-                _vm.user.avatar != undefined && _vm.user.avatar != ""
+                _vm.user.avatar != undefined && _vm.user.avatar != null
                   ? _c("img", {
                       staticClass: "img-circle elevation-2",
                       attrs: {
@@ -43577,7 +43587,7 @@ var render = function() {
                     })
                   : _vm._e(),
                 _vm._v(" "),
-                _vm.user.avatar === ""
+                _vm.user.avatar != undefined && _vm.user.avatar === null
                   ? _c("img", {
                       staticClass: "img-circle elevation-2",
                       attrs: { src: "dist/img/avatar3.png", alt: "User Image" }
