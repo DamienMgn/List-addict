@@ -1,7 +1,8 @@
 <template>
     <div class="account-container">
         <form class="form-account" @submit="updateUser">
-            <img class="profil-picture" :src="'../storage/' + user.avatar">
+            <img v-if="user.avatar != null" class="profil-picture" :src="'../storage/' + user.avatar">
+            <img v-if="user.avatar === null" class="profil-picture" src="dist/img/avatar3.png">
             <div class="form-group">
                 <label for="profilPicture">Modifier votre photo de profil</label>
                 <input type="file" class="form-control-file" id="profilPicture" name="profilPicture" @change="onImageChange">
