@@ -43577,7 +43577,7 @@ var render = function() {
           _c("div", { staticClass: "sidebar" }, [
             _c("div", { staticClass: "user-panel mt-3 pb-3 mb-3 d-flex" }, [
               _c("div", { staticClass: "image" }, [
-                _vm.user.avatar != undefined && _vm.user.avatar != null
+                _vm.user.avatar != null
                   ? _c("img", {
                       staticClass: "img-circle elevation-2",
                       attrs: {
@@ -43587,7 +43587,7 @@ var render = function() {
                     })
                   : _vm._e(),
                 _vm._v(" "),
-                _vm.user.avatar != undefined && _vm.user.avatar === null
+                _vm.user.avatar === null
                   ? _c("img", {
                       staticClass: "img-circle elevation-2",
                       attrs: { src: "dist/img/avatar3.png", alt: "User Image" }
