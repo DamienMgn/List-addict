@@ -68,6 +68,14 @@
                                 </p>
                             </router-link>
                         </li>
+                        <li class="nav-item has-treeview">
+                            <router-link :to="{name: 'tasks'}" href="#" class="nav-link">
+                                <i class="nav-icon fa fa-table"></i>
+                                <p>
+                                    Tâches Q
+                                </p>
+                            </router-link>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import AccountComponent from './components/AccountComponent.vue'
 import ProjectComponent from './components/ProjectComponent.vue'
+import DailyTasksComponent from './components/DailyTasksComponent.vue'
 import PlanningComponent from './components/PlanningComponent.vue'
 import HomeComponent from './components/HomeComponent.vue'
 import AppComponent from './components/AppComponent.vue'
@@ -20,6 +21,7 @@ if (categories) {
         {path: '/:id', component: ProjectComponent, name: 'categorie'},
         {path: '/planning', component: PlanningComponent, name: 'planning'},
         {path: '/account', component: AccountComponent, name: 'account'},
+        {path: '/tasks', component: DailyTasksComponent, name: 'tasks'},
     ]
 
     const router = new VueRouter({

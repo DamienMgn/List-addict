@@ -44,6 +44,7 @@
     import {mapGetters} from 'vuex';
 
     export default {
+        name: "PlanningComponent",
         components: {
             ContentComponent,
             TaskComponent
