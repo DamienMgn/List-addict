@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class CardsController extends Controller
 {
     /**
-     * Return cards
+     * Return cards fff
      */
     public function showCards(Categories $category) {
 
